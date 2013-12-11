@@ -17,6 +17,7 @@ public class Quizz {
      */
     public static void main(String[] args) {
         // TODODO code application logic here
+        System.out.println("On a un projet trop cool!");
     }
     
 }
