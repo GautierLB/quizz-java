@@ -24,8 +24,8 @@ public class Quizz {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODODO code application logic here
-        System.out.println("On a un projet trop cool!!!");
+        MainScreenView mainScreen = new MainScreenView();
+        mainScreen.setVisible(true);
         try {
             Font OpenSans = new Font(Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("OpenSans-Regular.ttf"))).getFamily(), Font.BOLD, 38);
         } catch (FontFormatException | IOException ex) {
