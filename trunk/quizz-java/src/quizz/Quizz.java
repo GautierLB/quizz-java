@@ -6,6 +6,14 @@
 
 package quizz;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Gautier
@@ -18,6 +26,12 @@ public class Quizz {
     public static void main(String[] args) {
         // TODODO code application logic here
         System.out.println("On a un projet trop cool!!!");
+        try {
+            Font OpenSans = new Font(Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("OpenSans-Regular.ttf"))).getFamily(), Font.BOLD, 38);
+        } catch (FontFormatException | IOException ex) {
+            Logger.getLogger(Quizz.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Erreur dans le chargement de la police");
+        }
     }
     
 }

@@ -1,3 +1,5 @@
+package quizz;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,7 +33,6 @@ public class CreateQuizzView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("mainFrame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Open Sans", 0, 34)); // NOI18N
