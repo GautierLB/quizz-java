@@ -13,11 +13,6 @@ import java.awt.Font;
  * @author Gautier
  */
 public class CreateQuizzView extends javax.swing.JFrame {
-
-    
-    
-    JTextArea txt = new JTextArea();
-Font font = new Font("Verdana", Font.BOLD, 12);
     /**
      * Creates new form Create
      */
