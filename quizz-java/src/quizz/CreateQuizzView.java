@@ -1,5 +1,6 @@
 package quizz;
 
+import java.awt.Font;
 import static quizz.Quizz.openSans;
 
 
@@ -37,10 +38,8 @@ public class CreateQuizzView extends javax.swing.JFrame {
         setName("mainFrame"); // NOI18N
         setResizable(false);
 
-        titleLabel.setFont(new java.awt.Font("Open Sans", 0, 34)); // NOI18N
+        titleLabel.setFont(openSans);
         titleLabel.setText("Créer un Quizz");
-        titleLabel.setFont(openSans)
- ;
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -49,17 +48,17 @@ public class CreateQuizzView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(titleLabel)
-                .addContainerGap(534, Short.MAX_VALUE))
+                .addContainerGap(698, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(titleLabel)
-                .addContainerGap(542, Short.MAX_VALUE))
+                .addContainerGap(575, Short.MAX_VALUE))
         );
 
-        titleLabel.getAccessibleContext().setAccessibleName("titleLabel");
+        titleLabel.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
