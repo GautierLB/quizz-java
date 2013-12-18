@@ -27,10 +27,9 @@ public class Quizz {
     
     public static void main(String[] args) {
         Quizz.initFont();
-        MainScreenView mainScreen = new MainScreenView();
+        MainFrame mainScreen = new MainFrame();
+        mainScreen.displayCreateQuizz();
         mainScreen.setVisible(true);
-        CreateQuizzView createScreen = new CreateQuizzView();
-        createScreen.setVisible(true);
     }
     
     public static void initFont(){
