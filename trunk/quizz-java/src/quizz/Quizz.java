@@ -23,11 +23,13 @@ public class Quizz {
     /**
      * @param args the command line arguments
      */
+    public static Font openSans;
+    
     public static void main(String[] args) {
         MainScreenView mainScreen = new MainScreenView();
         mainScreen.setVisible(true);
         try {
-            Font OpenSans = new Font(Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("OpenSans-Regular.ttf"))).getFamily(), Font.BOLD, 38);
+          Quizz.openSans = new Font(Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("OpenSans-Regular.ttf"))).getFamily(), Font.BOLD, 38);
         } catch (FontFormatException | IOException ex) {
             Logger.getLogger(Quizz.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Erreur dans le chargement de la police");
