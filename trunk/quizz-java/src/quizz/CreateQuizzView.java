@@ -35,10 +35,12 @@ public class CreateQuizzView extends javax.swing.JFrame {
         titleLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(800, 600));
         setName("mainFrame"); // NOI18N
         setResizable(false);
 
-        titleLabel.setFont(openSans);
+        titleLabel.setFont(Quizz.openSans);
         titleLabel.setText("Créer un Quizz");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

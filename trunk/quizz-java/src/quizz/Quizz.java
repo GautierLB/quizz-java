@@ -26,16 +26,19 @@ public class Quizz {
     public static Font openSans;
     
     public static void main(String[] args) {
-        try {
-          Quizz.openSans = new Font(Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("src/quizz/assets/OpenSans-Regular.ttf"))).getFamily(), 0, 34);
-        } catch (FontFormatException | IOException ex) {
-            Logger.getLogger(Quizz.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Erreur dans le chargement de la police");
-        }
+        Quizz.initFont();
         MainScreenView mainScreen = new MainScreenView();
         mainScreen.setVisible(true);
         CreateQuizzView createScreen = new CreateQuizzView();
         createScreen.setVisible(true);
     }
     
+    public static void initFont(){
+        try {
+          Quizz.openSans = new Font(Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("src/quizz/assets/OpenSans-Regular.ttf"))).getFamily(), 0, 34);
+        } catch (FontFormatException | IOException ex) {
+            Logger.getLogger(Quizz.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Erreur dans le chargement de la police");
+        }
+    }    
 }
