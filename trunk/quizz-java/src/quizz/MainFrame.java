@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quizz;
 
 import java.awt.BorderLayout;
@@ -13,12 +12,14 @@ import java.awt.BorderLayout;
  * @author Gautier
  */
 public class MainFrame extends javax.swing.JFrame {
-
-    /**
-     * Creates new form MainFrame
-     */
+    
+    public enum View {
+        
+        MainScreenView, CreateQuizzView
+    };
+    
     public MainFrame() {
-        initComponents();        
+        initComponents();
     }
 
     /**
@@ -72,21 +73,37 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MainFrame mainScreen = new MainFrame();
-                CreateQuizzView createQuizz = new CreateQuizzView();
-                mainScreen.add(createQuizz);
-                mainScreen.setVisible(true);
+                new MainFrame().setVisible(true);
             }
         });
         
-        
-    }
-    public void displayCreateQuizz(){
-        CreateQuizzView createQuizz = new CreateQuizzView();
-        this.setLayout(new BorderLayout());
-        this.add(BorderLayout.CENTER,createQuizz);
     }
     
+    public void changeView(View viewName) {
+        this.getContentPane().removeAll();
+        switch (viewName) {
+            case MainScreenView:
+                this.displayMainScreen();
+                break;
+            case CreateQuizzView:
+                this.displayCreateQuizz();
+                break;
+        }
+        this.setVisible(true);
+    }
+    
+    public void displayCreateQuizz() {
+        CreateQuizzView createQuizz = new CreateQuizzView();
+        this.setLayout(new BorderLayout());
+        this.add(BorderLayout.CENTER, createQuizz);
+    }
+    
+    public void displayMainScreen() {
+        MainScreenView mainScreen = new MainScreenView(this);
+        this.setLayout(new BorderLayout());
+        this.add(BorderLayout.CENTER, mainScreen);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
