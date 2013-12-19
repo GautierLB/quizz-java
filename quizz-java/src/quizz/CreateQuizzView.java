@@ -29,21 +29,37 @@ public class CreateQuizzView extends javax.swing.JPanel {
     private void initComponents() {
 
         titleLabel = new javax.swing.JLabel();
+        userLabel = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
+        setVerifyInputWhenFocusTarget(false);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        titleLabel.setFont(Quizz.s_openSans);
+        titleLabel.setFont(Quizz.s_openSansTitle);
+        titleLabel.setForeground(new java.awt.Color(102, 102, 102));
         titleLabel.setText("Créer un Quizz");
-        add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 0, -1, -1));
         titleLabel.getAccessibleContext().setAccessibleName("");
+
+        userLabel.setFont(Quizz.s_openSans13);
+        userLabel.setForeground(new java.awt.Color(102, 102, 102));
+        userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon.png"))); // NOI18N
+        userLabel.setText("User");
+        add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, -1, -1));
+        userLabel.getAccessibleContext().setAccessibleName("imageLabel");
+
+        jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 38, 720, -1));
 
         getAccessibleContext().setAccessibleName("CreateQuizzPanel");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 }

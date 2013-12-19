@@ -29,7 +29,7 @@
     <Component class="javax.swing.JLabel" name="mainScreenTitle">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="Quizz.s_openSans" type="code"/>
+          <Connection code="Quizz.s_openSansTitle" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Brain Storming"/>
         <Property name="name" type="java.lang.String" value="mainScreenTitle" noResource="true"/>
