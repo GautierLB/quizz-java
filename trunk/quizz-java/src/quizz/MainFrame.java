@@ -92,6 +92,9 @@ public class MainFrame extends javax.swing.JFrame {
         this.setVisible(true);
     }
     
+    /***
+     * Permet d'afficher la vue de création de Quizz.
+     */
     public void displayCreateQuizz() {
         CreateQuizzView createQuizz = new CreateQuizzView();
         this.setLayout(new BorderLayout());
