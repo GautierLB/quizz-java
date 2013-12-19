@@ -12,12 +12,12 @@ import java.awt.BorderLayout;
  * @author Gautier
  */
 public class MainFrame extends javax.swing.JFrame {
-    
+
     public enum View {
-        
+
         MainScreenView, CreateQuizzView
     };
-    
+
     public MainFrame() {
         initComponents();
     }
@@ -76,9 +76,14 @@ public class MainFrame extends javax.swing.JFrame {
                 new MainFrame().setVisible(true);
             }
         });
-        
+
     }
-    
+
+    /**
+     * Permet de choisir la vue a afficher.
+     *
+     * @param viewName est une enumeration contenant le nom des vues.
+     */
     public void changeView(View viewName) {
         this.getContentPane().removeAll();
         switch (viewName) {
@@ -91,17 +96,17 @@ public class MainFrame extends javax.swing.JFrame {
         }
         this.setVisible(true);
     }
-    
-    /***
-     * Permet d'afficher la vue de création de Quizz.
-     */
-    public void displayCreateQuizz() {
+
+    private void displayCreateQuizz() {
         CreateQuizzView createQuizz = new CreateQuizzView();
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, createQuizz);
     }
-    
-    public void displayMainScreen() {
+
+    /**
+     * Permet d'afficher la vue MainScreen.
+     */
+    private void displayMainScreen() {
         MainScreenView mainScreen = new MainScreenView(this);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, mainScreen);
