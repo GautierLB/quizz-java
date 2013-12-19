@@ -32,25 +32,11 @@ public class CreateQuizzView extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         titleLabel.setFont(Quizz.s_openSans);
         titleLabel.setText("Créer un Quizz");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(titleLabel))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(titleLabel))
-        );
-
+        add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
         titleLabel.getAccessibleContext().setAccessibleName("");
 
         getAccessibleContext().setAccessibleName("CreateQuizzPanel");
