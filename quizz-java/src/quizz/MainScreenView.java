@@ -6,8 +6,6 @@
 
 package quizz;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
-
 /**
  *
  * @author Vince
@@ -45,7 +43,7 @@ public class MainScreenView extends javax.swing.JPanel {
         mainScreenTitle.setFont(Quizz.s_openSans);
         mainScreenTitle.setText("Brain Storming");
         mainScreenTitle.setName("mainScreenTitle"); // NOI18N
-        add(mainScreenTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 43, -1, -1));
+        add(mainScreenTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
         createQuizz.setText("Créer Quizz");
         createQuizz.setActionCommand("createQuizz");
@@ -54,9 +52,10 @@ public class MainScreenView extends javax.swing.JPanel {
                 createQuizzActionPerformed(evt);
             }
         });
-        add(createQuizz, new org.netbeans.lib.awtextra.AbsoluteConstraints(643, 24, -1, 35));
+        add(createQuizz, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, -1, 35));
 
-        mainScreenBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/chatDev.jpg"))); // NOI18N
+        mainScreenBtn.setBackground(new java.awt.Color(255, 255, 255));
+        mainScreenBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
         mainScreenBtn.setName("mainScreenBtn"); // NOI18N
         mainScreenBtn.setPreferredSize(new java.awt.Dimension(100, 100));
         mainScreenBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +121,7 @@ public class MainScreenView extends javax.swing.JPanel {
     }//GEN-LAST:event_createQuizzActionPerformed
 
     private void mainScreenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainScreenBtnActionPerformed
-        // TODO add your handling code here:
+        m_mainFrame.changeView(MainFrame.View.ThemeScreenView);
     }//GEN-LAST:event_mainScreenBtnActionPerformed
 
     private void mainScreenBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainScreenBtn3ActionPerformed
