@@ -6,17 +6,18 @@
 
 package quizz;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
 /**
  *
  * @author Vince
  */
-public class MainScreenView extends javax.swing.JFrame {
+public class MainScreenView extends javax.swing.JPanel {
 
-    /**
-     * Creates new form MainScreenView
-     */
-    public MainScreenView() {
+    private MainFrame m_mainFrame;
+    public MainScreenView(MainFrame mainFrame) {
         initComponents();
+        m_mainFrame = mainFrame;
     }
 
     /**
@@ -28,105 +29,131 @@ public class MainScreenView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        mainScreenTitle = new javax.swing.JLabel();
+        createQuizz = new javax.swing.JButton();
+        mainScreenBtn = new javax.swing.JButton();
+        mainScreenBtn2 = new javax.swing.JButton();
+        mainScreenBtn3 = new javax.swing.JButton();
+        mainScreenBtn4 = new javax.swing.JButton();
+        mainScreenBtn5 = new javax.swing.JButton();
+        mainScreenBtn6 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MainScreen");
-        setName("mainFrame"); // NOI18N
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
-        setResizable(false);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Créer Quizz");
-        jButton1.setActionCommand("createQuizz");
+        mainScreenTitle.setFont(Quizz.s_openSans);
+        mainScreenTitle.setText("Brain Storming");
+        mainScreenTitle.setName("mainScreenTitle"); // NOI18N
+        add(mainScreenTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 43, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 34)); // NOI18N
-        jLabel1.setText("Brain Storming");
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/chatDev.jpg"))); // NOI18N
-        jButton2.setLabel("");
-        jButton2.setPreferredSize(new java.awt.Dimension(100, 100));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        createQuizz.setText("Créer Quizz");
+        createQuizz.setActionCommand("createQuizz");
+        createQuizz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                createQuizzActionPerformed(evt);
             }
         });
+        add(createQuizz, new org.netbeans.lib.awtextra.AbsoluteConstraints(643, 24, -1, 35));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 358, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(40, 40, 40))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(370, Short.MAX_VALUE))
-        );
+        mainScreenBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/chatDev.jpg"))); // NOI18N
+        mainScreenBtn.setName("mainScreenBtn"); // NOI18N
+        mainScreenBtn.setPreferredSize(new java.awt.Dimension(100, 100));
+        mainScreenBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainScreenBtnActionPerformed(evt);
+            }
+        });
+        add(mainScreenBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 154, -1, -1));
 
-        jLabel1.getAccessibleContext().setAccessibleName("Brain Storming");
+        mainScreenBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/chatDev.jpg"))); // NOI18N
+        mainScreenBtn2.setName("mainScreenBtn3"); // NOI18N
+        mainScreenBtn2.setPreferredSize(new java.awt.Dimension(100, 100));
+        mainScreenBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainScreenBtn2ActionPerformed(evt);
+            }
+        });
+        add(mainScreenBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 154, -1, -1));
 
-        pack();
+        mainScreenBtn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/chatDev.jpg"))); // NOI18N
+        mainScreenBtn3.setName("mainScreenBtn2"); // NOI18N
+        mainScreenBtn3.setPreferredSize(new java.awt.Dimension(100, 100));
+        mainScreenBtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainScreenBtn3ActionPerformed(evt);
+            }
+        });
+        add(mainScreenBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 154, -1, -1));
+
+        mainScreenBtn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/chatDev.jpg"))); // NOI18N
+        mainScreenBtn4.setName("mainScreenBtn4"); // NOI18N
+        mainScreenBtn4.setPreferredSize(new java.awt.Dimension(100, 100));
+        mainScreenBtn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainScreenBtn4ActionPerformed(evt);
+            }
+        });
+        add(mainScreenBtn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 394, -1, -1));
+
+        mainScreenBtn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/chatDev.jpg"))); // NOI18N
+        mainScreenBtn5.setName("mainScreenBtn5"); // NOI18N
+        mainScreenBtn5.setPreferredSize(new java.awt.Dimension(100, 100));
+        mainScreenBtn5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainScreenBtn5ActionPerformed(evt);
+            }
+        });
+        add(mainScreenBtn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 394, -1, -1));
+
+        mainScreenBtn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/chatDev.jpg"))); // NOI18N
+        mainScreenBtn6.setName("mainScreenBtn6"); // NOI18N
+        mainScreenBtn6.setPreferredSize(new java.awt.Dimension(100, 100));
+        mainScreenBtn6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainScreenBtn6ActionPerformed(evt);
+            }
+        });
+        add(mainScreenBtn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 394, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void createQuizzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createQuizzActionPerformed
+        m_mainFrame.changeView(MainFrame.View.CreateQuizzView);
+    }//GEN-LAST:event_createQuizzActionPerformed
+
+    private void mainScreenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainScreenBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_mainScreenBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainScreenView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainScreenView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainScreenView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainScreenView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void mainScreenBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainScreenBtn3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mainScreenBtn3ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainScreenView().setVisible(true);
-            }
-        });
-    }
+    private void mainScreenBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainScreenBtn2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mainScreenBtn2ActionPerformed
+
+    private void mainScreenBtn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainScreenBtn6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mainScreenBtn6ActionPerformed
+
+    private void mainScreenBtn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainScreenBtn5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mainScreenBtn5ActionPerformed
+
+    private void mainScreenBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainScreenBtn4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mainScreenBtn4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton createQuizz;
+    private javax.swing.JButton mainScreenBtn;
+    private javax.swing.JButton mainScreenBtn2;
+    private javax.swing.JButton mainScreenBtn3;
+    private javax.swing.JButton mainScreenBtn4;
+    private javax.swing.JButton mainScreenBtn5;
+    private javax.swing.JButton mainScreenBtn6;
+    private javax.swing.JLabel mainScreenTitle;
     // End of variables declaration//GEN-END:variables
 }

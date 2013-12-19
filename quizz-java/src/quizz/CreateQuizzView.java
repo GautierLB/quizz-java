@@ -32,9 +32,8 @@ public class CreateQuizzView extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
-        setFont(Quizz.openSans);
 
-        titleLabel.setFont(Quizz.openSans);
+        titleLabel.setFont(Quizz.s_openSans);
         titleLabel.setText("Créer un Quizz");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
