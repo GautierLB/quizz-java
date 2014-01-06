@@ -35,13 +35,12 @@ public class ThemeScreenView extends javax.swing.JPanel {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        themeName.setFont(Quizz.s_openSansTitle);
         themeName.setText("ThemeName");
-        themeName.setFont(Quizz.s_openSans);
 
         themeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-40.png"))); // NOI18N
         themeIcon.setMaximumSize(new java.awt.Dimension(80, 80));
         themeIcon.setMinimumSize(new java.awt.Dimension(80, 80));
-        themeIcon.setPreferredSize(new java.awt.Dimension(40, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
