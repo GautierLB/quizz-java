@@ -6,6 +6,10 @@
 
 package quizz;
 
+import java.awt.Color;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+
 /**
  *
  * @author Gautier
@@ -31,6 +35,13 @@ public class CreateQuizzView extends javax.swing.JPanel {
         titleLabel = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        subtitleLabel = new javax.swing.JLabel();
+        jPanel2 = new RoundedPanel();
+        paperIcon = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -38,7 +49,7 @@ public class CreateQuizzView extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         titleLabel.setFont(Quizz.s_openSansTitle);
-        titleLabel.setForeground(new java.awt.Color(102, 102, 102));
+        titleLabel.setForeground(new java.awt.Color(40, 40, 40));
         titleLabel.setText("Créer un Quizz");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 0, -1, -1));
         titleLabel.getAccessibleContext().setAccessibleName("");
@@ -53,12 +64,70 @@ public class CreateQuizzView extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 38, 720, -1));
 
+        subtitleLabel.setFont(Quizz.s_openSansItalic16);
+        subtitleLabel.setForeground(new java.awt.Color(102, 102, 102));
+        subtitleLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/settingIcon.png"))); // NOI18N
+        subtitleLabel.setText("Paramètres du Quizz");
+        add(subtitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 50, -1, -1));
+        subtitleLabel.getAccessibleContext().setAccessibleName("subtittleLabel");
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel2.setMaximumSize(new java.awt.Dimension(500, 300));
+        jPanel2.setMinimumSize(new java.awt.Dimension(500, 300));
+        jPanel2.setPreferredSize(new java.awt.Dimension(500, 300));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        paperIcon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        paperIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/paperIcon.png"))); // NOI18N
+        paperIcon.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        paperIcon.setAlignmentX(0.5F);
+        jPanel2.add(paperIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/flagIcon.png"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
+
+        jTextField2.setFont(Quizz.s_openSans13);
+        jTextField2.setForeground(new java.awt.Color(102, 102, 102));
+        jTextField2.setText("Nom du Quizz");
+        jTextField2.setMaximumSize(new java.awt.Dimension(150, 24));
+        jTextField2.setMinimumSize(new java.awt.Dimension(150, 24));
+        jTextField2.setPreferredSize(new java.awt.Dimension(150, 24));
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+
+        jComboBox1.setFont(Quizz.s_openSans13);
+        jComboBox1.setForeground(new java.awt.Color(102, 102, 102));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Facile", "Moyen", "Difficile" }));
+        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 150, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/hourglassIcon.png"))); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
+
         getAccessibleContext().setAccessibleName("CreateQuizzPanel");
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel paperIcon;
+    private javax.swing.JLabel subtitleLabel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
