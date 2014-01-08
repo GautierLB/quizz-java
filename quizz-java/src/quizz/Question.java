@@ -21,10 +21,10 @@ public class Question {
 
     /**
      * Save in the database and instantiate the Question
-     * @param labelQuestion the label of the question
-     * @param pictureQuestion  the picture of the question
      */
     public void saveQuestion() {
-        this.m_controller.Get().executeInsert("questions", "label_question,picture_question", "'" + this.m_labelQuestion + "','" + this.m_pictureQuestion + "'");
+        this.m_controller.Get().executeInsert("questions",
+                "label_question,picture_question",
+                "'" + this.m_labelQuestion + "','" + this.m_pictureQuestion + "'");
     }
 }
