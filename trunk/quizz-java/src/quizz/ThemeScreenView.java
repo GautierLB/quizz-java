@@ -6,6 +6,9 @@
 
 package quizz;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Vince
@@ -16,6 +19,53 @@ public class ThemeScreenView extends javax.swing.JPanel {
     public ThemeScreenView(MainFrame mainFrame) {
         initComponents();
         m_mainFrame = mainFrame;
+        createQuizzLine(2, "Gautier le BG", 25);
+    }
+    
+    private void createQuizzLine(int difficulty, String quizzName, int questionsNumber) {
+        String[] starsIconTitle = new String[3];
+        
+        JPanel starsPanel = new javax.swing.JPanel();
+        JLabel star1 = new javax.swing.JLabel();
+        JLabel star2 = new javax.swing.JLabel();
+        JLabel star3 = new javax.swing.JLabel();
+        JLabel quizzLabel = new javax.swing.JLabel();
+        
+        starsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        starsPanel.setForeground(new java.awt.Color(255, 255, 255));
+        starsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        switch(difficulty) {
+            case 2:
+                starsIconTitle[0] = Constants.STAR_FULL;
+                starsIconTitle[1] = Constants.STAR_FULL;
+                starsIconTitle[2] = Constants.STAR_EMPTY;
+                break;
+            case 3:
+                starsIconTitle[0] = Constants.STAR_FULL;
+                starsIconTitle[1] = Constants.STAR_FULL;
+                starsIconTitle[2] = Constants.STAR_FULL;
+                break;
+            default:
+                starsIconTitle[0] = Constants.STAR_FULL;
+                starsIconTitle[1] = Constants.STAR_EMPTY;
+                starsIconTitle[2] = Constants.STAR_EMPTY;
+                break;
+        }
+        
+        star1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/" + starsIconTitle[0])));
+        star2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/" + starsIconTitle[1])));
+        star3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/" + starsIconTitle[2])));
+        
+        starsPanel.add(star1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        starsPanel.add(star2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+        starsPanel.add(star3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
+
+        add(starsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 150, -1, -1));
+
+        quizzLabel.setText(quizzName + " [" + questionsNumber + "Q]");
+        add(quizzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 150, 162, 20));
+        this.setVisible(true);
     }
 
     /**
@@ -27,53 +77,43 @@ public class ThemeScreenView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSeparator1 = new javax.swing.JSeparator();
+        centralSeparator = new javax.swing.JSeparator();
         themeName = new javax.swing.JLabel();
         themeIcon = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        centralSeparator.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        add(centralSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 125, -1, 350));
 
         themeName.setFont(Quizz.s_openSansTitle);
         themeName.setText("ThemeName");
+        add(themeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
 
         themeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-40.png"))); // NOI18N
         themeIcon.setMaximumSize(new java.awt.Dimension(80, 80));
         themeIcon.setMinimumSize(new java.awt.Dimension(80, 80));
+        add(themeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 33, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(395, 395, 395)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(themeIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(themeName)))
-                .addContainerGap(393, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(themeName)
-                    .addComponent(themeIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(130, 130, 130))
-        );
+        backButton.setText("Retour");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backAction(evt);
+            }
+        });
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backAction
+        m_mainFrame.changeView(MainFrame.View.MainScreenView);
+    }//GEN-LAST:event_backAction
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton backButton;
+    private javax.swing.JSeparator centralSeparator;
     private javax.swing.JLabel themeIcon;
     private javax.swing.JLabel themeName;
     // End of variables declaration//GEN-END:variables
