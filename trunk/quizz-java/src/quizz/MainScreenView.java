@@ -40,7 +40,7 @@ public class MainScreenView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(800, 600));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        mainScreenTitle.setFont(Quizz.s_openSansTitle);
+        mainScreenTitle.setFont(Main.s_openSansTitle);
         mainScreenTitle.setText("Brain Storming");
         mainScreenTitle.setName("mainScreenTitle"); // NOI18N
         add(mainScreenTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
