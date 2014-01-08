@@ -65,6 +65,7 @@ public class DBController {
      * @param table the table where we execute the INSERT
      * @param fields the fields where we insert our values
      * @param values the values we INSERT (Format : "'Value','value2'...")
+     * @return the key generated
      */
     protected void executeInsert(String table, String fields, String values) {
         try {
@@ -72,11 +73,10 @@ public class DBController {
             fields.toUpperCase();
             String SQL = "INSERT INTO BDD_B3I_groupe_3.dbo.[" + table + "] (" + fields + ") VALUES (" + values + ")";
             Statement request = this.m_connection.createStatement();
-            int count = request.executeUpdate(SQL);
+            int countQuery = request.executeUpdate(SQL);
             request.close();
-            System.out.println("ROWS AFFECTED: " + count);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()+"bababab");
         }
     }
 }
