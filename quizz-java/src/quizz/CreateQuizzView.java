@@ -61,13 +61,13 @@ public class CreateQuizzView extends javax.swing.JPanel {
         setVerifyInputWhenFocusTarget(false);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        titleLabel.setFont(Quizz.s_openSansTitle);
+        titleLabel.setFont(Main.s_openSansTitle);
         titleLabel.setForeground(new java.awt.Color(40, 40, 40));
         titleLabel.setText("Créer un Quizz");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 0, -1, -1));
         titleLabel.getAccessibleContext().setAccessibleName("");
 
-        userLabel.setFont(Quizz.s_openSans13);
+        userLabel.setFont(Main.s_openSans13);
         userLabel.setForeground(new java.awt.Color(102, 102, 102));
         userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon.png"))); // NOI18N
         userLabel.setText("User");

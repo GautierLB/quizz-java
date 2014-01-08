@@ -36,7 +36,7 @@
     <Component class="javax.swing.JLabel" name="themeName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="Quizz.s_openSansTitle" type="code"/>
+          <Connection code="quizz.Main.s_openSansTitle" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="ThemeName"/>
       </Properties>

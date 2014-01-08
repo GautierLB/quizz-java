@@ -88,7 +88,7 @@ public class ThemeScreenView extends javax.swing.JPanel {
         centralSeparator.setOrientation(javax.swing.SwingConstants.VERTICAL);
         add(centralSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 125, -1, 350));
 
-        themeName.setFont(Quizz.s_openSansTitle);
+        themeName.setFont(Main.s_openSansTitle);
         themeName.setText("ThemeName");
         add(themeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
 
