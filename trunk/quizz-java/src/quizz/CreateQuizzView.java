@@ -69,7 +69,7 @@ public class CreateQuizzView extends javax.swing.JPanel {
 
         userLabel.setFont(quizz.Main.s_openSans13);
         userLabel.setForeground(new java.awt.Color(102, 102, 102));
-        userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon.png"))); // NOI18N
+        userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon-20.png"))); // NOI18N
         userLabel.setText("User");
         add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, -1, -1));
         userLabel.getAccessibleContext().setAccessibleName("imageLabel");
@@ -79,7 +79,7 @@ public class CreateQuizzView extends javax.swing.JPanel {
 
         subtitleLabel.setFont(Main.s_openSansItalic16);
         subtitleLabel.setForeground(new java.awt.Color(102, 102, 102));
-        subtitleLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/settingIcon.png"))); // NOI18N
+        subtitleLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/settingIcon-15.png"))); // NOI18N
         subtitleLabel.setText("Paramètres du Quizz");
         add(subtitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 50, -1, -1));
         subtitleLabel.getAccessibleContext().setAccessibleName("subtittleLabel");
@@ -92,12 +92,12 @@ public class CreateQuizzView extends javax.swing.JPanel {
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         paperIcon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        paperIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/paperIcon.png"))); // NOI18N
+        paperIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/paperIcon-25.png"))); // NOI18N
         paperIcon.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         paperIcon.setAlignmentX(0.5F);
         mainPanel.add(paperIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
-        flagIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/flagIcon.png"))); // NOI18N
+        flagIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/flagIcon-25.png"))); // NOI18N
         mainPanel.add(flagIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
         timeField.setFont(Main.s_openSans13);
@@ -118,7 +118,7 @@ public class CreateQuizzView extends javax.swing.JPanel {
         difficultySelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Facile", "Moyen", "Difficile" }));
         mainPanel.add(difficultySelector, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 150, -1));
 
-        replayableIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/replayableIcon.png"))); // NOI18N
+        replayableIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/replayableIcon-25.png"))); // NOI18N
         mainPanel.add(replayableIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
 
         nameField.setFont(Main.s_openSans13);
@@ -146,10 +146,10 @@ public class CreateQuizzView extends javax.swing.JPanel {
         folderSelector.setPreferredSize(new java.awt.Dimension(59, 20));
         mainPanel.add(folderSelector, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 150, -1));
 
-        hourglassIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/hourglassIcon.png"))); // NOI18N
+        hourglassIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/hourglassIcon-25.png"))); // NOI18N
         mainPanel.add(hourglassIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
-        folderIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/folderIcon.png"))); // NOI18N
+        folderIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/folderIcon-25.png"))); // NOI18N
         mainPanel.add(folderIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
 
         replayableCheckbox.setFont(Main.s_openSans13);

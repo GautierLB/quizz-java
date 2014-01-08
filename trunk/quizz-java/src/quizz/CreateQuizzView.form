@@ -58,7 +58,7 @@
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/quizz/assets/userIcon.png"/>
+          <Image iconType="3" name="/quizz/assets/userIcon-20.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="User"/>
       </Properties>
@@ -92,7 +92,7 @@
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/quizz/assets/settingIcon.png"/>
+          <Image iconType="3" name="/quizz/assets/settingIcon-15.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Param&#xe8;tres du Quizz"/>
       </Properties>
@@ -140,7 +140,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/quizz/assets/paperIcon.png"/>
+              <Image iconType="3" name="/quizz/assets/paperIcon-25.png"/>
             </Property>
             <Property name="verticalAlignment" type="int" value="3"/>
             <Property name="alignmentX" type="float" value="0.5"/>
@@ -154,7 +154,7 @@
         <Component class="javax.swing.JLabel" name="flagIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/quizz/assets/flagIcon.png"/>
+              <Image iconType="3" name="/quizz/assets/flagIcon-25.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -216,7 +216,7 @@
         <Component class="javax.swing.JLabel" name="replayableIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/quizz/assets/replayableIcon.png"/>
+              <Image iconType="3" name="/quizz/assets/replayableIcon-25.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -300,7 +300,7 @@
         <Component class="javax.swing.JLabel" name="hourglassIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/quizz/assets/hourglassIcon.png"/>
+              <Image iconType="3" name="/quizz/assets/hourglassIcon-25.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -312,7 +312,7 @@
         <Component class="javax.swing.JLabel" name="folderIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/quizz/assets/folderIcon.png"/>
+              <Image iconType="3" name="/quizz/assets/folderIcon-25.png"/>
             </Property>
           </Properties>
           <Constraints>
