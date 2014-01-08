@@ -6,6 +6,7 @@
 package quizz;
 
 import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -101,7 +102,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void displayCreateQuizz() {
-        CreateQuizzView createQuizz = new CreateQuizzView();
+        CreateQuizzView createQuizz = new CreateQuizzView(this);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, createQuizz);
     }

@@ -19,8 +19,10 @@ public class CreateQuizzView extends javax.swing.JPanel {
     /**
      * Creates new form CreateQuizzPanel
      */
-    public CreateQuizzView() {
+    private MainFrame m_mainFrame;
+    public CreateQuizzView(MainFrame mainFrame) {
         initComponents();
+        m_mainFrame = mainFrame;
     }
 
     /**
@@ -36,12 +38,23 @@ public class CreateQuizzView extends javax.swing.JPanel {
         userLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         subtitleLabel = new javax.swing.JLabel();
-        jPanel2 = new RoundedPanel();
+        mainPanel = new RoundedPanel();
         paperIcon = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
+        flagIcon = new javax.swing.JLabel();
+        timeField = new javax.swing.JTextField();
+        difficultySelector = new javax.swing.JComboBox();
+        replayableIcon = new javax.swing.JLabel();
+        nameField = new javax.swing.JTextField();
+        infoLabel = new javax.swing.JLabel();
+        folderSelector = new javax.swing.JComboBox();
+        hourglassIcon = new javax.swing.JLabel();
+        folderIcon = new javax.swing.JLabel();
+        replayableCheckbox = new javax.swing.JCheckBox();
+        createButton = new javax.swing.JButton();
+        starIcon3 = new javax.swing.JLabel();
+        starIcon1 = new javax.swing.JLabel();
+        starIcon2 = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -71,63 +84,140 @@ public class CreateQuizzView extends javax.swing.JPanel {
         add(subtitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 50, -1, -1));
         subtitleLabel.getAccessibleContext().setAccessibleName("subtittleLabel");
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel2.setMaximumSize(new java.awt.Dimension(500, 300));
-        jPanel2.setMinimumSize(new java.awt.Dimension(500, 300));
-        jPanel2.setPreferredSize(new java.awt.Dimension(500, 300));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainPanel.setForeground(new java.awt.Color(102, 102, 102));
+        mainPanel.setMaximumSize(new java.awt.Dimension(500, 300));
+        mainPanel.setMinimumSize(new java.awt.Dimension(500, 300));
+        mainPanel.setPreferredSize(new java.awt.Dimension(500, 300));
+        mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         paperIcon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         paperIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/paperIcon.png"))); // NOI18N
         paperIcon.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         paperIcon.setAlignmentX(0.5F);
-        jPanel2.add(paperIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+        mainPanel.add(paperIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/flagIcon.png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
+        flagIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/flagIcon.png"))); // NOI18N
+        mainPanel.add(flagIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
-        jTextField2.setFont(Quizz.s_openSans13);
-        jTextField2.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField2.setText("Nom du Quizz");
-        jTextField2.setMaximumSize(new java.awt.Dimension(150, 24));
-        jTextField2.setMinimumSize(new java.awt.Dimension(150, 24));
-        jTextField2.setPreferredSize(new java.awt.Dimension(150, 24));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        timeField.setFont(Quizz.s_openSans13);
+        timeField.setForeground(new java.awt.Color(102, 102, 102));
+        timeField.setText("Temps Maximum");
+        timeField.setMaximumSize(new java.awt.Dimension(150, 24));
+        timeField.setMinimumSize(new java.awt.Dimension(150, 24));
+        timeField.setPreferredSize(new java.awt.Dimension(150, 24));
+        timeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                timeFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+        mainPanel.add(timeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
 
-        jComboBox1.setFont(Quizz.s_openSans13);
-        jComboBox1.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Facile", "Moyen", "Difficile" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 150, -1));
+        difficultySelector.setFont(Quizz.s_openSans13);
+        difficultySelector.setForeground(new java.awt.Color(102, 102, 102));
+        difficultySelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Facile", "Moyen", "Difficile" }));
+        mainPanel.add(difficultySelector, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 150, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/hourglassIcon.png"))); // NOI18N
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
+        replayableIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/replayableIcon.png"))); // NOI18N
+        mainPanel.add(replayableIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
+        nameField.setFont(Quizz.s_openSans13);
+        nameField.setForeground(new java.awt.Color(102, 102, 102));
+        nameField.setText("Nom du Quizz");
+        nameField.setMaximumSize(new java.awt.Dimension(150, 24));
+        nameField.setMinimumSize(new java.awt.Dimension(150, 24));
+        nameField.setPreferredSize(new java.awt.Dimension(150, 24));
+        nameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameFieldActionPerformed(evt);
+            }
+        });
+        mainPanel.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+
+        infoLabel.setFont(Quizz.s_openSans13);
+        infoLabel.setText("Laisser vide si temps infini");
+        mainPanel.add(infoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
+
+        folderSelector.setForeground(new java.awt.Color(102, 102, 102));
+        folderSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Thème 1", "Thème 2", "Thème 3" }));
+        folderSelector.setSelectedItem("Thème");
+        folderSelector.setMaximumSize(new java.awt.Dimension(59, 20));
+        folderSelector.setMinimumSize(new java.awt.Dimension(59, 20));
+        folderSelector.setPreferredSize(new java.awt.Dimension(59, 20));
+        mainPanel.add(folderSelector, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 150, -1));
+
+        hourglassIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/hourglassIcon.png"))); // NOI18N
+        mainPanel.add(hourglassIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
+
+        folderIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/folderIcon.png"))); // NOI18N
+        mainPanel.add(folderIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
+
+        replayableCheckbox.setFont(Quizz.s_openSans13);
+        replayableCheckbox.setForeground(new java.awt.Color(102, 102, 102));
+        replayableCheckbox.setText("Rejouable ?");
+        mainPanel.add(replayableCheckbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
+
+        createButton.setText("Créer");
+        createButton.setMaximumSize(new java.awt.Dimension(80, 35));
+        createButton.setMinimumSize(new java.awt.Dimension(80, 35));
+        createButton.setPreferredSize(new java.awt.Dimension(80, 35));
+        mainPanel.add(createButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, -1, -1));
+
+        starIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starEmpty-20.png"))); // NOI18N
+        mainPanel.add(starIcon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
+
+        starIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png"))); // NOI18N
+        mainPanel.add(starIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
+
+        starIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png"))); // NOI18N
+        mainPanel.add(starIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, -1, -1));
+
+        add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
+
+        backButton.setText("Retour");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonbackAction(evt);
+            }
+        });
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
 
         getAccessibleContext().setAccessibleName("CreateQuizzPanel");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void timeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_timeFieldActionPerformed
+
+    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameFieldActionPerformed
+
+    private void backButtonbackAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonbackAction
+        m_mainFrame.changeView(MainFrame.View.MainScreenView);
+    }//GEN-LAST:event_backButtonbackAction
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton createButton;
+    private javax.swing.JComboBox difficultySelector;
+    private javax.swing.JLabel flagIcon;
+    private javax.swing.JLabel folderIcon;
+    private javax.swing.JComboBox folderSelector;
+    private javax.swing.JLabel hourglassIcon;
+    private javax.swing.JLabel infoLabel;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JTextField nameField;
     private javax.swing.JLabel paperIcon;
+    private javax.swing.JCheckBox replayableCheckbox;
+    private javax.swing.JLabel replayableIcon;
+    private javax.swing.JLabel starIcon1;
+    private javax.swing.JLabel starIcon2;
+    private javax.swing.JLabel starIcon3;
     private javax.swing.JLabel subtitleLabel;
+    private javax.swing.JTextField timeField;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
