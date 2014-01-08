@@ -67,7 +67,7 @@ public class CreateQuizzView extends javax.swing.JPanel {
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 0, -1, -1));
         titleLabel.getAccessibleContext().setAccessibleName("");
 
-        userLabel.setFont(Main.s_openSans13);
+        userLabel.setFont(quizz.Main.s_openSans13);
         userLabel.setForeground(new java.awt.Color(102, 102, 102));
         userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon.png"))); // NOI18N
         userLabel.setText("User");
@@ -77,7 +77,7 @@ public class CreateQuizzView extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 38, 720, -1));
 
-        subtitleLabel.setFont(Quizz.s_openSansItalic16);
+        subtitleLabel.setFont(Main.s_openSansItalic16);
         subtitleLabel.setForeground(new java.awt.Color(102, 102, 102));
         subtitleLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/settingIcon.png"))); // NOI18N
         subtitleLabel.setText("Paramètres du Quizz");
@@ -100,7 +100,7 @@ public class CreateQuizzView extends javax.swing.JPanel {
         flagIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/flagIcon.png"))); // NOI18N
         mainPanel.add(flagIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
-        timeField.setFont(Quizz.s_openSans13);
+        timeField.setFont(Main.s_openSans13);
         timeField.setForeground(new java.awt.Color(102, 102, 102));
         timeField.setText("Temps Maximum");
         timeField.setMaximumSize(new java.awt.Dimension(150, 24));
@@ -113,7 +113,7 @@ public class CreateQuizzView extends javax.swing.JPanel {
         });
         mainPanel.add(timeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
 
-        difficultySelector.setFont(Quizz.s_openSans13);
+        difficultySelector.setFont(Main.s_openSans13);
         difficultySelector.setForeground(new java.awt.Color(102, 102, 102));
         difficultySelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Facile", "Moyen", "Difficile" }));
         mainPanel.add(difficultySelector, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 150, -1));
@@ -121,7 +121,7 @@ public class CreateQuizzView extends javax.swing.JPanel {
         replayableIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/replayableIcon.png"))); // NOI18N
         mainPanel.add(replayableIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
 
-        nameField.setFont(Quizz.s_openSans13);
+        nameField.setFont(Main.s_openSans13);
         nameField.setForeground(new java.awt.Color(102, 102, 102));
         nameField.setText("Nom du Quizz");
         nameField.setMaximumSize(new java.awt.Dimension(150, 24));
@@ -134,7 +134,7 @@ public class CreateQuizzView extends javax.swing.JPanel {
         });
         mainPanel.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
 
-        infoLabel.setFont(Quizz.s_openSans13);
+        infoLabel.setFont(Main.s_openSans13);
         infoLabel.setText("Laisser vide si temps infini");
         mainPanel.add(infoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
 
@@ -152,7 +152,7 @@ public class CreateQuizzView extends javax.swing.JPanel {
         folderIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/folderIcon.png"))); // NOI18N
         mainPanel.add(folderIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
 
-        replayableCheckbox.setFont(Quizz.s_openSans13);
+        replayableCheckbox.setFont(Main.s_openSans13);
         replayableCheckbox.setForeground(new java.awt.Color(102, 102, 102));
         replayableCheckbox.setText("Rejouable ?");
         mainPanel.add(replayableCheckbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));

@@ -25,6 +25,7 @@ public class Main {
      */
     public static Font s_openSansTitle;
     public static Font s_openSans13;
+    public static Font s_openSansItalic16;
     
     public static void main(String[] args) {
         Main.initFont();
@@ -36,6 +37,7 @@ public class Main {
         try {
           Main.s_openSansTitle = new Font(Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("src/quizz/assets/OpenSans-Regular.ttf"))).getFamily(), 0, 24);
           Main.s_openSans13 = new Font(Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("src/quizz/assets/OpenSans-Regular.ttf"))).getFamily(), 0, 13);
+          Main.s_openSansItalic16 = new Font(Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("src/quizz/assets/OpenSans-Italic.ttf"))).getFamily(), 0, 16);
         } catch (FontFormatException | IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Erreur dans le chargement de la police");
