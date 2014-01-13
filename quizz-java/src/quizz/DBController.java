@@ -67,16 +67,23 @@ public class DBController {
      * @param values the values we INSERT (Format : "'Value','value2'...")
      * @return the key generated
      */
-    protected void executeInsert(String table, String fields, String values) {
+    protected int executeInsert(String table, String fields, String values) {
+        int Key = 0;
         try {
             table.toUpperCase();
             fields.toUpperCase();
             String SQL = "INSERT INTO BDD_B3I_groupe_3.dbo.[" + table + "] (" + fields + ") VALUES (" + values + ")";
-            Statement request = this.m_connection.createStatement();
-            int countQuery = request.executeUpdate(SQL);
+            Statement request = this.m_connection.createStatement();           
+            int countQuery = request.executeUpdate(SQL , Statement.RETURN_GENERATED_KEYS);
+            ResultSet test = request.getGeneratedKeys();
+            if (test.next()) {               
+                Key = test.getInt(1);
+            }
             request.close();
         } catch (Exception e) {
-            System.out.println(e.getMessage()+"bababab");
+            System.out.println(e.getMessage());
         }
+        return Key;
+        
     }
 }

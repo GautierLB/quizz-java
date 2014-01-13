@@ -13,18 +13,21 @@ public class Question {
     private String m_labelQuestion;
     private String m_pictureQuestion;
 
-    public Question(int id, String label, String picture) {
-        this.m_idQuestion = id;
+    public Question(String label, String picture) {
         this.m_labelQuestion = label;
         this.m_pictureQuestion = picture;
     }
 
     /**
-     * Save in the database and instantiate the Question
+     * Save in the database the Question
      */
     public void saveQuestion() {
-        this.m_controller.Get().executeInsert("questions",
+        this.m_idQuestion = this.m_controller.Get().executeInsert("questions",
                 "label_question,picture_question",
                 "'" + this.m_labelQuestion + "','" + this.m_pictureQuestion + "'");
+    }
+    
+    public int GetId(){
+        return this.m_idQuestion;
     }
 }
