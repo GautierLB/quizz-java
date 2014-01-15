@@ -14,6 +14,12 @@ public class Theme {
     private String m_nameTheme;
     private String m_pictureTheme;
 
+    /**
+     * The construct of the Theme
+     *
+     * @param name the name of the Theme
+     * @param picture the path or URL of the picture
+     */
     public Theme(String name, String picture) {
         this.m_nameTheme = name;
         this.m_pictureTheme = picture;
