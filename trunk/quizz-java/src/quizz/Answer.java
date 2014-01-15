@@ -32,7 +32,7 @@ public class Answer {
      * Save in the database the question
      */
     public void saveAnswer() {
-        this.m_controller.Get().executeInsert("answers",
+        this.m_idAnswer = this.m_controller.Get().executeInsert("answers",
                 "label_answers,picture_answers,is_valid",
                 "'" + this.m_labelAnswer
                 + "','" + this.m_pictureAnswer
