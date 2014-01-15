@@ -16,6 +16,13 @@ public class User {
     private String m_mdpUser;
     private String m_mailUser;
 
+    /**
+     * the Contruct of the User
+     *
+     * @param pseudo the pseudo of the user
+     * @param mdp the password of the user
+     * @param mail the mail of the user
+     */
     public User(String pseudo, String mdp, String mail) {
         this.m_pseudoUser = pseudo;
         this.m_mdpUser = mdp;
@@ -31,6 +38,18 @@ public class User {
                 "'" + this.m_pseudoUser
                 + "','" + this.m_mdpUser
                 + "','" + this.m_mailUser + "'");
-        System.out.println("clé créer dans object : " + this.m_idUser);
+    }
+
+    /**
+     * Make the link between a answer and the user in the database (insert
+     * CHOOSE)
+     *
+     * @param answer the answer how have choose the user
+     */
+    public void addAnswer(Answer answer) {
+        this.m_controller.Get().executeInsert("choose",
+                "id_question,id_answer",
+                this.m_idUser + ","
+                + answer.getId());
     }
 }

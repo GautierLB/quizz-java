@@ -42,13 +42,14 @@ public class DBController {
      *
      * @param select the data we want (for all use '*' )
      * @param table the table of the data
+     * @param where the condition of a specific research
      * @return an ResultSet with the data
      */
-    protected ResultSet executeSelect(String select, String table) {
+    protected ResultSet executeSelect(String select, String table , String where) {
         ResultSet selectReturn;
         try {
             // Create and execute an SQL statement that returns some data. 
-            String SQL = "SELECT " + select + " FROM BDD_B3I_groupe_3.dbo.[" + table + "];";
+            String SQL = "SELECT " + select + " FROM BDD_B3I_groupe_3.dbo.[" + table + "] " + where + ";";
             Statement request = this.m_connection.createStatement();
             selectReturn = request.executeQuery(SQL);
             request.close();
@@ -73,10 +74,10 @@ public class DBController {
             table.toUpperCase();
             fields.toUpperCase();
             String SQL = "INSERT INTO BDD_B3I_groupe_3.dbo.[" + table + "] (" + fields + ") VALUES (" + values + ")";
-            Statement request = this.m_connection.createStatement();           
-            int countQuery = request.executeUpdate(SQL , Statement.RETURN_GENERATED_KEYS);
+            Statement request = this.m_connection.createStatement();
+            int countQuery = request.executeUpdate(SQL, Statement.RETURN_GENERATED_KEYS);
             ResultSet test = request.getGeneratedKeys();
-            if (test.next()) {               
+            if (test.next()) {
                 Key = test.getInt(1);
             }
             request.close();
@@ -84,6 +85,6 @@ public class DBController {
             System.out.println(e.getMessage());
         }
         return Key;
-        
+
     }
 }

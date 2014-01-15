@@ -15,6 +15,13 @@ public class Scoring {
     private int m_idQuizz;
     private int m_score;
 
+    /**
+     * The construct of Scoring
+     *
+     * @param idUser the Id of the user how make the score
+     * @param idQuizz the Id of the quizz how is concerne by the Score
+     * @param score the score of the user
+     */
     public Scoring(int idUser, int idQuizz, int score) {
         this.m_idQuizz = idUser;
         this.m_idUser = idQuizz;
