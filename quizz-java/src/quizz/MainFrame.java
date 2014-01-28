@@ -6,7 +6,6 @@
 package quizz;
 
 import java.awt.BorderLayout;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,7 +17,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         MainScreenView, CreateQuizzView, ThemeScreenView
     };
-
     public MainFrame() {
         initComponents();
     }
@@ -37,12 +35,21 @@ public class MainFrame extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getAccessibleContext().setAccessibleName("mainFrame");
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments

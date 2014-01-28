@@ -20,6 +20,7 @@ public class CreateQuizzView extends javax.swing.JPanel {
      * Creates new form CreateQuizzPanel
      */
     private MainFrame m_mainFrame;
+    private LoginDialog m_loginDlg;
     public CreateQuizzView(MainFrame mainFrame) {
         initComponents();
         m_mainFrame = mainFrame;
@@ -59,6 +60,16 @@ public class CreateQuizzView extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
         setVerifyInputWhenFocusTarget(false);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         titleLabel.setFont(Main.s_openSansTitle);
@@ -71,6 +82,11 @@ public class CreateQuizzView extends javax.swing.JPanel {
         userLabel.setForeground(new java.awt.Color(102, 102, 102));
         userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon-20.png"))); // NOI18N
         userLabel.setText("User");
+        userLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userLabelMouseClicked(evt);
+            }
+        });
         add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, -1, -1));
         userLabel.getAccessibleContext().setAccessibleName("imageLabel");
 
@@ -196,6 +212,24 @@ public class CreateQuizzView extends javax.swing.JPanel {
     private void backButtonbackAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonbackAction
         m_mainFrame.changeView(MainFrame.View.MainScreenView);
     }//GEN-LAST:event_backButtonbackAction
+
+    private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
+        m_loginDlg = new LoginDialog(m_mainFrame);
+        m_loginDlg.setVisible(true);
+        // if logon successfully
+        /*if(m_loginDlg.isSucceeded()){
+            //btnLogin.setText("Hi " + m_loginDlg.getUsername() + "!");
+        }*/
+    }//GEN-LAST:event_userLabelMouseClicked
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        
+    }//GEN-LAST:event_formFocusGained
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        m_loginDlg.setVisible(false);
+        m_loginDlg.dispose();
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
