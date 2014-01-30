@@ -16,10 +16,10 @@ import javax.swing.JDialog;
  
 public class LoginDialog extends JDialog {
  
-    public LoginDialog(Frame parent) {
+    public LoginDialog(MainFrame parent) {
         super(parent, "Login", true);
         this.setModal(false);
-        LoginDialogPanel login = new LoginDialogPanel(); 
+        LoginDialogPanel login = new LoginDialogPanel(parent); 
         getContentPane().add(login, BorderLayout.CENTER);
         this.setUndecorated(true);
         pack();

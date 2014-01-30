@@ -10,11 +10,12 @@ package quizz;
  *
  * @author Vince
  */
-public class QuestionScreenView extends javax.swing.JPanel {
+public class QuestionScreenView extends BrainStormingView {
 
     private MainFrame m_mainFrame;
 
     public QuestionScreenView(MainFrame mainFrame) {
+        super(mainFrame);
         initComponents();
         m_mainFrame = mainFrame;
     }
@@ -63,6 +64,11 @@ public class QuestionScreenView extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
@@ -185,6 +191,7 @@ public class QuestionScreenView extends javax.swing.JPanel {
     private void goToNextQuestion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goToNextQuestion
         questionLabel.setText("Next");
     }//GEN-LAST:event_goToNextQuestion
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

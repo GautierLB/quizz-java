@@ -14,14 +14,14 @@ import javax.swing.border.LineBorder;
  *
  * @author Gautier
  */
-public class CreateQuizzView extends javax.swing.JPanel {
+public class CreateQuizzView extends BrainStormingView {
 
     /**
      * Creates new form CreateQuizzPanel
      */
     private MainFrame m_mainFrame;
-    private LoginDialog m_loginDlg;
     public CreateQuizzView(MainFrame mainFrame) {
+        super(mainFrame);
         initComponents();
         m_mainFrame = mainFrame;
     }
@@ -214,22 +214,12 @@ public class CreateQuizzView extends javax.swing.JPanel {
     }//GEN-LAST:event_backButtonbackAction
 
     private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
-        m_loginDlg = new LoginDialog(m_mainFrame);
-        m_loginDlg.setVisible(true);
-        // if logon successfully
-        /*if(m_loginDlg.isSucceeded()){
-            //btnLogin.setText("Hi " + m_loginDlg.getUsername() + "!");
-        }*/
+        m_mainFrame.addView(MainFrame.modalView.LoginView);
     }//GEN-LAST:event_userLabelMouseClicked
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         
     }//GEN-LAST:event_formFocusGained
-
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        m_loginDlg.setVisible(false);
-        m_loginDlg.dispose();
-    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
