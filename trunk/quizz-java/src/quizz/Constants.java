@@ -11,6 +11,9 @@ package quizz;
  * @author Vince
  */
 public final class Constants {
+    public static final String IMAGE_FOLDER = "/quizz/assets/";
     public static final String STAR_FULL = "starFull-20.png";
     public static final String STAR_EMPTY = "starEmpty-20.png";
+    public static final String HEART_FULL = "heartFull-20.png";
+    public static final String HEART_EMPTY = "heartEmpty-20.png";
 }

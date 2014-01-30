@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quizz;
 
+import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -16,26 +16,27 @@ import javax.swing.JPanel;
 public class ThemeScreenView extends javax.swing.JPanel {
 
     private MainFrame m_mainFrame;
+
     public ThemeScreenView(MainFrame mainFrame) {
         initComponents();
         m_mainFrame = mainFrame;
         createQuizzLine(2, "Gautier le BG", 25);
     }
-    
+
     private void createQuizzLine(int difficulty, String quizzName, int questionsNumber) {
         String[] starsIconTitle = new String[3];
-        
+
         JPanel starsPanel = new javax.swing.JPanel();
         JLabel star1 = new javax.swing.JLabel();
         JLabel star2 = new javax.swing.JLabel();
         JLabel star3 = new javax.swing.JLabel();
         JLabel quizzLabel = new javax.swing.JLabel();
-        
+
         starsPanel.setBackground(new java.awt.Color(255, 255, 255));
         starsPanel.setForeground(new java.awt.Color(255, 255, 255));
         starsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        switch(difficulty) {
+        switch (difficulty) {
             case 2:
                 starsIconTitle[0] = Constants.STAR_FULL;
                 starsIconTitle[1] = Constants.STAR_FULL;
@@ -52,11 +53,11 @@ public class ThemeScreenView extends javax.swing.JPanel {
                 starsIconTitle[2] = Constants.STAR_EMPTY;
                 break;
         }
-        
-        star1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/" + starsIconTitle[0])));
-        star2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/" + starsIconTitle[1])));
-        star3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/" + starsIconTitle[2])));
-        
+
+        star1.setIcon(new javax.swing.ImageIcon(getClass().getResource(Constants.IMAGE_FOLDER + starsIconTitle[0])));
+        star2.setIcon(new javax.swing.ImageIcon(getClass().getResource(Constants.IMAGE_FOLDER + starsIconTitle[1])));
+        star3.setIcon(new javax.swing.ImageIcon(getClass().getResource(Constants.IMAGE_FOLDER + starsIconTitle[2])));
+
         starsPanel.add(star1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
         starsPanel.add(star2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
         starsPanel.add(star3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));

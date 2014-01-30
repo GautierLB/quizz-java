@@ -2,11 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package quizz;
+package quizz.model;
 
 public class Quizz {
 
-    private static DBController m_controller;
+    private static DBController s_controller;
     private int m_idQuizz;
     private int m_idTheme;
     private int m_idAdmin;
@@ -40,8 +40,8 @@ public class Quizz {
     /**
      * Save the Quiz in the database
      */
-    public void saveQuizz() {
-        this.m_idQuizz = this.m_controller.Get().executeInsert("quizz",
+    public int saveQuizz() {
+        return this.s_controller.Get().executeInsert("quizz",
                 "id_theme,id_admin,nb_quest_quizz,difficulty_quizz,time_max_quizz,retry_quizz,name_quizz",
                 this.m_idTheme + ","
                 + this.m_idAdmin + ","
@@ -59,10 +59,10 @@ public class Quizz {
      *
      * @param question ths question we want to add to the quizz
      */
-    public void addQuestion(Question question) {
-        this.m_controller.Get().executeInsert("compose",
+    /*public void addQuestion(Question question) {
+        this.s_controller.Get().executeInsert("compose",
                 "id_quizz,id_question",
                 this.m_idQuizz + ","
                 + question.GetId());
-    }
+    }*/
 }

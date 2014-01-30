@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package quizz;
+package quizz.model;
 
-/**
- *
- *
- */
 public class Scoring {
 
-    private static DBController m_controller;
+    private static DBController s_controller;
     private int m_idUser;
     private int m_idQuizz;
     private int m_score;
@@ -32,7 +24,7 @@ public class Scoring {
      * Save in the database the score of the quiz
      */
     public void saveScoring() {
-        this.m_controller.Get().executeInsert("scoring",
+        this.s_controller.Get().executeInsert("scoring",
                 "id_user,id_quizz,score",
                 "" + this.m_idUser
                 + "," + this.m_idQuizz

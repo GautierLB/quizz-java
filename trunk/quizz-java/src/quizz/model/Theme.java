@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package quizz;
+package quizz.model;
 
-/**
- *
- *
- */
 public class Theme {
 
-    private static DBController m_controller;
+    private static DBController s_controller;
     private String m_nameTheme;
     private String m_pictureTheme;
 
@@ -29,7 +21,7 @@ public class Theme {
      * Save in the database the Theme
      */
     public void saveTheme() {
-        this.m_controller.Get().executeInsert("theme",
+        this.s_controller.Get().executeInsert("theme",
                 "name_theme,picture_theme",
                 "'" + this.m_nameTheme
                 + "','" + this.m_pictureTheme + "'");
