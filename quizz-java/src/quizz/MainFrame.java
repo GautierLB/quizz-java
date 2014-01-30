@@ -15,7 +15,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     public enum View {
 
-        MainScreenView, CreateQuizzView, ThemeScreenView
+        MainScreenView, CreateQuizzView, ThemeScreenView, QuestionScreen
     };
     public MainFrame() {
         initComponents();
@@ -104,6 +104,9 @@ public class MainFrame extends javax.swing.JFrame {
             case ThemeScreenView:
                 this.displayThemeScreen();
                 break;
+            case QuestionScreen:
+                this.displayQuestionScreen();
+                break;
         }
         this.setVisible(true);
     }
@@ -130,6 +133,14 @@ public class MainFrame extends javax.swing.JFrame {
         ThemeScreenView themeScreen = new ThemeScreenView(this);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, themeScreen);
+    }
+    /**
+     * Permet d'afficher la vue ThemeScreen.
+     */
+    private void displayQuestionScreen() {
+        QuestionScreenView questionScreen = new QuestionScreenView(this);
+        this.setLayout(new BorderLayout());
+        this.add(BorderLayout.CENTER, questionScreen);
     }
 
 

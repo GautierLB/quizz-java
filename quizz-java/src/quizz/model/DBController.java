@@ -2,14 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package quizz;
+package quizz.model;
 
 import java.sql.*;
 
 public class DBController {
 
     private Connection m_connection;
-    static DBController s_dbController;
+    static private DBController s_dbController;
 
     static public DBController Get() {
         if (s_dbController == null) {
@@ -45,7 +45,7 @@ public class DBController {
      * @param where the condition of a specific research
      * @return an ResultSet with the data
      */
-    protected ResultSet executeSelect(String select, String table , String where) {
+    public ResultSet executeSelect(String select, String table, String where) {
         ResultSet selectReturn;
         try {
             // Create and execute an SQL statement that returns some data. 
@@ -68,14 +68,14 @@ public class DBController {
      * @param values the values we INSERT (Format : "'Value','value2'...")
      * @return the key generated
      */
-    protected int executeInsert(String table, String fields, String values) {
+    public int executeInsert(String table, String fields, String values) {
         int Key = 0;
         try {
             table.toUpperCase();
             fields.toUpperCase();
             String SQL = "INSERT INTO BDD_B3I_groupe_3.dbo.[" + table + "] (" + fields + ") VALUES (" + values + ")";
             Statement request = this.m_connection.createStatement();
-            int countQuery = request.executeUpdate(SQL, Statement.RETURN_GENERATED_KEYS);
+            request.executeUpdate(SQL, Statement.RETURN_GENERATED_KEYS);
             ResultSet test = request.getGeneratedKeys();
             if (test.next()) {
                 Key = test.getInt(1);
@@ -85,6 +85,5 @@ public class DBController {
             System.out.println(e.getMessage());
         }
         return Key;
-
     }
 }

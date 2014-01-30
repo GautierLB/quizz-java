@@ -13,16 +13,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import quizz.model.DBController;
+import quizz.model.User;
 
-/**
- *
- * @author Gautier
- */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static Font s_openSansTitle;
     public static Font s_openSans13;
     public static Font s_openSansItalic16;
