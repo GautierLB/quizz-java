@@ -10,10 +10,11 @@ package quizz;
  *
  * @author Vince
  */
-public class MainScreenView extends javax.swing.JPanel {
+public class MainScreenView extends BrainStormingView {
 
     private MainFrame m_mainFrame;
     public MainScreenView(MainFrame mainFrame) {
+        super(mainFrame);
         initComponents();
         m_mainFrame = mainFrame;
     }
@@ -38,6 +39,11 @@ public class MainScreenView extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mainScreenTitle.setFont(quizz.Main.s_openSansTitle);
@@ -130,6 +136,7 @@ public class MainScreenView extends javax.swing.JPanel {
     private void jLabel6selectTheme(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6selectTheme
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel6selectTheme
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

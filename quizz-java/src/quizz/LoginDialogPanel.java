@@ -17,8 +17,10 @@ public class LoginDialogPanel extends RoundedPanel {
     /**
      * Creates new form LoginDialog
      */
-    public LoginDialogPanel() {
+    private MainFrame m_mainFrame;
+    public LoginDialogPanel(MainFrame mainFrame) {
         initComponents();
+        m_mainFrame = mainFrame;
     }
 
     /**
@@ -100,6 +102,11 @@ public class LoginDialogPanel extends RoundedPanel {
         add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
 
         signInButton.setText("Inscription");
+        signInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signInButtonActionPerformed(evt);
+            }
+        });
         add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -110,6 +117,11 @@ public class LoginDialogPanel extends RoundedPanel {
     private void formFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusLost
 
     }//GEN-LAST:event_formFocusLost
+
+    private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
+        this.m_mainFrame.deleteModal();
+        this.m_mainFrame.addView(MainFrame.modalView.SignInView);
+    }//GEN-LAST:event_signInButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

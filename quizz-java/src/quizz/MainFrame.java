@@ -17,6 +17,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         MainScreenView, CreateQuizzView, ThemeScreenView, QuestionScreen
     };
+    public enum modalView{
+        LoginView,SignInView;
+    };
+    LoginDialog m_loginDlg;
+    SignInDialog m_signInDlg;
     public MainFrame() {
         initComponents();
     }
@@ -110,6 +115,23 @@ public class MainFrame extends javax.swing.JFrame {
         }
         this.setVisible(true);
     }
+    
+    /**
+     * Permet de choisir la vue a ajouter(vues modales).
+     *
+     * @param viewName est une enumeration contenant le nom des vues.
+     */
+    public void addView(modalView viewName) {
+        switch (viewName) {
+            case LoginView:
+                this.displayLoginPanel();
+                break;
+            case SignInView:
+                this.displaySignInPanel();
+                break;
+        }
+        this.setVisible(true);
+    }
 
     private void displayCreateQuizz() {
         CreateQuizzView createQuizz = new CreateQuizzView(this);
@@ -143,7 +165,27 @@ public class MainFrame extends javax.swing.JFrame {
         this.add(BorderLayout.CENTER, questionScreen);
     }
 
+    private void displayLoginPanel() {
+        m_loginDlg = new LoginDialog(this);
+        m_loginDlg.setVisible(true);
+    }
 
+    private void displaySignInPanel() {
+        m_signInDlg = new SignInDialog(this);
+        m_signInDlg.setVisible(true);
+    }
+    
+    public void deleteModal() {
+        if (m_loginDlg != null){
+            m_loginDlg.setVisible(false);
+            m_loginDlg.dispose();
+        }
+        if (m_signInDlg != null){
+            m_signInDlg.setVisible(false);
+            m_signInDlg.dispose();
+        }
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

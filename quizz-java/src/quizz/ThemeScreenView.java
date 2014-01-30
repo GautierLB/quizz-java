@@ -13,11 +13,12 @@ import javax.swing.JPanel;
  *
  * @author Vince
  */
-public class ThemeScreenView extends javax.swing.JPanel {
+public class ThemeScreenView extends BrainStormingView {
 
     private MainFrame m_mainFrame;
 
     public ThemeScreenView(MainFrame mainFrame) {
+        super(mainFrame);
         initComponents();
         m_mainFrame = mainFrame;
         createQuizzLine(2, "Gautier le BG", 25);
@@ -84,12 +85,17 @@ public class ThemeScreenView extends javax.swing.JPanel {
         backButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         centralSeparator.setOrientation(javax.swing.SwingConstants.VERTICAL);
         add(centralSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 125, -1, 350));
 
-        themeName.setFont(Main.s_openSansTitle);
+        themeName.setFont(quizz.Main.s_openSansTitle);
         themeName.setText("ThemeName");
         add(themeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
 
