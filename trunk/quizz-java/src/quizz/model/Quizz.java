@@ -52,17 +52,4 @@ public class Quizz {
                 + this.m_nameQuizz + "'");
 
     }
-
-    /**
-     * Make the link between a question and the quizz in the database (insert
-     * COMPOSE)
-     *
-     * @param question ths question we want to add to the quizz
-     */
-    /*public void addQuestion(Question question) {
-        this.s_controller.Get().executeInsert("compose",
-                "id_quizz,id_question",
-                this.m_idQuizz + ","
-                + question.GetId());
-    }*/
 }

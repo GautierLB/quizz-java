@@ -22,7 +22,7 @@ public abstract class HaveAnswers {
     public void linkQuestionsToQuizz(Quizz quizz, List<Question> questionsList) {
         int quizzId = quizz.saveQuizz();
         for (int i = 0; i < questionsList.size(); i++) {
-            //s_dbController.executeInsert("compose", "id_quizz,id_question", quizzId + "," + questionsList.getId());
+            s_dbController.executeInsert("compose", "id_quizz,id_question", quizzId + "," + questionsList.get(i).getId());
         }
     }
 }
