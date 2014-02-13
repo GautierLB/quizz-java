@@ -12,11 +12,9 @@ package quizz;
  */
 public class MainScreenView extends BrainStormingView {
 
-    private MainFrame m_mainFrame;
     public MainScreenView(MainFrame mainFrame) {
         super(mainFrame);
         initComponents();
-        m_mainFrame = mainFrame;
     }
 
     /**
@@ -114,7 +112,7 @@ public class MainScreenView extends BrainStormingView {
     }//GEN-LAST:event_createQuizzActionPerformed
 
     private void selectTheme(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectTheme
-        m_mainFrame.changeView(MainFrame.View.QuestionScreen);
+        m_mainFrame.changeView(MainFrame.View.QuestionScreenView);
     }//GEN-LAST:event_selectTheme
 
     private void jLabel2selectTheme(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2selectTheme

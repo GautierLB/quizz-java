@@ -12,12 +12,10 @@ package quizz;
  */
 public class QuestionScreenView extends BrainStormingView {
 
-    private MainFrame m_mainFrame;
 
     public QuestionScreenView(MainFrame mainFrame) {
         super(mainFrame);
         initComponents();
-        m_mainFrame = mainFrame;
     }
 
     /**
