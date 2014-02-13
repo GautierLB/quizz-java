@@ -11,7 +11,7 @@ package quizz;
  * @author Gautier
  */
 public abstract class BrainStormingView extends javax.swing.JPanel {
-    private MainFrame m_mainFrame;
+    protected MainFrame m_mainFrame;
     protected void formMouseClicked(java.awt.event.MouseEvent evt) {                                  
         m_mainFrame.deleteModal();
     }

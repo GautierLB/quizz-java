@@ -15,12 +15,10 @@ import javax.swing.JPanel;
  */
 public class ThemeScreenView extends BrainStormingView {
 
-    private MainFrame m_mainFrame;
 
     public ThemeScreenView(MainFrame mainFrame) {
         super(mainFrame);
         initComponents();
-        m_mainFrame = mainFrame;
         createQuizzLine(2, "Gautier le BG", 25);
     }
 

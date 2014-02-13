@@ -19,11 +19,9 @@ public class CreateQuizzView extends BrainStormingView {
     /**
      * Creates new form CreateQuizzPanel
      */
-    private MainFrame m_mainFrame;
     public CreateQuizzView(MainFrame mainFrame) {
         super(mainFrame);
         initComponents();
-        m_mainFrame = mainFrame;
     }
 
     /**
@@ -177,6 +175,11 @@ public class CreateQuizzView extends BrainStormingView {
         createButton.setMaximumSize(new java.awt.Dimension(80, 35));
         createButton.setMinimumSize(new java.awt.Dimension(80, 35));
         createButton.setPreferredSize(new java.awt.Dimension(80, 35));
+        createButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createButtonActionPerformed(evt);
+            }
+        });
         mainPanel.add(createButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, -1, -1));
 
         starIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starEmpty-20.png"))); // NOI18N
@@ -220,6 +223,10 @@ public class CreateQuizzView extends BrainStormingView {
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         
     }//GEN-LAST:event_formFocusGained
+
+    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+        m_mainFrame.changeView(MainFrame.View.CreateQuestionView);
+    }//GEN-LAST:event_createButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

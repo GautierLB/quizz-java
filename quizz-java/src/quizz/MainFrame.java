@@ -15,7 +15,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     public enum View {
 
-        MainScreenView, CreateQuizzView, ThemeScreenView, QuestionScreen
+        MainScreenView, CreateQuizzView, ThemeScreenView, QuestionScreenView, CreateQuestionView
     };
     public enum modalView{
         LoginView,SignInView;
@@ -109,8 +109,11 @@ public class MainFrame extends javax.swing.JFrame {
             case ThemeScreenView:
                 this.displayThemeScreen();
                 break;
-            case QuestionScreen:
+            case QuestionScreenView:
                 this.displayQuestionScreen();
+                break;
+            case CreateQuestionView:
+                this.displayCreateQuestionScreen();
                 break;
         }
         this.setVisible(true);
@@ -164,17 +167,32 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, questionScreen);
     }
+     /**
+     * Permet d'afficher la vue CreateQuestionScreen.
+     */
+     private void displayCreateQuestionScreen() {
+        CreateQuestionView questionScreen = new CreateQuestionView(this);
+        this.setLayout(new BorderLayout());
+        this.add(BorderLayout.CENTER, questionScreen);
+    }
 
+    /**
+     * Permet D'afficher le panel de login
+     */
     private void displayLoginPanel() {
         m_loginDlg = new LoginDialog(this);
         m_loginDlg.setVisible(true);
     }
-
+     /**
+     * Permet D'afficher le panel d'inscription
+     */
     private void displaySignInPanel() {
         m_signInDlg = new SignInDialog(this);
         m_signInDlg.setVisible(true);
     }
-    
+    /**
+     * Supprime toutes les fenêtres modales
+     */
     public void deleteModal() {
         if (m_loginDlg != null){
             m_loginDlg.setVisible(false);
