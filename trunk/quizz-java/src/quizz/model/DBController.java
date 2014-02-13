@@ -1,13 +1,11 @@
 package quizz.model;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DBController {
 
-    private Connection m_connection;
-    private Statement m_request;
     static private DBController s_dbController;
 
     // JDBC driver name and database URL
@@ -26,11 +24,14 @@ public class DBController {
     }
 
     private DBController() {
-        m_request = null;
+    }
+
+    private Connection connectDB() {
+        Connection connection = null;
         try {
             Class.forName(JDBC_DRIVER);
             System.out.println("Connecting to a selected database...");
-            this.m_connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
             System.out.println("Connected database successfully...");
         } catch (SQLException se) {
             //Handle errors for JDBC
@@ -39,30 +40,34 @@ public class DBController {
             //Handle errors for Class.forName
             e.printStackTrace();
         }
+        return connection;
     }
 
-    /**
-     * Execute select request function
-     * <p>
-     * if the query failed return null
-     *
-     * @param select the data we want (for all use '*' )
-     * @param table the table of the data
-     * @param where the condition of a specific research
-     * @return an ResultSet with the data
-     */
-    public ResultSet executeSelect(String select, String table, String where) {
-        ResultSet selectReturn;
+    public ArrayList<HashMap<String, Object>> executeSelect(String select, String table, String where) {
+        ArrayList<HashMap<String, Object>> result = new ArrayList<>();
+        String query = "SELECT " + select + " FROM BDD_B3I_groupe_3.dbo.[" + table + "] " + where + ";";
+
+        Connection connection = this.connectDB();
         try {
-            String SQL = "SELECT " + select + " FROM BDD_B3I_groupe_3.dbo.[" + table + "] " + where + ";";
-            System.out.println("SQL statement: " + SQL);
-            m_request = this.m_connection.createStatement();
-            selectReturn = m_request.executeQuery(SQL);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                HashMap<String, Object> row = new HashMap<>();
+                ResultSetMetaData rsmd = resultSet.getMetaData();
+                for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+                    String colName = rsmd.getColumnName(i);
+                    String colLabel = rsmd.getColumnLabel(i);
+                    Object value = resultSet.getObject(colLabel);
+                    row.put(colName, value);
+                }
+                result.add(row);
+            }
+            statement.close();
+            connection.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            selectReturn = null;
         }
-        return selectReturn;
+        return result;
     }
 
     /**
@@ -77,7 +82,7 @@ public class DBController {
         int key = 0;
         try {
             String SQL = "INSERT INTO BDD_B3I_groupe_3.dbo.[" + table + "] (" + fields + ") VALUES (" + values + ")";
-            Statement request = this.m_connection.createStatement();
+            Statement request = this.connectDB().createStatement();
             request.executeUpdate(SQL, Statement.RETURN_GENERATED_KEYS);
             ResultSet test = request.getGeneratedKeys();
             if (test.next()) {
@@ -88,18 +93,5 @@ public class DBController {
             System.out.println(e.getMessage());
         }
         return key;
-    }
-    
-    /**
-     * Close the request after a select
-     */
-    public void closeRequest() {
-        if (m_request != null) {
-            try {
-                m_request.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
     }
 }

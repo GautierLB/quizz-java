@@ -1,17 +1,20 @@
 package quizz.model;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class User {
+
+    public static final String ID = "ID_USER";
+    public static final String PSEUDO = "PSEUDO_USER";
+    public static final String MDP = "MDP_USER";
+    public static final String MAIL = "MAIL_USER";
 
     private int m_idUser;
     private String m_pseudoUser;
     private String m_passwordUser;
     private String m_mailUser;
-
+    
     /**
      * User constructor
      *
@@ -26,7 +29,7 @@ public class User {
         this.m_passwordUser = mdp;
         this.m_mailUser = mail;
     }
-    
+
     /**
      * User constructor with id
      *
@@ -45,24 +48,12 @@ public class User {
     }
 
     static public User getUserForId(int id) {
-        int idUser = 0;
-        String pseudoUser = "";
-        String passwordUser = "";
-        String mailUser = "";
-        DBController controller = DBController.Get();
-        ResultSet result = controller.executeSelect("*", "user", "where ID_USER = " + id);
-        try {
-            while (result.next()) {
-                idUser = result.getInt("ID_USER");
-                pseudoUser = result.getString("PSEUDO_USER");
-                passwordUser = result.getString("MDP_USER");
-                mailUser = result.getString("MAIL_USER");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        controller.closeRequest();
-        return new User(idUser, pseudoUser, passwordUser, mailUser);
+        DBController dBController = DBController.Get();
+        ArrayList<HashMap<String, Object>> userList = dBController.executeSelect("*", "user", "where ID_USER = " + id);
+        return new User((int) userList.get(0).get(User.ID),
+                (String)userList.get(0).get(User.PSEUDO),
+                (String)userList.get(0).get(User.MDP),
+                (String)userList.get(0).get(User.MAIL));
     }
 
     /**
