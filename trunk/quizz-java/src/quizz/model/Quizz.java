@@ -6,7 +6,6 @@ package quizz.model;
 
 public class Quizz {
 
-    private static DBController s_controller;
     private int m_idQuizz;
     private int m_idTheme;
     private int m_idAdmin;
@@ -39,9 +38,11 @@ public class Quizz {
 
     /**
      * Save the Quiz in the database
+     * 
+     * @return index of saved 
      */
     public int saveQuizz() {
-        return this.s_controller.Get().executeInsert("quizz",
+        return DBController.Get().executeInsert("quizz",
                 "id_theme,id_admin,nb_quest_quizz,difficulty_quizz,time_max_quizz,retry_quizz,name_quizz",
                 this.m_idTheme + ","
                 + this.m_idAdmin + ","
