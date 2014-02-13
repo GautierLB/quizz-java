@@ -79,7 +79,7 @@ public class User {
      */
     static public boolean controlLogin(String pseudo, String password) {
         ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect("PSEUDO_USER,MDP_USER", "user", "where PSEUDO_USER LIKE '" + pseudo + "'");
-        if (userList.isEmpty() && password.equals((String) userList.get(0).get(User.MDP))) {
+        if (!userList.isEmpty()  && password.equals((String) userList.get(0).get(User.MDP))) {
             return true;
         } else {
             return false;
