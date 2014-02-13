@@ -9,12 +9,11 @@ public class User {
     public static final String PSEUDO = "PSEUDO_USER";
     public static final String MDP = "MDP_USER";
     public static final String MAIL = "MAIL_USER";
-
     private int m_idUser;
     private String m_pseudoUser;
     private String m_passwordUser;
     private String m_mailUser;
-    
+
     /**
      * User constructor
      *
@@ -51,16 +50,55 @@ public class User {
         DBController dBController = DBController.Get();
         ArrayList<HashMap<String, Object>> userList = dBController.executeSelect("*", "user", "where ID_USER = " + id);
         return new User((int) userList.get(0).get(User.ID),
-                (String)userList.get(0).get(User.PSEUDO),
-                (String)userList.get(0).get(User.MDP),
-                (String)userList.get(0).get(User.MAIL));
+                (String) userList.get(0).get(User.PSEUDO),
+                (String) userList.get(0).get(User.MDP),
+                (String) userList.get(0).get(User.MAIL));
     }
 
     /**
-     * Save user in DB
+     * Return a User find by the pseudo
+     *
+     * @param pseudo the pseudo of the User
+     * @return the User find
      */
-    public void saveUser() {
-        this.setIdUser(DBController.Get().executeInsert("user", "pseudo_user,mdp_user,mail_user", "'" + this.getPseudoUser() + "','" + this.getPasswordUser() + "','" + this.getMailUser() + "'"));
+    static public User getUserByPseudo(String pseudo) {
+        DBController dBController = DBController.Get();
+        ArrayList<HashMap<String, Object>> userList = dBController.executeSelect("*", "user", "where PSEUDO_USER LIKE '" + pseudo + "'");
+        return new User((int) userList.get(0).get(User.ID),
+                (String) userList.get(0).get(User.PSEUDO),
+                (String) userList.get(0).get(User.MDP),
+                (String) userList.get(0).get(User.MAIL));
+    }
+
+    /**
+     * Control the couple Login/password
+     *
+     * @param pseudo the pseudo of the user
+     * @param password the password of the user
+     * @return a boolean , True if the couple is correct, False if is not
+     */
+    static public boolean controlLogin(String pseudo, String password) {
+        ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect("PSEUDO_USER,MDP_USER", "user", "where PSEUDO_USER LIKE '" + pseudo + "'");
+        if (userList.isEmpty() && password.equals((String) userList.get(0).get(User.MDP))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Save the user in the database if the pseudo isn't taken
+     *
+     * @return true if everything was okay , false if the pseudo was already use
+     */
+    public boolean saveUser() {
+        ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect("PSEUDO_USER", "user", "where PSEUDO_USER LIKE '" + this.getPseudoUser() + "'");
+        if (userList.isEmpty()) {
+            this.setIdUser(DBController.Get().executeInsert("user", "pseudo_user,mdp_user,mail_user", "'" + this.getPseudoUser() + "','" + this.getPasswordUser() + "','" + this.getMailUser() + "'"));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
