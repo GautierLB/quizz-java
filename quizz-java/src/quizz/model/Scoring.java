@@ -2,7 +2,6 @@ package quizz.model;
 
 public class Scoring {
 
-    private static DBController s_controller;
     private int m_idUser;
     private int m_idQuizz;
     private int m_score;
@@ -24,7 +23,7 @@ public class Scoring {
      * Save in the database the score of the quiz
      */
     public void saveScoring() {
-        this.s_controller.Get().executeInsert("scoring",
+        DBController.Get().executeInsert("scoring",
                 "id_user,id_quizz,score",
                 "" + this.m_idUser
                 + "," + this.m_idQuizz

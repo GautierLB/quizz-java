@@ -2,7 +2,6 @@ package quizz.model;
 
 public class Theme {
 
-    private static DBController s_controller;
     private String m_nameTheme;
     private String m_pictureTheme;
 
@@ -21,7 +20,7 @@ public class Theme {
      * Save in the database the Theme
      */
     public void saveTheme() {
-        this.s_controller.Get().executeInsert("theme",
+        DBController.Get().executeInsert("theme",
                 "name_theme,picture_theme",
                 "'" + this.m_nameTheme
                 + "','" + this.m_pictureTheme + "'");

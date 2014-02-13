@@ -2,7 +2,6 @@ package quizz.model;
 
 public class Question {
 
-    private static DBController s_controller;
     private String m_labelQuestion;
     private String m_pictureQuestion;
     private int m_id;
@@ -25,7 +24,7 @@ public class Question {
      * @return the id of the created question
      */
     public int saveQuestionInDB() {
-        this.m_id = this.s_controller.Get().executeInsert("questions",
+        this.m_id = DBController.Get().executeInsert("questions",
                 "label_question,picture_question",
                 "'" + this.m_labelQuestion + "','" + this.m_pictureQuestion + "'");
         return this.m_id;
