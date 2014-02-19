@@ -13,6 +13,7 @@ public class User {
     private String m_pseudoUser;
     private String m_passwordUser;
     private String m_mailUser;
+    private Boolean m_isAdmin;
 
     /**
      * User constructor
@@ -39,35 +40,52 @@ public class User {
      *
      * @return the created user
      */
-    public User(int id, String pseudo, String mdp, String mail) {
+    public User(int id, String pseudo, String mdp, String mail , boolean admin) {
         this.m_idUser = id;
         this.m_pseudoUser = pseudo;
         this.m_passwordUser = mdp;
         this.m_mailUser = mail;
+        this.m_isAdmin = admin;
     }
 
     static public User getUserForId(int id) {
+        boolean isAdmin;
         DBController dBController = DBController.Get();
         ArrayList<HashMap<String, Object>> userList = dBController.executeSelect("*", "user", "where ID_USER = " + id);
+        ArrayList<HashMap<String, Object>> userAdmin = dBController.executeSelect("*", "admin", "where ID_ADMIN=" + (int) userList.get(0).get(User.ID));
+        if(userAdmin.isEmpty()){//Si le liste userAdmin est vide alors l'utilisateur n'est pas administrateur
+           isAdmin=false;
+        }else{
+           isAdmin=true; 
+        }
         return new User((int) userList.get(0).get(User.ID),
                 (String) userList.get(0).get(User.PSEUDO),
                 (String) userList.get(0).get(User.MDP),
-                (String) userList.get(0).get(User.MAIL));
+                (String) userList.get(0).get(User.MAIL),
+                isAdmin);
     }
 
     /**
-     * Return a User find by the pseudo
+     * Return a User find by the pseudo and determinate if the user is a admin or not
      *
      * @param pseudo the pseudo of the User
      * @return the User find
      */
     static public User getUserByPseudo(String pseudo) {
+        boolean isAdmin;
         DBController dBController = DBController.Get();
         ArrayList<HashMap<String, Object>> userList = dBController.executeSelect("*", "user", "where PSEUDO_USER LIKE '" + pseudo + "'");
+        ArrayList<HashMap<String, Object>> userAdmin = dBController.executeSelect("ID_USER", "admin", "where ID_ADMIN=" + (int) userList.get(0).get(User.ID));
+        if(userAdmin.isEmpty()){//Si le liste userAdmin est vide alors l'utilisateur n'est pas administrateur
+           isAdmin=false;
+        }else{
+           isAdmin=true; 
+        }
         return new User((int) userList.get(0).get(User.ID),
                 (String) userList.get(0).get(User.PSEUDO),
                 (String) userList.get(0).get(User.MDP),
-                (String) userList.get(0).get(User.MAIL));
+                (String) userList.get(0).get(User.MAIL),
+                isAdmin);
     }
 
     /**
@@ -78,12 +96,14 @@ public class User {
      * @return a boolean , True if the couple is correct, False if is not
      */
     static public boolean controlLogin(String pseudo, String password) {
+        boolean isCorrect;
         ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect("PSEUDO_USER,MDP_USER", "user", "where PSEUDO_USER LIKE '" + pseudo + "'");
         if (!userList.isEmpty()  && password.equals((String) userList.get(0).get(User.MDP))) {
-            return true;
+            isCorrect = true;
         } else {
-            return false;
+            isCorrect = false;
         }
+        return isCorrect;
     }
 
     /**
@@ -92,14 +112,17 @@ public class User {
      * @return true if everything was okay , false if the pseudo was already use
      */
     public boolean saveUser() {
+        boolean isOkay;
         ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect("PSEUDO_USER", "user", "where PSEUDO_USER LIKE '" + this.getPseudoUser() + "'");
         if (userList.isEmpty()) {
-            this.setIdUser(DBController.Get().executeInsert("user", "pseudo_user,mdp_user,mail_user", "'" + this.getPseudoUser() + "','" + this.getPasswordUser() + "','" + this.getMailUser() + "'"));
-            return true;
+            this.setIdUser(DBController.Get().executeInsert("user", User.PSEUDO+','+User.MDP+','+User.MAIL, "'" + this.getPseudoUser() + "','" + this.getPasswordUser() + "','" + this.getMailUser() + "'"));
+            isOkay = true;
         } else {
-            return false;
+            isOkay = false;
         }
+        return isOkay;
     }
+    
 
     /**
      * @return the m_idUser
@@ -156,4 +179,12 @@ public class User {
     public void setMailUser(String mailUser) {
         this.m_mailUser = mailUser;
     }
+
+    /**
+     * Return if the user is a admin or not
+     * @return boolean --> true for admin
+     */
+    public Boolean isAdmin() {
+        return m_isAdmin;
+    }        
 }
