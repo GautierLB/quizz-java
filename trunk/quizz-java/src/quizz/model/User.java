@@ -50,9 +50,8 @@ public class User {
 
     static public User getUserForId(int id) {
         boolean isAdmin;
-        DBController dBController = DBController.Get();
-        ArrayList<HashMap<String, Object>> userList = dBController.executeSelect("*", "user", "where ID_USER = " + id);
-        ArrayList<HashMap<String, Object>> userAdmin = dBController.executeSelect("*", "admin", "where ID_ADMIN=" + (int) userList.get(0).get(User.ID));
+        ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect("*", "user", "where ID_USER = " + id);
+        ArrayList<HashMap<String, Object>> userAdmin = DBController.Get().executeSelect("*", "admin", "where ID_ADMIN=" + (int) userList.get(0).get(User.ID));
         if(userAdmin.isEmpty()){//Si le liste userAdmin est vide alors l'utilisateur n'est pas administrateur
            isAdmin=false;
         }else{
@@ -73,13 +72,12 @@ public class User {
      */
     static public User getUserByPseudo(String pseudo) {
         boolean isAdmin;
-        DBController dBController = DBController.Get();
-        ArrayList<HashMap<String, Object>> userList = dBController.executeSelect("*", "user", "where PSEUDO_USER LIKE '" + pseudo + "'");
-        ArrayList<HashMap<String, Object>> userAdmin = dBController.executeSelect("ID_USER", "admin", "where ID_ADMIN=" + (int) userList.get(0).get(User.ID));
+        ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect("*", "user", "where PSEUDO_USER LIKE '" + pseudo + "'");
+        ArrayList<HashMap<String, Object>> userAdmin = DBController.Get().executeSelect("ID_USER", "admin", "where ID_ADMIN=" + (int) userList.get(0).get(User.ID));
         if(userAdmin.isEmpty()){//Si le liste userAdmin est vide alors l'utilisateur n'est pas administrateur
-           isAdmin=false;
+           isAdmin = false;
         }else{
-           isAdmin=true; 
+           isAdmin = true; 
         }
         return new User((int) userList.get(0).get(User.ID),
                 (String) userList.get(0).get(User.PSEUDO),
