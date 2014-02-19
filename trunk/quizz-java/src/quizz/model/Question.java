@@ -2,6 +2,11 @@ package quizz.model;
 
 public class Question {
 
+    public static final String TABLE_NAME = "QUESTIONS";
+    public static final String ID = "ID_QUESTION";
+    public static final String LABEL = "LABEL_QUESTION";
+    public static final String PICTURE = "PICTURE_QUESTION";
+    
     private String m_labelQuestion;
     private String m_pictureQuestion;
     private int m_id;
@@ -15,7 +20,6 @@ public class Question {
     public Question(String label, String picture) {
         this.m_labelQuestion = label;
         this.m_pictureQuestion = picture;
-        this.m_id = 0;
     }
 
     /**

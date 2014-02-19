@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 public class User {
 
+    public static final String TABLE_NAME = "USER";
     public static final String ID = "ID_USER";
     public static final String PSEUDO = "PSEUDO_USER";
     public static final String MDP = "MDP_USER";
