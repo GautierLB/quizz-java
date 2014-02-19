@@ -6,6 +6,15 @@ package quizz.model;
 
 public class Quizz {
 
+    private final String TABLE_NAME = "QUIZZ";
+    private final String ID_THEME = "id_theme";
+    private final String ID_ADMIN = "id_admin";
+    private final String NB_QUESTS = "nb_quest_quizz";
+    private final String DIFFICULTY = "difficulty_quizz";
+    private final String TIME_MAX = "time_max_quizz";
+    private final String RETRY = "retry_quizz";
+    private final String NAME = "name_quizz";
+    
     private int m_idQuizz;
     private int m_idTheme;
     private int m_idAdmin;
@@ -18,12 +27,12 @@ public class Quizz {
     /**
      * The construct of a quizz
      *
-     * @param idTheme The Id of the theme for the question
-     * @param idAdmin The Id of the Admin how have create the quizz
+     * @param idTheme The id of the quizz theme
+     * @param idAdmin The id of the Admin that have created the quizz
      * @param nb The number of questions
      * @param dif The difficulty of the quizz
      * @param time The time to make the quizz
-     * @param retry Boolean for know if the user a the right to retry or not
+     * @param retry Boolean to know if the user can retry or not
      * @param name The name of the quizz
      */
     public Quizz(int idTheme, int idAdmin, int nb, int dif, int time, boolean retry, String name) {
@@ -42,8 +51,8 @@ public class Quizz {
      * @return index of saved 
      */
     public int saveQuizz() {
-        return DBController.Get().executeInsert("quizz",
-                "id_theme,id_admin,nb_quest_quizz,difficulty_quizz,time_max_quizz,retry_quizz,name_quizz",
+        this.m_idQuizz = DBController.Get().executeInsert(TABLE_NAME,
+                ID_THEME + "," + ID_ADMIN + "," + NB_QUESTS + "," + DIFFICULTY + "," + TIME_MAX + "," + RETRY + "," + NAME,
                 this.m_idTheme + ","
                 + this.m_idAdmin + ","
                 + this.m_nbQuestQuizz + ","
@@ -51,6 +60,10 @@ public class Quizz {
                 + this.m_timeMaxQuizz + ",'"
                 + this.m_retryQuizz + "','"
                 + this.m_nameQuizz + "'");
-
+        return this.m_idQuizz;
+    }
+    
+    public int getId() {
+        return this.m_idQuizz;
     }
 }

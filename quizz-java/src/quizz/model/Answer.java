@@ -2,6 +2,12 @@ package quizz.model;
 
 public class Answer {
 
+    public static final String TABLE_NAME = "ANSWERS";
+    public static final String ID = "ID_ANSWER";
+    public static final String LABEL = "LABEL_ANSWERS";
+    public static final String PICTURE = "PICTURE_ANSWERS";
+    public static final String IS_VALID = "IS_VALID";
+    
     private String m_labelAnswer;
     private String m_pictureAnswer;
     private Boolean m_isValid;
@@ -21,12 +27,12 @@ public class Answer {
 
     /**
      * Save question in DB
-     * 
+     *
      * @return index of the saved question
      */
     public int saveAnswerInDB() {
-        return DBController.Get().executeInsert("answers",
-                "label_answers,picture_answers,is_valid",
+        return DBController.Get().executeInsert(Answer.TABLE_NAME,
+                Answer.LABEL + "," + Answer.PICTURE + "," + Answer.IS_VALID,
                 "'" + this.m_labelAnswer
                 + "','" + this.m_pictureAnswer
                 + "','" + this.m_isValid + "'");

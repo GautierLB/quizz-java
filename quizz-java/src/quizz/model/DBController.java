@@ -64,7 +64,7 @@ public class DBController {
             }
             statement.close();
             connection.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return result;
@@ -84,12 +84,12 @@ public class DBController {
             String SQL = "INSERT INTO BDD_B3I_groupe_3.dbo.[" + table + "] (" + fields + ") VALUES (" + values + ")";
             Statement request = this.connectDB().createStatement();
             request.executeUpdate(SQL, Statement.RETURN_GENERATED_KEYS);
-            ResultSet test = request.getGeneratedKeys();
-            if (test.next()) {
-                key = test.getInt(1);
+            ResultSet resultSet = request.getGeneratedKeys();
+            if (resultSet.next()) {
+                key = resultSet.getInt(1);
             }
             request.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return key;

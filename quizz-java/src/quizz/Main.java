@@ -21,7 +21,6 @@ public class Main {
     public static Font s_openSansItalic16;
     public static Font s_openSans28;
     
-    
     public static void main(String[] args) {
         Main.initFont();
         MainFrame mainFrame = new MainFrame();
