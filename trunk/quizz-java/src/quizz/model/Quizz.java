@@ -4,17 +4,19 @@
  */
 package quizz.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Quizz {
 
-    private final String TABLE_NAME = "QUIZZ";
-    private final String ID_THEME = "id_theme";
-    private final String ID_ADMIN = "id_admin";
-    private final String NB_QUESTS = "nb_quest_quizz";
-    private final String DIFFICULTY = "difficulty_quizz";
-    private final String TIME_MAX = "time_max_quizz";
-    private final String RETRY = "retry_quizz";
-    private final String NAME = "name_quizz";
-    
+    private static final String TABLE_NAME = "BDD_B3I_groupe_3.dbo.[QUIZZ]";
+    private static final String ID_THEME = "id_theme";
+    private static final String ID_ADMIN = "id_admin";
+    private static final String NB_QUESTS = "nb_quest_quizz";
+    private static final String DIFFICULTY = "difficulty_quizz";
+    private static final String TIME_MAX = "time_max_quizz";
+    private static final String RETRY = "retry_quizz";
+    private static final String NAME = "name_quizz";
     private int m_idQuizz;
     private int m_idTheme;
     private int m_idAdmin;
@@ -46,9 +48,31 @@ public class Quizz {
     }
 
     /**
+     * Get the quizz for a specificated theme
+     *
+     * @param idTheme the id of the theme
+     * @return an ArrayList of Quizz
+     */
+    static public ArrayList<Quizz> getQuizzForTheme(int idTheme) {
+        ArrayList<Quizz> quizzList = new ArrayList<>();
+        ArrayList<HashMap<String, Object>> quizzListBdd = DBController.Get().executeSelect("*", Quizz.TABLE_NAME, "WHERE ID_THEME =" + idTheme);
+        for (int i = 0; i < quizzListBdd.size(); i++) {
+            Quizz quizz = new Quizz((int) quizzListBdd.get(i).get(Quizz.ID_THEME),
+                    (int) quizzListBdd.get(i).get(Quizz.ID_ADMIN),
+                    (int) quizzListBdd.get(i).get(Quizz.NB_QUESTS),
+                    (int) quizzListBdd.get(i).get(Quizz.DIFFICULTY),
+                    (int) quizzListBdd.get(i).get(Quizz.TIME_MAX),
+                    (boolean) quizzListBdd.get(i).get(Quizz.RETRY),
+                    (String) quizzListBdd.get(i).get(Quizz.NAME));
+            quizzList.add(quizz);
+        }
+        return quizzList;
+    }
+
+    /**
      * Save the Quiz in the database
-     * 
-     * @return index of saved 
+     *
+     * @return index of saved
      */
     public int saveQuizz() {
         this.m_idQuizz = DBController.Get().executeInsert(TABLE_NAME,
@@ -62,7 +86,7 @@ public class Quizz {
                 + this.m_nameQuizz + "'");
         return this.m_idQuizz;
     }
-    
+
     public int getId() {
         return this.m_idQuizz;
     }

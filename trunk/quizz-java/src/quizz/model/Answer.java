@@ -2,7 +2,7 @@ package quizz.model;
 
 public class Answer {
 
-    public static final String TABLE_NAME = "ANSWERS";
+    public static final String TABLE_NAME = "BDD_B3I_groupe_3.dbo.[ANSWERS]";
     public static final String ID = "ID_ANSWER";
     public static final String LABEL = "LABEL_ANSWERS";
     public static final String PICTURE = "PICTURE_ANSWERS";

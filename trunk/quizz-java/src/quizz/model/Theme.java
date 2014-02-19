@@ -5,9 +5,10 @@ import java.util.HashMap;
 
 public class Theme {
 
-    public static final String ID = "ID_THEME";
-    public static final String NAME = "NAME_THEME";
-    public static final String PICTURE = "PICTURE_THEME";
+    private static final String TABLE_NAME = "BDD_B3I_groupe_3.dbo.[THEME]";
+    private static final String ID = "ID_THEME";
+    private static final String NAME = "NAME_THEME";
+    private static final String PICTURE = "PICTURE_THEME";
     private int m_idTheme;
     private String m_nameTheme;
     private String m_pictureTheme;
@@ -58,7 +59,7 @@ public class Theme {
      * Save in the database the Theme
      */
     public void saveTheme() {
-        DBController.Get().executeInsert("theme",
+        DBController.Get().executeInsert(Theme.TABLE_NAME,
                 Theme.NAME + ',' + Theme.PICTURE,
                 "'" + this.m_nameTheme
                 + "','" + this.m_pictureTheme + "'");

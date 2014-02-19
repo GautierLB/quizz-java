@@ -5,9 +5,10 @@ import java.util.HashMap;
 
 public class Scoring {
 
-    public static final String USER = "ID_USER";
-    public static final String QUIZZ = "ID_QUIZZ";
-    public static final String SCORE = "SCORE";
+    private static final String TABLE_NAME = "BDD_B3I_groupe_3.dbo.[SCORING]";
+    private static final String USER = "ID_USER";
+    private static final String QUIZZ = "ID_QUIZZ";
+    private static final String SCORE = "SCORE";
     private int m_idUser;
     private int m_idQuizz;
     private int m_score;
@@ -47,7 +48,7 @@ public class Scoring {
      * Save in the database the score of the quiz
      */
     public void saveScoring() {
-        DBController.Get().executeInsert("scoring",
+        DBController.Get().executeInsert(Scoring.TABLE_NAME,
                 Scoring.USER + ',' + Scoring.QUIZZ + ',' + Scoring.SCORE,
                 "" + this.m_idUser
                 + "," + this.m_idQuizz

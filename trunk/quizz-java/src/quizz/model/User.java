@@ -5,11 +5,11 @@ import java.util.HashMap;
 
 public class User {
 
-    public static final String TABLE_NAME = "USER";
-    public static final String ID = "ID_USER";
-    public static final String PSEUDO = "PSEUDO_USER";
-    public static final String MDP = "MDP_USER";
-    public static final String MAIL = "MAIL_USER";
+    private static final String TABLE_NAME = "BDD_B3I_groupe_3.dbo.[USER]";
+    private static final String ID = "ID_USER";
+    private static final String PSEUDO = "PSEUDO_USER";
+    private static final String MDP = "MDP_USER";
+    private static final String MAIL = "MAIL_USER";
     private int m_idUser;
     private String m_pseudoUser;
     private String m_passwordUser;
