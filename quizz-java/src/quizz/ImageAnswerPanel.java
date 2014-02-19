@@ -10,12 +10,12 @@ package quizz;
  *
  * @author Gautier
  */
-public class AnswerPanel extends javax.swing.JPanel {
+public class ImageAnswerPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ReponsePanel
+     * Creates new form ImageAnswerPanel
      */
-    public AnswerPanel(Boolean response) {
+    public ImageAnswerPanel(Boolean response) {
         initComponents(response);
     }
 
@@ -29,8 +29,12 @@ public class AnswerPanel extends javax.swing.JPanel {
     private void initComponents(Boolean response) {
 
         titleLabel = new javax.swing.JLabel();
+        ImageAddPanel = new javax.swing.JPanel();
+        addImage = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         AnswerArea = new javax.swing.JTextPane();
+        titleTextLabel = new javax.swing.JLabel();
+        titleImageLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(309, 307));
@@ -41,14 +45,9 @@ public class AnswerPanel extends javax.swing.JPanel {
         titleLabel.setFont(Main.s_openSans13);
         titleLabel.setForeground(new java.awt.Color(40, 40, 40));
         titleLabel.setText("Ajoutez une Question");
-        add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 10, -1, -1));
-
-        jScrollPane2.setMaximumSize(new java.awt.Dimension(239, 194));
-        jScrollPane2.setMinimumSize(new java.awt.Dimension(239, 194));
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(239, 194));
-        jScrollPane2.setViewportView(AnswerArea);
-
-		if( response == true){
+		add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
+       
+	   if( response == true){
 			firstCircle = new javax.swing.JLabel();
 			secondCircle = new javax.swing.JLabel();
 			thirdCircle = new javax.swing.JLabel();
@@ -71,17 +70,66 @@ public class AnswerPanel extends javax.swing.JPanel {
 			add(addResponse, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
 			titleLabel.setText("Ajoutez une Réponse");
 		}
+
+        ImageAddPanel.setBackground(new java.awt.Color(255, 255, 255));
+        ImageAddPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        ImageAddPanel.setMaximumSize(new java.awt.Dimension(100, 183));
+        ImageAddPanel.setMinimumSize(new java.awt.Dimension(100, 183));
+
+        addImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/plus-20.png"))); // NOI18N
+
+        javax.swing.GroupLayout ImageAddPanelLayout = new javax.swing.GroupLayout(ImageAddPanel);
+        ImageAddPanel.setLayout(ImageAddPanelLayout);
+        ImageAddPanelLayout.setHorizontalGroup(
+            ImageAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 98, Short.MAX_VALUE)
+            .addGroup(ImageAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ImageAddPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(addImage)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        ImageAddPanelLayout.setVerticalGroup(
+            ImageAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 181, Short.MAX_VALUE)
+            .addGroup(ImageAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ImageAddPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(addImage)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        add(ImageAddPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 60, 100, 183));
+
+        jScrollPane2.setMaximumSize(new java.awt.Dimension(100, 183));
+        jScrollPane2.setMinimumSize(new java.awt.Dimension(100, 183));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(100, 183));
+        jScrollPane2.setViewportView(AnswerArea);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 60, -1, -1));
+
+        titleTextLabel.setFont(Main.s_openSans13);
+        titleTextLabel.setText("Texte");
+        add(titleTextLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
+
+        titleImageLabel.setFont(Main.s_openSans13);
+        titleImageLabel.setText("Image");
+        add(titleImageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane AnswerArea;
+    private javax.swing.JPanel ImageAddPanel;
+    private javax.swing.JLabel addImage;
     private javax.swing.JLabel addResponse;
     private javax.swing.JLabel firstCircle;
     private javax.swing.JLabel fourthCircle;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel secondCircle;
     private javax.swing.JLabel thirdCircle;
+    private javax.swing.JLabel titleImageLabel;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JLabel titleTextLabel;
     // End of variables declaration//GEN-END:variables
 }

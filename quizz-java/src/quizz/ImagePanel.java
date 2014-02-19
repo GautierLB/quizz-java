@@ -45,7 +45,7 @@ public class ImagePanel extends javax.swing.JPanel {
 
         titleLabel.setFont(Main.s_openSans13);
         titleLabel.setForeground(new java.awt.Color(40, 40, 40));
-        titleLabel.setText("Ajoutez une Image");
+        titleLabel.setText("Ajoutez une Question");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
 		
 		if( response == true){
@@ -69,6 +69,7 @@ public class ImagePanel extends javax.swing.JPanel {
 
 			addResponse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/plus-20.png"))); // NOI18N
 			add(addResponse, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
+			titleLabel.setText("Ajoutez une Réponse");
 		}
 
         

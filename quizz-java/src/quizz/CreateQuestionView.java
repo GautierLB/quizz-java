@@ -43,8 +43,8 @@ public class CreateQuestionView extends BrainStormingView {
         rightTextButton = new javax.swing.JButton();
         rightImageButton = new javax.swing.JButton();
         rightBothButton = new javax.swing.JButton();
-        rightPanel = new AnswerPanel(true);
-        leftPanel = new AnswerPanel(false);
+        javax.swing.JPanel rightPanel = new ImagePanel(true);
+        javax.swing.JPanel leftPanel = new ImageAnswerPanel(false);
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -197,12 +197,10 @@ public class CreateQuestionView extends BrainStormingView {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton leftBothButton;
     private javax.swing.JButton leftImageButton;
-    private javax.swing.JPanel leftPanel;
     private javax.swing.JButton leftTextButton;
     private javax.swing.JLabel questionNumerLabel;
     private javax.swing.JButton rightBothButton;
     private javax.swing.JButton rightImageButton;
-    private javax.swing.JPanel rightPanel;
     private javax.swing.JButton rightTextButton;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel userLabel;
