@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class QuizzManager {
     
+    public static final String QUIZZ_COMPOSE_QUESTIONS = "BDD_B3I_groupe_3.dbo.[COMPOSE]";
+    public static final String QUESTIONS_HAVE_ANSWER = "BDD_B3I_groupe_3.dbo.[HAVE]";
+    
     public static void linkAnswersToQuestion(Question question, ArrayList<Answer> answersList) {
         question.saveQuestionInDB();
         for (int i = 0; i < answersList.size(); i++) {
