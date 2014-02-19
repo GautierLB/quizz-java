@@ -7,11 +7,9 @@ import java.util.HashMap;
 public class DBController {
 
     static private DBController s_dbController;
-
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     static final String DB_URL = "jdbc:sqlserver://193.252.48.189\\SQLEXPRESS:1433;database=BDD_B3I_groupe_3;";
-
     //  Database credentials
     static final String USER = "b3i_groupe_3";
     static final String PASS = "123Soleil";
