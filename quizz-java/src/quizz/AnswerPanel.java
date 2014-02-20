@@ -31,6 +31,11 @@ public class AnswerPanel extends javax.swing.JPanel {
         titleLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         AnswerArea = new javax.swing.JTextPane();
+        firstCircle = new javax.swing.JLabel();
+        secondCircle = new javax.swing.JLabel();
+        thirdCircle = new javax.swing.JLabel();
+        fourthCircle = new javax.swing.JLabel();
+        addResponse = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(309, 307));
@@ -47,6 +52,8 @@ public class AnswerPanel extends javax.swing.JPanel {
         jScrollPane2.setMinimumSize(new java.awt.Dimension(239, 194));
         jScrollPane2.setPreferredSize(new java.awt.Dimension(239, 194));
         jScrollPane2.setViewportView(AnswerArea);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
 		if( response == true){
 			firstCircle = new javax.swing.JLabel();
