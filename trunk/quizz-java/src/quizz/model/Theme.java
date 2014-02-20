@@ -61,21 +61,21 @@ public class Theme {
     public void saveTheme() {
         DBController.Get().executeInsert(Theme.TABLE_NAME,
                 Theme.NAME + ',' + Theme.PICTURE,
-                "'" + this.getM_nameTheme()
-                + "','" + this.getM_pictureTheme() + "'");
+                "'" + this.getNameTheme()
+                + "','" + this.getPictureTheme() + "'");
     }
 
     /**
      * @return the m_nameTheme
      */
-    public String getM_nameTheme() {
+    public String getNameTheme() {
         return m_nameTheme;
     }
 
     /**
      * @return the m_pictureTheme
      */
-    public String getM_pictureTheme() {
+    public String getPictureTheme() {
         return m_pictureTheme;
     }
 }
