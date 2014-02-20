@@ -6,6 +6,9 @@
 
 package quizz;
 
+import java.util.ArrayList;
+import quizz.model.Theme;
+
 /**
  *
  * @author Vince
@@ -15,6 +18,14 @@ public class MainScreenView extends BrainStormingView {
     public MainScreenView(MainFrame mainFrame) {
         super(mainFrame);
         initComponents();
+        ArrayList<Theme> themesList = new ArrayList<>();
+        themesList = Theme.getAllThemes();
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(themesList.get(0).getPictureTheme())));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource(themesList.get(1).getPictureTheme())));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(themesList.get(2).getPictureTheme())));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource(themesList.get(3).getPictureTheme())));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource(themesList.get(4).getPictureTheme())));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource(themesList.get(5).getPictureTheme())));
     }
 
     /**
@@ -113,6 +124,7 @@ public class MainScreenView extends BrainStormingView {
 
     private void selectTheme(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectTheme
         m_mainFrame.changeView(MainFrame.View.QuestionScreenView);
+        
     }//GEN-LAST:event_selectTheme
 
     private void jLabel2selectTheme(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2selectTheme
