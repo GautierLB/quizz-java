@@ -6,6 +6,8 @@
 
 package quizz;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Gautier
@@ -15,6 +17,14 @@ public class CreateQuestionView extends BrainStormingView {
     /**
      * Creates new form CreateQuestionView
      */
+    
+    private enum Side {
+
+        Left, Right
+    };
+    public enum Type{
+        Image,Answer,ImageAnswer;
+    };
     public CreateQuestionView(MainFrame mainFrame) {
         super(mainFrame);
         initComponents();
@@ -43,8 +53,8 @@ public class CreateQuestionView extends BrainStormingView {
         rightTextButton = new javax.swing.JButton();
         rightImageButton = new javax.swing.JButton();
         rightBothButton = new javax.swing.JButton();
-        javax.swing.JPanel rightPanel = new ImagePanel(true);
-        javax.swing.JPanel leftPanel = new ImageAnswerPanel(false);
+        rightPanel = new ImagePanel(true);
+        leftPanel = new ImageAnswerPanel(false);
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -91,6 +101,11 @@ public class CreateQuestionView extends BrainStormingView {
         leftTextButton.setMaximumSize(new java.awt.Dimension(90, 35));
         leftTextButton.setMinimumSize(new java.awt.Dimension(90, 35));
         leftTextButton.setPreferredSize(new java.awt.Dimension(90, 35));
+        leftTextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leftTextButtonActionPerformed(evt);
+            }
+        });
         add(leftTextButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
 
         leftImageButton.setBackground(new java.awt.Color(249, 249, 249));
@@ -99,6 +114,11 @@ public class CreateQuestionView extends BrainStormingView {
         leftImageButton.setMaximumSize(new java.awt.Dimension(90, 35));
         leftImageButton.setMinimumSize(new java.awt.Dimension(90, 35));
         leftImageButton.setPreferredSize(new java.awt.Dimension(90, 35));
+        leftImageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leftImageButtonActionPerformed(evt);
+            }
+        });
         add(leftImageButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
 
         leftBothButton.setBackground(new java.awt.Color(249, 249, 249));
@@ -107,6 +127,11 @@ public class CreateQuestionView extends BrainStormingView {
         leftBothButton.setMaximumSize(new java.awt.Dimension(90, 35));
         leftBothButton.setMinimumSize(new java.awt.Dimension(90, 35));
         leftBothButton.setPreferredSize(new java.awt.Dimension(90, 35));
+        leftBothButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leftBothButtonActionPerformed(evt);
+            }
+        });
         add(leftBothButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, -1));
 
         arrowLeft.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/arrowLeft-60.png"))); // NOI18N
@@ -137,6 +162,11 @@ public class CreateQuestionView extends BrainStormingView {
         rightTextButton.setMaximumSize(new java.awt.Dimension(90, 35));
         rightTextButton.setMinimumSize(new java.awt.Dimension(90, 35));
         rightTextButton.setPreferredSize(new java.awt.Dimension(90, 35));
+        rightTextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rightTextButtonActionPerformed(evt);
+            }
+        });
         add(rightTextButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, -1));
 
         rightImageButton.setBackground(new java.awt.Color(249, 249, 249));
@@ -145,6 +175,11 @@ public class CreateQuestionView extends BrainStormingView {
         rightImageButton.setMaximumSize(new java.awt.Dimension(90, 35));
         rightImageButton.setMinimumSize(new java.awt.Dimension(90, 35));
         rightImageButton.setPreferredSize(new java.awt.Dimension(90, 35));
+        rightImageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rightImageButtonActionPerformed(evt);
+            }
+        });
         add(rightImageButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, -1, -1));
 
         rightBothButton.setBackground(new java.awt.Color(249, 249, 249));
@@ -153,6 +188,11 @@ public class CreateQuestionView extends BrainStormingView {
         rightBothButton.setMaximumSize(new java.awt.Dimension(90, 35));
         rightBothButton.setMinimumSize(new java.awt.Dimension(90, 35));
         rightBothButton.setPreferredSize(new java.awt.Dimension(90, 35));
+        rightBothButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rightBothButtonActionPerformed(evt);
+            }
+        });
         add(rightBothButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, -1, -1));
 
         rightPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -187,6 +227,77 @@ public class CreateQuestionView extends BrainStormingView {
         
     }//GEN-LAST:event_arrowRightgoToNextQuestion
 
+    private void leftTextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftTextButtonActionPerformed
+        this.setNewLayout(Type.Answer, Side.Left);
+    }//GEN-LAST:event_leftTextButtonActionPerformed
+
+    private void leftImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftImageButtonActionPerformed
+        this.setNewLayout(Type.Image, Side.Left);
+    }//GEN-LAST:event_leftImageButtonActionPerformed
+
+    private void leftBothButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBothButtonActionPerformed
+        this.setNewLayout(Type.ImageAnswer, Side.Left);
+    }//GEN-LAST:event_leftBothButtonActionPerformed
+
+    private void rightTextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightTextButtonActionPerformed
+        this.setNewLayout(Type.Answer, Side.Right);
+    }//GEN-LAST:event_rightTextButtonActionPerformed
+
+    private void rightImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightImageButtonActionPerformed
+        this.setNewLayout(Type.Image, Side.Right);
+    }//GEN-LAST:event_rightImageButtonActionPerformed
+
+    private void rightBothButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBothButtonActionPerformed
+        this.setNewLayout(Type.ImageAnswer, Side.Right);
+    }//GEN-LAST:event_rightBothButtonActionPerformed
+
+    
+    /**
+     * permet de changer le type de panel pour créer question/réponse
+     * @param _type le type de panel a affecter
+     * @param _side le coté concerné
+     */
+    private void setNewLayout(Type _type, Side _side){
+        JPanel current = null;
+        Boolean response = false;
+        switch (_side) {
+            case Left:
+                current = leftPanel;
+                this.remove(leftPanel);
+                break;
+            case Right:
+                current = rightPanel;
+                this.remove(rightPanel);
+                response = true;
+                break;
+        } 
+        
+        switch (_type) {
+            
+            case Image:
+                current = new ImagePanel(response);
+                break;
+            case Answer:
+                current = new AnswerPanel(response);
+                break;
+            case ImageAnswer:
+                current = new ImageAnswerPanel(response);
+                break;
+        }
+        switch (_side) {
+            case Left:
+                leftPanel = current;
+                this.add(leftPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+                break;
+            case Right:
+                rightPanel = current;
+                this.add(rightPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, -1, -1));
+                break;
+        } 
+        current.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        this.revalidate();
+        this.repaint();
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -197,10 +308,12 @@ public class CreateQuestionView extends BrainStormingView {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton leftBothButton;
     private javax.swing.JButton leftImageButton;
+    private javax.swing.JPanel leftPanel;
     private javax.swing.JButton leftTextButton;
     private javax.swing.JLabel questionNumerLabel;
     private javax.swing.JButton rightBothButton;
     private javax.swing.JButton rightImageButton;
+    private javax.swing.JPanel rightPanel;
     private javax.swing.JButton rightTextButton;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel userLabel;
