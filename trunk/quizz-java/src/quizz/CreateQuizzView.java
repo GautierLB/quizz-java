@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quizz;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import quizz.model.Quizz;
+import quizz.model.Theme;
 
 /**
  *
@@ -22,6 +24,13 @@ public class CreateQuizzView extends BrainStormingView {
     public CreateQuizzView(MainFrame mainFrame) {
         super(mainFrame);
         initComponents();
+        ArrayList<Theme> arrayListTheme = new ArrayList<>();
+        arrayListTheme = Theme.getAllThemes();
+        String[] themeList = new String[arrayListTheme.size()];
+        for (int i = 0; i < arrayListTheme.size(); i++) {
+            themeList[i] = arrayListTheme.get(i).getNameTheme();
+        }
+        folderSelector.setModel(new javax.swing.DefaultComboBoxModel(themeList));
     }
 
     /**
@@ -221,14 +230,35 @@ public class CreateQuizzView extends BrainStormingView {
     }//GEN-LAST:event_userLabelMouseClicked
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-        
     }//GEN-LAST:event_formFocusGained
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        m_mainFrame.changeView(MainFrame.View.CreateQuestionView);
+        if (!nameField.getText().equals("")) {
+            int idTheme = Theme.getThemeByName((String) folderSelector.getSelectedItem()).getIdTheme();
+            int idAdmin = 1; //en attendant que le system de compte soit mis en place
+            int dif = 0;
+            int time;
+            switch ((String) difficultySelector.getSelectedItem()) {
+                case "Facile":
+                    dif = 1;
+                    break;
+                case "Moyen":
+                    dif = 2;
+                    break;
+                case "Difficile":
+                    dif = 3;
+                    break;
+            }
+            if (timeField.getText().equals("Temps Maximum") || timeField.getText() == null) {
+                time = 0;
+            } else {
+                time = Integer.parseInt(timeField.getText());
+            }
+            Quizz newQuizz = new Quizz(idTheme, idAdmin, dif, time, replayableCheckbox.isSelected(), nameField.getText());
+            m_mainFrame.changeView(MainFrame.View.CreateQuestionView);
+        }
+
     }//GEN-LAST:event_createButtonActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton createButton;
