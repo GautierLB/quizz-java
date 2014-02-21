@@ -37,10 +37,9 @@ public class Quizz {
      * @param retry Boolean to know if the user can retry or not
      * @param name The name of the quizz
      */
-    public Quizz(int idTheme, int idAdmin, int nb, int dif, int time, boolean retry, String name) {
+    public Quizz(int idTheme, int idAdmin, int dif, int time, boolean retry, String name) {
         this.m_idTheme = idTheme;
         this.m_idAdmin = idAdmin;
-        this.m_nbQuestQuizz = nb;
         this.m_difficultyQuizz = dif;
         this.m_timeMaxQuizz = time;
         this.m_retryQuizz = retry;
@@ -59,11 +58,11 @@ public class Quizz {
         for (int i = 0; i < quizzListBdd.size(); i++) {
             Quizz quizz = new Quizz((int) quizzListBdd.get(i).get(Quizz.ID_THEME),
                     (int) quizzListBdd.get(i).get(Quizz.ID_ADMIN),
-                    (int) quizzListBdd.get(i).get(Quizz.NB_QUESTS),
                     (int) quizzListBdd.get(i).get(Quizz.DIFFICULTY),
                     (int) quizzListBdd.get(i).get(Quizz.TIME_MAX),
                     (boolean) quizzListBdd.get(i).get(Quizz.RETRY),
-                    (String) quizzListBdd.get(i).get(Quizz.NAME));
+                    (String) quizzListBdd.get(i).get(Quizz.NAME));  
+            quizz.setNbQuestQuizz((int) quizzListBdd.get(i).get(Quizz.NB_QUESTS));
             quizzList.add(quizz);
         }
         return quizzList;
@@ -89,5 +88,12 @@ public class Quizz {
 
     public int getId() {
         return this.m_idQuizz;
+    }
+
+    /**
+     * @param m_nbQuestQuizz the m_nbQuestQuizz to set
+     */
+    public void setNbQuestQuizz(int m_nbQuestQuizz) {
+        this.m_nbQuestQuizz = m_nbQuestQuizz;
     }
 }

@@ -49,7 +49,14 @@ public class Theme {
      * @return the theme we want
      */
     static public Theme getThemeById(int id) {
-        ArrayList<HashMap<String, Object>> themeList = DBController.Get().executeSelect("*", "theme", "where ID_THEME = " + id);
+        ArrayList<HashMap<String, Object>> themeList = DBController.Get().executeSelect("*", Theme.TABLE_NAME, "where ID_THEME = " + id);
+        return new Theme((int) themeList.get(0).get(Theme.ID),
+                (String) themeList.get(0).get(Theme.NAME),
+                (String) themeList.get(0).get(Theme.PICTURE));
+    }
+    
+    static public Theme getThemeByName(String nameTheme){
+        ArrayList<HashMap<String, Object>> themeList = DBController.Get().executeSelect("*", Theme.TABLE_NAME, "where NAME_THEME LIKE '" + nameTheme +"'");
         return new Theme((int) themeList.get(0).get(Theme.ID),
                 (String) themeList.get(0).get(Theme.NAME),
                 (String) themeList.get(0).get(Theme.PICTURE));
@@ -77,5 +84,12 @@ public class Theme {
      */
     public String getPictureTheme() {
         return m_pictureTheme;
+    }
+
+    /**
+     * @return the m_idTheme
+     */
+    public int getIdTheme() {
+        return m_idTheme;
     }
 }
