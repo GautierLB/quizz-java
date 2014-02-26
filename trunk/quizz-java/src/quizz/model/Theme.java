@@ -83,8 +83,22 @@ public class Theme {
     /**
      * @return the m_pictureTheme
      */
-    public String getPictureTheme() {
+    private String getPictureTheme() {
         return m_pictureTheme;
+    }
+    
+    /**
+     * @return the m_pictureTheme in big size
+     */
+    public String getPictureThemeBig() {
+        return m_pictureTheme + "-100.png";
+    }
+    
+    /**
+     * @return the m_pictureTheme in small size
+     */
+    public String getPictureThemeSmall() {
+        return m_pictureTheme + "-40.png";
     }
     
     /**

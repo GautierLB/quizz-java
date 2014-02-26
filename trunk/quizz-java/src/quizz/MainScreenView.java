@@ -21,12 +21,12 @@ public class MainScreenView extends BrainStormingView {
         super(mainFrame);
         initComponents();
         m_themesList = Theme.getAllThemes();
-        themeLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(0).getPictureTheme())));
-        themeLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(1).getPictureTheme())));
-        themeLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(2).getPictureTheme())));
-        themeLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(3).getPictureTheme())));
-        themeLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(4).getPictureTheme())));
-        themeLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(5).getPictureTheme())));
+        themeLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(0).getPictureThemeBig())));
+        themeLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(1).getPictureThemeBig())));
+        themeLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(2).getPictureThemeBig())));
+        themeLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(3).getPictureThemeBig())));
+        themeLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(4).getPictureThemeBig())));
+        themeLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(5).getPictureThemeBig())));
     }
 
     /**
