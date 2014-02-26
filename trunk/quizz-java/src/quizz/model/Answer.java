@@ -15,11 +15,11 @@ public class Answer {
     private Boolean m_isValid;
 
     /**
-     * Contruct of the Answer
+     * Answer constructor
      *
-     * @param label the label of the Answer
-     * @param picture the path/URL of the picture
-     * @param isValid correct answer for question
+     * @param label The label of the Answer
+     * @param picture The path/URL of the picture
+     * @param isValid Correct answer for question
      */
     public Answer(String label, String picture, Boolean isValid) {
         this.m_labelAnswer = label;
@@ -28,21 +28,21 @@ public class Answer {
     }
 
     /**
-     * get all the answer of a question
+     * Get all answers for a question
      *
-     * @param idQuestion the id of the question
-     * @return an ArrayList of Answer
+     * @param idQuestion The question's id
+     * @return An ArrayList of Answers
      */
     static public ArrayList<Answer> getAnswerForQuestion(int idQuestion) {
-        ArrayList<Answer> answerList = new ArrayList<>();
-        ArrayList<HashMap<String, Object>> answerListBdd = DBController.Get().executeSelect("*", Answer.TABLE_NAME + " , " + QuizzManager.QUESTIONS_HAVE_ANSWER, "WHERE ID_QUESTION =" + idQuestion);
-        for (int i = 0; i < answerListBdd.size(); i++) {
-            Answer answer = new Answer((String) answerListBdd.get(i).get(Answer.LABEL),
-                    (String) answerListBdd.get(i).get(Answer.PICTURE),
-                    (Boolean) answerListBdd.get(i).get(Answer.IS_VALID));
-            answerList.add(answer);
+        ArrayList<Answer> answersForQuestion = new ArrayList<>();
+        ArrayList<HashMap<String, Object>> answerListFromDB = DBController.Get().executeSelect("*", Answer.TABLE_NAME + " , " + QuizzManager.QUESTIONS_HAVE_ANSWER, "WHERE ID_QUESTION =" + idQuestion);
+        for (int i = 0; i < answerListFromDB.size(); i++) {
+            Answer answer = new Answer((String) answerListFromDB.get(i).get(Answer.LABEL),
+                    (String) answerListFromDB.get(i).get(Answer.PICTURE),
+                    (Boolean) answerListFromDB.get(i).get(Answer.IS_VALID));
+            answersForQuestion.add(answer);
         }
-        return answerList;
+        return answersForQuestion;
     }
 
     /**

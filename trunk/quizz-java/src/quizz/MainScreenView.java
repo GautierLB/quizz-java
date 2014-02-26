@@ -15,17 +15,18 @@ import quizz.model.Theme;
  */
 public class MainScreenView extends BrainStormingView {
 
+    private ArrayList<Theme> m_themesList;
+    
     public MainScreenView(MainFrame mainFrame) {
         super(mainFrame);
         initComponents();
-        ArrayList<Theme> themesList = new ArrayList<>();
-        themesList = Theme.getAllThemes();
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(themesList.get(0).getPictureTheme())));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource(themesList.get(1).getPictureTheme())));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(themesList.get(2).getPictureTheme())));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource(themesList.get(3).getPictureTheme())));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource(themesList.get(4).getPictureTheme())));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource(themesList.get(5).getPictureTheme())));
+        m_themesList = Theme.getAllThemes();
+        themeLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(0).getPictureTheme())));
+        themeLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(1).getPictureTheme())));
+        themeLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(2).getPictureTheme())));
+        themeLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(3).getPictureTheme())));
+        themeLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(4).getPictureTheme())));
+        themeLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource(m_themesList.get(5).getPictureTheme())));
     }
 
     /**
@@ -39,12 +40,12 @@ public class MainScreenView extends BrainStormingView {
 
         mainScreenTitle = new javax.swing.JLabel();
         createQuizz = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        themeLabel6 = new javax.swing.JLabel();
+        themeLabel1 = new javax.swing.JLabel();
+        themeLabel2 = new javax.swing.JLabel();
+        themeLabel3 = new javax.swing.JLabel();
+        themeLabel4 = new javax.swing.JLabel();
+        themeLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -69,94 +70,93 @@ public class MainScreenView extends BrainStormingView {
         });
         add(createQuizz, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, -1, 35));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
-        jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                selectTheme(evt);
+        themeLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
+        themeLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                themeLabel6MouseClicked(evt);
             }
         });
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 350, 100, 100));
+        add(themeLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 350, 100, 100));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
-        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel2selectTheme(evt);
+        themeLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
+        themeLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                themeLabel1MouseClicked(evt);
             }
         });
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 150, 100, 100));
+        add(themeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 150, 100, 100));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
-        jLabel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel3selectTheme(evt);
+        themeLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
+        themeLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                themeLabel2MouseClicked(evt);
             }
         });
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 100, 100));
+        add(themeLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 100, 100));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
-        jLabel4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel4selectTheme(evt);
+        themeLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
+        themeLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                themeLabel3MouseClicked(evt);
             }
         });
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 150, 100, 100));
+        add(themeLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 150, 100, 100));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
-        jLabel5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel5selectTheme(evt);
+        themeLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
+        themeLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                themeLabel4MouseClicked(evt);
             }
         });
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 350, 100, 100));
+        add(themeLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 350, 100, 100));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
-        jLabel6.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel6selectTheme(evt);
+        themeLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
+        themeLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                themeLabel5MouseClicked(evt);
             }
         });
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 100, 100));
+        add(themeLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 100, 100));
     }// </editor-fold>//GEN-END:initComponents
 
     private void createQuizzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createQuizzActionPerformed
         m_mainFrame.changeView(MainFrame.View.CreateQuizzView);
     }//GEN-LAST:event_createQuizzActionPerformed
+    
+    private void themeLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_themeLabel1MouseClicked
+        m_mainFrame.changeView(MainFrame.View.ThemeScreenView, m_themesList.get(0));
+    }//GEN-LAST:event_themeLabel1MouseClicked
 
-    private void selectTheme(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectTheme
-        m_mainFrame.changeView(MainFrame.View.QuestionScreenView);
-        
-    }//GEN-LAST:event_selectTheme
+    private void themeLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_themeLabel2MouseClicked
+        m_mainFrame.changeView(MainFrame.View.ThemeScreenView, m_themesList.get(1));
+    }//GEN-LAST:event_themeLabel2MouseClicked
 
-    private void jLabel2selectTheme(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2selectTheme
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2selectTheme
+    private void themeLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_themeLabel3MouseClicked
+        m_mainFrame.changeView(MainFrame.View.ThemeScreenView, m_themesList.get(2));
+    }//GEN-LAST:event_themeLabel3MouseClicked
 
-    private void jLabel3selectTheme(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3selectTheme
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel3selectTheme
+    private void themeLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_themeLabel4MouseClicked
+        m_mainFrame.changeView(MainFrame.View.ThemeScreenView, m_themesList.get(3));
+    }//GEN-LAST:event_themeLabel4MouseClicked
 
-    private void jLabel4selectTheme(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4selectTheme
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel4selectTheme
+    private void themeLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_themeLabel5MouseClicked
+        m_mainFrame.changeView(MainFrame.View.ThemeScreenView, m_themesList.get(4));
+    }//GEN-LAST:event_themeLabel5MouseClicked
 
-    private void jLabel5selectTheme(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5selectTheme
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel5selectTheme
-
-    private void jLabel6selectTheme(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6selectTheme
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel6selectTheme
+    private void themeLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_themeLabel6MouseClicked
+        m_mainFrame.changeView(MainFrame.View.ThemeScreenView, m_themesList.get(5));
+    }//GEN-LAST:event_themeLabel6MouseClicked
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createQuizz;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel mainScreenTitle;
+    private javax.swing.JLabel themeLabel1;
+    private javax.swing.JLabel themeLabel2;
+    private javax.swing.JLabel themeLabel3;
+    private javax.swing.JLabel themeLabel4;
+    private javax.swing.JLabel themeLabel5;
+    private javax.swing.JLabel themeLabel6;
     // End of variables declaration//GEN-END:variables
 }
