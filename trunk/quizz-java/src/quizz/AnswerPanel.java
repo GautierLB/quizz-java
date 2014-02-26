@@ -62,10 +62,10 @@ public class AnswerPanel extends javax.swing.JPanel {
 			fourthCircle = new javax.swing.JLabel();
 			addResponse = new javax.swing.JLabel();
 			
-			firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png"))); // NOI18N
+			firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
 			add(firstCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, -1));
 
-			secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png"))); // NOI18N
+			secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
 			add(secondCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
 
 			thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
