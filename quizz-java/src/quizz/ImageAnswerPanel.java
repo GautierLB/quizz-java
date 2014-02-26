@@ -53,22 +53,31 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
 			thirdCircle = new javax.swing.JLabel();
 			fourthCircle = new javax.swing.JLabel();
 			addResponse = new javax.swing.JLabel();
+			GoodAnswer = new javax.swing.JCheckBox();
 			
 			firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-			add(firstCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, -1));
+			add(firstCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
 
 			secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-			add(secondCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
+			add(secondCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, -1, -1));
 
 			thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-			add(thirdCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
+			add(thirdCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
 
 			fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-			add(fourthCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
+			add(fourthCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, -1, -1));
 
 			addResponse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/plus-20.png"))); // NOI18N
-			add(addResponse, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
+			add(addResponse, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 250, -1, -1));
 			titleLabel.setText("Ajoutez une Réponse");
+			
+			GoodAnswer.setFont(Main.s_openSans13);
+			GoodAnswer.setLabel("Bonne réponse");
+			GoodAnswer.setMaximumSize(new java.awt.Dimension(150, 20));
+			GoodAnswer.setMinimumSize(new java.awt.Dimension(150, 20));
+			GoodAnswer.setOpaque(false);
+			GoodAnswer.setPreferredSize(new java.awt.Dimension(150, 20));
+			add(GoodAnswer, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 		}
 
         ImageAddPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -120,6 +129,7 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane AnswerArea;
+	private javax.swing.JCheckBox GoodAnswer;
     private javax.swing.JPanel ImageAddPanel;
     private javax.swing.JLabel addImage;
     private javax.swing.JLabel addResponse;
