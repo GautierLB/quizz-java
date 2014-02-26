@@ -43,7 +43,6 @@ public class CreateQuizzView extends BrainStormingView {
     private void initComponents() {
 
         titleLabel = new javax.swing.JLabel();
-        userLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         subtitleLabel = new javax.swing.JLabel();
         mainPanel = new RoundedPanel();
@@ -63,6 +62,7 @@ public class CreateQuizzView extends BrainStormingView {
         starIcon1 = new javax.swing.JLabel();
         starIcon2 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
+        userLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -84,18 +84,6 @@ public class CreateQuizzView extends BrainStormingView {
         titleLabel.setText("Créer un Quizz");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 0, -1, -1));
         titleLabel.getAccessibleContext().setAccessibleName("");
-
-        userLabel.setFont(quizz.Main.s_openSans13);
-        userLabel.setForeground(new java.awt.Color(102, 102, 102));
-        userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon-20.png"))); // NOI18N
-        userLabel.setText("User");
-        userLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userLabelMouseClicked(evt);
-            }
-        });
-        add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, -1, -1));
-        userLabel.getAccessibleContext().setAccessibleName("imageLabel");
 
         jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 38, 720, -1));
@@ -210,6 +198,17 @@ public class CreateQuizzView extends BrainStormingView {
         });
         add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
 
+        userLabel.setFont(quizz.Main.s_openSans13);
+        userLabel.setForeground(new java.awt.Color(102, 102, 102));
+        userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon-20.png"))); // NOI18N
+        userLabel.setText(Main.userPseudo);
+        userLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userLabelMouseClicked(evt);
+            }
+        });
+        add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, -1, -1));
+
         getAccessibleContext().setAccessibleName("CreateQuizzPanel");
     }// </editor-fold>//GEN-END:initComponents
 
@@ -224,10 +223,6 @@ public class CreateQuizzView extends BrainStormingView {
     private void backButtonbackAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonbackAction
         m_mainFrame.changeView(MainFrame.View.MainScreenView);
     }//GEN-LAST:event_backButtonbackAction
-
-    private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
-        m_mainFrame.addView(MainFrame.modalView.LoginView);
-    }//GEN-LAST:event_userLabelMouseClicked
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
     }//GEN-LAST:event_formFocusGained
@@ -259,6 +254,10 @@ public class CreateQuizzView extends BrainStormingView {
         }
 
     }//GEN-LAST:event_createButtonActionPerformed
+
+    private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
+        m_mainFrame.addView(MainFrame.modalView.LoginView);
+    }//GEN-LAST:event_userLabelMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton createButton;
