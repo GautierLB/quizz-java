@@ -7,6 +7,7 @@
 package quizz;
 
 import javax.swing.JPanel;
+import quizz.model.Quizz;
 
 /**
  *
@@ -17,16 +18,16 @@ public class CreateQuestionView extends BrainStormingView {
     /**
      * Creates new form CreateQuestionView
      */
-    
+    private Quizz quizz;
     private enum Side {
-
         Left, Right
     };
     public enum Type{
         Image,Answer,ImageAnswer;
     };
-    public CreateQuestionView(MainFrame mainFrame) {
+    public CreateQuestionView(MainFrame mainFrame, Quizz newQuizz) {
         super(mainFrame);
+        this.quizz = newQuizz;
         initComponents();
     }
 

@@ -6,6 +6,7 @@
 package quizz;
 
 import java.awt.BorderLayout;
+import quizz.model.Quizz;
 
 /**
  *
@@ -112,8 +113,20 @@ public class MainFrame extends javax.swing.JFrame {
             case QuestionScreenView:
                 this.displayQuestionScreen();
                 break;
+        }
+        this.setVisible(true);
+    }
+    
+    /**
+     * Permet de choisir la vue a afficher.
+     *
+     * @param viewName est une enumeration contenant le nom des vues.
+     */
+    public void changeView(View viewName, Quizz newQuizz) {
+        this.getContentPane().removeAll();
+        switch (viewName) {
             case CreateQuestionView:
-                this.displayCreateQuestionScreen();
+                this.displayCreateQuestionScreen(newQuizz);
                 break;
         }
         this.setVisible(true);
@@ -170,8 +183,8 @@ public class MainFrame extends javax.swing.JFrame {
      /**
      * Permet d'afficher la vue CreateQuestionScreen.
      */
-     private void displayCreateQuestionScreen() {
-        CreateQuestionView questionScreen = new CreateQuestionView(this);
+     private void displayCreateQuestionScreen(Quizz quizz) {
+        CreateQuestionView questionScreen = new CreateQuestionView(this, quizz);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, questionScreen);
     }
