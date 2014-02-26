@@ -250,7 +250,7 @@ public class CreateQuizzView extends BrainStormingView {
                 time = Integer.parseInt(timeField.getText());
             }
             Quizz newQuizz = new Quizz(idTheme, idAdmin, dif, time, replayableCheckbox.isSelected(), nameField.getText());
-            m_mainFrame.changeView(MainFrame.View.CreateQuestionView);
+            m_mainFrame.changeView(MainFrame.View.CreateQuestionView, newQuizz);
         }
 
     }//GEN-LAST:event_createButtonActionPerformed
