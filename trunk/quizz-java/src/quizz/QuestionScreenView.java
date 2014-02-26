@@ -29,7 +29,6 @@ public class QuestionScreenView extends BrainStormingView {
 
         jSeparator1 = new javax.swing.JSeparator();
         titleLabel = new javax.swing.JLabel();
-        userLabel = new javax.swing.JLabel();
         heart1 = new javax.swing.JLabel();
         heart2 = new javax.swing.JLabel();
         heart3 = new javax.swing.JLabel();
@@ -59,6 +58,7 @@ public class QuestionScreenView extends BrainStormingView {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        userLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -76,12 +76,6 @@ public class QuestionScreenView extends BrainStormingView {
         titleLabel.setForeground(new java.awt.Color(40, 40, 40));
         titleLabel.setText("Créer un Quizz");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 0, -1, -1));
-
-        userLabel.setFont(Main.s_openSans13);
-        userLabel.setForeground(new java.awt.Color(102, 102, 102));
-        userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon-20.png"))); // NOI18N
-        userLabel.setText("User");
-        add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, -1, -1));
 
         heart1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/heartFull-20.png"))); // NOI18N
         add(heart1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
@@ -180,6 +174,17 @@ public class QuestionScreenView extends BrainStormingView {
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
         add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 550, -1, -1));
+
+        userLabel.setFont(quizz.Main.s_openSans13);
+        userLabel.setForeground(new java.awt.Color(102, 102, 102));
+        userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon-20.png"))); // NOI18N
+        userLabel.setText(Main.userPseudo);
+        userLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userLabelMouseClicked(evt);
+            }
+        });
+        add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void goToPrevious(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goToPrevious
@@ -189,6 +194,10 @@ public class QuestionScreenView extends BrainStormingView {
     private void goToNextQuestion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goToNextQuestion
         questionLabel.setText("Next");
     }//GEN-LAST:event_goToNextQuestion
+
+    private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
+        m_mainFrame.addView(MainFrame.modalView.LoginView);
+    }//GEN-LAST:event_userLabelMouseClicked
 
 
 

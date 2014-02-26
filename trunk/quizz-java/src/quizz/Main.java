@@ -20,6 +20,7 @@ public class Main {
     public static Font s_openSans13;
     public static Font s_openSansItalic16;
     public static Font s_openSans28;
+    public static String userPseudo="User";
     
     public static void main(String[] args) {
         Main.initFont();

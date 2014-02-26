@@ -7,6 +7,7 @@
 package quizz;
 
 import javax.swing.JPasswordField;
+import quizz.model.User;
 
 /**
  *
@@ -99,6 +100,11 @@ public class LoginDialogPanel extends RoundedPanel {
         add(padlockIconLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
         loginButton.setText("Connexion");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
         add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
 
         signInButton.setText("Inscription");
@@ -122,6 +128,14 @@ public class LoginDialogPanel extends RoundedPanel {
         this.m_mainFrame.deleteModal();
         this.m_mainFrame.addView(MainFrame.modalView.SignInView);
     }//GEN-LAST:event_signInButtonActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        Boolean autenth = User.controlLogin(this.pseudoTextBox.getText(), this.passwordTextBox.getText());
+        if (autenth){   
+            Main.userPseudo = this.pseudoTextBox.getText();
+            this.m_mainFrame.deleteModal();
+        }
+    }//GEN-LAST:event_loginButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

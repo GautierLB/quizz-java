@@ -72,7 +72,7 @@ public class CreateQuestionView extends BrainStormingView {
         userLabel.setFont(quizz.Main.s_openSans13);
         userLabel.setForeground(new java.awt.Color(102, 102, 102));
         userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon-20.png"))); // NOI18N
-        userLabel.setText("User");
+        userLabel.setText(Main.userPseudo);
         userLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 userLabelMouseClicked(evt);
