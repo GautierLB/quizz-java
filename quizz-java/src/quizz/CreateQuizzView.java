@@ -229,7 +229,7 @@ public class CreateQuizzView extends BrainStormingView {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         if (!nameField.getText().equals("")) {
-            int idTheme = Theme.getThemeByName((String) folderSelector.getSelectedItem()).getIdTheme();
+            int idTheme = Theme.getThemeByName((String) folderSelector.getSelectedItem()).getId();
             int idAdmin = 1; //en attendant que le system de compte soit mis en place
             int dif = 0;
             int time;

@@ -6,6 +6,7 @@
 package quizz;
 
 import java.awt.BorderLayout;
+import quizz.model.Theme;
 import quizz.model.Quizz;
 
 /**
@@ -18,11 +19,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         MainScreenView, CreateQuizzView, ThemeScreenView, QuestionScreenView, CreateQuestionView
     };
-    public enum modalView{
-        LoginView,SignInView;
+
+    public enum modalView {
+
+        LoginView, SignInView;
     };
     LoginDialog m_loginDlg;
     SignInDialog m_signInDlg;
+
     public MainFrame() {
         initComponents();
     }
@@ -107,9 +111,6 @@ public class MainFrame extends javax.swing.JFrame {
             case CreateQuizzView:
                 this.displayCreateQuizz();
                 break;
-            case ThemeScreenView:
-                this.displayThemeScreen();
-                break;
             case QuestionScreenView:
                 this.displayQuestionScreen();
                 break;
@@ -121,6 +122,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Permet de choisir la vue a afficher.
      *
      * @param viewName est une enumeration contenant le nom des vues.
+     * @param newQuizz Le quizz a afficher dans la vue suivante.
      */
     public void changeView(View viewName, Quizz newQuizz) {
         this.getContentPane().removeAll();
@@ -131,7 +133,19 @@ public class MainFrame extends javax.swing.JFrame {
         }
         this.setVisible(true);
     }
-    
+
+    /**
+     * Permet d'afficher le theme.
+     *
+     * @param viewName Est une enumeration contenant le nom des vues.
+     * @param theme Le theme a afficher dans la vue suivante.
+     */
+    public void changeView(View viewName, Theme theme) {
+        this.getContentPane().removeAll();
+        this.displayThemeScreen(theme);
+        this.setVisible(true);
+    }
+
     /**
      * Permet de choisir la vue a ajouter(vues modales).
      *
@@ -167,20 +181,22 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Permet d'afficher la vue ThemeScreen.
      */
-    private void displayThemeScreen() {
-        ThemeScreenView themeScreen = new ThemeScreenView(this);
+    private void displayThemeScreen(Theme theme) {
+        ThemeScreenView themeScreen = new ThemeScreenView(this, theme);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, themeScreen);
     }
+
     /**
-     * Permet d'afficher la vue ThemeScreen.
+     * Permet d'afficher la vue QuestionScreen.
      */
     private void displayQuestionScreen() {
         QuestionScreenView questionScreen = new QuestionScreenView(this);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, questionScreen);
     }
-     /**
+
+    /**
      * Permet d'afficher la vue CreateQuestionScreen.
      */
      private void displayCreateQuestionScreen(Quizz quizz) {
@@ -196,26 +212,28 @@ public class MainFrame extends javax.swing.JFrame {
         m_loginDlg = new LoginDialog(this);
         m_loginDlg.setVisible(true);
     }
-     /**
+
+    /**
      * Permet D'afficher le panel d'inscription
      */
     private void displaySignInPanel() {
         m_signInDlg = new SignInDialog(this);
         m_signInDlg.setVisible(true);
     }
+
     /**
      * Supprime toutes les fenêtres modales
      */
     public void deleteModal() {
-        if (m_loginDlg != null){
+        if (m_loginDlg != null) {
             m_loginDlg.setVisible(false);
             m_loginDlg.dispose();
         }
-        if (m_signInDlg != null){
+        if (m_signInDlg != null) {
             m_signInDlg.setVisible(false);
             m_signInDlg.dispose();
         }
-        
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

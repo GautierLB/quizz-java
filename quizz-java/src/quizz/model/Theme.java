@@ -14,10 +14,11 @@ public class Theme {
     private String m_pictureTheme;
 
     /**
-     * The construct of the Theme
+     * Theme's constructor
      *
-     * @param name the name of the Theme
-     * @param picture the path or URL of the picture
+     * @param id The id of the theme.
+     * @param name The name of the Theme.
+     * @param picture The path or URL of the picture.
      */
     public Theme(int id, String name, String picture) {
         this.m_idTheme = id;
@@ -85,11 +86,11 @@ public class Theme {
     public String getPictureTheme() {
         return m_pictureTheme;
     }
-
+    
     /**
-     * @return the m_idTheme
+     * @return The theme's id.
      */
-    public int getIdTheme() {
+    public int getId() {
         return m_idTheme;
     }
 }

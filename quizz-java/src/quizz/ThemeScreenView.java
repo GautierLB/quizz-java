@@ -5,67 +5,89 @@
  */
 package quizz;
 
-import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import quizz.model.Quizz;
+import quizz.model.Theme;
 
-/**
- *
- * @author Vince
- */
 public class ThemeScreenView extends BrainStormingView {
 
+    int m_numberOfLines = 0;
 
-    public ThemeScreenView(MainFrame mainFrame) {
+    public ThemeScreenView(MainFrame mainFrame, Theme theme) {
         super(mainFrame);
         initComponents();
-        createQuizzLine(2, "Gautier le BG", 25);
+        themeName.setText(theme.getNameTheme());
+        ArrayList<Quizz> quizzList = Quizz.getQuizzForTheme(theme.getId());
+        for (Quizz quizz : quizzList) {
+            this.createQuizzLine(quizz.getDifficulty(), quizz.getName(), quizz.getNbQuest());
+        }
     }
 
+    /**
+     * <b>Create a generic quizz line</b>
+     * <p>
+     * The quizz line is automalically moved at the right position and the (int)
+     * difficulty sets the number of stars.</p>
+     *
+     * @param difficulty The difficulty of the quizz
+     * @param quizzName The name of the quizz
+     * @param questionsNumber The number of questions in the quizz
+     */
     private void createQuizzLine(int difficulty, String quizzName, int questionsNumber) {
-        String[] starsIconTitle = new String[3];
+        if (m_numberOfLines < 18) {
+            String[] starsIconTitle = new String[3];
 
-        JPanel starsPanel = new javax.swing.JPanel();
-        JLabel star1 = new javax.swing.JLabel();
-        JLabel star2 = new javax.swing.JLabel();
-        JLabel star3 = new javax.swing.JLabel();
-        JLabel quizzLabel = new javax.swing.JLabel();
+            JPanel line = new javax.swing.JPanel();
+            JPanel starsPanel = new javax.swing.JPanel();
+            JLabel star1 = new javax.swing.JLabel();
+            JLabel star2 = new javax.swing.JLabel();
+            JLabel star3 = new javax.swing.JLabel();
+            JLabel quizzLabel = new javax.swing.JLabel();
 
-        starsPanel.setBackground(new java.awt.Color(255, 255, 255));
-        starsPanel.setForeground(new java.awt.Color(255, 255, 255));
-        starsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+            starsPanel.setBackground(new java.awt.Color(255, 255, 255));
+            starsPanel.setForeground(new java.awt.Color(255, 255, 255));
+            starsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        switch (difficulty) {
-            case 2:
-                starsIconTitle[0] = Constants.STAR_FULL;
-                starsIconTitle[1] = Constants.STAR_FULL;
-                starsIconTitle[2] = Constants.STAR_EMPTY;
-                break;
-            case 3:
-                starsIconTitle[0] = Constants.STAR_FULL;
-                starsIconTitle[1] = Constants.STAR_FULL;
-                starsIconTitle[2] = Constants.STAR_FULL;
-                break;
-            default:
-                starsIconTitle[0] = Constants.STAR_FULL;
-                starsIconTitle[1] = Constants.STAR_EMPTY;
-                starsIconTitle[2] = Constants.STAR_EMPTY;
-                break;
+            line.setBackground(new java.awt.Color(255, 255, 255));
+            line.setForeground(new java.awt.Color(255, 255, 255));
+            line.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+            switch (difficulty) {
+                case 2:
+                    starsIconTitle[0] = Constants.STAR_FULL;
+                    starsIconTitle[1] = Constants.STAR_FULL;
+                    starsIconTitle[2] = Constants.STAR_EMPTY;
+                    break;
+                case 3:
+                    starsIconTitle[0] = Constants.STAR_FULL;
+                    starsIconTitle[1] = Constants.STAR_FULL;
+                    starsIconTitle[2] = Constants.STAR_FULL;
+                    break;
+                default:
+                    starsIconTitle[0] = Constants.STAR_FULL;
+                    starsIconTitle[1] = Constants.STAR_EMPTY;
+                    starsIconTitle[2] = Constants.STAR_EMPTY;
+                    break;
+            }
+
+            star1.setIcon(new javax.swing.ImageIcon(getClass().getResource(Constants.IMAGE_FOLDER + starsIconTitle[0])));
+            star2.setIcon(new javax.swing.ImageIcon(getClass().getResource(Constants.IMAGE_FOLDER + starsIconTitle[1])));
+            star3.setIcon(new javax.swing.ImageIcon(getClass().getResource(Constants.IMAGE_FOLDER + starsIconTitle[2])));
+
+            starsPanel.add(star1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+            starsPanel.add(star2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+            starsPanel.add(star3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
+
+            line.add(starsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+            quizzLabel.setText(quizzName + " [" + questionsNumber + "Q]");
+            line.add(quizzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 162, 20));
+            this.setVisible(true);
+            this.add(line, new org.netbeans.lib.awtextra.AbsoluteConstraints(m_numberOfLines > 8 ? 500 : 110, 130 + ((m_numberOfLines > 8 ? m_numberOfLines - 9 : m_numberOfLines) * 40), 162, 20));
+            m_numberOfLines++;
         }
-
-        star1.setIcon(new javax.swing.ImageIcon(getClass().getResource(Constants.IMAGE_FOLDER + starsIconTitle[0])));
-        star2.setIcon(new javax.swing.ImageIcon(getClass().getResource(Constants.IMAGE_FOLDER + starsIconTitle[1])));
-        star3.setIcon(new javax.swing.ImageIcon(getClass().getResource(Constants.IMAGE_FOLDER + starsIconTitle[2])));
-
-        starsPanel.add(star1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-        starsPanel.add(star2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
-        starsPanel.add(star3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
-
-        add(starsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 150, -1, -1));
-
-        quizzLabel.setText(quizzName + " [" + questionsNumber + "Q]");
-        add(quizzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 150, 162, 20));
-        this.setVisible(true);
     }
 
     /**
@@ -100,6 +122,7 @@ public class ThemeScreenView extends BrainStormingView {
         themeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-40.png"))); // NOI18N
         themeIcon.setMaximumSize(new java.awt.Dimension(80, 80));
         themeIcon.setMinimumSize(new java.awt.Dimension(80, 80));
+        themeIcon.setPreferredSize(new java.awt.Dimension(40, 40));
         add(themeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 33, -1, -1));
 
         backButton.setText("Retour");

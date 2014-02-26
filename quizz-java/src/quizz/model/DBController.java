@@ -7,10 +7,8 @@ import java.util.HashMap;
 public class DBController {
 
     static private DBController s_dbController;
-    // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     static final String DB_URL = "jdbc:sqlserver://193.252.48.189\\SQLEXPRESS:1433;database=BDD_B3I_groupe_3;";
-    //  Database credentials
     static final String USER = "b3i_groupe_3";
     static final String PASS = "123Soleil";
 
@@ -24,6 +22,11 @@ public class DBController {
     private DBController() {
     }
 
+    /**
+     * Open a connection to DB with logs.<br/>
+     * Need to be closed at the end.
+     * @return A connection object
+     */
     private Connection connectDB() {
         Connection connection = null;
         try {
@@ -41,6 +44,16 @@ public class DBController {
         return connection;
     }
 
+    /**
+     * Execute select function
+     *
+     * @param select The select condition.
+     * @param table The table where we execute the select.
+     * @param where The DB where clause.
+     * @author Vincent Dondain
+     * 
+     * @return An Array (all selected lines) of Dictionaries (one line with columns as keys)
+     */
     public ArrayList<HashMap<String, Object>> executeSelect(String select, String table, String where) {
         ArrayList<HashMap<String, Object>> result = new ArrayList<>();
         String query = "SELECT " + select + " FROM " + table + " " + where + ";";

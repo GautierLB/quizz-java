@@ -31,7 +31,6 @@ public class Quizz {
      *
      * @param idTheme The id of the quizz theme
      * @param idAdmin The id of the Admin that have created the quizz
-     * @param nb The number of questions
      * @param dif The difficulty of the quizz
      * @param time The time to make the quizz
      * @param retry Boolean to know if the user can retry or not
@@ -89,11 +88,31 @@ public class Quizz {
     public int getId() {
         return this.m_idQuizz;
     }
+    
+    public String getName() {
+        return this.m_nameQuizz;
+    }
+    
+    public Boolean isRetryable() {
+        return this.m_retryQuizz;
+    }
+    
+    public int getTimeMax() {
+        return this.m_timeMaxQuizz;
+    }
+    
+    public int getDifficulty() {
+        return this.m_difficultyQuizz;
+    }
+    
+    public int getNbQuest() {
+        return this.m_nbQuestQuizz;
+    }
 
     /**
-     * @param m_nbQuestQuizz the m_nbQuestQuizz to set
+     * @param nbQuestQuizz the number of questions to set
      */
-    public void setNbQuestQuizz(int m_nbQuestQuizz) {
-        this.m_nbQuestQuizz = m_nbQuestQuizz;
+    public void setNbQuestQuizz(int nbQuestQuizz) {
+        this.m_nbQuestQuizz = nbQuestQuizz;
     }
 }
