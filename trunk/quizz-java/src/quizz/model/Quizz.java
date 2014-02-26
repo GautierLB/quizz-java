@@ -10,13 +10,13 @@ import java.util.HashMap;
 public class Quizz {
 
     private static final String TABLE_NAME = "BDD_B3I_groupe_3.dbo.[QUIZZ]";
-    private static final String ID_THEME = "id_theme";
-    private static final String ID_ADMIN = "id_admin";
-    private static final String NB_QUESTS = "nb_quest_quizz";
-    private static final String DIFFICULTY = "difficulty_quizz";
-    private static final String TIME_MAX = "time_max_quizz";
-    private static final String RETRY = "retry_quizz";
-    private static final String NAME = "name_quizz";
+    private static final String ID_THEME = "ID_THEME";
+    private static final String ID_ADMIN = "ID_ADMIN";
+    private static final String NB_QUESTS = "NB_QUEST_QUIZZ";
+    private static final String DIFFICULTY = "DIFFICULTY_QUIZZ";
+    private static final String TIME_MAX = "TIME_MAX_QUIZZ";
+    private static final String RETRY = "RETRY_QUIZZ";
+    private static final String NAME = "NAME_QUIZZ";
     private int m_idQuizz;
     private int m_idTheme;
     private int m_idAdmin;
