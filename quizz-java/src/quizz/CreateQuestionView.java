@@ -70,7 +70,7 @@ public class CreateQuestionView extends BrainStormingView {
         titleLabel.setText("Créer une Question");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 0, -1, -1));
 
-        userLabel.setFont(quizz.Main.s_openSans13);
+        userLabel.setFont(Main.s_openSans13);
         userLabel.setForeground(new java.awt.Color(102, 102, 102));
         userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon-20.png"))); // NOI18N
         userLabel.setText(Main.userPseudo);
