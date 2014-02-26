@@ -56,6 +56,8 @@ public class CreateQuestionView extends BrainStormingView {
         rightBothButton = new javax.swing.JButton();
         rightPanel = new ImagePanel(true);
         leftPanel = new ImageAnswerPanel(false);
+        SubmitQuizzButton = new javax.swing.JButton();
+        backButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -210,6 +212,14 @@ public class CreateQuestionView extends BrainStormingView {
         leftPanel.setMinimumSize(new java.awt.Dimension(309, 307));
         leftPanel.setPreferredSize(new java.awt.Dimension(309, 307));
         add(leftPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+
+        SubmitQuizzButton.setText("Valider le quizz");
+        SubmitQuizzButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButton1backAction(evt);
+            }
+        });
+        add(SubmitQuizzButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 520, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
@@ -251,6 +261,10 @@ public class CreateQuestionView extends BrainStormingView {
     private void rightBothButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBothButtonActionPerformed
         this.setNewLayout(Type.ImageAnswer, Side.Right);
     }//GEN-LAST:event_rightBothButtonActionPerformed
+
+    private void backButton1backAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1backAction
+        m_mainFrame.changeView(MainFrame.View.MainScreenView);
+    }//GEN-LAST:event_backButton1backAction
 
     
     /**
@@ -302,9 +316,11 @@ public class CreateQuestionView extends BrainStormingView {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SubmitQuizzButton;
     private javax.swing.JLabel arrowLeft;
     private javax.swing.JLabel arrowRight;
     private javax.swing.JButton backButton;
+    private javax.swing.JButton backButton1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton leftBothButton;

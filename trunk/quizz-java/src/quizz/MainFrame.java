@@ -233,7 +233,8 @@ public class MainFrame extends javax.swing.JFrame {
             m_signInDlg.setVisible(false);
             m_signInDlg.dispose();
         }
-
+        this.pack();
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
