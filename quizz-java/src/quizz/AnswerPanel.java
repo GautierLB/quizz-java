@@ -91,14 +91,14 @@ public class AnswerPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextPane AnswerArea;
-	private javax.swing.JCheckBox GoodAnswer;
-    private javax.swing.JLabel addResponse;
-    private javax.swing.JLabel firstCircle;
-    private javax.swing.JLabel fourthCircle;
+    public javax.swing.JTextPane AnswerArea;
+	public javax.swing.JCheckBox GoodAnswer;
+    public javax.swing.JLabel addResponse;
+    public javax.swing.JLabel firstCircle;
+    public javax.swing.JLabel fourthCircle;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel secondCircle;
-    private javax.swing.JLabel thirdCircle;
+    public javax.swing.JLabel secondCircle;
+    public javax.swing.JLabel thirdCircle;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

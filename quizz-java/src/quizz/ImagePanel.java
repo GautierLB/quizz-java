@@ -86,13 +86,13 @@ public class ImagePanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel addImageLabel;
-	private javax.swing.JCheckBox GoodAnswer;
-    private javax.swing.JLabel addResponse;
-    private javax.swing.JLabel firstCircle;
-    private javax.swing.JLabel fourthCircle;
-    private javax.swing.JLabel secondCircle;
-    private javax.swing.JLabel thirdCircle;
-    private javax.swing.JLabel titleLabel;
+    public javax.swing.JLabel addImageLabel;
+	public javax.swing.JCheckBox GoodAnswer;
+    public javax.swing.JLabel addResponse;
+    public javax.swing.JLabel firstCircle;
+    public javax.swing.JLabel fourthCircle;
+    public javax.swing.JLabel secondCircle;
+    public javax.swing.JLabel thirdCircle;
+    public javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

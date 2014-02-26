@@ -128,16 +128,16 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextPane AnswerArea;
-	private javax.swing.JCheckBox GoodAnswer;
-    private javax.swing.JPanel ImageAddPanel;
-    private javax.swing.JLabel addImage;
-    private javax.swing.JLabel addResponse;
-    private javax.swing.JLabel firstCircle;
-    private javax.swing.JLabel fourthCircle;
+    public javax.swing.JTextPane AnswerArea;
+	public javax.swing.JCheckBox GoodAnswer;
+    public javax.swing.JPanel ImageAddPanel;
+    public javax.swing.JLabel addImage;
+    public javax.swing.JLabel addResponse;
+    public javax.swing.JLabel firstCircle;
+    public javax.swing.JLabel fourthCircle;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel secondCircle;
-    private javax.swing.JLabel thirdCircle;
+    public javax.swing.JLabel secondCircle;
+    public javax.swing.JLabel thirdCircle;
     private javax.swing.JLabel titleImageLabel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel titleTextLabel;
