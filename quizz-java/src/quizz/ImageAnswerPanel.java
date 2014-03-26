@@ -59,11 +59,12 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents(Boolean response) {
 
-        titleLabel = new javax.swing.JLabel();
         ImageAddPanel = new javax.swing.JPanel();
-        addImage = new javax.swing.JLabel();
+        urlLabel = new javax.swing.JLabel();
+        urlTextbox = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         AnswerArea = new javax.swing.JTextPane();
+		titleLabel = new javax.swing.JLabel();
         titleTextLabel = new javax.swing.JLabel();
         titleImageLabel = new javax.swing.JLabel();
 
@@ -76,19 +77,14 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
         titleLabel.setFont(Main.s_openSans13);
         titleLabel.setForeground(new java.awt.Color(40, 40, 40));
         titleLabel.setText("Ajoutez une Question");
-		add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
-       
-	   if( response == true){
+        add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 10, -1, -1));
+
+        if( response == true){
 			firstCircle = new javax.swing.JLabel();
 			secondCircle = new javax.swing.JLabel();
 			thirdCircle = new javax.swing.JLabel();
 			fourthCircle = new javax.swing.JLabel();
 			addResponse = new javax.swing.JLabel();
-			addResponse.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent evt) {
-					addResponseMouseClicked(evt);
-				}
-			});
 			GoodAnswer = new javax.swing.JCheckBox();
 			
 			firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
@@ -120,29 +116,37 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
         ImageAddPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         ImageAddPanel.setMaximumSize(new java.awt.Dimension(100, 183));
         ImageAddPanel.setMinimumSize(new java.awt.Dimension(100, 183));
-		
 
-        addImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/plus-20.png"))); // NOI18N
+        urlLabel.setText("Url de l'image");
+
+        urlTextbox.setMaximumSize(new java.awt.Dimension(80, 20));
+        urlTextbox.setMinimumSize(new java.awt.Dimension(80, 20));
+        urlTextbox.setPreferredSize(new java.awt.Dimension(80, 20));
+        urlTextbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                urlTextboxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ImageAddPanelLayout = new javax.swing.GroupLayout(ImageAddPanel);
         ImageAddPanel.setLayout(ImageAddPanelLayout);
         ImageAddPanelLayout.setHorizontalGroup(
             ImageAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 98, Short.MAX_VALUE)
-            .addGroup(ImageAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ImageAddPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(addImage)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(ImageAddPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ImageAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(urlLabel)
+                    .addComponent(urlTextbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ImageAddPanelLayout.setVerticalGroup(
             ImageAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 181, Short.MAX_VALUE)
-            .addGroup(ImageAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ImageAddPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(addImage)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ImageAddPanelLayout.createSequentialGroup()
+                .addContainerGap(78, Short.MAX_VALUE)
+                .addComponent(urlLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(urlTextbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
         );
 
         add(ImageAddPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 60, 100, 183));
@@ -163,20 +167,25 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
         add(titleImageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void urlTextboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urlTextboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_urlTextboxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextPane AnswerArea;
-	public javax.swing.JCheckBox GoodAnswer;
-    public javax.swing.JPanel ImageAddPanel;
-    public javax.swing.JLabel addImage;
-    public javax.swing.JLabel addResponse;
-    public javax.swing.JLabel firstCircle;
-    public javax.swing.JLabel fourthCircle;
+    private javax.swing.JTextPane AnswerArea;
+    private javax.swing.JPanel ImageAddPanel;
+    private javax.swing.JLabel addResponse;
+    private javax.swing.JLabel firstCircle;
+    private javax.swing.JLabel fourthCircle;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JLabel secondCircle;
-    public javax.swing.JLabel thirdCircle;
+    private javax.swing.JLabel secondCircle;
+    private javax.swing.JLabel thirdCircle;
     private javax.swing.JLabel titleImageLabel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel titleTextLabel;
+    private javax.swing.JLabel urlLabel;
+    private javax.swing.JTextField urlTextbox;
+	public javax.swing.JCheckBox GoodAnswer;
     // End of variables declaration//GEN-END:variables
 }
