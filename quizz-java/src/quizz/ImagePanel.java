@@ -89,7 +89,7 @@ public class ImagePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addResponseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addImageLabelMouseClicked
-        Answer answerCreate = new Answer("",image,GoodAnswer.isSelected());
+        //Answer answerCreate = new Answer("",image,GoodAnswer.isSelected());
         //answerList.add(answerCreate);
         //image.setText("");
     }//GEN-LAST:event_addImageLabelMouseClicked
