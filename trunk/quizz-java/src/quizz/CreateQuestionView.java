@@ -249,7 +249,7 @@ public class CreateQuestionView extends BrainStormingView {
             
         }else if (typeQuestion.equals("Image")){
             ImagePanel usedPanel = (ImagePanel) questionPanel;
-            //questionCreate = new Question ("",usedPanel.getUrlPicture());
+            questionCreate = new Question ("",usedPanel.getUrlPicture());
         }else{
             ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
             questionCreate = new Question (usedPanel.getText(),usedPanel.getUrlPicture());
