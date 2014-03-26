@@ -6,18 +6,49 @@
 
 package quizz;
 
+import java.util.ArrayList;
+import quizz.model.Answer;
+
 /**
  *
  * @author Gautier
  */
 public class ImageAnswerPanel extends javax.swing.JPanel {
 
+    private  ArrayList<Answer> answerList = new ArrayList<>();
     /**
      * Creates new form ImageAnswerPanel
      */
     public ImageAnswerPanel(Boolean response) {
         initComponents(response);
     }
+    
+    /**
+     * Get the text of the panel
+     * @return the text of the panel
+     */
+    public String getText(){
+        return (AnswerArea.getText());
+    }
+    
+    /**
+     * Get the list of answer created
+     * @return an ArrayList of Answer
+     */
+    public ArrayList<Answer> getAnswerList(){
+        return (answerList);
+    }
+    
+    /**
+     * create a new Response and add it to the ArrayList of answer
+     * @param evt 
+     */
+    private void addResponseMouseClicked(java.awt.event.MouseEvent evt) {                                           
+        Answer answerCreate = new Answer(AnswerArea.getText(),image,GoodAnswer.isSelected());
+        //answerList.add(answerCreate);
+        AnswerArea.setText("");
+        //image.setText("");
+    }                                          
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,6 +84,11 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
 			thirdCircle = new javax.swing.JLabel();
 			fourthCircle = new javax.swing.JLabel();
 			addResponse = new javax.swing.JLabel();
+			addResponse.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent evt) {
+					addResponseMouseClicked(evt);
+				}
+			});
 			GoodAnswer = new javax.swing.JCheckBox();
 			
 			firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
@@ -84,6 +120,7 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
         ImageAddPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         ImageAddPanel.setMaximumSize(new java.awt.Dimension(100, 183));
         ImageAddPanel.setMinimumSize(new java.awt.Dimension(100, 183));
+		
 
         addImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/plus-20.png"))); // NOI18N
 
