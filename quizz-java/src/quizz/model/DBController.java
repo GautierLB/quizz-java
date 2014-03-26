@@ -90,7 +90,7 @@ public class DBController {
     public int executeInsert(String table, String fields, String values) {
         int key = 0;
         try {
-            String SQL = "INSERT INTO BDD_B3I_groupe_3.dbo.[" + table + "] (" + fields + ") VALUES (" + values + ")";
+            String SQL = "INSERT INTO " + table + " (" + fields + ") VALUES (" + values + ")";
             Statement request = this.connectDB().createStatement();
             request.executeUpdate(SQL, Statement.RETURN_GENERATED_KEYS);
             ResultSet resultSet = request.getGeneratedKeys();
