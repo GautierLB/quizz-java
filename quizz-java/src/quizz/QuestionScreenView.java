@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quizz;
+
+import java.util.ArrayList;
+import javax.swing.JLabel;
+import quizz.model.Quizz;
+import quizz.model.Question;
+import quizz.model.Answer;
 
 /**
  *
@@ -12,10 +17,74 @@ package quizz;
  */
 public class QuestionScreenView extends BrainStormingView {
 
+    private int m_currentQuestionNumber;
+    private ArrayList<Question> m_questionsList;
+    private ArrayList<JLabel> m_circleButtonsList;
 
-    public QuestionScreenView(MainFrame mainFrame) {
+    public QuestionScreenView(MainFrame mainFrame, Quizz quizz) {
         super(mainFrame);
         initComponents();
+        m_currentQuestionNumber = 0;
+        m_questionsList = Question.getQuestionsForQuizz(quizz.getId());
+        titleLabel.setText(quizz.getName());
+        this.reloadQuestion();
+        this.createBottomCircleButtons(quizz.getNbQuest());
+    }
+
+    private void reloadQuestion() {
+        Question question = m_questionsList.get(m_currentQuestionNumber);
+        questionLabel.setText(question.getLabel());
+        ArrayList<Answer> answersList = Answer.getAnswerForQuestion(question.getId());
+        this.hideAnswersLabels();
+
+        if (0 < answersList.size()) {
+            answerLabel1.setVisible(true);
+            answerLabel1.setText(answersList.get(0).getLabel());
+        }
+        if (1 < answersList.size()) {
+            answerLabel2.setVisible(true);
+            answerLabel2.setText(answersList.get(1).getLabel());
+        }
+        if (2 < answersList.size()) {
+            answerLabel3.setVisible(true);
+            answerLabel3.setText(answersList.get(2).getLabel());
+        }
+        if (3 < answersList.size()) {
+            answerLabel4.setVisible(true);
+            answerLabel4.setText(answersList.get(3).getLabel());
+        }
+    }
+
+    private void hideAnswersLabels() {
+        answerLabel1.setVisible(false);
+        answerLabel2.setVisible(false);
+        answerLabel3.setVisible(false);
+        answerLabel4.setVisible(false);
+    }
+
+    private void reloadBottomCirleButtons() {
+        for (int i = 0; i < m_questionsList.size(); i++) {
+            if (i <= m_currentQuestionNumber) {
+                m_circleButtonsList.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+            } else {
+                m_circleButtonsList.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+            }
+        }
+    }
+
+    private void createBottomCircleButtons(int numberOfQuestions) {
+        m_circleButtonsList = new ArrayList<>();
+        int startPoint = (m_mainFrame.getWidth() - (numberOfQuestions * 20)) / 2;
+        for (int i = 0; i < numberOfQuestions; i++) {
+            JLabel circleButton = new javax.swing.JLabel();
+            if (i > 0) {
+                circleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+            } else {
+                circleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+            }
+            this.add(circleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(startPoint + (20 * i), 550, -1, -1));
+            m_circleButtonsList.add(circleButton);
+        }
     }
 
     /**
@@ -36,32 +105,17 @@ public class QuestionScreenView extends BrainStormingView {
         heart5 = new javax.swing.JLabel();
         questionLabel = new javax.swing.JLabel();
         questionPicture = new javax.swing.JLabel();
-        response1 = new javax.swing.JCheckBox();
-        response2 = new javax.swing.JCheckBox();
-        response3 = new javax.swing.JCheckBox();
-        response4 = new javax.swing.JCheckBox();
+        answerLabel4 = new javax.swing.JCheckBox();
+        answerLabel1 = new javax.swing.JCheckBox();
+        answerLabel2 = new javax.swing.JCheckBox();
+        answerLabel3 = new javax.swing.JCheckBox();
         arrowLeft = new javax.swing.JLabel();
         arrowRight = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(800, 493));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -75,7 +129,7 @@ public class QuestionScreenView extends BrainStormingView {
         titleLabel.setFont(Main.s_openSansTitle);
         titleLabel.setForeground(new java.awt.Color(40, 40, 40));
         titleLabel.setText("Créer un Quizz");
-        add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 0, -1, -1));
+        add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 5, 150, -1));
 
         heart1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/heartFull-20.png"))); // NOI18N
         add(heart1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
@@ -92,24 +146,23 @@ public class QuestionScreenView extends BrainStormingView {
         heart5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/heartEmpty-20.png"))); // NOI18N
         add(heart5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
-        questionLabel.setText("Question?");
-        add(questionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 500, -1));
+        questionLabel.setText("Question ?");
+        add(questionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 500, -1));
 
-        questionPicture.setText("Picture");
         questionPicture.setToolTipText("");
         add(questionPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 220, 120));
 
-        response1.setLabel("Réponse 4");
-        add(response1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 400, -1));
+        answerLabel4.setLabel("Réponse 4");
+        add(answerLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 400, -1));
 
-        response2.setLabel("Réponse 1");
-        add(response2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 400, -1));
+        answerLabel1.setLabel("Réponse 1");
+        add(answerLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 400, -1));
 
-        response3.setLabel("Réponse 2");
-        add(response3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 400, -1));
+        answerLabel2.setLabel("Réponse 2");
+        add(answerLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 400, -1));
 
-        response4.setLabel("Réponse 3");
-        add(response4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 400, -1));
+        answerLabel3.setLabel("Réponse 3");
+        add(answerLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 400, -1));
 
         arrowLeft.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/arrowLeft-60.png"))); // NOI18N
         arrowLeft.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -127,54 +180,6 @@ public class QuestionScreenView extends BrainStormingView {
         });
         add(arrowRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 270, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 550, -1, -1));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 550, -1, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 550, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 550, -1, -1));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 550, -1, -1));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 550, -1, -1));
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 550, -1, -1));
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 550, -1, -1));
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 550, -1, -1));
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 550, -1, -1));
-
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 550, -1, -1));
-
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 550, -1, -1));
-
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 550, -1, -1));
-
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 550, -1, -1));
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 550, -1, -1));
-
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
-        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 550, -1, -1));
-
         userLabel.setFont(quizz.Main.s_openSans13);
         userLabel.setForeground(new java.awt.Color(102, 102, 102));
         userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon-20.png"))); // NOI18N
@@ -184,15 +189,23 @@ public class QuestionScreenView extends BrainStormingView {
                 userLabelMouseClicked(evt);
             }
         });
-        add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, -1, -1));
+        add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void goToPrevious(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goToPrevious
-        questionLabel.setText("Previous");
+        if (m_currentQuestionNumber > 0) {
+            m_currentQuestionNumber--;
+            this.reloadQuestion();
+            this.reloadBottomCirleButtons();
+        }
     }//GEN-LAST:event_goToPrevious
 
     private void goToNextQuestion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goToNextQuestion
-        questionLabel.setText("Next");
+        if (m_currentQuestionNumber < m_questionsList.size() - 1) {
+            m_currentQuestionNumber++;
+            this.reloadQuestion();
+            this.reloadBottomCirleButtons();
+        }
     }//GEN-LAST:event_goToNextQuestion
 
     private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
@@ -200,8 +213,11 @@ public class QuestionScreenView extends BrainStormingView {
     }//GEN-LAST:event_userLabelMouseClicked
 
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox answerLabel1;
+    private javax.swing.JCheckBox answerLabel2;
+    private javax.swing.JCheckBox answerLabel3;
+    private javax.swing.JCheckBox answerLabel4;
     private javax.swing.JLabel arrowLeft;
     private javax.swing.JLabel arrowRight;
     private javax.swing.JLabel heart1;
@@ -209,29 +225,9 @@ public class QuestionScreenView extends BrainStormingView {
     private javax.swing.JLabel heart3;
     private javax.swing.JLabel heart4;
     private javax.swing.JLabel heart5;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel questionLabel;
     private javax.swing.JLabel questionPicture;
-    private javax.swing.JCheckBox response1;
-    private javax.swing.JCheckBox response2;
-    private javax.swing.JCheckBox response3;
-    private javax.swing.JCheckBox response4;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables

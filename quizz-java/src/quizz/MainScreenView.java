@@ -147,8 +147,6 @@ public class MainScreenView extends BrainStormingView {
         m_mainFrame.changeView(MainFrame.View.ThemeScreenView, m_themesList.get(5));
     }//GEN-LAST:event_themeLabel6MouseClicked
 
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createQuizz;
     private javax.swing.JLabel mainScreenTitle;

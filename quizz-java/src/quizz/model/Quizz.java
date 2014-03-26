@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class Quizz {
 
     private static final String TABLE_NAME = "BDD_B3I_groupe_3.dbo.[QUIZZ]";
+    private static final String ID_QUIZZ = "ID_QUIZZ";
     private static final String ID_THEME = "ID_THEME";
     private static final String ID_ADMIN = "ID_ADMIN";
     private static final String NB_QUESTS = "NB_QUEST_QUIZZ";
@@ -40,6 +41,27 @@ public class Quizz {
         this.m_retryQuizz = retry;
         this.m_nameQuizz = name;
     }
+    
+    /**
+     * Used when we create a quizz from DB because we know the ID
+     * 
+     * @param idQuizz The id of the quizz
+     * @param idTheme The id of the quizz theme
+     * @param idAdmin The id of the Admin that have created the quizz
+     * @param dif The difficulty of the quizz
+     * @param time The time to make the quizz
+     * @param retry Boolean to know if the user can retry or not
+     * @param name The name of the quizz
+     */
+    public Quizz(int idQuizz, int idTheme, int idAdmin, int dif, int time, boolean retry, String name) {
+        this.m_idQuizz = idQuizz;
+        this.m_idTheme = idTheme;
+        this.m_idAdmin = idAdmin;
+        this.m_difficultyQuizz = dif;
+        this.m_timeMaxQuizz = time;
+        this.m_retryQuizz = retry;
+        this.m_nameQuizz = name;
+    }
 
     /**
      * Get the quizz for a specificated theme
@@ -51,7 +73,8 @@ public class Quizz {
         ArrayList<Quizz> quizzList = new ArrayList<>();
         ArrayList<HashMap<String, Object>> quizzListBdd = DBController.Get().executeSelect("*", Quizz.TABLE_NAME, "WHERE ID_THEME =" + idTheme);
         for (int i = 0; i < quizzListBdd.size(); i++) {
-            Quizz quizz = new Quizz((int) quizzListBdd.get(i).get(Quizz.ID_THEME),
+            Quizz quizz = new Quizz((int) quizzListBdd.get(i).get(Quizz.ID_QUIZZ),
+                    (int) quizzListBdd.get(i).get(Quizz.ID_THEME),
                     (int) quizzListBdd.get(i).get(Quizz.ID_ADMIN),
                     (int) quizzListBdd.get(i).get(Quizz.DIFFICULTY),
                     (int) quizzListBdd.get(i).get(Quizz.TIME_MAX),
