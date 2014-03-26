@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quizz;
 
 import java.awt.Panel;
@@ -20,18 +19,23 @@ public class CreateQuestionView extends BrainStormingView {
 
     /**
      * Creates new form CreateQuestionView
-     */    
+     */
     private String typeQuestion;
     private String typeAnswer;
     private JPanel answerPanel;
     private JPanel questionPanel;
     private Quizz quizz;
+
     private enum Side {
+
         Left, Right
     };
-    public enum Type{
-        Image,Answer,ImageAnswer;
+
+    public enum Type {
+
+        Image, Answer, ImageAnswer;
     };
+
     public CreateQuestionView(MainFrame mainFrame, Quizz newQuizz) {
         super(mainFrame);
         this.quizz = newQuizz;
@@ -238,21 +242,19 @@ public class CreateQuestionView extends BrainStormingView {
     }//GEN-LAST:event_backButtonbackAction
 
     private void arrowLeftgoToPrevious(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrowLeftgoToPrevious
-        
     }//GEN-LAST:event_arrowLeftgoToPrevious
 
     private void arrowRightgoToNextQuestion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrowRightgoToNextQuestion
         Question questionCreate;
-        if(typeQuestion.equals("Text")){
+        if (typeQuestion.equals("Text")) {
             AnswerPanel usedPanel = (AnswerPanel) questionPanel;
-            questionCreate = new Question (usedPanel.getText(),"");
-            
-        }else if (typeQuestion.equals("Image")){
+            questionCreate = new Question(usedPanel.getText(), "");
+        } else if (typeQuestion.equals("Image")) {
             ImagePanel usedPanel = (ImagePanel) questionPanel;
-            questionCreate = new Question ("",usedPanel.getUrlPicture());
-        }else{
+            questionCreate = new Question("", usedPanel.getUrlPicture());
+        } else {
             ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
-            questionCreate = new Question (usedPanel.getText(),usedPanel.getUrlPicture());
+            questionCreate = new Question(usedPanel.getText(), usedPanel.getUrlPicture());
         }
         //questionCreate.saveQuestionInDB();
     }//GEN-LAST:event_arrowRightgoToNextQuestion
@@ -291,13 +293,13 @@ public class CreateQuestionView extends BrainStormingView {
         m_mainFrame.changeView(MainFrame.View.MainScreenView);
     }//GEN-LAST:event_backButton1backAction
 
-    
     /**
      * permet de changer le type de panel pour créer question/réponse
+     *
      * @param _type le type de panel a affecter
      * @param _side le coté concerné
      */
-    private JPanel setNewLayout(Type _type, Side _side){
+    private JPanel setNewLayout(Type _type, Side _side) {
         JPanel current = null;
         Boolean response = false;
         switch (_side) {
@@ -310,10 +312,10 @@ public class CreateQuestionView extends BrainStormingView {
                 this.remove(rightPanel);
                 response = true;
                 break;
-        } 
-        
+        }
+
         switch (_type) {
-            
+
             case Image:
                 current = new ImagePanel(response, this);
                 break;
@@ -333,14 +335,12 @@ public class CreateQuestionView extends BrainStormingView {
                 rightPanel = current;
                 this.add(rightPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, -1, -1));
                 break;
-        } 
+        }
         current.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         this.revalidate();
         this.repaint();
         return current;
     }
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SubmitQuizzButton;
     private javax.swing.JLabel arrowLeft;
