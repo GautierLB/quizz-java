@@ -85,12 +85,22 @@ public class LoginDialogPanel extends RoundedPanel {
                 pseudoTextBoxActionPerformed(evt);
             }
         });
+        pseudoTextBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pseudoTextBoxFocusGained(evt);
+            }
+        });
         add(pseudoTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 120, 20));
 
         passwordTextBox.setFont(Main.s_openSans13);
         passwordTextBox.setForeground(new java.awt.Color(170, 170, 170));
         passwordTextBox.setText("jTextField2");
         passwordTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        passwordTextBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passwordTextBoxFocusGained(evt);
+            }
+        });
         add(passwordTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 120, -1));
 
         userIconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon-25.png"))); // NOI18N
@@ -136,6 +146,14 @@ public class LoginDialogPanel extends RoundedPanel {
             this.m_mainFrame.deleteModal();
         }
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void pseudoTextBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pseudoTextBoxFocusGained
+        this.pseudoTextBox.setText("");
+    }//GEN-LAST:event_pseudoTextBoxFocusGained
+
+    private void passwordTextBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTextBoxFocusGained
+        this.passwordTextBox.setText("");
+    }//GEN-LAST:event_passwordTextBoxFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
