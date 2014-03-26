@@ -31,6 +31,9 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
         return (AnswerArea.getText());
     }
     
+    public String getUrlPicture(){
+        return(urlLabel.getText());
+    }
     /**
      * Get the list of answer created
      * @return an ArrayList of Answer
@@ -44,10 +47,10 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
      * @param evt 
      */
     private void addResponseMouseClicked(java.awt.event.MouseEvent evt) {                                           
-        //Answer answerCreate = new Answer(AnswerArea.getText(),image,GoodAnswer.isSelected());
+        Answer answerCreate = new Answer(AnswerArea.getText(),urlLabel.getText(),GoodAnswer.isSelected());
         //answerList.add(answerCreate);
         AnswerArea.setText("");
-        //image.setText("");
+        urlLabel.setText("");
     }                                          
 
     /**
