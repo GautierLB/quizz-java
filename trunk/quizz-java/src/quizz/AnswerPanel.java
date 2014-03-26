@@ -18,6 +18,10 @@ public class AnswerPanel extends javax.swing.JPanel {
     public AnswerPanel(Boolean response) {
         initComponents(response);
     }
+    
+    public String getText(){
+        return (AnswerArea.getText());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

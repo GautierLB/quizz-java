@@ -6,8 +6,11 @@
 
 package quizz;
 
+import java.awt.Panel;
 import javax.swing.JPanel;
 import quizz.model.Quizz;
+import quizz.ImageAnswerPanel;
+import quizz.model.Question;
 
 /**
  *
@@ -17,7 +20,11 @@ public class CreateQuestionView extends BrainStormingView {
 
     /**
      * Creates new form CreateQuestionView
-     */
+     */    
+    private String typeQuestion;
+    private String typeAnswer;
+    private JPanel answerPanel;
+    private JPanel questionPanel;
     private Quizz quizz;
     private enum Side {
         Left, Right
@@ -235,31 +242,49 @@ public class CreateQuestionView extends BrainStormingView {
     }//GEN-LAST:event_arrowLeftgoToPrevious
 
     private void arrowRightgoToNextQuestion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrowRightgoToNextQuestion
-        
+        Question questionCreate;
+        if(typeQuestion.equals("Text")){
+            AnswerPanel usedPanel = (AnswerPanel) questionPanel;
+            questionCreate = new Question (usedPanel.getText(),"");
+            
+        }else if (typeQuestion.equals("Image")){
+            ImagePanel usedPanel = (ImagePanel) questionPanel;
+            //questionCreate = new Question ("",usedPanel.getImage());
+        }else{
+            ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
+            //questionCreate = new Question (usedPanel.getText(),usedPanel.getImage());
+        }
+        //questionCreate.saveQuestionInDB();
     }//GEN-LAST:event_arrowRightgoToNextQuestion
 
     private void leftTextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftTextButtonActionPerformed
-        this.setNewLayout(Type.Answer, Side.Left);
+        questionPanel = this.setNewLayout(Type.Answer, Side.Left);
+        typeQuestion = "Text";
     }//GEN-LAST:event_leftTextButtonActionPerformed
 
     private void leftImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftImageButtonActionPerformed
-        this.setNewLayout(Type.Image, Side.Left);
+        questionPanel = this.setNewLayout(Type.Image, Side.Left);
+        typeQuestion = "Image";
     }//GEN-LAST:event_leftImageButtonActionPerformed
 
     private void leftBothButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBothButtonActionPerformed
-        this.setNewLayout(Type.ImageAnswer, Side.Left);
+        questionPanel = this.setNewLayout(Type.ImageAnswer, Side.Left);
+        typeQuestion = "Both";
     }//GEN-LAST:event_leftBothButtonActionPerformed
 
     private void rightTextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightTextButtonActionPerformed
         this.setNewLayout(Type.Answer, Side.Right);
+        typeAnswer = "Text";
     }//GEN-LAST:event_rightTextButtonActionPerformed
 
     private void rightImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightImageButtonActionPerformed
         this.setNewLayout(Type.Image, Side.Right);
+        typeAnswer = "Image";
     }//GEN-LAST:event_rightImageButtonActionPerformed
 
     private void rightBothButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBothButtonActionPerformed
         this.setNewLayout(Type.ImageAnswer, Side.Right);
+        typeAnswer = "Both";
     }//GEN-LAST:event_rightBothButtonActionPerformed
 
     private void backButton1backAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1backAction
@@ -272,7 +297,7 @@ public class CreateQuestionView extends BrainStormingView {
      * @param _type le type de panel a affecter
      * @param _side le coté concerné
      */
-    private void setNewLayout(Type _type, Side _side){
+    private JPanel setNewLayout(Type _type, Side _side){
         JPanel current = null;
         Boolean response = false;
         switch (_side) {
@@ -312,6 +337,7 @@ public class CreateQuestionView extends BrainStormingView {
         current.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         this.revalidate();
         this.repaint();
+        return current;
     }
 
 

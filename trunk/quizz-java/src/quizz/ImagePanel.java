@@ -6,6 +6,8 @@
 
 package quizz;
 
+import quizz.model.Answer;
+
 /**
  *
  * @author Gautier
@@ -47,15 +49,18 @@ public class ImagePanel extends javax.swing.JPanel {
         titleLabel.setForeground(new java.awt.Color(40, 40, 40));
         titleLabel.setText("Ajoutez une Question");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
-		
 		if( response == true){
 			firstCircle = new javax.swing.JLabel();
 			secondCircle = new javax.swing.JLabel();
 			thirdCircle = new javax.swing.JLabel();
 			fourthCircle = new javax.swing.JLabel();
 			addResponse = new javax.swing.JLabel();
+			addResponse.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent evt) {
+					addResponseMouseClicked(evt);
+				}
+			});
 			GoodAnswer = new javax.swing.JCheckBox();
-			
 			firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
 			add(firstCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
 
@@ -71,7 +76,6 @@ public class ImagePanel extends javax.swing.JPanel {
 			addResponse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/plus-20.png"))); // NOI18N
 			add(addResponse, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 250, -1, -1));
 			titleLabel.setText("Ajoutez une Réponse");
-			
 			GoodAnswer.setFont(Main.s_openSans13);
 			GoodAnswer.setLabel("Bonne réponse");
 			GoodAnswer.setMaximumSize(new java.awt.Dimension(150, 20));
@@ -84,15 +88,21 @@ public class ImagePanel extends javax.swing.JPanel {
         
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addResponseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addImageLabelMouseClicked
+        Answer answerCreate = new Answer("",image,GoodAnswer.isSelected());
+        //answerList.add(answerCreate);
+        //image.setText("");
+    }//GEN-LAST:event_addImageLabelMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel addImageLabel;
-	public javax.swing.JCheckBox GoodAnswer;
-    public javax.swing.JLabel addResponse;
-    public javax.swing.JLabel firstCircle;
-    public javax.swing.JLabel fourthCircle;
-    public javax.swing.JLabel secondCircle;
-    public javax.swing.JLabel thirdCircle;
-    public javax.swing.JLabel titleLabel;
+    private javax.swing.JLabel addImageLabel;
+    private javax.swing.JLabel addResponse;
+    private javax.swing.JLabel firstCircle;
+    private javax.swing.JLabel fourthCircle;
+    private javax.swing.JLabel secondCircle;
+    private javax.swing.JLabel thirdCircle;
+    private javax.swing.JLabel titleLabel;
+	private javax.swing.JCheckBox GoodAnswer;
     // End of variables declaration//GEN-END:variables
 }
