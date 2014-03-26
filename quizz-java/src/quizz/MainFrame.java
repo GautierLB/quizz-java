@@ -26,6 +26,7 @@ public class MainFrame extends javax.swing.JFrame {
     };
     LoginDialog m_loginDlg;
     SignInDialog m_signInDlg;
+    String m_activeView;
 
     public MainFrame() {
         initComponents();
@@ -164,6 +165,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void displayCreateQuizz() {
+        m_activeView = "CreateQuizzView";
         CreateQuizzView createQuizz = new CreateQuizzView(this);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, createQuizz);
@@ -173,6 +175,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Permet d'afficher la vue MainScreen.
      */
     private void displayMainScreen() {
+        m_activeView = "MainScreenView";
         MainScreenView mainScreen = new MainScreenView(this);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, mainScreen);
@@ -182,6 +185,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Permet d'afficher la vue ThemeScreen.
      */
     private void displayThemeScreen(Theme theme) {
+        m_activeView = "ThemeScreenView";
         ThemeScreenView themeScreen = new ThemeScreenView(this, theme);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, themeScreen);
@@ -191,6 +195,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Permet d'afficher la vue QuestionScreen.
      */
     private void displayQuestionScreen() {
+        m_activeView = "QuestionScreenView";
         QuestionScreenView questionScreen = new QuestionScreenView(this);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, questionScreen);
@@ -200,6 +205,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Permet d'afficher la vue CreateQuestionScreen.
      */
      private void displayCreateQuestionScreen(Quizz quizz) {
+          m_activeView = "CreateQuestionView";
         CreateQuestionView questionScreen = new CreateQuestionView(this, quizz);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, questionScreen);
@@ -209,8 +215,12 @@ public class MainFrame extends javax.swing.JFrame {
      * Permet D'afficher le panel de login
      */
     private void displayLoginPanel() {
-        m_loginDlg = new LoginDialog(this);
-        m_loginDlg.setVisible(true);
+        if(Main.userPseudo != "User")
+        {
+        } else {
+            m_loginDlg = new LoginDialog(this);
+            m_loginDlg.setVisible(true);
+        }
     }
 
     /**
@@ -233,8 +243,7 @@ public class MainFrame extends javax.swing.JFrame {
             m_signInDlg.setVisible(false);
             m_signInDlg.dispose();
         }
-        this.pack();
-        
+        this.changeView(View.valueOf(m_activeView));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
