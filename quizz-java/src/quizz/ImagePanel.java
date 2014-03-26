@@ -20,6 +20,10 @@ public class ImagePanel extends javax.swing.JPanel {
     public ImagePanel(Boolean response) {
         initComponents(response);
     }
+    
+    public String getUrlPicture(){
+        return (urlTextbox.getText());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,9 +94,9 @@ public class ImagePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addResponseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addImageLabelMouseClicked
-        //Answer answerCreate = new Answer("",image,GoodAnswer.isSelected());
+        Answer answerCreate = new Answer("",urlTextbox.getText(),GoodAnswer.isSelected());
         //answerList.add(answerCreate);
-        //image.setText("");
+        urlTextbox.setText("");
     }//GEN-LAST:event_addImageLabelMouseClicked
 
 
