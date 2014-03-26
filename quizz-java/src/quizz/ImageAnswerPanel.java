@@ -15,12 +15,14 @@ import quizz.model.Answer;
  */
 public class ImageAnswerPanel extends javax.swing.JPanel {
 
+    private CreateQuestionView owner; 
     private  ArrayList<Answer> answerList = new ArrayList<>();
     /**
      * Creates new form ImageAnswerPanel
      */
-    public ImageAnswerPanel(Boolean response) {
+    public ImageAnswerPanel(Boolean response, CreateQuestionView _owner) {
         initComponents(response);
+        this.owner = _owner;
     }
     
     /**

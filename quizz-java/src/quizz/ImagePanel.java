@@ -14,11 +14,13 @@ import quizz.model.Answer;
  */
 public class ImagePanel extends javax.swing.JPanel {
 
+    private CreateQuestionView owner; 
     /**
      * Creates new form ImagePanel
      */
-    public ImagePanel(Boolean response) {
+    public ImagePanel(Boolean response, CreateQuestionView _owner) {
         initComponents(response);
+        this.owner = _owner;
     }
     
     public String getUrlPicture(){
