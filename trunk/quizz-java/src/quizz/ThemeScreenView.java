@@ -18,10 +18,11 @@ public class ThemeScreenView extends BrainStormingView {
     public ThemeScreenView(MainFrame mainFrame, Theme theme) {
         super(mainFrame);
         initComponents();
+        themeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource(theme.getPictureThemeSmall())));
         themeName.setText(theme.getNameTheme());
         ArrayList<Quizz> quizzList = Quizz.getQuizzForTheme(theme.getId());
         for (Quizz quizz : quizzList) {
-            this.createQuizzLine(quizz.getDifficulty(), quizz.getName(), quizz.getNbQuest());
+            this.createQuizzLine(quizz);
         }
     }
 
@@ -35,7 +36,8 @@ public class ThemeScreenView extends BrainStormingView {
      * @param quizzName The name of the quizz
      * @param questionsNumber The number of questions in the quizz
      */
-    private void createQuizzLine(int difficulty, String quizzName, int questionsNumber) {
+    private void createQuizzLine(Quizz quizzItem) {
+        final Quizz quizz = quizzItem; // Necessary to swap views.
         if (m_numberOfLines < 18) {
             String[] starsIconTitle = new String[3];
 
@@ -54,7 +56,7 @@ public class ThemeScreenView extends BrainStormingView {
             line.setForeground(new java.awt.Color(255, 255, 255));
             line.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-            switch (difficulty) {
+            switch (quizz.getDifficulty()) {
                 case 2:
                     starsIconTitle[0] = Constants.STAR_FULL;
                     starsIconTitle[1] = Constants.STAR_FULL;
@@ -82,8 +84,14 @@ public class ThemeScreenView extends BrainStormingView {
 
             line.add(starsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-            quizzLabel.setText(quizzName + " [" + questionsNumber + "Q]");
+            quizzLabel.setText(quizz.getName() + " [" + quizz.getNbQuest() + "Q]");
             line.add(quizzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 162, 20));
+            line.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    m_mainFrame.changeView(MainFrame.View.QuestionScreenView, quizz);
+                }
+            });
             this.setVisible(true);
             this.add(line, new org.netbeans.lib.awtextra.AbsoluteConstraints(m_numberOfLines > 8 ? 500 : 110, 130 + ((m_numberOfLines > 8 ? m_numberOfLines - 9 : m_numberOfLines) * 40), 162, 20));
             m_numberOfLines++;

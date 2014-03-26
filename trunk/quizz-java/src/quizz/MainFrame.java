@@ -112,9 +112,6 @@ public class MainFrame extends javax.swing.JFrame {
             case CreateQuizzView:
                 this.displayCreateQuizz();
                 break;
-            case QuestionScreenView:
-                this.displayQuestionScreen();
-                break;
         }
         this.setVisible(true);
     }
@@ -130,6 +127,9 @@ public class MainFrame extends javax.swing.JFrame {
         switch (viewName) {
             case CreateQuestionView:
                 this.displayCreateQuestionScreen(newQuizz);
+                break;
+            case QuestionScreenView:
+                this.displayQuestionScreen(newQuizz);
                 break;
         }
         this.setVisible(true);
@@ -194,9 +194,8 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Permet d'afficher la vue QuestionScreen.
      */
-    private void displayQuestionScreen() {
-        m_activeView = "QuestionScreenView";
-        QuestionScreenView questionScreen = new QuestionScreenView(this);
+    private void displayQuestionScreen(Quizz quizz) {
+        QuestionScreenView questionScreen = new QuestionScreenView(this, quizz);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, questionScreen);
     }

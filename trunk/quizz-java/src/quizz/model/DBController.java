@@ -31,9 +31,7 @@ public class DBController {
         Connection connection = null;
         try {
             Class.forName(JDBC_DRIVER);
-            System.out.println("Connecting to a selected database...");
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
-            System.out.println("Connected database successfully...");
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();

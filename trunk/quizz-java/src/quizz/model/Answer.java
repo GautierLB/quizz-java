@@ -35,7 +35,8 @@ public class Answer {
      */
     static public ArrayList<Answer> getAnswerForQuestion(int idQuestion) {
         ArrayList<Answer> answersForQuestion = new ArrayList<>();
-        ArrayList<HashMap<String, Object>> answerListFromDB = DBController.Get().executeSelect("*", Answer.TABLE_NAME + " , " + QuizzManager.QUESTIONS_HAVE_ANSWER, "WHERE ID_QUESTION =" + idQuestion);
+        ArrayList<HashMap<String, Object>> answerListFromDB = DBController.Get().executeSelect("*", Answer.TABLE_NAME + " , " + QuizzManager.QUESTIONS_HAVE_ANSWER, 
+                "WHERE ID_QUESTION =" + idQuestion + " AND " + Answer.TABLE_NAME + "." + Answer.ID + "=" + QuizzManager.QUESTIONS_HAVE_ANSWER + "." + Answer.ID);
         for (int i = 0; i < answerListFromDB.size(); i++) {
             Answer answer = new Answer((String) answerListFromDB.get(i).get(Answer.LABEL),
                     (String) answerListFromDB.get(i).get(Answer.PICTURE),
@@ -56,5 +57,13 @@ public class Answer {
                 "'" + this.m_labelAnswer
                 + "','" + this.m_pictureAnswer
                 + "','" + this.m_isValid + "'");
+    }
+    
+    public String getLabel() {
+        return this.m_labelAnswer;
+    }
+    
+    public String getPicture() {
+        return this.m_pictureAnswer;
     }
 }

@@ -9,9 +9,9 @@ public class Question {
     public static final String ID = "ID_QUESTION";
     public static final String LABEL = "LABEL_QUESTION";
     public static final String PICTURE = "PICTURE_QUESTION";
+    private int m_id;
     private String m_labelQuestion;
     private String m_pictureQuestion;
-    private int m_id;
 
     /**
      * The construct of a Question
@@ -23,6 +23,19 @@ public class Question {
         this.m_labelQuestion = label;
         this.m_pictureQuestion = picture;
     }
+    
+    /**
+     * Used when we create a question from DB because we know the ID
+     *
+     * @param id The id of the question
+     * @param label The label of the question
+     * @param picture The path of the picture (or the URL)
+     */
+    public Question(int id, String label, String picture) {
+        this.m_id = id;
+        this.m_labelQuestion = label;
+        this.m_pictureQuestion = picture;
+    }
 
     /**
      * get all the Question from a quizz
@@ -30,11 +43,14 @@ public class Question {
      * @param idQuizz the id of the quizz
      * @return an ArrayList of Question
      */
-    static public ArrayList<Question> getQuestionForQuizz(int idQuizz) {
+    static public ArrayList<Question> getQuestionsForQuizz(int idQuizz) {
         ArrayList<Question> quizzList = new ArrayList<>();
-        ArrayList<HashMap<String, Object>> quizzListBdd = DBController.Get().executeSelect("*", Question.TABLE_NAME + " , " + QuizzManager.QUIZZ_COMPOSE_QUESTIONS, "WHERE ID_QUIZZ =" + idQuizz);
+        ArrayList<HashMap<String, Object>> quizzListBdd = DBController.Get().executeSelect("*", 
+                Question.TABLE_NAME + " , " + QuizzManager.QUIZZ_COMPOSE_QUESTIONS, 
+                "WHERE ID_QUIZZ =" + idQuizz + " AND " + Question.TABLE_NAME + "." + Question.ID + "=" + QuizzManager.QUIZZ_COMPOSE_QUESTIONS + "." + Question.ID);
         for (int i = 0; i < quizzListBdd.size(); i++) {
-            Question question = new Question((String) quizzListBdd.get(i).get(Question.LABEL),
+            Question question = new Question((int) quizzListBdd.get(i).get(Question.ID),
+                    (String) quizzListBdd.get(i).get(Question.LABEL),
                     (String) quizzListBdd.get(i).get(Question.PICTURE));
             quizzList.add(question);
         }
@@ -55,5 +71,13 @@ public class Question {
 
     public int getId() {
         return this.m_id;
+    }
+    
+    public String getLabel() {
+        return this.m_labelQuestion;
+    }
+    
+    public String getPicture() {
+        return this.m_pictureQuestion;
     }
 }
