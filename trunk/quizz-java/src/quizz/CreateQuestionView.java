@@ -61,8 +61,8 @@ public class CreateQuestionView extends BrainStormingView {
         rightTextButton = new javax.swing.JButton();
         rightImageButton = new javax.swing.JButton();
         rightBothButton = new javax.swing.JButton();
-        rightPanel = new ImagePanel(true);
-        leftPanel = new ImageAnswerPanel(false);
+        rightPanel = new ImagePanel(true, this);
+        leftPanel = new ImageAnswerPanel(false, this);
         SubmitQuizzButton = new javax.swing.JButton();
         backButton1 = new javax.swing.JButton();
 
@@ -315,13 +315,13 @@ public class CreateQuestionView extends BrainStormingView {
         switch (_type) {
             
             case Image:
-                current = new ImagePanel(response);
+                current = new ImagePanel(response, this);
                 break;
             case Answer:
-                current = new AnswerPanel(response);
+                current = new AnswerPanel(response, this);
                 break;
             case ImageAnswer:
-                current = new ImageAnswerPanel(response);
+                current = new ImageAnswerPanel(response, this);
                 break;
         }
         switch (_side) {

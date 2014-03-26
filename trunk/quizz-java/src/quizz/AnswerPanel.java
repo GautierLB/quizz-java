@@ -11,12 +11,13 @@ package quizz;
  * @author Gautier
  */
 public class AnswerPanel extends javax.swing.JPanel {
-
+    private CreateQuestionView owner; 
     /**
      * Creates new form ReponsePanel
      */
-    public AnswerPanel(Boolean response) {
+    public AnswerPanel(Boolean response, CreateQuestionView _owner) {
         initComponents(response);
+        this.owner = _owner;
     }
     
     public String getText(){
