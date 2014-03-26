@@ -6,10 +6,13 @@
 package quizz;
 
 import java.awt.Panel;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 import quizz.model.Quizz;
 import quizz.ImageAnswerPanel;
+import quizz.model.Answer;
 import quizz.model.Question;
+import quizz.model.QuizzManager;
 
 /**
  *
@@ -20,11 +23,10 @@ public class CreateQuestionView extends BrainStormingView {
     /**
      * Creates new form CreateQuestionView
      */
-    private String typeQuestion;
-    private String typeAnswer;
-    private JPanel answerPanel;
+    private String typeQuestion = "Both";
     private JPanel questionPanel;
     private Quizz quizz;
+    public ArrayList<Answer> answerList = new ArrayList<>();
 
     private enum Side {
 
@@ -67,6 +69,7 @@ public class CreateQuestionView extends BrainStormingView {
         rightBothButton = new javax.swing.JButton();
         rightPanel = new ImagePanel(true, this);
         leftPanel = new ImageAnswerPanel(false, this);
+		questionPanel = leftPanel;
         SubmitQuizzButton = new javax.swing.JButton();
         backButton1 = new javax.swing.JButton();
 
@@ -246,17 +249,35 @@ public class CreateQuestionView extends BrainStormingView {
 
     private void arrowRightgoToNextQuestion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrowRightgoToNextQuestion
         Question questionCreate;
-        if (typeQuestion.equals("Text")) {
-            AnswerPanel usedPanel = (AnswerPanel) questionPanel;
-            questionCreate = new Question(usedPanel.getText(), "");
-        } else if (typeQuestion.equals("Image")) {
-            ImagePanel usedPanel = (ImagePanel) questionPanel;
-            questionCreate = new Question("", usedPanel.getUrlPicture());
-        } else {
-            ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
-            questionCreate = new Question(usedPanel.getText(), usedPanel.getUrlPicture());
+        boolean gotOneGoodAnswer = false;
+
+        for (int i = 0; i < answerList.size(); i++) {
+            if (answerList.get(i).getIsValid() == true) {
+                gotOneGoodAnswer = true;
+            }
         }
-        //questionCreate.saveQuestionInDB();
+
+        if (gotOneGoodAnswer) {
+            System.out.println("type de question : " + typeQuestion);
+            if (typeQuestion.equals("Text")) {
+                System.out.println("OK" );
+                AnswerPanel usedPanel = (AnswerPanel) questionPanel;
+                questionCreate = new Question(usedPanel.getText(), "");
+            } else if (typeQuestion.equals("Image")) {
+                 System.out.println("OK" );
+                ImagePanel usedPanel = (ImagePanel) questionPanel;
+                questionCreate = new Question("", usedPanel.getUrlPicture());
+            } else {
+                 System.out.println("OK" );
+                ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
+                questionCreate = new Question(usedPanel.getText(), usedPanel.getUrlPicture());
+            }
+            questionCreate.saveQuestionInDB();
+            for (int i = 0; i < answerList.size(); i++) {
+                answerList.get(i).saveAnswerInDB();
+            }
+            //QuizzManager.linkAnswersToQuestion(questionCreate, answerList);
+        }
     }//GEN-LAST:event_arrowRightgoToNextQuestion
 
     private void leftTextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftTextButtonActionPerformed
@@ -276,17 +297,14 @@ public class CreateQuestionView extends BrainStormingView {
 
     private void rightTextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightTextButtonActionPerformed
         this.setNewLayout(Type.Answer, Side.Right);
-        typeAnswer = "Text";
     }//GEN-LAST:event_rightTextButtonActionPerformed
 
     private void rightImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightImageButtonActionPerformed
         this.setNewLayout(Type.Image, Side.Right);
-        typeAnswer = "Image";
     }//GEN-LAST:event_rightImageButtonActionPerformed
 
     private void rightBothButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBothButtonActionPerformed
         this.setNewLayout(Type.ImageAnswer, Side.Right);
-        typeAnswer = "Both";
     }//GEN-LAST:event_rightBothButtonActionPerformed
 
     private void backButton1backAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1backAction

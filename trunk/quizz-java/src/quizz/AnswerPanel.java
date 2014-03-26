@@ -5,22 +5,74 @@
  */
 package quizz;
 
+import quizz.model.Answer;
+
 /**
  *
  * @author Gautier
  */
 public class AnswerPanel extends javax.swing.JPanel {
-    private CreateQuestionView owner; 
+
+    private CreateQuestionView owner;
+
     /**
      * Creates new form ReponsePanel
      */
     public AnswerPanel(Boolean response, CreateQuestionView _owner) {
         initComponents(response);
         this.owner = _owner;
+        circleColoration();
     }
 
+    /**
+     * Get the text of the panel for the creation of a question
+     *
+     * @return the text of the panel
+     */
     public String getText() {
         return (AnswerArea.getText());
+    }
+
+    /**
+     * color or not the circle
+     */
+    public void circleColoration() {
+        switch (owner.answerList.size()) {
+            case 1:
+                firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+                thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+                fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+                break;
+            case 2:
+                firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+                fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+                break;
+            case 3:
+                firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+                break;
+            case 4:
+                firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                break;
+        }
+
+    }
+
+    private void addResponseMouseClicked(java.awt.event.MouseEvent evt) {
+        if (owner.answerList.size() != 4) {
+            Answer answerCreate = new Answer(AnswerArea.getText(), "", GoodAnswer.isSelected());
+            owner.answerList.add(answerCreate);
+            AnswerArea.setText("");
+            circleColoration();
+        }
     }
 
     /**
@@ -65,6 +117,11 @@ public class AnswerPanel extends javax.swing.JPanel {
 			thirdCircle = new javax.swing.JLabel();
 			fourthCircle = new javax.swing.JLabel();
 			addResponse = new javax.swing.JLabel();
+			addResponse.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent evt) {
+					addResponseMouseClicked(evt);
+				}
+			});
 			GoodAnswer = new javax.swing.JCheckBox();
 			
 			firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N

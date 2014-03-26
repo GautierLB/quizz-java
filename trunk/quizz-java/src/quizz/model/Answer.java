@@ -66,4 +66,9 @@ public class Answer {
     public String getPicture() {
         return this.m_pictureAnswer;
     }
+    
+    public boolean getIsValid() {
+        return this.m_isValid;
+    }
+    
 }
