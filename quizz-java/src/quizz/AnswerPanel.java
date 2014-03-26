@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quizz;
 
 /**
@@ -19,8 +18,8 @@ public class AnswerPanel extends javax.swing.JPanel {
         initComponents(response);
         this.owner = _owner;
     }
-    
-    public String getText(){
+
+    public String getText() {
         return (AnswerArea.getText());
     }
 
@@ -93,8 +92,6 @@ public class AnswerPanel extends javax.swing.JPanel {
 			add(GoodAnswer, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 		}
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextPane AnswerArea;
 	public javax.swing.JCheckBox GoodAnswer;

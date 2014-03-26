@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quizz;
 
 import quizz.model.Answer;
@@ -22,8 +21,8 @@ public class ImagePanel extends javax.swing.JPanel {
         initComponents(response);
         this.owner = _owner;
     }
-    
-    public String getUrlPicture(){
+
+    public String getUrlPicture() {
         return (urlTextbox.getText());
     }
 
@@ -96,12 +95,10 @@ public class ImagePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addResponseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addImageLabelMouseClicked
-        Answer answerCreate = new Answer("",urlTextbox.getText(),GoodAnswer.isSelected());
+        Answer answerCreate = new Answer("", urlTextbox.getText(), GoodAnswer.isSelected());
         //answerList.add(answerCreate);
         urlTextbox.setText("");
     }//GEN-LAST:event_addImageLabelMouseClicked
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addResponse;
     private javax.swing.JLabel firstCircle;

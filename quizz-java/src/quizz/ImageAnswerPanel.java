@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quizz;
 
 import java.util.ArrayList;
@@ -24,36 +23,40 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
         initComponents(response);
         this.owner = _owner;
     }
-    
+
     /**
      * Get the text of the panel
+     *
      * @return the text of the panel
      */
-    public String getText(){
+    public String getText() {
         return (AnswerArea.getText());
     }
-    
-    public String getUrlPicture(){
-        return(urlLabel.getText());
+
+    public String getUrlPicture() {
+        return (urlLabel.getText());
     }
+
     /**
      * Get the list of answer created
+     *
      * @return an ArrayList of Answer
      */
-    public ArrayList<Answer> getAnswerList(){
+    public ArrayList<Answer> getAnswerList() {
         return (answerList);
     }
-    
+
     /**
      * create a new Response and add it to the ArrayList of answer
-     * @param evt 
+     *
+     * @param evt
      */
-    private void addResponseMouseClicked(java.awt.event.MouseEvent evt) {                                           
-        Answer answerCreate = new Answer(AnswerArea.getText(),urlLabel.getText(),GoodAnswer.isSelected());
+    private void addResponseMouseClicked(java.awt.event.MouseEvent evt) {
+        Answer answerCreate = new Answer(AnswerArea.getText(), urlLabel.getText(), GoodAnswer.isSelected());
         //answerList.add(answerCreate);
         AnswerArea.setText("");
         urlLabel.setText("");
-    }                                          
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -175,8 +178,6 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
     private void urlTextboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urlTextboxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_urlTextboxActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane AnswerArea;
     private javax.swing.JPanel ImageAddPanel;
