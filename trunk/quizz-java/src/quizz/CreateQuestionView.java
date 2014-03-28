@@ -5,11 +5,9 @@
  */
 package quizz;
 
-import java.awt.Panel;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import quizz.model.Quizz;
-import quizz.ImageAnswerPanel;
 import quizz.model.Answer;
 import quizz.model.Question;
 import quizz.model.QuizzManager;
