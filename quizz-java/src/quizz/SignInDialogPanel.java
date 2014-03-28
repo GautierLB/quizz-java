@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quizz;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JPasswordField;
+import quizz.model.User;
 
 /**
  *
@@ -18,6 +20,7 @@ public class SignInDialogPanel extends RoundedPanel {
      * Creates new form SignInDialog
      */
     private MainFrame m_mainFrame;
+
     SignInDialogPanel(MainFrame mainFrame) {
         initComponents();
         m_mainFrame = mainFrame;
@@ -177,29 +180,43 @@ public class SignInDialogPanel extends RoundedPanel {
 
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
         CheckValues();
-        //User toCreate = new User(this.pseudoTextBox.toString(), this.passwordTextBox.toString(), this.emailTextBox.toString());
+        User toCreate = new User(this.pseudoTextBox.getText(), this.passwordTextBox.getText(), this.emailTextBox.getText());
+        if (toCreate.saveUser()) {
+            Main.userPseudo = this.pseudoTextBox.getText();
+            m_mainFrame.deleteModal();
+        } else {
+            this.pseudoErrors.setText("Pseudo déjà utilisé !");
+        }
     }//GEN-LAST:event_signInButtonActionPerformed
-    
-    private Boolean CheckValues()
-    {
+
+    private Boolean CheckValues() {
         Boolean error = true;
-        if (this.pseudoTextBox.getText().isEmpty()){
+        if (this.pseudoTextBox.getText().isEmpty()) {
             this.pseudoErrors.setText("Pseudo Manquant !");
             error = false;
         }
-        if (this.passwordTextBox.getText().isEmpty()){
+        if (this.passwordTextBox.getText().isEmpty()) {
             this.passwordErrors.setText("Mot de passe Manquant !");
             error = false;
         }
-        if (this.confirmPasswordTextBox.getText().isEmpty()){
+        if (this.confirmPasswordTextBox.getText().isEmpty()) {
             this.confirmPasswordErrors.setText("Confirmez votre mot de passe");
             error = false;
         }
-        if (this.emailTextBox.getText().isEmpty()){
+        if (this.emailTextBox.getText().isEmpty()) {
             this.emailErrors.setText("Email manquant!");
+            error = false;
+        } else if (!isEmailAdress(this.emailTextBox.getText())) {
+            this.emailErrors.setText("Email invalide !");
             error = false;
         }
         return error;
+    }
+
+    private boolean isEmailAdress(String email) {
+        Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
+        Matcher m = p.matcher(email.toUpperCase());
+        return m.matches();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
