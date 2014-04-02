@@ -179,17 +179,19 @@ public class SignInDialogPanel extends RoundedPanel {
     }//GEN-LAST:event_emailTextBoxFocusGained
 
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
-        CheckValues();
-        User toCreate = new User(this.pseudoTextBox.getText(), this.passwordTextBox.getText(), this.emailTextBox.getText());
-        if (toCreate.saveUser()) {
-            Main.userPseudo = this.pseudoTextBox.getText();
-            m_mainFrame.deleteModal();
-        } else {
-            this.pseudoErrors.setText("Pseudo déjà utilisé !");
+        this.cleanLabels();
+        if (checkValues()) {
+            User toCreate = new User(this.pseudoTextBox.getText(), this.passwordTextBox.getText(), this.emailTextBox.getText());
+            if (toCreate.saveUser()) {
+                Main.userPseudo = this.pseudoTextBox.getText();
+                m_mainFrame.deleteModal();
+            } else {
+                this.pseudoErrors.setText("Pseudo déjà utilisé !");
+            }
         }
     }//GEN-LAST:event_signInButtonActionPerformed
 
-    private Boolean CheckValues() {
+    private Boolean checkValues() {
         Boolean error = true;
         if (this.pseudoTextBox.getText().isEmpty()) {
             this.pseudoErrors.setText("Pseudo Manquant !");
@@ -218,6 +220,13 @@ public class SignInDialogPanel extends RoundedPanel {
         Matcher m = p.matcher(email.toUpperCase());
         return m.matches();
     }
+    
+    private void cleanLabels() {
+        this.pseudoErrors.setText("");
+        this.passwordErrors.setText("");
+        this.confirmPasswordErrors.setText("");
+        this.emailErrors.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel confirmPasswordErrors;
@@ -235,4 +244,6 @@ public class SignInDialogPanel extends RoundedPanel {
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel userIconLabel;
     // End of variables declaration//GEN-END:variables
+
+    
 }
