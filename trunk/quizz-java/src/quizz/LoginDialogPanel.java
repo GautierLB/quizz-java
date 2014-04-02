@@ -19,6 +19,7 @@ public class LoginDialogPanel extends RoundedPanel {
      * Creates new form LoginDialog
      */
     private MainFrame m_mainFrame;
+
     public LoginDialogPanel(MainFrame mainFrame) {
         initComponents();
         m_mainFrame = mainFrame;
@@ -42,6 +43,8 @@ public class LoginDialogPanel extends RoundedPanel {
         padlockIconLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         signInButton = new javax.swing.JButton();
+        pseudoErrors = new javax.swing.JLabel();
+        passwordErrors = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -57,9 +60,10 @@ public class LoginDialogPanel extends RoundedPanel {
         jScrollPane1.setViewportView(jTable1);
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(300, 240));
-        setMinimumSize(new java.awt.Dimension(300, 240));
-        setPreferredSize(new java.awt.Dimension(300, 240));
+        setMaximumSize(new java.awt.Dimension(400, 240));
+        setMinimumSize(new java.awt.Dimension(400, 240));
+        setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(400, 240));
         setRequestFocusEnabled(false);
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -124,6 +128,12 @@ public class LoginDialogPanel extends RoundedPanel {
             }
         });
         add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+
+        pseudoErrors.setForeground(new java.awt.Color(255, 0, 0));
+        add(pseudoErrors, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
+
+        passwordErrors.setForeground(new java.awt.Color(255, 0, 0));
+        add(passwordErrors, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void pseudoTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pseudoTextBoxActionPerformed
@@ -140,10 +150,16 @@ public class LoginDialogPanel extends RoundedPanel {
     }//GEN-LAST:event_signInButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        Boolean autenth = User.controlLogin(this.pseudoTextBox.getText(), this.passwordTextBox.getText());
-        if (autenth){   
-            Main.userPseudo = this.pseudoTextBox.getText();
-            this.m_mainFrame.deleteModal();
+        this.cleanLabels();
+        if (checkValues()) {
+            Boolean autenth = User.controlLogin(this.pseudoTextBox.getText(), this.passwordTextBox.getText());
+            if (autenth) {                
+                Main.userPseudo = this.pseudoTextBox.getText();
+                this.m_mainFrame.deleteModal();
+            } else {
+                this.pseudoErrors.setText("Erreur de connexion ! ");
+                this.passwordErrors.setText("Identifiants invalides !");
+            }
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
@@ -154,15 +170,34 @@ public class LoginDialogPanel extends RoundedPanel {
     private void passwordTextBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTextBoxFocusGained
         this.passwordTextBox.setText("");
     }//GEN-LAST:event_passwordTextBoxFocusGained
+    
+    private Boolean checkValues() {
+        Boolean error = true;
+        if (this.pseudoTextBox.getText().isEmpty()) {
+            this.pseudoErrors.setText("Pseudo manquant !");
+            error = false;
+        }
+        if (this.passwordTextBox.getText().isEmpty()) {
+            this.passwordErrors.setText("Mot de passe manquant !");
+            error = false;
+        }
+        return error;
+    }
 
-
+     private void cleanLabels() {
+        this.pseudoErrors.setText("");
+        this.passwordErrors.setText("");
+    }
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TitleLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel padlockIconLabel;
+    private javax.swing.JLabel passwordErrors;
     private javax.swing.JTextField passwordTextBox;
+    private javax.swing.JLabel pseudoErrors;
     private javax.swing.JTextField pseudoTextBox;
     private javax.swing.JButton signInButton;
     private javax.swing.JLabel userIconLabel;
