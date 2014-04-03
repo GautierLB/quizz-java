@@ -75,7 +75,7 @@ public class User {
      */
     static public User getUserByPseudo(String pseudo) {
         boolean isAdmin;
-        ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect("*", User.TABLE_NAME, "where PSEUDO_USER LIKE '" + pseudo + "'");
+        ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect("*", User.TABLE_NAME, "where PSEUDO_USER LIKE '%{escape '''}%' '" + pseudo + "'");
         ArrayList<HashMap<String, Object>> userAdmin = DBController.Get().executeSelect(User.ID, User.TABLE_ADMIN, "where ID_ADMIN=" + (int) userList.get(0).get(User.ID));
         if (userAdmin.isEmpty()) {//Si le liste userAdmin est vide alors l'utilisateur n'est pas administrateur
             isAdmin = false;
@@ -98,7 +98,7 @@ public class User {
      */
     static public boolean controlLogin(String pseudo, String password) {
         boolean isCorrect;
-        ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect(User.PSEUDO+","+User.MDP, User.TABLE_NAME, "where PSEUDO_USER LIKE '" + pseudo + "'");
+        ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect(User.PSEUDO+","+User.MDP, User.TABLE_NAME, "where PSEUDO_USER LIKE '%{escape '''}%' '" + pseudo + "'");
         if (!userList.isEmpty() && password.equals((String) userList.get(0).get(User.MDP))) {
             isCorrect = true;
         } else {
@@ -116,7 +116,7 @@ public class User {
         boolean isOkay;
         ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect(User.PSEUDO, User.TABLE_NAME, "where PSEUDO_USER LIKE '" + this.getPseudoUser() + "'");
         if (userList.isEmpty()) {
-            this.setIdUser(DBController.Get().executeInsert("user", User.PSEUDO + ',' + User.MDP + ',' + User.MAIL, "'" + this.getPseudoUser() + "','" + this.getPasswordUser() + "','" + this.getMailUser() + "'"));
+            this.setIdUser(DBController.Get().executeInsert("user", "'%{escape '''}%'"+User.PSEUDO + ',' + User.MDP + ',' + User.MAIL, "'" + this.getPseudoUser() + "','" + this.getPasswordUser() + "','" + this.getMailUser() + "'"));
             isOkay = true;
         } else {
             isOkay = false;
