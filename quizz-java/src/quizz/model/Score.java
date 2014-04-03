@@ -3,7 +3,7 @@ package quizz.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Scoring {
+public class Score {
 
     private static final String TABLE_NAME = "BDD_B3I_groupe_3.dbo.[SCORING]";
     private static final String USER = "ID_USER";
@@ -20,7 +20,7 @@ public class Scoring {
      * @param idQuizz the Id of the quizz how is concerne by the Score
      * @param score the score of the user
      */
-    public Scoring(int idUser, int idQuizz, int score) {
+    public Score(int idUser, int idQuizz, int score) {
         this.m_idQuizz = idUser;
         this.m_idUser = idQuizz;
         this.m_score = score;
@@ -32,13 +32,13 @@ public class Scoring {
      * @param idQuizz the id of the quizz
      * @return an ArrayList of scoring
      */
-    static public ArrayList<Scoring> getScoreForQuiz(int idQuizz) {
-        ArrayList<Scoring> scoreList = new ArrayList<>();
+    static public ArrayList<Score> getScoreForQuiz(int idQuizz) {
+        ArrayList<Score> scoreList = new ArrayList<>();
         ArrayList<HashMap<String, Object>> scoreListBdd = DBController.Get().executeSelect("*", "scoring", "WHERE ID_QUIZZ =" + idQuizz);
         for (int i = 0; i < scoreListBdd.size(); i++) {
-            Scoring score = new Scoring((int) scoreListBdd.get(i).get(Scoring.USER),
-                    (int) scoreListBdd.get(i).get(Scoring.QUIZZ),
-                    (int) scoreListBdd.get(i).get(Scoring.SCORE));
+            Score score = new Score((int) scoreListBdd.get(i).get(Score.USER),
+                    (int) scoreListBdd.get(i).get(Score.QUIZZ),
+                    (int) scoreListBdd.get(i).get(Score.SCORE));
             scoreList.add(score);
         }
         return scoreList;
@@ -47,9 +47,9 @@ public class Scoring {
     /**
      * Save in the database the score of the quiz
      */
-    public void saveScoring() {
-        DBController.Get().executeInsert(Scoring.TABLE_NAME,
-                Scoring.USER + ',' + Scoring.QUIZZ + ',' + Scoring.SCORE,
+    public void saveScore() {
+        DBController.Get().executeInsert(Score.TABLE_NAME,
+                Score.USER + ',' + Score.QUIZZ + ',' + Score.SCORE,
                 "" + this.m_idUser
                 + "," + this.m_idQuizz
                 + "," + this.m_score);
