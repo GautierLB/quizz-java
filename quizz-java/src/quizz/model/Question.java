@@ -12,6 +12,7 @@ public class Question {
     private int m_id;
     private String m_labelQuestion;
     private String m_pictureQuestion;
+    private String m_type;
 
     /**
      * The construct of a Question
@@ -23,7 +24,7 @@ public class Question {
         this.m_labelQuestion = label;
         this.m_pictureQuestion = picture;
     }
-    
+
     /**
      * Used when we create a question from DB because we know the ID
      *
@@ -45,8 +46,8 @@ public class Question {
      */
     static public ArrayList<Question> getQuestionsForQuizz(int idQuizz) {
         ArrayList<Question> quizzList = new ArrayList<>();
-        ArrayList<HashMap<String, Object>> quizzListBdd = DBController.Get().executeSelect("*", 
-                Question.TABLE_NAME + " , " + QuizzManager.QUIZZ_COMPOSE_QUESTIONS, 
+        ArrayList<HashMap<String, Object>> quizzListBdd = DBController.Get().executeSelect("*",
+                Question.TABLE_NAME + " , " + QuizzManager.QUIZZ_COMPOSE_QUESTIONS,
                 "WHERE ID_QUIZZ =" + idQuizz + " AND " + Question.TABLE_NAME + "." + Question.ID + "=" + QuizzManager.QUIZZ_COMPOSE_QUESTIONS + "." + Question.ID);
         for (int i = 0; i < quizzListBdd.size(); i++) {
             Question question = new Question((int) quizzListBdd.get(i).get(Question.ID),
@@ -72,12 +73,36 @@ public class Question {
     public int getId() {
         return this.m_id;
     }
-    
+
+    /**
+     * get the text of the question
+     * @return String
+     */
     public String getLabel() {
         return this.m_labelQuestion;
     }
-    
+
+    /**
+     * get the URL of the picture
+     * @return String
+     */
     public String getPicture() {
         return this.m_pictureQuestion;
+    }
+
+    /**
+     * get the type of an question for the creation or modification
+     * @return a String
+     */
+    public String getType() {
+        return this.m_type;
+    }
+
+    /**
+     * Set the Type of an question for the creation or modification
+     * @param theType a String ("Text" or "Image" or "Both")
+     */
+    public void setType(String theType) {
+        this.m_type = theType;
     }
 }

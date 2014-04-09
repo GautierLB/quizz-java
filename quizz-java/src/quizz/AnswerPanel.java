@@ -5,6 +5,7 @@
  */
 package quizz;
 
+import java.util.ArrayList;
 import quizz.model.Answer;
 
 /**
@@ -34,9 +35,38 @@ public class AnswerPanel extends javax.swing.JPanel {
     }
 
     /**
+     * set the text of the panel for the modification
+     *
+     * @param theText
+     */
+    public void setText(String theText) {
+        AnswerArea.setText(theText);
+    }
+
+    /**
+     * set if the checkbox is checked or not for the modification
+     *
+     * @param isValid Boolean , true if the question is valid , false if the
+     * question is not valid
+     */
+    public void setChecked(boolean isValid) {
+        GoodAnswer.setSelected(isValid);
+    }
+
+     /**
      * color or not the circle
      */
     public void circleColoration() {
+        int goodAnswer[] = new int[4];
+        int nbGood = 0;
+
+        for (int i = 0; i < owner.answerList.size(); i++) {
+            if (owner.answerList.get(i).getIsValid()) {
+                goodAnswer[nbGood] = i;
+                nbGood++;
+            }
+        }
+
         switch (owner.answerList.size()) {
             case 1:
                 firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
@@ -63,15 +93,164 @@ public class AnswerPanel extends javax.swing.JPanel {
                 fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
                 break;
         }
+        
+        if(nbGood != 0){
+            for (int i = 0; i < nbGood; i++) {
+                switch(goodAnswer[i]){
+                    case 0:
+                        firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFullGreen-15.png")));
+                        break;
+                    case 1:
+                        secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFullGreen-15.png")));
+                        break;
+                    case 2:
+                        thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFullGreen-15.png")));
+                        break;
+                    case 3:
+                        fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFullGreen-15.png")));
+                        break;
+                }
+            }
+        }
 
     }
 
     private void addResponseMouseClicked(java.awt.event.MouseEvent evt) {
-        if (owner.answerList.size() != 4) {
+        if (!owner.oldAnswer) {
+            if (owner.answerList.size() != 4) {
+                Answer answerCreate = new Answer(AnswerArea.getText(), "", GoodAnswer.isSelected());
+                answerCreate.setType("Text");
+                owner.answerList.add(answerCreate);
+                AnswerArea.setText("");
+                GoodAnswer.setSelected(false);
+                circleColoration();
+            }
+        } else {
             Answer answerCreate = new Answer(AnswerArea.getText(), "", GoodAnswer.isSelected());
-            owner.answerList.add(answerCreate);
+            answerCreate.setType("Text");
+            owner.answerList.set(owner.indexAnswer, answerCreate);
             AnswerArea.setText("");
-            circleColoration();
+            GoodAnswer.setSelected(false);
+            owner.indexAnswer++;
+            if (owner.indexAnswer >= owner.answerList.size()) {
+                owner.oldAnswer = false;
+                circleColoration();
+            } else {
+                owner.answerDisplay();
+            }
+        }
+    }
+
+    
+    private void firstCircleClick(java.awt.event.MouseEvent evt) {
+        if (1 <= owner.answerList.size()) {
+            owner.indexAnswer = 0;
+            if (owner.answerList.get(owner.indexAnswer).getType().equals("Text")) {
+                owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Answer, CreateQuestionView.Side.Right);
+                AnswerPanel usedPanel = (AnswerPanel) owner.answerPanel;
+                usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                owner.oldAnswer = true;
+            } else if (owner.answerList.get(owner.indexAnswer).getType().equals("Image")) {
+                owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Image, CreateQuestionView.Side.Right);
+                ImagePanel usedPanel = (ImagePanel) owner.answerPanel;
+                usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                owner.oldAnswer = true;
+            } else {
+                owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.ImageAnswer, CreateQuestionView.Side.Right);
+                ImageAnswerPanel usedPanel = (ImageAnswerPanel) owner.answerPanel;
+                usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
+                usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                owner.oldAnswer = true;
+            }
+        }else{
+            AnswerArea.setText("");
+        }
+    }
+
+    private void secondCircleClick(java.awt.event.MouseEvent evt) {
+        if (2 <= owner.answerList.size()) {
+            owner.indexAnswer= 1;
+            if (owner.answerList.get(owner.indexAnswer).getType().equals("Text")) {
+                owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Answer, CreateQuestionView.Side.Right);
+                AnswerPanel usedPanel = (AnswerPanel) owner.answerPanel;
+                usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                owner.oldAnswer = true;
+            } else if (owner.answerList.get(owner.indexAnswer).getType().equals("Image")) {
+                owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Image, CreateQuestionView.Side.Right);
+                ImagePanel usedPanel = (ImagePanel) owner.answerPanel;
+                usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                owner.oldAnswer = true;
+            } else {
+                owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.ImageAnswer, CreateQuestionView.Side.Right);
+                ImageAnswerPanel usedPanel = (ImageAnswerPanel) owner.answerPanel;
+                usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
+                usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                owner.oldAnswer = true;
+            }
+        }else{
+            AnswerArea.setText("");
+        }
+    }
+
+    private void thirdCircleClick(java.awt.event.MouseEvent evt) {
+        if (3 <= owner.answerList.size()) {
+            owner.indexAnswer = 2;
+            if (owner.answerList.get(owner.indexAnswer).getType().equals("Text")) {
+                owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Answer, CreateQuestionView.Side.Right);
+                AnswerPanel usedPanel = (AnswerPanel) owner.answerPanel;
+                usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                owner.oldAnswer = true;
+            } else if (owner.answerList.get(owner.indexAnswer).getType().equals("Image")) {
+                owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Image, CreateQuestionView.Side.Right);
+                ImagePanel usedPanel = (ImagePanel) owner.answerPanel;
+                usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                owner.oldAnswer = true;
+            } else {
+                owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.ImageAnswer, CreateQuestionView.Side.Right);
+                ImageAnswerPanel usedPanel = (ImageAnswerPanel) owner.answerPanel;
+                usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
+                usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                owner.oldAnswer = true;
+            }
+        }else{
+            AnswerArea.setText("");
+        }
+    }
+
+    private void fourthCircleClick(java.awt.event.MouseEvent evt) {
+        if (4 <= owner.answerList.size()) {
+            owner.indexAnswer = 3;
+            if (owner.answerList.get(owner.indexAnswer).getType().equals("Text")) {
+                owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Answer, CreateQuestionView.Side.Right);
+                AnswerPanel usedPanel = (AnswerPanel) owner.answerPanel;
+                usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                owner.oldAnswer = true;
+            } else if (owner.answerList.get(owner.indexAnswer).getType().equals("Image")) {
+                owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Image, CreateQuestionView.Side.Right);
+                ImagePanel usedPanel = (ImagePanel) owner.answerPanel;
+                usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                owner.oldAnswer = true;
+            } else {
+                owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.ImageAnswer, CreateQuestionView.Side.Right);
+                ImageAnswerPanel usedPanel = (ImageAnswerPanel) owner.answerPanel;
+                usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
+                usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                owner.oldAnswer = true;
+            }
+        }else{
+            AnswerArea.setText("");
         }
     }
 
@@ -125,15 +304,35 @@ public class AnswerPanel extends javax.swing.JPanel {
 			GoodAnswer = new javax.swing.JCheckBox();
 			
 			firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
+			firstCircle.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent evt) {
+					firstCircleClick(evt);
+				}
+			});
 			add(firstCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
 
 			secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
+			secondCircle.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent evt) {
+					secondCircleClick(evt);
+				}
+			});
 			add(secondCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, -1, -1));
 
 			thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
+			thirdCircle.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent evt) {
+					thirdCircleClick(evt);
+				}
+			});
 			add(thirdCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
 
 			fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png"))); // NOI18N
+			fourthCircle.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent evt) {
+					fourthCircleClick(evt);
+				}
+			});
 			add(fourthCircle, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, -1, -1));
 
 			addResponse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/plus-20.png"))); // NOI18N

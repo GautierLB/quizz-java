@@ -13,6 +13,7 @@ public class Answer {
     private String m_labelAnswer;
     private String m_pictureAnswer;
     private Boolean m_isValid;
+    private String m_type;
 
     /**
      * Answer constructor
@@ -35,7 +36,7 @@ public class Answer {
      */
     static public ArrayList<Answer> getAnswerForQuestion(int idQuestion) {
         ArrayList<Answer> answersForQuestion = new ArrayList<>();
-        ArrayList<HashMap<String, Object>> answerListFromDB = DBController.Get().executeSelect("*", Answer.TABLE_NAME + " , " + QuizzManager.QUESTIONS_HAVE_ANSWER, 
+        ArrayList<HashMap<String, Object>> answerListFromDB = DBController.Get().executeSelect("*", Answer.TABLE_NAME + " , " + QuizzManager.QUESTIONS_HAVE_ANSWER,
                 "WHERE ID_QUESTION =" + idQuestion + " AND " + Answer.TABLE_NAME + "." + Answer.ID + "=" + QuizzManager.QUESTIONS_HAVE_ANSWER + "." + Answer.ID);
         for (int i = 0; i < answerListFromDB.size(); i++) {
             Answer answer = new Answer((String) answerListFromDB.get(i).get(Answer.LABEL),
@@ -58,17 +59,44 @@ public class Answer {
                 + "','" + this.m_pictureAnswer
                 + "','" + this.m_isValid + "'");
     }
-    
+
+    /**
+     * get the text of the answer
+     * @return a String
+     */
     public String getLabel() {
         return this.m_labelAnswer;
     }
-    
+
+    /**
+     * get the URL for the picture of the answer
+     * @return a String
+     */
     public String getPicture() {
         return this.m_pictureAnswer;
     }
-    
+
+    /**
+     * get a boolean how determinate if the answer is corect or not
+     * @return boolean
+     */
     public boolean getIsValid() {
         return this.m_isValid;
     }
-    
+
+    /**
+     * get the type of an answer for the creation or modification
+     * @return a String
+     */
+    public String getType() {
+        return this.m_type;
+    }
+
+    /**
+     * set the type of an answer for the creation or modification
+     * @param theType a string ("Text" or "Image" or "Both")
+     */
+    public void setType(String theType) {
+        this.m_type = theType;
+    }
 }

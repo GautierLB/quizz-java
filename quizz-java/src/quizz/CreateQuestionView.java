@@ -6,6 +6,7 @@
 package quizz;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JPanel;
 import quizz.model.Quizz;
 import quizz.model.Answer;
@@ -21,25 +22,33 @@ public class CreateQuestionView extends BrainStormingView {
     /**
      * Creates new form CreateQuestionView
      */
+    private boolean oldQuestion = false;
     private String typeQuestion = "Both";
     private JPanel questionPanel;
+    public JPanel answerPanel;
     private Quizz quizz;
+    public int indexQuestion = 0;
+    public int indexAnswer = 0;
+    public boolean oldAnswer = false;
+    public ArrayList<Question> questionList = new ArrayList();
     public ArrayList<Answer> answerList = new ArrayList<>();
-
-    private enum Side {
-
+    public ArrayList<ArrayList<Answer>> answerListFinal = new ArrayList<ArrayList<Answer>>();
+    
+    public enum Side {
+        
         Left, Right
     };
-
+    
     public enum Type {
-
+        
         Image, Answer, ImageAnswer;
     };
-
+    
     public CreateQuestionView(MainFrame mainFrame, Quizz newQuizz) {
         super(mainFrame);
         this.quizz = newQuizz;
         initComponents();
+        
     }
 
     /**
@@ -99,7 +108,7 @@ public class CreateQuestionView extends BrainStormingView {
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 38, 720, -1));
 
         questionNumerLabel.setFont(Main.s_openSansItalic16);
-        questionNumerLabel.setText("Question N°0");
+        questionNumerLabel.setText("Question N°");
         add(questionNumerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         backButton.setText("Retour");
@@ -228,83 +237,313 @@ public class CreateQuestionView extends BrainStormingView {
         SubmitQuizzButton.setText("Valider le quizz");
         SubmitQuizzButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButton1backAction(evt);
+                saveTheQuizz(evt);
             }
         });
+		questionNumerLabel.setText(questionNumerLabel.getText()+(indexQuestion+1));
         add(SubmitQuizzButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 520, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
         m_mainFrame.addView(MainFrame.modalView.LoginView);
     }//GEN-LAST:event_userLabelMouseClicked
-
+    
     private void backButtonbackAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonbackAction
         m_mainFrame.changeView(MainFrame.View.CreateQuizzView);
     }//GEN-LAST:event_backButtonbackAction
-
+    
     private void arrowLeftgoToPrevious(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrowLeftgoToPrevious
+        Question questionCreate;
+        
+        if (controlQuestion() == 0) {
+            if (typeQuestion.equals("Text")) {
+                AnswerPanel usedPanel = (AnswerPanel) questionPanel;
+                questionCreate = new Question(usedPanel.getText(), "");
+                questionCreate.setType("Text");
+                usedPanel.setText("");
+            } else if (typeQuestion.equals("Image")) {
+                ImagePanel usedPanel = (ImagePanel) questionPanel;
+                questionCreate = new Question("", usedPanel.getUrlPicture());
+                questionCreate.setType("Image");
+                usedPanel.setUrlPicture("");
+            } else {
+                ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
+                questionCreate = new Question(usedPanel.getText(), usedPanel.getUrlPicture());
+                questionCreate.setType("Both");
+                usedPanel.setText("");
+                usedPanel.setUrlPicture("");
+            }
+            if (oldQuestion) {
+                questionList.set(indexQuestion, questionCreate);
+                answerListFinal.set(indexQuestion, answerList);
+            } else {
+                questionList.add(questionCreate);
+                answerListFinal.add(answerList);
+            }
+        }
+        
+        if (indexQuestion != 0) {
+            indexQuestion--;
+            questionNumerLabel.setText("Question N°" + (indexQuestion+1));
+            oldQuestion = true;
+            Question previousQuestion = questionList.get(indexQuestion);
+            if (previousQuestion.getType().equals("Text")) {
+                questionPanel = this.setNewLayout(Type.Answer, Side.Left);
+                typeQuestion = "Text";
+                AnswerPanel usedPanel = (AnswerPanel) questionPanel;
+                usedPanel.setText(previousQuestion.getLabel());
+            } else if (previousQuestion.getType().equals("Image")) {
+                questionPanel = this.setNewLayout(Type.Image, Side.Left);
+                typeQuestion = "Image";
+                ImagePanel usedPanel = (ImagePanel) questionPanel;
+                usedPanel.setUrlPicture(previousQuestion.getPicture());
+            } else {
+                questionPanel = this.setNewLayout(Type.ImageAnswer, Side.Left);
+                typeQuestion = "Both";
+                ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
+                usedPanel.setText(previousQuestion.getLabel());
+                usedPanel.setUrlPicture(previousQuestion.getPicture());
+            }
+            answerList = answerListFinal.get(indexQuestion);
+            if (answerList.get(0).getType().equals("Text")) {
+                answerPanel = this.setNewLayout(Type.Answer, Side.Right);
+                AnswerPanel usedPanel = (AnswerPanel) answerPanel;
+                usedPanel.setText(answerList.get(0).getLabel());
+                usedPanel.setChecked(answerList.get(0).getIsValid());
+            } else if (answerList.get(0).getType().equals("Image")) {
+                answerPanel = this.setNewLayout(Type.Image, Side.Right);
+                ImagePanel usedPanel = (ImagePanel) answerPanel;
+                usedPanel.setUrlPicture(answerList.get(0).getPicture());
+                usedPanel.setChecked(answerList.get(0).getIsValid());
+            } else {
+                answerPanel = this.setNewLayout(Type.ImageAnswer, Side.Right);
+                ImageAnswerPanel usedPanel = (ImageAnswerPanel) answerPanel;
+                usedPanel.setText(answerList.get(0).getLabel());
+                usedPanel.setUrlPicture(answerList.get(0).getPicture());
+                usedPanel.setChecked(answerList.get(0).getIsValid());
+            }
+            
+        }
     }//GEN-LAST:event_arrowLeftgoToPrevious
 
-    private void arrowRightgoToNextQuestion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrowRightgoToNextQuestion
-        Question questionCreate;
-        boolean gotOneGoodAnswer = false;
+    /**
+     * ! ONLY FOR THE MODIFICATION ! Update the layout for the next answer for
+     * the modification
+     */
+    public void answerDisplay() {
+        if (answerList.get(indexAnswer).getType().equals("Text")) {
+            answerPanel = this.setNewLayout(Type.Answer, Side.Right);
+            AnswerPanel usedPanel = (AnswerPanel) answerPanel;
+            usedPanel.setText(answerList.get(indexAnswer).getLabel());
+            usedPanel.setChecked(answerList.get(indexAnswer).getIsValid());
+        } else if (answerList.get(indexAnswer).getType().equals("Image")) {
+            answerPanel = this.setNewLayout(Type.Image, Side.Right);
+            ImagePanel usedPanel = (ImagePanel) answerPanel;
+            usedPanel.setUrlPicture(answerList.get(indexAnswer).getPicture());
+            usedPanel.setChecked(answerList.get(indexAnswer).getIsValid());
+        } else {
+            answerPanel = this.setNewLayout(Type.ImageAnswer, Side.Right);
+            ImageAnswerPanel usedPanel = (ImageAnswerPanel) answerPanel;
+            usedPanel.setText(answerList.get(indexAnswer).getLabel());
+            usedPanel.setUrlPicture(answerList.get(indexAnswer).getPicture());
+            usedPanel.setChecked(answerList.get(indexAnswer).getIsValid());
+        }
+    }
+    
+    /**
+     * ! ONLY FOR THE MODIFICATION ! Update the layou for the next question for
+     * the modification
+     */
+    private void questionDisplay(){
+        if (questionList.get(indexQuestion).getType().equals("Text")) {
+            questionPanel = this.setNewLayout(Type.Answer, Side.Left);
+            AnswerPanel usedPanel = (AnswerPanel) questionPanel;
+            usedPanel.setText(questionList.get(indexQuestion).getLabel());
+        } else if (questionList.get(indexQuestion).getType().equals("Image")) {
+            questionPanel = this.setNewLayout(Type.Image, Side.Left);
+            ImagePanel usedPanel = (ImagePanel) questionPanel;
+            usedPanel.setUrlPicture(questionList.get(indexQuestion).getPicture());
+        } else {
+            questionPanel = this.setNewLayout(Type.ImageAnswer, Side.Left);
+            ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
+            usedPanel.setText(questionList.get(indexQuestion).getLabel());
+            usedPanel.setUrlPicture(questionList.get(indexQuestion).getPicture());
+        }
+    }
 
+    /**
+     * control the fomat for the question and the answers
+     *
+     * @return Int : 
+     * 0  : it's OK ; 
+     * 1  : if we don't have a good answer ;
+     * 2  : if we have only one question ;
+     * 3  : if we only have good answer ;
+     * 4  : if the question is empty ;
+     */
+    private int controlQuestion() {
+        int codeError = 0;
+        boolean gotOneWrongAnswer = false;
+        boolean gotOneGoodAnswer = false;
+        boolean questionEmpty = false;
+        
         for (int i = 0; i < answerList.size(); i++) {
             if (answerList.get(i).getIsValid() == true) {
                 gotOneGoodAnswer = true;
+            } else {
+                gotOneWrongAnswer = true;
             }
         }
-
-        if (gotOneGoodAnswer) {
-            System.out.println("type de question : " + typeQuestion);
+        
+        if (typeQuestion.equals("Text")) {
+            AnswerPanel usedPanel = (AnswerPanel) questionPanel;
+            if(usedPanel.getText().equals("")){
+                questionEmpty = true;
+            }
+        }else if(typeQuestion.equals("Image")) {
+            ImagePanel usedPanel = (ImagePanel) questionPanel;
+            if(usedPanel.getUrlPicture().equals("")){
+                questionEmpty = true;
+            }
+        }else{
+            ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
+            if(usedPanel.getText().equals("") && usedPanel.getUrlPicture().equals("")){
+                questionEmpty = true;
+            }
+        }
+        
+        if (!gotOneGoodAnswer) {
+            codeError = 1;
+        } else if (!gotOneWrongAnswer) {
+            codeError = 3;
+        } else if (questionEmpty){
+            codeError = 4;
+        }
+        
+        if (answerList.size() < 2) {
+            codeError = 2;
+        }
+        
+        
+        
+        return codeError;
+        
+    }
+    
+    private void arrowRightgoToNextQuestion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrowRightgoToNextQuestion
+        Question questionCreate;
+        
+        if (controlQuestion() == 0) {
             if (typeQuestion.equals("Text")) {
-                System.out.println("OK" );
                 AnswerPanel usedPanel = (AnswerPanel) questionPanel;
                 questionCreate = new Question(usedPanel.getText(), "");
+                questionCreate.setType("Text");
+                usedPanel.setText("");
             } else if (typeQuestion.equals("Image")) {
-                 System.out.println("OK" );
                 ImagePanel usedPanel = (ImagePanel) questionPanel;
                 questionCreate = new Question("", usedPanel.getUrlPicture());
+                questionCreate.setType("Image");
+                usedPanel.setUrlPicture("");
             } else {
-                 System.out.println("OK" );
                 ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
                 questionCreate = new Question(usedPanel.getText(), usedPanel.getUrlPicture());
+                questionCreate.setType("Both");
+                usedPanel.setText("");
+                usedPanel.setUrlPicture("");
             }
-            questionCreate.saveQuestionInDB();
-            for (int i = 0; i < answerList.size(); i++) {
-                answerList.get(i).saveAnswerInDB();
+            if (oldQuestion) {
+                questionList.set(indexQuestion, questionCreate);
+                answerListFinal.set(indexQuestion, answerList);
+            } else {
+                questionList.add(questionCreate);
+                answerListFinal.add(answerList);
             }
-            //QuizzManager.linkAnswersToQuestion(questionCreate, answerList);
+            
+            answerList = new ArrayList<>();
+            indexAnswer = 0;
+            indexQuestion++;
+            questionNumerLabel.setText("Question N°" + (indexQuestion+1));
+            this.setNewLayout(Type.Image, Side.Right);
+            
+            if (indexQuestion >= questionList.size()) {
+                oldQuestion = false;
+            }else{
+                questionDisplay();
+            }
+        } else {
+            System.out.println("erreur dans la création de la question/réponse");
         }
     }//GEN-LAST:event_arrowRightgoToNextQuestion
-
+    
+    public void saveTheQuizz(java.awt.event.ActionEvent evt) {
+        
+        Question questionCreate;
+        
+        if (controlQuestion() == 0) {
+            if (typeQuestion.equals("Text")) {
+                AnswerPanel usedPanel = (AnswerPanel) questionPanel;
+                questionCreate = new Question(usedPanel.getText(), "");
+                questionCreate.setType("Text");
+                usedPanel.setText("");
+            } else if (typeQuestion.equals("Image")) {
+                ImagePanel usedPanel = (ImagePanel) questionPanel;
+                questionCreate = new Question("", usedPanel.getUrlPicture());
+                questionCreate.setType("Image");
+                usedPanel.setUrlPicture("");
+            } else {
+                ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
+                questionCreate = new Question(usedPanel.getText(), usedPanel.getUrlPicture());
+                questionCreate.setType("Both");
+                usedPanel.setText("");
+                usedPanel.setUrlPicture("");
+            }
+            if (oldQuestion) {
+                questionList.set(indexQuestion, questionCreate);
+                answerListFinal.set(indexQuestion, answerList);
+            } else {
+                questionList.add(questionCreate);
+                answerListFinal.add(answerList);
+            }
+        }
+            
+        for (int k = 0; k < questionList.size(); k++) {
+            questionList.get(k).saveQuestionInDB();
+            for (int j = 0; j < answerListFinal.get(k).size(); j++) {
+                answerListFinal.get(k).get(j).saveAnswerInDB();
+            }
+            QuizzManager.linkAnswersToQuestion(questionList.get(k), answerListFinal.get(k));
+        }
+        quizz.setNbQuestQuizz(questionList.size());
+        QuizzManager.linkQuestionsToQuizz(quizz, questionList);
+    }
+    
     private void leftTextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftTextButtonActionPerformed
         questionPanel = this.setNewLayout(Type.Answer, Side.Left);
         typeQuestion = "Text";
     }//GEN-LAST:event_leftTextButtonActionPerformed
-
+    
     private void leftImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftImageButtonActionPerformed
         questionPanel = this.setNewLayout(Type.Image, Side.Left);
         typeQuestion = "Image";
     }//GEN-LAST:event_leftImageButtonActionPerformed
-
+    
     private void leftBothButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBothButtonActionPerformed
         questionPanel = this.setNewLayout(Type.ImageAnswer, Side.Left);
         typeQuestion = "Both";
     }//GEN-LAST:event_leftBothButtonActionPerformed
-
+    
     private void rightTextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightTextButtonActionPerformed
         this.setNewLayout(Type.Answer, Side.Right);
     }//GEN-LAST:event_rightTextButtonActionPerformed
-
+    
     private void rightImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightImageButtonActionPerformed
         this.setNewLayout(Type.Image, Side.Right);
     }//GEN-LAST:event_rightImageButtonActionPerformed
-
+    
     private void rightBothButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBothButtonActionPerformed
         this.setNewLayout(Type.ImageAnswer, Side.Right);
     }//GEN-LAST:event_rightBothButtonActionPerformed
-
+    
     private void backButton1backAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1backAction
         m_mainFrame.changeView(MainFrame.View.MainScreenView);
     }//GEN-LAST:event_backButton1backAction
@@ -315,7 +554,7 @@ public class CreateQuestionView extends BrainStormingView {
      * @param _type le type de panel a affecter
      * @param _side le coté concerné
      */
-    private JPanel setNewLayout(Type _type, Side _side) {
+    public JPanel setNewLayout(Type _type, Side _side) {
         JPanel current = null;
         Boolean response = false;
         switch (_side) {
@@ -329,9 +568,9 @@ public class CreateQuestionView extends BrainStormingView {
                 response = true;
                 break;
         }
-
+        
         switch (_type) {
-
+            
             case Image:
                 current = new ImagePanel(response, this);
                 break;
