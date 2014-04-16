@@ -160,7 +160,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public void changeView(View viewName, Theme theme) {
         this.getContentPane().removeAll();
-        this.displayThemeScreen(theme);
+        if (viewName == View.ThemeScreenView) {
+           this.displayThemeScreen(theme); 
+        }
         this.setVisible(true);
     }
 

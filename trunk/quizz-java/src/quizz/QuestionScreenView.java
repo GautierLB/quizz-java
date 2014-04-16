@@ -6,10 +6,12 @@
 package quizz;
 
 import java.util.ArrayList;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import quizz.model.Quizz;
 import quizz.model.Question;
 import quizz.model.Answer;
+import quizz.model.Score;
 
 /**
  *
@@ -17,49 +19,50 @@ import quizz.model.Answer;
  */
 public class QuestionScreenView extends BrainStormingView {
 
+    private int m_numberOfGoodAnswers;
     private int m_currentQuestionNumber;
+    private ArrayList<JCheckBox> m_checkboxList;
     private ArrayList<Question> m_questionsList;
+    private ArrayList<Answer> m_answersList;
     private ArrayList<JLabel> m_circleButtonsList;
 
     public QuestionScreenView(MainFrame mainFrame, Quizz quizz) {
         super(mainFrame);
         initComponents();
+        m_numberOfGoodAnswers = 0;
         m_currentQuestionNumber = 0;
         m_questionsList = Question.getQuestionsForQuizz(quizz.getId());
         titleLabel.setText(quizz.getName());
+        this.addCheckboxToList();
         this.reloadQuestion();
         this.createBottomCircleButtons(quizz.getNbQuest());
+    }
+
+    private void addCheckboxToList() {
+        m_checkboxList = new ArrayList<>();
+        m_checkboxList.add(answerLabel1);
+        m_checkboxList.add(answerLabel2);
+        m_checkboxList.add(answerLabel3);
+        m_checkboxList.add(answerLabel4);
     }
 
     private void reloadQuestion() {
         Question question = m_questionsList.get(m_currentQuestionNumber);
         questionLabel.setText(question.getLabel());
-        ArrayList<Answer> answersList = Answer.getAnswerForQuestion(question.getId());
-        this.hideAnswersLabels();
+        m_answersList = Answer.getAnswerForQuestion(question.getId());
+        this.hideAnswersCheckboxs();
 
-        if (0 < answersList.size()) {
-            answerLabel1.setVisible(true);
-            answerLabel1.setText(answersList.get(0).getLabel());
-        }
-        if (1 < answersList.size()) {
-            answerLabel2.setVisible(true);
-            answerLabel2.setText(answersList.get(1).getLabel());
-        }
-        if (2 < answersList.size()) {
-            answerLabel3.setVisible(true);
-            answerLabel3.setText(answersList.get(2).getLabel());
-        }
-        if (3 < answersList.size()) {
-            answerLabel4.setVisible(true);
-            answerLabel4.setText(answersList.get(3).getLabel());
+        for (int i = 0; i < m_answersList.size(); i++) {
+            m_checkboxList.get(i).setVisible(true);
+            m_checkboxList.get(i).setText(m_answersList.get(i).getLabel());
         }
     }
 
-    private void hideAnswersLabels() {
-        answerLabel1.setVisible(false);
-        answerLabel2.setVisible(false);
-        answerLabel3.setVisible(false);
-        answerLabel4.setVisible(false);
+    private void hideAnswersCheckboxs() {
+        for (int i = 0; i < m_checkboxList.size(); i++) {
+            m_checkboxList.get(i).setVisible(false);
+            m_checkboxList.get(i).setSelected(false);
+        }
     }
 
     private void reloadBottomCirleButtons() {
@@ -87,6 +90,30 @@ public class QuestionScreenView extends BrainStormingView {
         }
     }
 
+    private void checkAnswers() {
+        boolean answerIsGood = false;
+        for (int i = 0; i < m_checkboxList.size(); i++) {
+            if (m_checkboxList.get(i).isSelected()) { 
+                answerIsGood = m_answersList.get(i).isValid();
+            }
+        }
+        if (answerIsGood) {
+            m_numberOfGoodAnswers++;
+        } else {
+            m_numberOfGoodAnswers--;
+        }
+        System.out.println("Nombre de reponses correctes : " + (m_numberOfGoodAnswers < 0 ? 0 : m_numberOfGoodAnswers) + "/" + m_questionsList.size());
+        System.out.println("Pourcentage : ");
+    }
+    
+    private int goodAnswersPourcentage() {
+        return m_numberOfGoodAnswers * 100 / m_questionsList.size();
+    }
+    
+    private int getScore() {
+        return 1000 * (this.goodAnswersPourcentage() / 100);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,6 +139,7 @@ public class QuestionScreenView extends BrainStormingView {
         arrowLeft = new javax.swing.JLabel();
         arrowRight = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -147,7 +175,7 @@ public class QuestionScreenView extends BrainStormingView {
         add(heart5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
         questionLabel.setText("Question ?");
-        add(questionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 500, -1));
+        add(questionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 500, 60));
 
         questionPicture.setToolTipText("");
         add(questionPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 220, 120));
@@ -190,6 +218,14 @@ public class QuestionScreenView extends BrainStormingView {
             }
         });
         add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 10, -1, -1));
+
+        backButton.setText("Quitter");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitButtonAction(evt);
+            }
+        });
+        add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 540, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void goToPrevious(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goToPrevious
@@ -203,14 +239,21 @@ public class QuestionScreenView extends BrainStormingView {
     private void goToNextQuestion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goToNextQuestion
         if (m_currentQuestionNumber < m_questionsList.size() - 1) {
             m_currentQuestionNumber++;
+            this.checkAnswers();
             this.reloadQuestion();
             this.reloadBottomCirleButtons();
+        } else {
+            m_mainFrame.changeView(MainFrame.View.ResultsView, new Score(1, 1, 1));
         }
     }//GEN-LAST:event_goToNextQuestion
 
     private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
         m_mainFrame.addView(MainFrame.modalView.LoginView);
     }//GEN-LAST:event_userLabelMouseClicked
+
+    private void quitButtonAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonAction
+        m_mainFrame.changeView(MainFrame.View.MainScreenView);
+    }//GEN-LAST:event_quitButtonAction
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -220,6 +263,7 @@ public class QuestionScreenView extends BrainStormingView {
     private javax.swing.JCheckBox answerLabel4;
     private javax.swing.JLabel arrowLeft;
     private javax.swing.JLabel arrowRight;
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel heart1;
     private javax.swing.JLabel heart2;
     private javax.swing.JLabel heart3;
@@ -231,4 +275,5 @@ public class QuestionScreenView extends BrainStormingView {
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
+
 }

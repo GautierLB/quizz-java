@@ -61,7 +61,7 @@ public class AnswerPanel extends javax.swing.JPanel {
         int nbGood = 0;
 
         for (int i = 0; i < owner.answerList.size(); i++) {
-            if (owner.answerList.get(i).getIsValid()) {
+            if (owner.answerList.get(i).isValid()) {
                 goodAnswer[nbGood] = i;
                 nbGood++;
             }
@@ -149,20 +149,20 @@ public class AnswerPanel extends javax.swing.JPanel {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Answer, CreateQuestionView.Side.Right);
                 AnswerPanel usedPanel = (AnswerPanel) owner.answerPanel;
                 usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
-                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             } else if (owner.answerList.get(owner.indexAnswer).getType().equals("Image")) {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Image, CreateQuestionView.Side.Right);
                 ImagePanel usedPanel = (ImagePanel) owner.answerPanel;
                 usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
-                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             } else {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.ImageAnswer, CreateQuestionView.Side.Right);
                 ImageAnswerPanel usedPanel = (ImageAnswerPanel) owner.answerPanel;
                 usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
                 usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
-                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             }
         }else{
@@ -177,20 +177,20 @@ public class AnswerPanel extends javax.swing.JPanel {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Answer, CreateQuestionView.Side.Right);
                 AnswerPanel usedPanel = (AnswerPanel) owner.answerPanel;
                 usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
-                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             } else if (owner.answerList.get(owner.indexAnswer).getType().equals("Image")) {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Image, CreateQuestionView.Side.Right);
                 ImagePanel usedPanel = (ImagePanel) owner.answerPanel;
                 usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
-                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             } else {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.ImageAnswer, CreateQuestionView.Side.Right);
                 ImageAnswerPanel usedPanel = (ImageAnswerPanel) owner.answerPanel;
                 usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
                 usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
-                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             }
         }else{
@@ -205,20 +205,20 @@ public class AnswerPanel extends javax.swing.JPanel {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Answer, CreateQuestionView.Side.Right);
                 AnswerPanel usedPanel = (AnswerPanel) owner.answerPanel;
                 usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
-                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             } else if (owner.answerList.get(owner.indexAnswer).getType().equals("Image")) {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Image, CreateQuestionView.Side.Right);
                 ImagePanel usedPanel = (ImagePanel) owner.answerPanel;
                 usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
-                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             } else {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.ImageAnswer, CreateQuestionView.Side.Right);
                 ImageAnswerPanel usedPanel = (ImageAnswerPanel) owner.answerPanel;
                 usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
                 usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
-                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             }
         }else{
@@ -233,20 +233,20 @@ public class AnswerPanel extends javax.swing.JPanel {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Answer, CreateQuestionView.Side.Right);
                 AnswerPanel usedPanel = (AnswerPanel) owner.answerPanel;
                 usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
-                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             } else if (owner.answerList.get(owner.indexAnswer).getType().equals("Image")) {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Image, CreateQuestionView.Side.Right);
                 ImagePanel usedPanel = (ImagePanel) owner.answerPanel;
                 usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
-                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             } else {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.ImageAnswer, CreateQuestionView.Side.Right);
                 ImageAnswerPanel usedPanel = (ImageAnswerPanel) owner.answerPanel;
                 usedPanel.setText(owner.answerList.get(owner.indexAnswer).getLabel());
                 usedPanel.setUrlPicture(owner.answerList.get(owner.indexAnswer).getPicture());
-                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).getIsValid());
+                usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             }
         }else{
