@@ -469,6 +469,8 @@ public class CreateQuestionView extends BrainStormingView {
                 oldQuestion = false;
             }else{
                 questionDisplay();
+                answerList = answerListFinal.get(indexQuestion);
+                answerDisplay();
             }
         } else {
             System.out.println("erreur dans la création de la question/réponse");
@@ -506,15 +508,12 @@ public class CreateQuestionView extends BrainStormingView {
             }
         }
             
-        for (int k = 0; k < questionList.size(); k++) {
-            questionList.get(k).saveQuestionInDB();
-            for (int j = 0; j < answerListFinal.get(k).size(); j++) {
-                answerListFinal.get(k).get(j).saveAnswerInDB();
-            }
+        for (int k = 0; k < questionList.size(); k++) {            
             QuizzManager.linkAnswersToQuestion(questionList.get(k), answerListFinal.get(k));
         }
         quizz.setNbQuestQuizz(questionList.size());
         QuizzManager.linkQuestionsToQuizz(quizz, questionList);
+        m_mainFrame.changeView(MainFrame.View.MainScreenView);
     }
     
     private void leftTextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftTextButtonActionPerformed
