@@ -74,8 +74,8 @@ public class CreateQuestionView extends BrainStormingView {
         rightTextButton = new javax.swing.JButton();
         rightImageButton = new javax.swing.JButton();
         rightBothButton = new javax.swing.JButton();
-        rightPanel = new ImagePanel(true);
-        leftPanel = new ImageAnswerPanel(false);
+        rightPanel = new ImagePanel(true,this);
+        leftPanel = new ImageAnswerPanel(false,this);
         SubmitQuizzButton = new javax.swing.JButton();
         backButton1 = new javax.swing.JButton();
         errorLabel = new javax.swing.JLabel();
@@ -444,48 +444,60 @@ public class CreateQuestionView extends BrainStormingView {
     private void arrowRightgoToNextQuestion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrowRightgoToNextQuestion
         Question questionCreate;
         
-        if (controlQuestion() == 0) {
-            if (typeQuestion.equals("Text")) {
+        switch (controlQuestion()){
+            case 0 :
+                if (typeQuestion.equals("Text")) {
                 AnswerPanel usedPanel = (AnswerPanel) questionPanel;
                 questionCreate = new Question(usedPanel.getText(), "");
                 questionCreate.setType("Text");
                 usedPanel.setText("");
-            } else if (typeQuestion.equals("Image")) {
-                ImagePanel usedPanel = (ImagePanel) questionPanel;
-                questionCreate = new Question("", usedPanel.getUrlPicture());
-                questionCreate.setType("Image");
-                usedPanel.setUrlPicture("");
-            } else {
-                ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
-                questionCreate = new Question(usedPanel.getText(), usedPanel.getUrlPicture());
-                questionCreate.setType("Both");
-                usedPanel.setText("");
-                usedPanel.setUrlPicture("");
-            }
-            if (oldQuestion) {
-                questionList.set(indexQuestion, questionCreate);
-                answerListFinal.set(indexQuestion, answerList);
-            } else {
-                questionList.add(questionCreate);
-                answerListFinal.add(answerList);
-            }
-            
-            answerList = new ArrayList<>();
-            indexAnswer = 0;
-            indexQuestion++;
-            questionNumerLabel.setText("Question N°" + (indexQuestion+1));
-            this.setNewLayout(Type.Image, Side.Right);
-            
-            if (indexQuestion >= questionList.size()) {
-                oldQuestion = false;
-            }else{
-                questionDisplay();
-                answerList = answerListFinal.get(indexQuestion);
-                answerDisplay();
-            }
-        } else {
-            System.out.println("erreur dans la création de la question/réponse");
-        }
+                } else if (typeQuestion.equals("Image")) {
+                    ImagePanel usedPanel = (ImagePanel) questionPanel;
+                    questionCreate = new Question("", usedPanel.getUrlPicture());
+                    questionCreate.setType("Image");
+                    usedPanel.setUrlPicture("");
+                } else {
+                    ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
+                    questionCreate = new Question(usedPanel.getText(), usedPanel.getUrlPicture());
+                    questionCreate.setType("Both");
+                    usedPanel.setText("");
+                    usedPanel.setUrlPicture("");
+                }
+                if (oldQuestion) {
+                    questionList.set(indexQuestion, questionCreate);
+                    answerListFinal.set(indexQuestion, answerList);
+                } else {
+                    questionList.add(questionCreate);
+                    answerListFinal.add(answerList);
+                }
+
+                answerList = new ArrayList<>();
+                indexAnswer = 0;
+                indexQuestion++;
+                questionNumerLabel.setText("Question N°" + (indexQuestion+1));
+                this.setNewLayout(Type.Image, Side.Right);
+
+                if (indexQuestion >= questionList.size()) {
+                    oldQuestion = false;
+                }else{
+                    questionDisplay();
+                    answerList = answerListFinal.get(indexQuestion);
+                    answerDisplay();
+                }
+                break;
+            case 1:
+                this.errorLabel.setText("Vous n'avez aucune bonne réponse");
+                break;
+            case 2:
+                this.errorLabel.setText("Vous n'avez qu'une réponse");
+                break;
+            case 3:
+                this.errorLabel.setText("Vous n'avez aucune mauvais réponse");
+                break;
+            case 4:
+                this.errorLabel.setText("Votre question est vide");
+                break;
+        }   
     }//GEN-LAST:event_arrowRightgoToNextQuestion
     
     public void saveTheQuizz(java.awt.event.ActionEvent evt) {
