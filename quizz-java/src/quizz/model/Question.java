@@ -66,7 +66,7 @@ public class Question {
     public int saveQuestionInDB() {
         this.m_id = DBController.Get().executeInsert(Question.TABLE_NAME,
                 Question.LABEL + ',' + Question.PICTURE,
-                "'" + this.m_labelQuestion + "','" + this.m_pictureQuestion + "'");
+                "'" + this.m_labelQuestion.replace("'", "''") + "','" + this.m_pictureQuestion + "'");
         return this.m_id;
     }
 

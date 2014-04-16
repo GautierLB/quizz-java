@@ -55,7 +55,7 @@ public class Answer {
     public int saveAnswerInDB() {
         return DBController.Get().executeInsert(Answer.TABLE_NAME,
                 Answer.LABEL + "," + Answer.PICTURE + "," + Answer.IS_VALID,
-                "'" + this.m_labelAnswer
+                "'" + this.m_labelAnswer.replace("'", "''")
                 + "','" + this.m_pictureAnswer
                 + "','" + this.m_isValid + "'");
     }
