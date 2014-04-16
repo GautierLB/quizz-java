@@ -12,13 +12,13 @@ package quizz;
 import java.awt.*;
 import javax.swing.JDialog;
 
-public class LoginDialog extends JDialog {
+public class StatisticsDialog extends JDialog {
 
-    public LoginDialog(MainFrame parent) {
-        super(parent, "Login", true);
+    public StatisticsDialog(MainFrame parent) {
+        super(parent, "Statistiques", true);
         this.setModal(false);
-        LoginDialogPanel login = new LoginDialogPanel(parent);
-        getContentPane().add(login, BorderLayout.CENTER);
+        StatisticsDialogPanel stats = new StatisticsDialogPanel(parent);
+        getContentPane().add(stats, BorderLayout.CENTER);
         this.setUndecorated(true);
         pack();
         setResizable(false);

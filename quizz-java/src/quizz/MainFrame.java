@@ -8,6 +8,7 @@ package quizz;
 import java.awt.BorderLayout;
 import quizz.model.Theme;
 import quizz.model.Quizz;
+import quizz.model.Score;
 
 /**
  *
@@ -17,7 +18,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     public enum View {
 
-        MainScreenView, CreateQuizzView, ThemeScreenView, QuestionScreenView, CreateQuestionView
+        MainScreenView, CreateQuizzView, ThemeScreenView, QuestionScreenView, CreateQuestionView, ResultsView
     };
 
     public enum modalView {
@@ -26,6 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
     };
     LoginDialog m_loginDlg;
     SignInDialog m_signInDlg;
+    StatisticsDialog m_statsDialog;
     String m_activeView;
 
     public MainFrame() {
@@ -134,6 +136,21 @@ public class MainFrame extends javax.swing.JFrame {
         }
         this.setVisible(true);
     }
+    
+    /**
+     * Permet de choisir la vue a afficher.
+     *
+     * @param viewName est une enumeration contenant le nom des vues.
+     * @param score les statistiques a afficher dans la vue suivante.
+     */
+    public void changeView(View viewName, Score score) {
+        this.getContentPane().removeAll();
+        switch (viewName) {
+            case ResultsView:
+                this.displayResultsScreen(score);
+        }
+        this.setVisible(true);
+    }
 
     /**
      * Permet d'afficher le theme.
@@ -209,6 +226,13 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, questionScreen);
     }
+     
+     private void displayResultsScreen(Score score) {
+        m_activeView = "ReultsView";
+        ResultsView resultScreen = new ResultsView(this, score);
+        this.setLayout(new BorderLayout());
+        this.add(BorderLayout.CENTER, resultScreen);
+    }
 
     /**
      * Permet D'afficher le panel de login
@@ -216,6 +240,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void displayLoginPanel() {
         if(Main.userPseudo != "User")
         {
+            m_statsDialog = new StatisticsDialog(this);
+            m_statsDialog.setVisible(true);
         } else {
             m_loginDlg = new LoginDialog(this);
             m_loginDlg.setVisible(true);
@@ -241,6 +267,10 @@ public class MainFrame extends javax.swing.JFrame {
         if (m_signInDlg != null) {
             m_signInDlg.setVisible(false);
             m_signInDlg.dispose();
+        }
+        if (m_statsDialog != null) {
+            m_statsDialog.setVisible(false);
+            m_statsDialog.dispose();
         }
         this.changeView(View.valueOf(m_activeView));
     }
