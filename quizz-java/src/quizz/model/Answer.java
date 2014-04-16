@@ -80,7 +80,7 @@ public class Answer {
      * get a boolean how determinate if the answer is corect or not
      * @return boolean
      */
-    public boolean getIsValid() {
+    public boolean isValid() {
         return this.m_isValid;
     }
 

@@ -309,18 +309,18 @@ public class CreateQuestionView extends BrainStormingView {
                 answerPanel = this.setNewLayout(Type.Answer, Side.Right);
                 AnswerPanel usedPanel = (AnswerPanel) answerPanel;
                 usedPanel.setText(answerList.get(0).getLabel());
-                usedPanel.setChecked(answerList.get(0).getIsValid());
+                usedPanel.setChecked(answerList.get(0).isValid());
             } else if (answerList.get(0).getType().equals("Image")) {
                 answerPanel = this.setNewLayout(Type.Image, Side.Right);
                 ImagePanel usedPanel = (ImagePanel) answerPanel;
                 usedPanel.setUrlPicture(answerList.get(0).getPicture());
-                usedPanel.setChecked(answerList.get(0).getIsValid());
+                usedPanel.setChecked(answerList.get(0).isValid());
             } else {
                 answerPanel = this.setNewLayout(Type.ImageAnswer, Side.Right);
                 ImageAnswerPanel usedPanel = (ImageAnswerPanel) answerPanel;
                 usedPanel.setText(answerList.get(0).getLabel());
                 usedPanel.setUrlPicture(answerList.get(0).getPicture());
-                usedPanel.setChecked(answerList.get(0).getIsValid());
+                usedPanel.setChecked(answerList.get(0).isValid());
             }
             
         }
@@ -335,18 +335,18 @@ public class CreateQuestionView extends BrainStormingView {
             answerPanel = this.setNewLayout(Type.Answer, Side.Right);
             AnswerPanel usedPanel = (AnswerPanel) answerPanel;
             usedPanel.setText(answerList.get(indexAnswer).getLabel());
-            usedPanel.setChecked(answerList.get(indexAnswer).getIsValid());
+            usedPanel.setChecked(answerList.get(indexAnswer).isValid());
         } else if (answerList.get(indexAnswer).getType().equals("Image")) {
             answerPanel = this.setNewLayout(Type.Image, Side.Right);
             ImagePanel usedPanel = (ImagePanel) answerPanel;
             usedPanel.setUrlPicture(answerList.get(indexAnswer).getPicture());
-            usedPanel.setChecked(answerList.get(indexAnswer).getIsValid());
+            usedPanel.setChecked(answerList.get(indexAnswer).isValid());
         } else {
             answerPanel = this.setNewLayout(Type.ImageAnswer, Side.Right);
             ImageAnswerPanel usedPanel = (ImageAnswerPanel) answerPanel;
             usedPanel.setText(answerList.get(indexAnswer).getLabel());
             usedPanel.setUrlPicture(answerList.get(indexAnswer).getPicture());
-            usedPanel.setChecked(answerList.get(indexAnswer).getIsValid());
+            usedPanel.setChecked(answerList.get(indexAnswer).isValid());
         }
     }
     
@@ -388,7 +388,7 @@ public class CreateQuestionView extends BrainStormingView {
         boolean questionEmpty = false;
         
         for (int i = 0; i < answerList.size(); i++) {
-            if (answerList.get(i).getIsValid() == true) {
+            if (answerList.get(i).isValid() == true) {
                 gotOneGoodAnswer = true;
             } else {
                 gotOneWrongAnswer = true;

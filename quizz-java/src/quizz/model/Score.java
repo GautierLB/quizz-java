@@ -1,5 +1,6 @@
 package quizz.model;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,6 +13,8 @@ public class Score {
     private int m_idUser;
     private int m_idQuizz;
     private int m_score;
+    private int m_numberOfGoodAnswers;
+    private Timestamp m_time;
 
     /**
      * The construct of Scoring
@@ -24,6 +27,23 @@ public class Score {
         this.m_idQuizz = idUser;
         this.m_idUser = idQuizz;
         this.m_score = score;
+    }
+    
+    /**
+     * The construct of Scoring
+     *
+     * @param idUser the Id of the user how make the score
+     * @param idQuizz the Id of the quizz how is concerne by the Score
+     * @param score the score of the user
+     * @param goodAnswers the number of good answers
+     * @param time the time spent to do the quizz
+     */
+    public Score(int idUser, int idQuizz, int score, int goodAnswers, Timestamp time) {
+        this.m_idQuizz = idUser;
+        this.m_idUser = idQuizz;
+        this.m_score = score;
+        this.m_numberOfGoodAnswers = goodAnswers;
+        this.m_time = time;
     }
 
     /**

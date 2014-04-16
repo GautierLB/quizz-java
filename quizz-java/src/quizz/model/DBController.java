@@ -58,6 +58,7 @@ public class DBController {
 
         Connection connection = this.connectDB();
         try {
+            System.out.println("Request to DB !");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
