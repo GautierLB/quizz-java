@@ -74,11 +74,11 @@ public class CreateQuestionView extends BrainStormingView {
         rightTextButton = new javax.swing.JButton();
         rightImageButton = new javax.swing.JButton();
         rightBothButton = new javax.swing.JButton();
-        rightPanel = new ImagePanel(true, this);
-        leftPanel = new ImageAnswerPanel(false, this);
-		questionPanel = leftPanel;
+        rightPanel = new ImagePanel(true);
+        leftPanel = new ImageAnswerPanel(false);
         SubmitQuizzButton = new javax.swing.JButton();
         backButton1 = new javax.swing.JButton();
+        errorLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -108,7 +108,7 @@ public class CreateQuestionView extends BrainStormingView {
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 38, 720, -1));
 
         questionNumerLabel.setFont(Main.s_openSansItalic16);
-        questionNumerLabel.setText("Question N°");
+        questionNumerLabel.setText("Question N°0");
         add(questionNumerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         backButton.setText("Retour");
@@ -235,13 +235,24 @@ public class CreateQuestionView extends BrainStormingView {
         add(leftPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
         SubmitQuizzButton.setText("Valider le quizz");
-        SubmitQuizzButton.addActionListener(new java.awt.event.ActionListener() {
+        SubmitQuizzButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        SubmitQuizzButton.setMaximumSize(new java.awt.Dimension(100, 20));
+        SubmitQuizzButton.setMinimumSize(new java.awt.Dimension(100, 20));
+        SubmitQuizzButton.setPreferredSize(new java.awt.Dimension(100, 20));
+        add(SubmitQuizzButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 520, -1, -1));
+        SubmitQuizzButton.getAccessibleContext().setAccessibleName("SubmitQuizzButton");
+
+        backButton1.setText("Valider le quizz");
+        backButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveTheQuizz(evt);
+                backButton1backAction(evt);
             }
         });
-		questionNumerLabel.setText(questionNumerLabel.getText()+(indexQuestion+1));
-        add(SubmitQuizzButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 520, -1, -1));
+        add(backButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 520, -1, -1));
+
+        errorLabel.setFont(Main.s_openSans13);
+        errorLabel.setForeground(new java.awt.Color(255, 0, 0));
+        add(errorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
@@ -601,6 +612,7 @@ public class CreateQuestionView extends BrainStormingView {
     private javax.swing.JLabel arrowRight;
     private javax.swing.JButton backButton;
     private javax.swing.JButton backButton1;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton leftBothButton;

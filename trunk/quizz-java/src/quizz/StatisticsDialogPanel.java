@@ -6,6 +6,8 @@
 
 package quizz;
 
+import quizz.model.Score;
+
 /**
  *
  * @author Gautier
@@ -18,9 +20,10 @@ public class StatisticsDialogPanel extends RoundedPanel {
     
     private MainFrame m_mainFrame;
     
-    public StatisticsDialogPanel(MainFrame mainFrame) {
+    public StatisticsDialogPanel(MainFrame mainFrame,Score score) {
         initComponents();
         m_mainFrame = mainFrame;
+        
     }
 
     /**
