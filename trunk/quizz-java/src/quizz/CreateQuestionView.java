@@ -242,14 +242,6 @@ public class CreateQuestionView extends BrainStormingView {
         add(SubmitQuizzButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 520, -1, -1));
         SubmitQuizzButton.getAccessibleContext().setAccessibleName("SubmitQuizzButton");
 
-        backButton1.setText("Valider le quizz");
-        backButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButton1backAction(evt);
-            }
-        });
-        add(backButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 520, -1, -1));
-
         errorLabel.setFont(Main.s_openSans13);
         errorLabel.setForeground(new java.awt.Color(255, 0, 0));
         add(errorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
