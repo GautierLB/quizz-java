@@ -105,14 +105,6 @@ public class QuestionScreenView extends BrainStormingView {
         System.out.println("Nombre de reponses correctes : " + (m_numberOfGoodAnswers < 0 ? 0 : m_numberOfGoodAnswers) + "/" + m_questionsList.size());
         System.out.println("Pourcentage : ");
     }
-    
-    private int goodAnswersPourcentage() {
-        return m_numberOfGoodAnswers * 100 / m_questionsList.size();
-    }
-    
-    private int getScore() {
-        return 1000 * (this.goodAnswersPourcentage() / 100);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -24,7 +24,10 @@ public class ResultsView extends BrainStormingView {
         {
             this.saveScore();
         }
-        initComponents();           
+        initComponents();
+        this.goodAnswersValueLabel.setText(Integer.toString(score.getNumberOfGoodAnswers()));
+        //this.pourcentageValueLabel.setText(Integer.toString(score.()));
+        
     }
 
     /**
@@ -71,7 +74,6 @@ public class ResultsView extends BrainStormingView {
             add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 0, -1, -1));
 
             mainPanel.setBackground(new java.awt.Color(255, 255, 255));
-            mainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
             mainPanel.setForeground(new java.awt.Color(102, 102, 102));
             mainPanel.setMaximumSize(new java.awt.Dimension(500, 300));
             mainPanel.setMinimumSize(new java.awt.Dimension(500, 300));
