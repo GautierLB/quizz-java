@@ -5,6 +5,7 @@
  */
 package quizz;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -12,6 +13,7 @@ import quizz.model.Quizz;
 import quizz.model.Question;
 import quizz.model.Answer;
 import quizz.model.Score;
+import quizz.model.User;
 
 /**
  *
@@ -19,8 +21,10 @@ import quizz.model.Score;
  */
 public class QuestionScreenView extends BrainStormingView {
 
+    private int m_idQuizz;
     private int m_numberOfGoodAnswers;
     private int m_currentQuestionNumber;
+    private Timestamp m_startTime;
     private ArrayList<JCheckBox> m_checkboxList;
     private ArrayList<Question> m_questionsList;
     private ArrayList<Answer> m_answersList;
@@ -29,9 +33,11 @@ public class QuestionScreenView extends BrainStormingView {
     public QuestionScreenView(MainFrame mainFrame, Quizz quizz) {
         super(mainFrame);
         initComponents();
+        m_idQuizz = quizz.getId();
+        m_startTime = new Timestamp(System.currentTimeMillis());
         m_numberOfGoodAnswers = 0;
         m_currentQuestionNumber = 0;
-        m_questionsList = Question.getQuestionsForQuizz(quizz.getId());
+        m_questionsList = Question.getQuestionsForQuizz(m_idQuizz);
         titleLabel.setText(quizz.getName());
         this.addCheckboxToList();
         this.reloadQuestion();
@@ -104,14 +110,6 @@ public class QuestionScreenView extends BrainStormingView {
         }
         System.out.println("Nombre de reponses correctes : " + (m_numberOfGoodAnswers < 0 ? 0 : m_numberOfGoodAnswers) + "/" + m_questionsList.size());
         System.out.println("Pourcentage : ");
-    }
-    
-    private int goodAnswersPourcentage() {
-        return m_numberOfGoodAnswers * 100 / m_questionsList.size();
-    }
-    
-    private int getScore() {
-        return 1000 * (this.goodAnswersPourcentage() / 100);
     }
 
     /**
@@ -243,7 +241,9 @@ public class QuestionScreenView extends BrainStormingView {
             this.reloadQuestion();
             this.reloadBottomCirleButtons();
         } else {
-            m_mainFrame.changeView(MainFrame.View.ResultsView, new Score(1, 1, 1));
+            Timestamp ts = new Timestamp(m_startTime.compareTo(new Timestamp(System.currentTimeMillis())));
+            Score score = new Score(m_idQuizz, m_numberOfGoodAnswers, m_questionsList.size(), ts);
+            m_mainFrame.changeView(MainFrame.View.ResultsView, score);
         }
     }//GEN-LAST:event_goToNextQuestion
 

@@ -14,6 +14,7 @@ public class Score {
     private int m_idQuizz;
     private int m_score;
     private int m_numberOfGoodAnswers;
+    private int m_numberOfQuestions;
     private Timestamp m_time;
 
     /**
@@ -32,18 +33,17 @@ public class Score {
     /**
      * The construct of Scoring
      *
-     * @param idUser the Id of the user how make the score
      * @param idQuizz the Id of the quizz how is concerne by the Score
-     * @param score the score of the user
      * @param goodAnswers the number of good answers
+     * @param numberOfQuestions the number of questions in the quizz
      * @param time the time spent to do the quizz
      */
-    public Score(int idUser, int idQuizz, int score, int goodAnswers, Timestamp time) {
-        this.m_idQuizz = idUser;
-        this.m_idUser = idQuizz;
-        this.m_score = score;
+    public Score(int idQuizz, int goodAnswers, int numberOfQuestions, Timestamp time) {
+        this.m_idQuizz = idQuizz;
         this.m_numberOfGoodAnswers = goodAnswers;
+        this.m_numberOfQuestions = numberOfQuestions;
         this.m_time = time;
+        this.m_score = this.loadScore();
     }
 
     /**
@@ -67,10 +67,10 @@ public class Score {
     /**
      * Save in the database the score of the quiz
      */
-    public void saveScore() {
+    public void saveScore(int idUser) {
         DBController.Get().executeInsert(Score.TABLE_NAME,
                 Score.USER + ',' + Score.QUIZZ + ',' + Score.SCORE,
-                "" + this.m_idUser
+                "" + idUser
                 + "," + this.getIdQuizz()
                 + "," + this.getScore());
     }
@@ -101,6 +101,14 @@ public class Score {
      */
     public Timestamp getTime() {
         return m_time;
+    }
+    
+    public int goodAnswersPourcentage() {
+        return m_numberOfGoodAnswers * 100 / m_numberOfQuestions;
+    }
+    
+    private int loadScore() {
+        return 1000 * (this.goodAnswersPourcentage() / 100);
     }
     
 }
