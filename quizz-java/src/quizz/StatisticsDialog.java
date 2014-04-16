@@ -11,13 +11,14 @@ package quizz;
  */
 import java.awt.*;
 import javax.swing.JDialog;
+import quizz.model.Score;
 
 public class StatisticsDialog extends JDialog {
 
-    public StatisticsDialog(MainFrame parent) {
+    public StatisticsDialog(MainFrame parent, Score score) {
         super(parent, "Statistiques", true);
         this.setModal(false);
-        StatisticsDialogPanel stats = new StatisticsDialogPanel(parent);
+        StatisticsDialogPanel stats = new StatisticsDialogPanel(parent, score);
         getContentPane().add(stats, BorderLayout.CENTER);
         this.setUndecorated(true);
         pack();

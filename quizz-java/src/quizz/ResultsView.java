@@ -6,6 +6,7 @@
 
 package quizz;
 
+import java.sql.Timestamp;
 import quizz.model.Score;
 
 /**
@@ -143,7 +144,7 @@ public class ResultsView extends BrainStormingView {
                     validateScoreButtonActionPerformed(evt);
                 }
             });
-            add(validateScoreButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 520, -1, -1));
+            add(validateScoreButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 520, -1, -1));
         }
     }// </editor-fold>//GEN-END:initComponents
 

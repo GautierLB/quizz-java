@@ -242,7 +242,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void displayLoginPanel() {
         if(Main.userPseudo != "User")
         {
-            m_statsDialog = new StatisticsDialog(this);
+            m_statsDialog = new StatisticsDialog(this, new Score(1,1,1));
             m_statsDialog.setVisible(true);
         } else {
             m_loginDlg = new LoginDialog(this);
