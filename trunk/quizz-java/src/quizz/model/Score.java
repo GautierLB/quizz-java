@@ -71,7 +71,36 @@ public class Score {
         DBController.Get().executeInsert(Score.TABLE_NAME,
                 Score.USER + ',' + Score.QUIZZ + ',' + Score.SCORE,
                 "" + this.m_idUser
-                + "," + this.m_idQuizz
-                + "," + this.m_score);
+                + "," + this.getIdQuizz()
+                + "," + this.getScore());
     }
+
+    /**
+     * @return the m_idQuizz
+     */
+    public int getIdQuizz() {
+        return m_idQuizz;
+    }
+
+    /**
+     * @return the m_score
+     */
+    public int getScore() {
+        return m_score;
+    }
+
+    /**
+     * @return the m_numberOfGoodAnswers
+     */
+    public int getNumberOfGoodAnswers() {
+        return m_numberOfGoodAnswers;
+    }
+
+    /**
+     * @return the m_time
+     */
+    public Timestamp getTime() {
+        return m_time;
+    }
+    
 }
