@@ -189,7 +189,8 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
                 usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             }
-        }else{
+        } else {
+            owner.indexAnswer = (owner.answerList.size());
             urlTextbox.setText("");
             AnswerArea.setText("");
         }
@@ -197,7 +198,7 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
 
     private void secondCircleClick(java.awt.event.MouseEvent evt) {
         if (2 <= owner.answerList.size()) {
-            owner.indexAnswer= 1;
+            owner.indexAnswer = 1;
             if (owner.answerList.get(owner.indexAnswer).getType().equals("Text")) {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Answer, CreateQuestionView.Side.Right);
                 AnswerPanel usedPanel = (AnswerPanel) owner.answerPanel;
@@ -218,7 +219,8 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
                 usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             }
-        }else{
+        } else {
+            owner.indexAnswer = (owner.answerList.size());
             urlTextbox.setText("");
             AnswerArea.setText("");
         }
@@ -247,7 +249,8 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
                 usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             }
-        }else{
+        } else {
+            owner.indexAnswer = (owner.answerList.size());
             urlTextbox.setText("");
             AnswerArea.setText("");
         }
@@ -276,7 +279,8 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
                 usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             }
-        }else{
+        } else {
+            owner.indexAnswer = (owner.answerList.size());
             urlTextbox.setText("");
             AnswerArea.setText("");
         }
