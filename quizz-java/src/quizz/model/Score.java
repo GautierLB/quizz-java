@@ -1,6 +1,5 @@
 package quizz.model;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,7 +13,7 @@ public class Score {
     private int m_score;
     private int m_numberOfGoodAnswers;
     private int m_numberOfQuestions;
-    private Timestamp m_time;
+    private long m_time;
 
     /**
      * The construct of Scoring
@@ -35,7 +34,7 @@ public class Score {
      * @param numberOfQuestions the number of questions in the quizz
      * @param time the time spent to do the quizz
      */
-    public Score(int idQuizz, int goodAnswers, int numberOfQuestions, Timestamp time) {
+    public Score(int idQuizz, int goodAnswers, int numberOfQuestions, long time) {
         this.m_idQuizz = idQuizz;
         this.m_numberOfGoodAnswers = goodAnswers;
         this.m_numberOfQuestions = numberOfQuestions;
@@ -95,7 +94,7 @@ public class Score {
     /**
      * @return the m_time
      */
-    public Timestamp getTime() {
+    public long getTime() {
         return m_time;
     }
     
