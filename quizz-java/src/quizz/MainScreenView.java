@@ -46,6 +46,7 @@ public class MainScreenView extends BrainStormingView {
         themeLabel3 = new javax.swing.JLabel();
         themeLabel4 = new javax.swing.JLabel();
         themeLabel5 = new javax.swing.JLabel();
+        userLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -117,6 +118,17 @@ public class MainScreenView extends BrainStormingView {
             }
         });
         add(themeLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 100, 100));
+
+        userLabel.setFont(Main.s_openSans13);
+        userLabel.setForeground(new java.awt.Color(102, 102, 102));
+        userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon-20.png"))); // NOI18N
+        userLabel.setText(Main.userPseudo);
+        userLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userLabelMouseClicked(evt);
+            }
+        });
+        add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void createQuizzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createQuizzActionPerformed
@@ -147,6 +159,10 @@ public class MainScreenView extends BrainStormingView {
         m_mainFrame.changeView(MainFrame.View.ThemeScreenView, m_themesList.get(5));
     }//GEN-LAST:event_themeLabel6MouseClicked
 
+    private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
+        m_mainFrame.addView(MainFrame.modalView.LoginView);
+    }//GEN-LAST:event_userLabelMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createQuizz;
     private javax.swing.JLabel mainScreenTitle;
@@ -156,5 +172,6 @@ public class MainScreenView extends BrainStormingView {
     private javax.swing.JLabel themeLabel4;
     private javax.swing.JLabel themeLabel5;
     private javax.swing.JLabel themeLabel6;
+    private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 }
