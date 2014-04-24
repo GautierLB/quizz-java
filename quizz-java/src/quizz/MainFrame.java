@@ -265,16 +265,19 @@ public class MainFrame extends javax.swing.JFrame {
         if (m_loginDlg != null) {
             m_loginDlg.setVisible(false);
             m_loginDlg.dispose();
+            m_loginDlg = null;
             this.changeView(View.valueOf(m_activeView));
         }
         if (m_signInDlg != null) {
             m_signInDlg.setVisible(false);
             m_signInDlg.dispose();
+            m_signInDlg = null;
             this.changeView(View.valueOf(m_activeView));
         }
         if (m_statsDialog != null) {
             m_statsDialog.setVisible(false);
             m_statsDialog.dispose();
+            m_statsDialog = null;
             this.changeView(View.valueOf(m_activeView));
         }
         
