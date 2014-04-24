@@ -265,16 +265,19 @@ public class MainFrame extends javax.swing.JFrame {
         if (m_loginDlg != null) {
             m_loginDlg.setVisible(false);
             m_loginDlg.dispose();
+            this.changeView(View.valueOf(m_activeView));
         }
         if (m_signInDlg != null) {
             m_signInDlg.setVisible(false);
             m_signInDlg.dispose();
+            this.changeView(View.valueOf(m_activeView));
         }
         if (m_statsDialog != null) {
             m_statsDialog.setVisible(false);
             m_statsDialog.dispose();
+            this.changeView(View.valueOf(m_activeView));
         }
-        this.changeView(View.valueOf(m_activeView));
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

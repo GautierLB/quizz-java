@@ -27,8 +27,8 @@ public class ResultsView extends BrainStormingView {
         }
         initComponents();
         this.goodAnswersValueLabel.setText(Integer.toString(score.getNumberOfGoodAnswers()));
-        this.pourcentageValueLabel.setText(Integer.toString(5));
-        this.scoreValueLabel.setText(Integer.toString(6));
+        this.pourcentageValueLabel.setText(Integer.toString(score.goodAnswersPourcentage())+ "%");
+        this.scoreValueLabel.setText(Integer.toString(score.getScore()));
         this.rankingValueLabel.setText(Integer.toString(5));
         this.timeValueLabel.setText(score.getTime().toString());
         
