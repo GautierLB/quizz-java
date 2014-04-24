@@ -13,7 +13,6 @@ import quizz.model.Quizz;
 import quizz.model.Question;
 import quizz.model.Answer;
 import quizz.model.Score;
-import quizz.model.User;
 
 /**
  *
@@ -105,7 +104,7 @@ public class QuestionScreenView extends BrainStormingView {
         }
         if (answerIsGood) {
             m_numberOfGoodAnswers++;
-        } else {
+        } else if (!answerIsGood && m_numberOfGoodAnswers > 0) {
             m_numberOfGoodAnswers--;
         }
         System.out.println("Nombre de reponses correctes : " + (m_numberOfGoodAnswers < 0 ? 0 : m_numberOfGoodAnswers) + "/" + m_questionsList.size());
@@ -241,8 +240,9 @@ public class QuestionScreenView extends BrainStormingView {
             this.reloadQuestion();
             this.reloadBottomCirleButtons();
         } else {
-            Timestamp ts = new Timestamp(m_startTime.compareTo(new Timestamp(System.currentTimeMillis())));
-            Score score = new Score(m_idQuizz, m_numberOfGoodAnswers, m_questionsList.size(), ts);
+            Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+            long diffInMillis = currentTime.getTime() - m_startTime.getTime();
+            Score score = new Score(m_idQuizz, m_numberOfGoodAnswers, m_questionsList.size(), diffInMillis);
             m_mainFrame.changeView(MainFrame.View.ResultsView, score);
         }
     }//GEN-LAST:event_goToNextQuestion
