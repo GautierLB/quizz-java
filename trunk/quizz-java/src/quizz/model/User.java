@@ -106,6 +106,18 @@ public class User {
         }
         return isCorrect;
     }
+    
+    static public boolean controlAdmin(String pseudo){
+        boolean isAdmin;
+        ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect(User.ID, User.TABLE_NAME, "where PSEUDO_USER LIKE '" + pseudo.replace("'", "''") + "'");
+        ArrayList<HashMap<String, Object>> userAdmin = DBController.Get().executeSelect("*", User.TABLE_ADMIN, "where ID_ADMIN=" + (int) userList.get(0).get(User.ID));
+        if (userAdmin.isEmpty()) {//Si le liste userAdmin est vide alors l'utilisateur n'est pas administrateur
+            isAdmin = false;
+        } else {
+            isAdmin = true;
+        }
+        return isAdmin;
+    }
 
     /**
      * Save the user in the database if the pseudo isn't taken

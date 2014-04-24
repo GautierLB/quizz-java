@@ -19,6 +19,7 @@ public class LoginDialogPanel extends RoundedPanel {
      * Creates new form LoginDialog
      */
     private MainFrame m_mainFrame;
+    private BrainStormingView owner;
 
     public LoginDialogPanel(MainFrame mainFrame) {
         initComponents();
@@ -150,13 +151,16 @@ public class LoginDialogPanel extends RoundedPanel {
     }//GEN-LAST:event_signInButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        Boolean isAdmin = false;
+        Boolean autenth;
         this.cleanLabels();
         if (checkValues()) {
-            Boolean autenth = User.controlLogin(this.pseudoTextBox.getText(), this.passwordTextBox.getText());
+            autenth = User.controlLogin(this.pseudoTextBox.getText(), this.passwordTextBox.getText());
             if (autenth) {                
-                Main.userPseudo = this.pseudoTextBox.getText();
+                Main.userPseudo = this.pseudoTextBox.getText();               
                 this.m_mainFrame.deleteModal();
             } else {
+                
                 this.pseudoErrors.setText("Erreur de connexion ! ");
                 this.passwordErrors.setText("Identifiants invalides !");
             }

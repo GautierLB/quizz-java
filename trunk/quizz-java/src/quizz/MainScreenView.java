@@ -8,6 +8,7 @@ package quizz;
 
 import java.util.ArrayList;
 import quizz.model.Theme;
+import quizz.model.User;
 
 /**
  *
@@ -16,6 +17,7 @@ import quizz.model.Theme;
 public class MainScreenView extends BrainStormingView {
 
     private ArrayList<Theme> m_themesList;
+    public  boolean isAdmin;
     
     public MainScreenView(MainFrame mainFrame) {
         super(mainFrame);
@@ -129,8 +131,20 @@ public class MainScreenView extends BrainStormingView {
             }
         });
         add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+		if(!Main.userPseudo.equals("User")){			
+			this.isAdmin = User.controlAdmin(Main.userPseudo);
+			this.createQuizz.setEnabled(isAdmin);
+		}else{
+			this.isAdmin = false;
+			this.createQuizz.setEnabled(isAdmin);
+		}
     }// </editor-fold>//GEN-END:initComponents
 
+    public  void SetAdmin(boolean resultDB){
+        this.isAdmin = resultDB;
+        createQuizz.setEnabled(isAdmin);      
+    }
+    
     private void createQuizzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createQuizzActionPerformed
         m_mainFrame.changeView(MainFrame.View.CreateQuizzView);
     }//GEN-LAST:event_createQuizzActionPerformed
