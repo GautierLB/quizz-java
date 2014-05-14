@@ -334,18 +334,6 @@ public class CreateQuestionView extends BrainStormingView {
 
                 }
                 break;
-            case 1:
-                this.errorLabel.setText("Vous n'avez aucune bonne réponse");
-                break;
-            case 2:
-                this.errorLabel.setText("Vous n'avez qu'une ou pas de réponse");
-                break;
-            case 3:
-                this.errorLabel.setText("Vous n'avez aucune mauvais réponse");
-                break;
-            case 4:
-                this.errorLabel.setText("Votre question est vide");
-                break;
         }
 
     }//GEN-LAST:event_arrowLeftgoToPrevious
