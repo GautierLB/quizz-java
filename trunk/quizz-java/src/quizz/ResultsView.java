@@ -30,8 +30,10 @@ public class ResultsView extends BrainStormingView {
         this.pourcentageValueLabel.setText(Integer.toString(score.goodAnswersPourcentage())+ "%");
         this.scoreValueLabel.setText(Integer.toString(score.getScore()));
         this.rankingValueLabel.setText(Integer.toString(5));
-        this.timeValueLabel.setText("" + score.getTime());
-        
+        long secondes=(score.getTime()/1000)%60;
+        long minutes=((score.getTime()/1000)/60)%60;
+        long heures= (score.getTime()/1000)/3600;
+        this.timeValueLabel.setText(heures + " heures " + minutes + " minutes et " + secondes + " secondes." );     
         
     }
 
@@ -107,7 +109,7 @@ public class ResultsView extends BrainStormingView {
 
             subtitleLabel.setFont(Main.s_openSansTitle);
             subtitleLabel.setText("Résultat");
-            mainPanel.add(subtitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 12, -1, -1));
+            mainPanel.add(subtitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
 
             jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
             mainPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, 180));
@@ -115,7 +117,7 @@ public class ResultsView extends BrainStormingView {
             mainPanel.add(pourcentageValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
             mainPanel.add(scoreValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, -1, -1));
             mainPanel.add(rankingValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, -1));
-            mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, -1, -1));
+            mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
 
             add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
 

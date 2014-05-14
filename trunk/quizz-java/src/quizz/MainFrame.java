@@ -214,6 +214,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Permet d'afficher la vue QuestionScreen.
      */
     private void displayQuestionScreen(Quizz quizz) {
+        m_activeView = "QuestionScreenView";
         QuestionScreenView questionScreen = new QuestionScreenView(this, quizz);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, questionScreen);
@@ -223,7 +224,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Permet d'afficher la vue CreateQuestionScreen.
      */
      private void displayCreateQuestionScreen(Quizz quizz) {
-          m_activeView = "CreateQuestionView";
+        m_activeView = "CreateQuestionView";
         CreateQuestionView questionScreen = new CreateQuestionView(this, quizz);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, questionScreen);
