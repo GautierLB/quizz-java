@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quizz;
 
 import java.sql.Timestamp;
@@ -17,24 +16,24 @@ public class ResultsView extends BrainStormingView {
 
     /**
      * Creates new form AfterQuizzPanel
+     *
      * @param main
      */
     public ResultsView(MainFrame main, Score score) {
         super(main);
-        if (Main.userPseudo != "User")
-        {
-            this.saveScore();
-        }
         initComponents();
         this.goodAnswersValueLabel.setText(Integer.toString(score.getNumberOfGoodAnswers()));
-        this.pourcentageValueLabel.setText(Integer.toString(score.goodAnswersPourcentage())+ "%");
+        this.pourcentageValueLabel.setText(Integer.toString(score.goodAnswersPourcentage()) + "%");
         this.scoreValueLabel.setText(Integer.toString(score.getScore()));
         this.rankingValueLabel.setText(Integer.toString(5));
-        long secondes=(score.getTime()/1000)%60;
-        long minutes=((score.getTime()/1000)/60)%60;
-        long heures= (score.getTime()/1000)/3600;
-        this.timeValueLabel.setText(heures + " heures " + minutes + " minutes et " + secondes + " secondes." );     
-        
+        long secondes = (score.getTime() / 1000) % 60;
+        long minutes = ((score.getTime() / 1000) / 60) % 60;
+        long heures = (score.getTime() / 1000) / 3600;
+        this.timeValueLabel.setText(heures + " heures " + minutes + " minutes et " + secondes + " secondes.");
+        if (Main.userPseudo != "User") {
+            this.saveScore();
+        }
+
     }
 
     /**
@@ -63,91 +62,91 @@ public class ResultsView extends BrainStormingView {
         timeValueLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         userLabel = new javax.swing.JLabel();
-        if (Main.userPseudo == "User")
-        {
+
+		setBackground(new java.awt.Color(255, 255, 255));
+		setMaximumSize(new java.awt.Dimension(800, 600));
+		setMinimumSize(new java.awt.Dimension(800, 600));
+		setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+		jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
+		add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 38, 720, -1));
+
+		titleLabel.setFont(Main.s_openSansTitle);
+		titleLabel.setForeground(new java.awt.Color(40, 40, 40));
+		titleLabel.setText("Résultats du quizz");
+		add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 0, -1, -1));
+
+		mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+		mainPanel.setForeground(new java.awt.Color(102, 102, 102));
+		mainPanel.setMaximumSize(new java.awt.Dimension(500, 300));
+		mainPanel.setMinimumSize(new java.awt.Dimension(500, 300));
+		mainPanel.setPreferredSize(new java.awt.Dimension(500, 300));
+		mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+		goodAnswersLabel.setFont(Main.s_openSans13);
+		goodAnswersLabel.setText("Bonnes réponses");
+		mainPanel.add(goodAnswersLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
+
+		pourcentageLabel.setFont(Main.s_openSans13);
+		pourcentageLabel.setText("Pourcentage");
+		mainPanel.add(pourcentageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
+
+		scoreLabel.setFont(Main.s_openSans13);
+		scoreLabel.setText("Score");
+		mainPanel.add(scoreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
+
+		rankingLabel.setFont(Main.s_openSans13);
+		rankingLabel.setText("Classement");
+		mainPanel.add(rankingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
+
+		timeLabel.setFont(Main.s_openSans13);
+		timeLabel.setText("Temps");
+		mainPanel.add(timeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
+
+		subtitleLabel.setFont(Main.s_openSansTitle);
+		subtitleLabel.setText("Résultat");
+		mainPanel.add(subtitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
+
+		jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+		mainPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, 180));
+		mainPanel.add(goodAnswersValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, -1, -1));
+		mainPanel.add(pourcentageValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
+		mainPanel.add(scoreValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, -1, -1));
+		mainPanel.add(rankingValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, -1));
+		mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
+
+		add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
+
+		backButton.setText("Acceuil");
+		backButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				backButtonbackAction(evt);
+			}
+		});
+		add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
+
+		userLabel.setFont(quizz.Main.s_openSans13);
+		userLabel.setForeground(new java.awt.Color(102, 102, 102));
+		userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon-20.png"))); // NOI18N
+		userLabel.setText(Main.userPseudo);
+		userLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				userLabelMouseClicked(evt);
+			}
+		});
+		add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, -1, -1));
+		
+		if (Main.userPseudo == "User"){
             validateScoreButton = new javax.swing.JButton();
-
-            setBackground(new java.awt.Color(255, 255, 255));
-            setMaximumSize(new java.awt.Dimension(800, 600));
-            setMinimumSize(new java.awt.Dimension(800, 600));
-            setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-            jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
-            add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 38, 720, -1));
-
-            titleLabel.setFont(Main.s_openSansTitle);
-            titleLabel.setForeground(new java.awt.Color(40, 40, 40));
-            titleLabel.setText("Résultats du quizz");
-            add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 0, -1, -1));
-
-            mainPanel.setBackground(new java.awt.Color(255, 255, 255));
-            mainPanel.setForeground(new java.awt.Color(102, 102, 102));
-            mainPanel.setMaximumSize(new java.awt.Dimension(500, 300));
-            mainPanel.setMinimumSize(new java.awt.Dimension(500, 300));
-            mainPanel.setPreferredSize(new java.awt.Dimension(500, 300));
-            mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-            goodAnswersLabel.setFont(Main.s_openSans13);
-            goodAnswersLabel.setText("Bonnes réponses");
-            mainPanel.add(goodAnswersLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
-
-            pourcentageLabel.setFont(Main.s_openSans13);
-            pourcentageLabel.setText("Pourcentage");
-            mainPanel.add(pourcentageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
-
-            scoreLabel.setFont(Main.s_openSans13);
-            scoreLabel.setText("Score");
-            mainPanel.add(scoreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
-
-            rankingLabel.setFont(Main.s_openSans13);
-            rankingLabel.setText("Classement");
-            mainPanel.add(rankingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
-
-            timeLabel.setFont(Main.s_openSans13);
-            timeLabel.setText("Temps");
-            mainPanel.add(timeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
-
-            subtitleLabel.setFont(Main.s_openSansTitle);
-            subtitleLabel.setText("Résultat");
-            mainPanel.add(subtitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
-
-            jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-            mainPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, 180));
-            mainPanel.add(goodAnswersValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, -1, -1));
-            mainPanel.add(pourcentageValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
-            mainPanel.add(scoreValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, -1, -1));
-            mainPanel.add(rankingValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, -1));
-            mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
-
-            add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
-
-            backButton.setText("Acceuil");
-            backButton.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    backButtonbackAction(evt);
-                }
-            });
-            add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
-
-            userLabel.setFont(quizz.Main.s_openSans13);
-            userLabel.setForeground(new java.awt.Color(102, 102, 102));
-            userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/userIcon-20.png"))); // NOI18N
-            userLabel.setText(Main.userPseudo);
-            userLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    userLabelMouseClicked(evt);
-                }
-            });
-            add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, -1, -1));
-
-            validateScoreButton.setText("Enregister le score");
+			validateScoreButton.setText("Enregister le score");
             validateScoreButton.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     validateScoreButtonActionPerformed(evt);
                 }
             });
             add(validateScoreButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 520, -1, -1));
-        }
+		}
+        
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonbackAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonbackAction
@@ -163,7 +162,7 @@ public class ResultsView extends BrainStormingView {
     }//GEN-LAST:event_validateScoreButtonActionPerformed
 
     private void saveScore() {
-        
+        System.out.println("coucou");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -187,5 +186,4 @@ public class ResultsView extends BrainStormingView {
     private javax.swing.JButton validateScoreButton;
     // End of variables declaration//GEN-END:variables
 
-    
 }

@@ -243,7 +243,8 @@ public class QuestionScreenView extends BrainStormingView {
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             long diffInMillis = currentTime.getTime() - m_startTime.getTime();
             Score score = new Score(m_idQuizz, m_numberOfGoodAnswers, m_questionsList.size(), diffInMillis);
-            m_mainFrame.changeView(MainFrame.View.ResultsView, score);
+            this.m_mainFrame.setScore(score);
+            m_mainFrame.changeView(MainFrame.View.ResultsView);
         }
     }//GEN-LAST:event_goToNextQuestion
 

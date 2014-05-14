@@ -86,10 +86,11 @@ public class ThemeScreenView extends BrainStormingView {
 
             quizzLabel.setText(quizz.getName() + " [" + quizz.getNbQuest() + "Q]");
             line.add(quizzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 162, 20));
+            this.m_mainFrame.setQuizz(quizz);
             line.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    m_mainFrame.changeView(MainFrame.View.QuestionScreenView, quizz);
+                    m_mainFrame.changeView(MainFrame.View.QuestionScreenView);
                 }
             });
             this.setVisible(true);
