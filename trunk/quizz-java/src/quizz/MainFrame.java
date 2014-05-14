@@ -16,8 +16,21 @@ import quizz.model.Score;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    public enum View {
+    /**
+     * @param m_score the m_score to set
+     */
+    public void setScore(Score m_score) {
+        this.m_score = m_score;
+    }
 
+    /**
+     * @param m_quizz the m_quizz to set
+     */
+    public void setQuizz(Quizz m_quizz) {
+        this.m_quizz = m_quizz;
+    }
+
+    public enum View {
         MainScreenView, CreateQuizzView, ThemeScreenView, QuestionScreenView, CreateQuestionView, ResultsView
     };
 
@@ -29,6 +42,8 @@ public class MainFrame extends javax.swing.JFrame {
     SignInDialog m_signInDlg;
     StatisticsDialog m_statsDialog;
     String m_activeView;
+    private Score m_score;
+    private Quizz m_quizz;
 
     public MainFrame() {
         initComponents();
@@ -114,40 +129,15 @@ public class MainFrame extends javax.swing.JFrame {
             case CreateQuizzView:
                 this.displayCreateQuizz();
                 break;
-        }
-        this.setVisible(true);
-    }
-    
-    /**
-     * Permet de choisir la vue a afficher.
-     *
-     * @param viewName est une enumeration contenant le nom des vues.
-     * @param newQuizz Le quizz a afficher dans la vue suivante.
-     */
-    public void changeView(View viewName, Quizz newQuizz) {
-        this.getContentPane().removeAll();
-        switch (viewName) {
+            case ResultsView:
+                this.displayResultsScreen();
+                break;
             case CreateQuestionView:
-                this.displayCreateQuestionScreen(newQuizz);
+                this.displayCreateQuestionScreen();
                 break;
             case QuestionScreenView:
-                this.displayQuestionScreen(newQuizz);
+                this.displayQuestionScreen();
                 break;
-        }
-        this.setVisible(true);
-    }
-    
-    /**
-     * Permet de choisir la vue a afficher.
-     *
-     * @param viewName est une enumeration contenant le nom des vues.
-     * @param score les statistiques a afficher dans la vue suivante.
-     */
-    public void changeView(View viewName, Score score) {
-        this.getContentPane().removeAll();
-        switch (viewName) {
-            case ResultsView:
-                this.displayResultsScreen(score);
         }
         this.setVisible(true);
     }
@@ -213,9 +203,9 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Permet d'afficher la vue QuestionScreen.
      */
-    private void displayQuestionScreen(Quizz quizz) {
+    private void displayQuestionScreen() {
         m_activeView = "QuestionScreenView";
-        QuestionScreenView questionScreen = new QuestionScreenView(this, quizz);
+        QuestionScreenView questionScreen = new QuestionScreenView(this, this.m_quizz);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, questionScreen);
     }
@@ -223,16 +213,16 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Permet d'afficher la vue CreateQuestionScreen.
      */
-     private void displayCreateQuestionScreen(Quizz quizz) {
+     private void displayCreateQuestionScreen() {
         m_activeView = "CreateQuestionView";
-        CreateQuestionView questionScreen = new CreateQuestionView(this, quizz);
+        CreateQuestionView questionScreen = new CreateQuestionView(this, this.m_quizz);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, questionScreen);
     }
      
-     private void displayResultsScreen(Score score) {
-        m_activeView = "ReultsView";
-        ResultsView resultScreen = new ResultsView(this, score);
+     private void displayResultsScreen() {
+        m_activeView = "ResultsView";
+        ResultsView resultScreen = new ResultsView(this, m_score);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, resultScreen);
     }
