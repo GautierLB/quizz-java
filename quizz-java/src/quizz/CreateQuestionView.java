@@ -239,6 +239,11 @@ public class CreateQuestionView extends BrainStormingView {
         SubmitQuizzButton.setMaximumSize(new java.awt.Dimension(100, 20));
         SubmitQuizzButton.setMinimumSize(new java.awt.Dimension(100, 20));
         SubmitQuizzButton.setPreferredSize(new java.awt.Dimension(100, 20));
+		SubmitQuizzButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveTheQuizz(evt);
+            }
+        });
         add(SubmitQuizzButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 520, -1, -1));
         SubmitQuizzButton.getAccessibleContext().setAccessibleName("SubmitQuizzButton");
 
