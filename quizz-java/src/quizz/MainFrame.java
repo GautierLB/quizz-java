@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import quizz.model.Theme;
 import quizz.model.Quizz;
 import quizz.model.Score;
+import quizz.model.User;
 
 /**
  *
@@ -233,7 +234,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void displayLoginPanel() {
         if(Main.userPseudo != "User")
         {
-            m_statsDialog = new StatisticsDialog(this, new Score(1,1));
+            m_statsDialog = new StatisticsDialog(this, Score.getGlobalScore(User.getUserByPseudo(Main.userPseudo).getIdUser()));
             m_statsDialog.setVisible(true);
         } else {
             m_loginDlg = new LoginDialog(this);

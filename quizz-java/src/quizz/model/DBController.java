@@ -55,7 +55,6 @@ public class DBController {
     public ArrayList<HashMap<String, Object>> executeSelect(String select, String table, String where) {
         ArrayList<HashMap<String, Object>> result = new ArrayList<>();
         String query = "SELECT " + select + " FROM " + table + " " + where + ";";
-
         Connection connection = this.connectDB();
         try {
             System.out.println("Request to DB !");

@@ -5,9 +5,9 @@ import java.util.HashMap;
 
 public class User {
 
-    private static final String TABLE_NAME = "BDD_B3I_groupe_3.dbo.[USER]";
+    public static final String TABLE_NAME = "BDD_B3I_groupe_3.dbo.[USER]";
     private static final String TABLE_ADMIN = "BDD_B3I_groupe_3.dbo.[ADMIN]";
-    private static final String ID = "ID_USER";
+    public static final String ID = "ID_USER";
     private static final String PSEUDO = "PSEUDO_USER";
     private static final String MDP = "MDP_USER";
     private static final String MAIL = "MAIL_USER";

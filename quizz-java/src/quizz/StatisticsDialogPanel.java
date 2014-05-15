@@ -23,7 +23,15 @@ public class StatisticsDialogPanel extends RoundedPanel {
     public StatisticsDialogPanel(MainFrame mainFrame,Score score) {
         initComponents();
         m_mainFrame = mainFrame;
-        
+        this.goodAnswersValueLabel.setText(Integer.toString(score.getNumberOfGoodAnswers()));
+        this.scoreValueLabel.setText(Integer.toString(score.getScore()));
+        this.rankingValueLabel.setText(Integer.toString(5));
+        long secondes = (score.getTime() / 1000) % 60;
+        long minutes = ((score.getTime() / 1000) / 60) % 60;
+        long heures = (score.getTime() / 1000) / 3600;
+        this.timeValueLabel.setText(heures + " heures " + minutes + " minutes et " + secondes + " secondes.");
+        this.nbQuizzValueLabel.setText(Integer.toString(score.getNbQuizz()));
+        this.pourcentageValueLabel.setText(Integer.toString(score.goodAnswersPourcentage()));
     }
 
     /**
@@ -92,12 +100,12 @@ public class StatisticsDialogPanel extends RoundedPanel {
         mainPanel.add(pourcentageValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
         mainPanel.add(scoreValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, -1, -1));
         mainPanel.add(rankingValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, -1));
-        mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, -1, -1));
+        mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
 
         nbQuizzsLabel.setFont(Main.s_openSans13);
         nbQuizzsLabel.setText("Quizzs effectués");
         mainPanel.add(nbQuizzsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, -1));
-        mainPanel.add(nbQuizzValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
+        mainPanel.add(nbQuizzValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, -1, -1));
 
         add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 330));
     }// </editor-fold>//GEN-END:initComponents

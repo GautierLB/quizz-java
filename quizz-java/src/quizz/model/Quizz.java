@@ -5,11 +5,11 @@ import java.util.HashMap;
 
 public class Quizz {
 
-    private static final String TABLE_NAME = "BDD_B3I_groupe_3.dbo.[QUIZZ]";
-    private static final String ID_QUIZZ = "ID_QUIZZ";
+    public static final String TABLE_NAME = "BDD_B3I_groupe_3.dbo.[QUIZZ]";
+    public static final String ID_QUIZZ = "ID_QUIZZ";
     private static final String ID_THEME = "ID_THEME";
     private static final String ID_ADMIN = "ID_ADMIN";
-    private static final String NB_QUESTS = "NB_QUEST_QUIZZ";
+    public static final String NB_QUESTS = "NB_QUEST_QUIZZ";
     private static final String DIFFICULTY = "DIFFICULTY_QUIZZ";
     private static final String TIME_MAX = "TIME_MAX_QUIZZ";
     private static final String RETRY = "RETRY_QUIZZ";
