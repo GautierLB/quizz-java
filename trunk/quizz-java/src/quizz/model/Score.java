@@ -9,6 +9,8 @@ public class Score {
     private static final String USER = "ID_USER";
     private static final String QUIZZ = "ID_QUIZZ";
     private static final String SCORE = "SCORE";
+    private static final String NB_GOOD_ANSWERS = "COUNT_GOOD_ANSWER";
+    private static final String TIME = "TIME";
     private int m_idQuizz;
     private int m_score;
     private int m_numberOfGoodAnswers;
@@ -25,7 +27,7 @@ public class Score {
         this.m_idQuizz = idQuizz;
         this.m_score = score;
     }
-    
+
     /**
      * The construct of Scoring
      *
@@ -64,10 +66,13 @@ public class Score {
      */
     public void saveScore(int idUser) {
         DBController.Get().executeInsert(Score.TABLE_NAME,
-                Score.USER + ',' + Score.QUIZZ + ',' + Score.SCORE,
+                Score.USER + ',' + Score.QUIZZ + ',' + Score.SCORE + ',' + Score.NB_GOOD_ANSWERS + ',' + Score.TIME,
                 "" + idUser
                 + "," + this.getIdQuizz()
-                + "," + this.getScore());
+                + "," + this.getScore()
+                + "," + this.getNumberOfGoodAnswers()
+                + "," + this.getTime());
+        
     }
 
     /**
@@ -97,13 +102,13 @@ public class Score {
     public long getTime() {
         return m_time;
     }
-    
+
     public int goodAnswersPourcentage() {
         return m_numberOfGoodAnswers * 100 / m_numberOfQuestions;
     }
-    
+
     private int loadScore() {
         return 1000 * (this.goodAnswersPourcentage() / 100);
     }
-    
+
 }
