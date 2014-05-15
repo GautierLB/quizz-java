@@ -154,11 +154,6 @@ public class QuestionScreenView extends BrainStormingView {
 
         jSeparator1 = new javax.swing.JSeparator();
         titleLabel = new javax.swing.JLabel();
-        heart1 = new javax.swing.JLabel();
-        heart2 = new javax.swing.JLabel();
-        heart3 = new javax.swing.JLabel();
-        heart4 = new javax.swing.JLabel();
-        heart5 = new javax.swing.JLabel();
         questionLabel = new javax.swing.JLabel();
         questionPicture = new javax.swing.JLabel();
         answerLabel4 = new javax.swing.JCheckBox();
@@ -187,21 +182,6 @@ public class QuestionScreenView extends BrainStormingView {
         titleLabel.setForeground(new java.awt.Color(40, 40, 40));
         titleLabel.setText("Créer un Quizz");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 5, 150, -1));
-
-        heart1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/heartFull-20.png"))); // NOI18N
-        add(heart1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
-
-        heart2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/heartFull-20.png"))); // NOI18N
-        add(heart2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
-
-        heart3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/heartFull-20.png"))); // NOI18N
-        add(heart3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
-
-        heart4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/heartFull-20.png"))); // NOI18N
-        add(heart4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
-
-        heart5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/heartEmpty-20.png"))); // NOI18N
-        add(heart5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
         questionLabel.setText("Question ?");
         add(questionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 500, 60));
@@ -298,11 +278,6 @@ public class QuestionScreenView extends BrainStormingView {
     private javax.swing.JLabel arrowLeft;
     private javax.swing.JLabel arrowRight;
     private javax.swing.JButton backButton;
-    private javax.swing.JLabel heart1;
-    private javax.swing.JLabel heart2;
-    private javax.swing.JLabel heart3;
-    private javax.swing.JLabel heart4;
-    private javax.swing.JLabel heart5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel questionLabel;
     private javax.swing.JLabel questionPicture;

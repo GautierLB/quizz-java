@@ -7,6 +7,7 @@ package quizz;
 
 import java.sql.Timestamp;
 import quizz.model.Score;
+import quizz.model.User;
 
 /**
  *
@@ -19,9 +20,11 @@ public class ResultsView extends BrainStormingView {
      *
      * @param main
      */
+    Score m_score;
     public ResultsView(MainFrame main, Score score) {
         super(main);
         initComponents();
+        this.m_score = score;
         this.goodAnswersValueLabel.setText(Integer.toString(score.getNumberOfGoodAnswers()));
         this.pourcentageValueLabel.setText(Integer.toString(score.goodAnswersPourcentage()) + "%");
         this.scoreValueLabel.setText(Integer.toString(score.getScore()));
@@ -161,8 +164,9 @@ public class ResultsView extends BrainStormingView {
         m_mainFrame.addView(MainFrame.modalView.LoginView);
     }//GEN-LAST:event_validateScoreButtonActionPerformed
 
-    private void saveScore() {
-        System.out.println("coucou");
+    private void saveScore() {  
+        User user = User.getUserByPseudo(Main.userPseudo);
+        m_score.saveScore(user.getIdUser());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

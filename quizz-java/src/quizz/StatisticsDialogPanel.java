@@ -84,7 +84,7 @@ public class StatisticsDialogPanel extends RoundedPanel {
 
         subtitleLabel.setFont(Main.s_openSansTitle);
         subtitleLabel.setText("Résultat");
-        mainPanel.add(subtitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 12, -1, -1));
+        mainPanel.add(subtitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
         mainPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, 220));
