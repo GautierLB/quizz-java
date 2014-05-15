@@ -7,6 +7,7 @@ package quizz;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import quizz.model.Quizz;
@@ -21,26 +22,40 @@ import quizz.model.Score;
 public class QuestionScreenView extends BrainStormingView {
 
     private int m_idQuizz;
-    private int m_numberOfGoodAnswers;
     private int m_currentQuestionNumber;
     private Timestamp m_startTime;
     private ArrayList<JCheckBox> m_checkboxList;
     private ArrayList<Question> m_questionsList;
     private ArrayList<Answer> m_answersList;
     private ArrayList<JLabel> m_circleButtonsList;
+    private ArrayList<HashMap<Integer, Boolean>> m_answersDictionary;
 
     public QuestionScreenView(MainFrame mainFrame, Quizz quizz) {
         super(mainFrame);
         initComponents();
         m_idQuizz = quizz.getId();
         m_startTime = new Timestamp(System.currentTimeMillis());
-        m_numberOfGoodAnswers = 0;
         m_currentQuestionNumber = 0;
         m_questionsList = Question.getQuestionsForQuizz(m_idQuizz);
+        m_answersDictionary = this.defineAnswersDictionary(m_questionsList.size());
         titleLabel.setText(quizz.getName());
         this.addCheckboxToList();
         this.reloadQuestion();
         this.createBottomCircleButtons(quizz.getNbQuest());
+    }
+
+    private ArrayList<HashMap<Integer, Boolean>> defineAnswersDictionary(int arrayLength) {
+        ArrayList<HashMap<Integer, Boolean>> answersDictionary = new ArrayList<>();
+        for (int i = 0; i < arrayLength; i++) {
+            HashMap<Integer, Boolean> dicoTemplate = new HashMap<>();
+            dicoTemplate.put(-1, false);
+            dicoTemplate.put(0, false);
+            dicoTemplate.put(1, false);
+            dicoTemplate.put(2, false);
+            dicoTemplate.put(3, false);
+            answersDictionary.add(dicoTemplate);
+        }
+        return answersDictionary;
     }
 
     private void addCheckboxToList() {
@@ -51,35 +66,13 @@ public class QuestionScreenView extends BrainStormingView {
         m_checkboxList.add(answerLabel4);
     }
 
-    private void reloadQuestion() {
-        Question question = m_questionsList.get(m_currentQuestionNumber);
-        questionLabel.setText(question.getLabel());
-        m_answersList = Answer.getAnswerForQuestion(question.getId());
-        this.hideAnswersCheckboxs();
-
-        for (int i = 0; i < m_answersList.size(); i++) {
-            m_checkboxList.get(i).setVisible(true);
-            m_checkboxList.get(i).setText(m_answersList.get(i).getLabel());
-        }
-    }
-
     private void hideAnswersCheckboxs() {
         for (int i = 0; i < m_checkboxList.size(); i++) {
             m_checkboxList.get(i).setVisible(false);
             m_checkboxList.get(i).setSelected(false);
         }
     }
-
-    private void reloadBottomCirleButtons() {
-        for (int i = 0; i < m_questionsList.size(); i++) {
-            if (i <= m_currentQuestionNumber) {
-                m_circleButtonsList.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
-            } else {
-                m_circleButtonsList.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
-            }
-        }
-    }
-
+    
     private void createBottomCircleButtons(int numberOfQuestions) {
         m_circleButtonsList = new ArrayList<>();
         int startPoint = (m_mainFrame.getWidth() - (numberOfQuestions * 20)) / 2;
@@ -95,20 +88,59 @@ public class QuestionScreenView extends BrainStormingView {
         }
     }
 
-    private void checkAnswers() {
-        boolean answerIsGood = false;
-        for (int i = 0; i < m_checkboxList.size(); i++) {
-            if (m_checkboxList.get(i).isSelected()) { 
-                answerIsGood = m_answersList.get(i).isValid();
+    private void reloadBottomCirleButtons() {
+        for (int i = 0; i < m_questionsList.size(); i++) {
+            if (i <= m_currentQuestionNumber) {
+                m_circleButtonsList.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+            } else {
+                m_circleButtonsList.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
             }
         }
-        if (answerIsGood) {
-            m_numberOfGoodAnswers++;
-        } else if (!answerIsGood && m_numberOfGoodAnswers > 0) {
-            m_numberOfGoodAnswers--;
+    }
+
+    private void checkAnswers() {
+        boolean answerIsGood = true;
+        int notSelectedNumber = 0;
+        for (int i = 0; i < m_answersList.size(); i++) {
+            if (m_checkboxList.get(i).isSelected()) {
+                m_answersDictionary.get(m_currentQuestionNumber).put(i, true);
+                if (!m_answersList.get(i).isValid()) {
+                    answerIsGood = false;
+                }
+            } else {
+                m_answersDictionary.get(m_currentQuestionNumber).put(i, false);
+                notSelectedNumber++;
+            }
         }
-        System.out.println("Nombre de reponses correctes : " + (m_numberOfGoodAnswers < 0 ? 0 : m_numberOfGoodAnswers) + "/" + m_questionsList.size());
-        System.out.println("Pourcentage : ");
+        if (answerIsGood && notSelectedNumber < m_answersList.size()) {
+            m_answersDictionary.get(m_currentQuestionNumber).put(-1, true);
+        } else {
+            m_answersDictionary.get(m_currentQuestionNumber).put(-1, false);
+        }
+        System.out.println("Nombre de reponses correctes : " + this.numberOfPoints() + "/" + m_questionsList.size());
+    }
+    
+    private void reloadQuestion() {
+        Question question = m_questionsList.get(m_currentQuestionNumber);
+        questionLabel.setText(question.getLabel());
+        m_answersList = Answer.getAnswerForQuestion(question.getId());
+        this.hideAnswersCheckboxs();
+
+        for (int i = 0; i < m_answersList.size(); i++) {
+            m_checkboxList.get(i).setVisible(true);
+            m_checkboxList.get(i).setText(m_answersList.get(i).getLabel());
+            m_checkboxList.get(i).setSelected(m_answersDictionary.get(m_currentQuestionNumber).get(i));
+        }
+    }
+    
+    private int numberOfPoints() {
+        int points = 0;
+        for (int i = 0; i < m_answersDictionary.size(); i++) {
+            if (m_answersDictionary.get(i).get(-1)) {
+                points++;
+            }
+        }
+        return points;
     }
 
     /**
@@ -229,20 +261,21 @@ public class QuestionScreenView extends BrainStormingView {
         if (m_currentQuestionNumber > 0) {
             m_currentQuestionNumber--;
             this.reloadQuestion();
+            this.checkAnswers();
             this.reloadBottomCirleButtons();
         }
     }//GEN-LAST:event_goToPrevious
 
     private void goToNextQuestion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goToNextQuestion
+        this.checkAnswers();
         if (m_currentQuestionNumber < m_questionsList.size() - 1) {
             m_currentQuestionNumber++;
-            this.checkAnswers();
             this.reloadQuestion();
             this.reloadBottomCirleButtons();
         } else {
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             long diffInMillis = currentTime.getTime() - m_startTime.getTime();
-            Score score = new Score(m_idQuizz, m_numberOfGoodAnswers, m_questionsList.size(), diffInMillis);
+            Score score = new Score(m_idQuizz, this.numberOfPoints(), m_questionsList.size(), diffInMillis);
             this.m_mainFrame.setScore(score);
             m_mainFrame.changeView(MainFrame.View.ResultsView);
         }
