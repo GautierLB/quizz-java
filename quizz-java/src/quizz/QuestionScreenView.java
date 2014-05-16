@@ -5,9 +5,16 @@
  */
 package quizz;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.text.SimpleAttributeSet;
@@ -152,12 +159,25 @@ public class QuestionScreenView extends BrainStormingView {
         SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
+        String path = question.getPicture();
+        if (path != null) {
+            try {
+                URL url = new URL(path);
+                BufferedImage image = ImageIO.read(url);
+                this.picture_label.setIcon(new ImageIcon(image));
+            } catch (IOException ex) {
+                Logger.getLogger(QuestionScreenView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            this.picture_label.setIcon(null);
+        }
         m_answersList = Answer.getAnswerForQuestion(question.getId());
         this.hideAnswersCheckboxs();
 
         for (int i = 0; i < m_answersList.size(); i++) {
             m_checkboxList.get(i).setVisible(true);
             m_checkboxList.get(i).setText(m_answersList.get(i).getLabel());
+
             m_checkboxList.get(i).setSelected(m_answersDictionary.get(m_currentQuestionNumber).get(i));
         }
     }
@@ -192,6 +212,7 @@ public class QuestionScreenView extends BrainStormingView {
         arrowRight = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
+        picture_label = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
         questionTextPane = new javax.swing.JTextPane();
 
@@ -262,6 +283,7 @@ public class QuestionScreenView extends BrainStormingView {
             }
         });
         add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 540, -1, -1));
+        add(picture_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 500, 200));
 
         jScrollPane.setBorder(null);
 
@@ -317,6 +339,7 @@ public class QuestionScreenView extends BrainStormingView {
     private javax.swing.JButton backButton;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel picture_label;
     private javax.swing.JLabel questionPicture;
     private javax.swing.JTextPane questionTextPane;
     private javax.swing.JLabel titleLabel;
