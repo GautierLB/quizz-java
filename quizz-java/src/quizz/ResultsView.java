@@ -119,7 +119,7 @@ public class ResultsView extends BrainStormingView {
             mainPanel.add(pourcentageValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
             mainPanel.add(scoreValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, -1, -1));
             mainPanel.add(rankingValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, -1));
-            mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
+            mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 240, -1, -1));
 
             add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
 

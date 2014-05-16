@@ -58,7 +58,7 @@ public class QuestionScreenView extends BrainStormingView {
         ArrayList<HashMap<Integer, Boolean>> answersDictionary = new ArrayList<>();
         for (int i = 0; i < arrayLength; i++) {
             HashMap<Integer, Boolean> dicoTemplate = new HashMap<>();
-            dicoTemplate.put(-2, true); // Si aucune reponse n'a ete selectionnee.
+            dicoTemplate.put(-2, null); // Si aucune reponse n'a ete selectionnee.
             dicoTemplate.put(-1, false); // Si la question est juste ou non.
             dicoTemplate.put(0, false);
             dicoTemplate.put(1, false);
@@ -106,22 +106,13 @@ public class QuestionScreenView extends BrainStormingView {
                     m_allQuestionsWasDisplayed = true;
                 }
                 m_circleButtonsList.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource(circleDashed)));
-            } else if (i > m_currentQuestionNumber && !m_allQuestionsWasDisplayed) {
+            } else if (m_answersDictionary.get(i).get(-2) == null && !m_allQuestionsWasDisplayed) {
                 m_circleButtonsList.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource(circleNew)));
             } else if (m_answersDictionary.get(i).get(-2)) {
                 m_circleButtonsList.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource(circleEmpty)));
             } else if (!m_answersDictionary.get(i).get(-2)) {
                 m_circleButtonsList.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource(circleFull)));
             }
-            /*if (i <= m_currentQuestionNumber) {
-             if (m_answersDictionary.get(i).get(-2)) {
-             m_circleButtonsList.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource(circleEmpty)));
-             } else {
-             m_circleButtonsList.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource(circleFull)));
-             }
-             } else {
-             m_circleButtonsList.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource(circleNew)));
-             }*/
         }
     }
 
@@ -142,7 +133,7 @@ public class QuestionScreenView extends BrainStormingView {
         
         if (answerIsGood && notSelectedNumber < m_answersList.size()) {
             m_answersDictionary.get(m_currentQuestionNumber).put(-1, true);
-            m_answersDictionary.get(m_currentQuestionNumber).put(-2, false); // A placer avant.
+            m_answersDictionary.get(m_currentQuestionNumber).put(-2, false);
         } else {
             m_answersDictionary.get(m_currentQuestionNumber).put(-1, false);
             if (notSelectedNumber == m_answersList.size()) {
@@ -283,6 +274,7 @@ public class QuestionScreenView extends BrainStormingView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void goToPrevious(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goToPrevious
+        this.checkAnswers();
         if (m_currentQuestionNumber > 0) {
             m_currentQuestionNumber--;
             this.reloadQuestion();
