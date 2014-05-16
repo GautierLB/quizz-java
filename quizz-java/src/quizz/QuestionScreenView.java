@@ -159,7 +159,24 @@ public class QuestionScreenView extends BrainStormingView {
         SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
-        String path = question.getPicture();
+        this.reloadPictureLabel(question);
+        m_answersList = Answer.getAnswerForQuestion(question.getId());
+        this.hideAnswersCheckboxs();
+
+        for (int i = 0; i < m_answersList.size(); i++) {
+            m_checkboxList.get(i).setVisible(true);
+            m_checkboxList.get(i).setText(m_answersList.get(i).getLabel());
+
+            m_checkboxList.get(i).setSelected(m_answersDictionary.get(m_currentQuestionNumber).get(i));
+        }
+    }
+    
+    /**
+     * Reload the picture label for each question
+     * @param actualQuestion the actual question
+     */
+    private void reloadPictureLabel(Question actualQuestion){
+        String path = actualQuestion.getPicture();
         if (path != null) {
             try {
                 URL url = new URL(path);
@@ -170,15 +187,6 @@ public class QuestionScreenView extends BrainStormingView {
             }
         } else {
             this.picture_label.setIcon(null);
-        }
-        m_answersList = Answer.getAnswerForQuestion(question.getId());
-        this.hideAnswersCheckboxs();
-
-        for (int i = 0; i < m_answersList.size(); i++) {
-            m_checkboxList.get(i).setVisible(true);
-            m_checkboxList.get(i).setText(m_answersList.get(i).getLabel());
-
-            m_checkboxList.get(i).setSelected(m_answersDictionary.get(m_currentQuestionNumber).get(i));
         }
     }
 
