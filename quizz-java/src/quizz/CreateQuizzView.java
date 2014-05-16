@@ -48,7 +48,7 @@ public class CreateQuizzView extends BrainStormingView {
         mainPanel = new RoundedPanel();
         paperIcon = new javax.swing.JLabel();
         flagIcon = new javax.swing.JLabel();
-        timeField = new javax.swing.JTextField();
+        minuteField = new javax.swing.JTextField();
         difficultySelector = new javax.swing.JComboBox();
         replayableIcon = new javax.swing.JLabel();
         nameField = new javax.swing.JTextField();
@@ -61,6 +61,9 @@ public class CreateQuizzView extends BrainStormingView {
         starIcon3 = new javax.swing.JLabel();
         starIcon1 = new javax.swing.JLabel();
         starIcon2 = new javax.swing.JLabel();
+        secondField = new javax.swing.JTextField();
+        minuteLabel = new javax.swing.JLabel();
+        secondLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         userLabel = new javax.swing.JLabel();
 
@@ -111,18 +114,18 @@ public class CreateQuizzView extends BrainStormingView {
         flagIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/flagIcon-25.png"))); // NOI18N
         mainPanel.add(flagIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
-        timeField.setFont(Main.s_openSans13);
-        timeField.setForeground(new java.awt.Color(102, 102, 102));
-        timeField.setText("Temps Maximum");
-        timeField.setMaximumSize(new java.awt.Dimension(150, 24));
-        timeField.setMinimumSize(new java.awt.Dimension(150, 24));
-        timeField.setPreferredSize(new java.awt.Dimension(150, 24));
-        timeField.addActionListener(new java.awt.event.ActionListener() {
+        minuteField.setFont(Main.s_openSans13);
+        minuteField.setForeground(new java.awt.Color(102, 102, 102));
+        minuteField.setText("Minute");
+        minuteField.setMaximumSize(new java.awt.Dimension(150, 24));
+        minuteField.setMinimumSize(new java.awt.Dimension(150, 24));
+        minuteField.setPreferredSize(new java.awt.Dimension(150, 24));
+        minuteField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timeFieldActionPerformed(evt);
+                minuteFieldActionPerformed(evt);
             }
         });
-        mainPanel.add(timeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
+        mainPanel.add(minuteField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 40, 30));
 
         difficultySelector.setFont(Main.s_openSans13);
         difficultySelector.setForeground(new java.awt.Color(102, 102, 102));
@@ -147,7 +150,7 @@ public class CreateQuizzView extends BrainStormingView {
 
         infoLabel.setFont(Main.s_openSans13);
         infoLabel.setText("Laisser vide si temps infini");
-        mainPanel.add(infoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
+        mainPanel.add(infoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, -1, -1));
 
         folderSelector.setForeground(new java.awt.Color(102, 102, 102));
         folderSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Thème 1", "Thème 2", "Thème 3" }));
@@ -188,6 +191,18 @@ public class CreateQuizzView extends BrainStormingView {
         starIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png"))); // NOI18N
         mainPanel.add(starIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, -1, -1));
 
+        secondField.setForeground(new java.awt.Color(102, 102, 102));
+        secondField.setText("second");
+        mainPanel.add(secondField, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 150, -1, 30));
+
+        minuteLabel.setForeground(new java.awt.Color(102, 102, 102));
+        minuteLabel.setText("Min");
+        mainPanel.add(minuteLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+
+        secondLabel.setForeground(new java.awt.Color(102, 102, 102));
+        secondLabel.setText("s");
+        mainPanel.add(secondLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 20, -1));
+
         add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
 
         backButton.setText("Retour");
@@ -212,9 +227,9 @@ public class CreateQuizzView extends BrainStormingView {
         getAccessibleContext().setAccessibleName("CreateQuizzPanel");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void timeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeFieldActionPerformed
+    private void minuteFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minuteFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_timeFieldActionPerformed
+    }//GEN-LAST:event_minuteFieldActionPerformed
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
         // TODO add your handling code here:
@@ -244,10 +259,12 @@ public class CreateQuizzView extends BrainStormingView {
                     dif = 3;
                     break;
             }
-            if (timeField.getText().equals("Temps Maximum") || timeField.getText() == null) {
+            if ((minuteField.getText().equals("Minute") || minuteField.getText().isEmpty()) 
+            && (secondField.getText().equals("Minute") || secondField.getText().isEmpty()) ) {
                 time = 0;
             } else {
-                time = Integer.parseInt(timeField.getText());
+                time = Integer.parseInt(minuteField.getText())*60000 + (Integer.parseInt(secondField.getText())*1000);
+                System.out.println("test temps : "+time);
             }
             Quizz newQuizz = new Quizz(idTheme, idAdmin, dif, time, replayableCheckbox.isSelected(), nameField.getText());
             this.m_mainFrame.setQuizz(newQuizz);
@@ -270,15 +287,18 @@ public class CreateQuizzView extends BrainStormingView {
     private javax.swing.JLabel infoLabel;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JTextField minuteField;
+    private javax.swing.JLabel minuteLabel;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel paperIcon;
     private javax.swing.JCheckBox replayableCheckbox;
     private javax.swing.JLabel replayableIcon;
+    private javax.swing.JTextField secondField;
+    private javax.swing.JLabel secondLabel;
     private javax.swing.JLabel starIcon1;
     private javax.swing.JLabel starIcon2;
     private javax.swing.JLabel starIcon3;
     private javax.swing.JLabel subtitleLabel;
-    private javax.swing.JTextField timeField;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
