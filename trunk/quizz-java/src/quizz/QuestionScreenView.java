@@ -5,6 +5,8 @@
  */
 package quizz;
 
+
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -177,11 +179,15 @@ public class QuestionScreenView extends BrainStormingView {
      */
     private void reloadPictureLabel(Question actualQuestion){
         String path = actualQuestion.getPicture();
-        if (path != null) {
+        System.out.println("resultat : "+path);
+        if (path != null && !path.isEmpty()) {
             try {
                 URL url = new URL(path);
                 BufferedImage image = ImageIO.read(url);
-                this.picture_label.setIcon(new ImageIcon(image));
+                //System.out.println("test : "+picture_label.getHeight());
+                
+                Image image2 = image.getScaledInstance(570, 220,Image.SCALE_SMOOTH);
+                this.picture_label.setIcon(new ImageIcon(image2));
             } catch (IOException ex) {
                 Logger.getLogger(QuestionScreenView.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -291,7 +297,7 @@ public class QuestionScreenView extends BrainStormingView {
             }
         });
         add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 540, -1, -1));
-        add(picture_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 500, 200));
+        add(picture_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 570, 220));
 
         jScrollPane.setBorder(null);
 
