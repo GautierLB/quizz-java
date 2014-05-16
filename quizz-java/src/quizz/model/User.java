@@ -8,6 +8,7 @@ public class User {
     public static final String TABLE_NAME = "BDD_B3I_groupe_3.dbo.[USER]";
     private static final String TABLE_ADMIN = "BDD_B3I_groupe_3.dbo.[ADMIN]";
     public static final String ID = "ID_USER";
+    public static final String ID_ADMIN = "ID_ADMIN";
     private static final String PSEUDO = "PSEUDO_USER";
     private static final String MDP = "MDP_USER";
     private static final String MAIL = "MAIL_USER";
@@ -76,7 +77,7 @@ public class User {
     static public User getUserByPseudo(String pseudo) {
         boolean isAdmin;
         ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect("*", User.TABLE_NAME, "where PSEUDO_USER LIKE '" + pseudo.replace("'", "''") + "'");
-        ArrayList<HashMap<String, Object>> userAdmin = DBController.Get().executeSelect(User.ID, User.TABLE_ADMIN, "where ID_ADMIN=" + (int) userList.get(0).get(User.ID));
+        ArrayList<HashMap<String, Object>> userAdmin = DBController.Get().executeSelect(User.ID_ADMIN, User.TABLE_ADMIN, "where ID_ADMIN=" + (int) userList.get(0).get(User.ID));
         if (userAdmin.isEmpty()) {//Si le liste userAdmin est vide alors l'utilisateur n'est pas administrateur
             isAdmin = false;
         } else {
