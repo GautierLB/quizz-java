@@ -37,6 +37,7 @@ public class ThemeScreenView extends BrainStormingView {
      * @param questionsNumber The number of questions in the quizz
      */
     private void createQuizzLine(Quizz quizzItem) {
+        final int lineWidth = 300;
         final Quizz quizz = quizzItem; // Necessary to swap views.
         if (m_numberOfLines < 18) {
             String[] starsIconTitle = new String[3];
@@ -85,7 +86,7 @@ public class ThemeScreenView extends BrainStormingView {
             line.add(starsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
             quizzLabel.setText(quizz.getName() + " [" + quizz.getNbQuest() + "Q]");
-            line.add(quizzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 162, 20));
+            line.add(quizzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, lineWidth, 20));
             line.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -94,7 +95,7 @@ public class ThemeScreenView extends BrainStormingView {
                 }
             });
             this.setVisible(true);
-            this.add(line, new org.netbeans.lib.awtextra.AbsoluteConstraints(m_numberOfLines > 8 ? 500 : 110, 130 + ((m_numberOfLines > 8 ? m_numberOfLines - 9 : m_numberOfLines) * 40), 162, 20));
+            this.add(line, new org.netbeans.lib.awtextra.AbsoluteConstraints(m_numberOfLines > 8 ? 500 : 110, 130 + ((m_numberOfLines > 8 ? m_numberOfLines - 9 : m_numberOfLines) * 40), lineWidth, 20));
             m_numberOfLines++;
         }
     }
