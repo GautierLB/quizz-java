@@ -72,7 +72,6 @@ public class SignInDialogPanel extends RoundedPanel {
 
         passwordTextBox.setFont(Main.s_openSans13);
         passwordTextBox.setForeground(new java.awt.Color(170, 170, 170));
-        passwordTextBox.setText("jTextField2");
         passwordTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         passwordTextBox.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -89,7 +88,6 @@ public class SignInDialogPanel extends RoundedPanel {
 
         confirmPasswordTextBox.setFont(Main.s_openSans13);
         confirmPasswordTextBox.setForeground(new java.awt.Color(170, 170, 170));
-        confirmPasswordTextBox.setText("jTextField2");
         confirmPasswordTextBox.setToolTipText("");
         confirmPasswordTextBox.setMaximumSize(new java.awt.Dimension(120, 10));
         confirmPasswordTextBox.setMinimumSize(new java.awt.Dimension(120, 5));
