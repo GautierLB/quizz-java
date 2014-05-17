@@ -16,4 +16,5 @@ public final class Constants {
     public static final String STAR_EMPTY = "starEmpty-20.png";
     public static final String HEART_FULL = "heartFull-20.png";
     public static final String HEART_EMPTY = "heartEmpty-20.png";
+    public static final String DELETE = "delete-20.png";
 }

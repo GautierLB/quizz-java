@@ -84,6 +84,7 @@ public class AdminScreenView extends BrainStormingView {
             JLabel star1 = new javax.swing.JLabel();
             JLabel star2 = new javax.swing.JLabel();
             JLabel star3 = new javax.swing.JLabel();
+            JLabel delete = new javax.swing.JLabel();
             JLabel quizzLabel = new javax.swing.JLabel();
 
             starsPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -115,20 +116,29 @@ public class AdminScreenView extends BrainStormingView {
             star1.setIcon(new javax.swing.ImageIcon(getClass().getResource(Constants.IMAGE_FOLDER + starsIconTitle[0])));
             star2.setIcon(new javax.swing.ImageIcon(getClass().getResource(Constants.IMAGE_FOLDER + starsIconTitle[1])));
             star3.setIcon(new javax.swing.ImageIcon(getClass().getResource(Constants.IMAGE_FOLDER + starsIconTitle[2])));
+            delete.setIcon(new javax.swing.ImageIcon(getClass().getResource(Constants.IMAGE_FOLDER + Constants.DELETE)));
 
             starsPanel.add(star1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
             starsPanel.add(star2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
             starsPanel.add(star3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
+            starsPanel.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, -1, -1));
 
             line.add(starsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
             quizzLabel.setText(quizz.getName() + " [" + quizz.getNbQuest() + "Q]");
-            line.add(quizzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, lineWidth, 20));
+            line.add(quizzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, lineWidth, 20));
             line.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     m_mainFrame.setQuizz(quizz);
                     m_mainFrame.changeView(MainFrame.View.QuizzDetailsView);
+                }
+            });
+            
+            delete.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    System.out.println("coucou");
                 }
             });
             this.setVisible(true);
