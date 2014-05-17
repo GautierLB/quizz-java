@@ -14,13 +14,15 @@ import quizz.model.Answer;
 public class ImagePanel extends javax.swing.JPanel {
 
     private CreateQuestionView owner;
-
+    private boolean response;
+    
     /**
      * Creates new form ImagePanel
      */
     public ImagePanel(Boolean response, CreateQuestionView _owner) {
         initComponents(response);
         this.owner = _owner;
+        this.response = response;
         circleColoration();
     }
 
@@ -56,66 +58,66 @@ public class ImagePanel extends javax.swing.JPanel {
      * color or not the circle
      */
     public void circleColoration() {
-        int goodAnswer[] = new int[4];
-        int nbGood = 0;
+        if (response) {
+            int goodAnswer[] = new int[4];
+            int nbGood = 0;
 
-        for (int i = 0; i < owner.answerList.size(); i++) {
-            if (owner.answerList.get(i).isValid()) {
-                goodAnswer[nbGood] = i;
-                nbGood++;
+            for (int i = 0; i < owner.answerList.size(); i++) {
+                if (owner.answerList.get(i).isValid()) {
+                    goodAnswer[nbGood] = i;
+                    nbGood++;
+                }
             }
-        }
 
-        switch (owner.answerList.size()) {
-            case 1:
-                firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
-                secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
-                thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
-                fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
-                break;
-            case 2:
-                firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
-                secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
-                thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
-                fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
-                break;
-            case 3:
-                firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
-                secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
-                thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
-                fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
-                break;
-            case 4:
-                firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
-                secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
-                thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
-                fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
-                break;
-        }
-        
-        
-        if(nbGood != 0){
-            for (int i = 0; i < nbGood; i++) {
-                switch(goodAnswer[i]){
-                    case 0:
-                        firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFullGreen-15.png")));
-                        break;
-                    case 1:
-                        secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFullGreen-15.png")));
-                        break;
-                    case 2:
-                        thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFullGreen-15.png")));
-                        break;
-                    case 3:
-                        fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFullGreen-15.png")));
-                        break;
+            switch (owner.answerList.size()) {
+                case 1:
+                    firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                    secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+                    thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+                    fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+                    break;
+                case 2:
+                    firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                    secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                    thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+                    fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+                    break;
+                case 3:
+                    firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                    secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                    thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                    fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleEmpty-15.png")));
+                    break;
+                case 4:
+                    firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                    secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                    thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                    fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFull-15.png")));
+                    break;
+            }
+
+            if (nbGood != 0) {
+                for (int i = 0; i < nbGood; i++) {
+                    switch (goodAnswer[i]) {
+                        case 0:
+                            firstCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFullGreen-15.png")));
+                            break;
+                        case 1:
+                            secondCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFullGreen-15.png")));
+                            break;
+                        case 2:
+                            thirdCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFullGreen-15.png")));
+                            break;
+                        case 3:
+                            fourthCircle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/circleFullGreen-15.png")));
+                            break;
+                    }
                 }
             }
         }
 
     }
 
-    
     private void firstCircleClick(java.awt.event.MouseEvent evt) {
         if (1 <= owner.answerList.size()) {
             owner.indexAnswer = 0;
@@ -139,14 +141,14 @@ public class ImagePanel extends javax.swing.JPanel {
                 usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             }
-        }else{
+        } else {
             urlTextbox.setText("");
         }
     }
 
     private void secondCircleClick(java.awt.event.MouseEvent evt) {
         if (2 <= owner.answerList.size()) {
-            owner.indexAnswer= 1;
+            owner.indexAnswer = 1;
             if (owner.answerList.get(owner.indexAnswer).getType().equals("Text")) {
                 owner.answerPanel = owner.setNewLayout(CreateQuestionView.Type.Answer, CreateQuestionView.Side.Right);
                 AnswerPanel usedPanel = (AnswerPanel) owner.answerPanel;
@@ -167,7 +169,7 @@ public class ImagePanel extends javax.swing.JPanel {
                 usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             }
-        }else{
+        } else {
             urlTextbox.setText("");
         }
     }
@@ -195,7 +197,7 @@ public class ImagePanel extends javax.swing.JPanel {
                 usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             }
-        }else{
+        } else {
             urlTextbox.setText("");
         }
     }
@@ -223,7 +225,7 @@ public class ImagePanel extends javax.swing.JPanel {
                 usedPanel.setChecked(owner.answerList.get(owner.indexAnswer).isValid());
                 owner.oldAnswer = true;
             }
-        }else{
+        } else {
             urlTextbox.setText("");
         }
     }
@@ -333,11 +335,11 @@ public class ImagePanel extends javax.swing.JPanel {
             }
         } else {
             Answer answerCreate = new Answer("", urlTextbox.getText(), GoodAnswer.isSelected());
-                answerCreate.setType("Image");
-                owner.answerList.set(owner.indexAnswer, answerCreate);
-                urlTextbox.setText("");
-                GoodAnswer.setSelected(false);
-                owner.indexAnswer++;
+            answerCreate.setType("Image");
+            owner.answerList.set(owner.indexAnswer, answerCreate);
+            urlTextbox.setText("");
+            GoodAnswer.setSelected(false);
+            owner.indexAnswer++;
             if (owner.indexAnswer >= owner.answerList.size()) {
                 owner.oldAnswer = false;
                 circleColoration();
