@@ -71,7 +71,7 @@ public class Question {
     }
     
     public void deleteQuestionInDB() {
-        DBController.Get().executeDelete(Question.TABLE_NAME, Answer.ID + " = " + this.m_id);
+        DBController.Get().executeDelete(Question.TABLE_NAME, Question.ID + " = " + this.m_id);
     }
 
     public int getId() {

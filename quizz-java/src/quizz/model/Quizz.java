@@ -131,7 +131,7 @@ public class Quizz {
     }
     
     public void deleteQuizzInDB() {
-        DBController.Get().executeDelete(Quizz.TABLE_NAME, Answer.ID + " = " + this.getId());
+        DBController.Get().executeDelete(Quizz.TABLE_NAME, Quizz.ID_QUIZZ+ " = " + this.getId());
     }
 
     public int getId() {
