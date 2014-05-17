@@ -8,7 +8,10 @@ package quizz;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import quizz.model.Answer;
+import quizz.model.Question;
 import quizz.model.Quizz;
+import quizz.model.QuizzManager;
 import quizz.model.User;
 
 /**
@@ -132,11 +135,24 @@ public class AdminScreenView extends BrainStormingView {
             m_numberOfLines++;
         }
     }
+    
     private void backButton1backAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1backAction
-        // TODO add your handling code here:
+        m_mainFrame.changeView(MainFrame.View.MainScreenView);
     }//GEN-LAST:event_backButton1backAction
 
-
+    public void deleteAQuizz(Quizz quizz){
+        ArrayList<ArrayList<Answer>> answerListFinal = new ArrayList<ArrayList<Answer>>();
+        ArrayList<Question> questions = Question.getQuestionsForQuizz(quizz.getId());
+        for(int i=0 ; i<questions.size(); i++){
+            answerListFinal.add(Answer.getAnswerForQuestion(questions.get(i).getId()));
+        }
+        for(int i=0;i<questions.size();i++){
+                QuizzManager.deleteLinkAnswerToQuestion(questions.get(i),answerListFinal.get(i));
+                QuizzManager.deleteLinkQuestionToQuizz(quizz, questions);
+        }
+        quizz.deleteQuizzInDB();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton1;
     private javax.swing.JSeparator centralSeparator1;

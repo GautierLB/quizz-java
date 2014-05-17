@@ -69,6 +69,10 @@ public class Question {
                 "'" + this.m_labelQuestion.replace("'", "''") + "','" + this.m_pictureQuestion + "'");
         return this.m_id;
     }
+    
+    public void deleteQuestionInDB() {
+        DBController.Get().executeDelete(Question.TABLE_NAME, Answer.ID + " = " + this.m_id);
+    }
 
     public int getId() {
         return this.m_id;

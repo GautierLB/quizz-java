@@ -129,6 +129,10 @@ public class Quizz {
                 + this.m_nameQuizz.replace("'", "''") + "'");
         return this.m_idQuizz;
     }
+    
+    public void deleteQuizzInDB() {
+        DBController.Get().executeDelete(Quizz.TABLE_NAME, Answer.ID + " = " + this.getId());
+    }
 
     public int getId() {
         return this.m_idQuizz;
