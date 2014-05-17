@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -46,6 +48,7 @@ public class QuestionScreenView extends BrainStormingView {
     private Timer m_timer;
     private long m_timeInMillisecondes;
     private ArrayList<JCheckBox> m_checkboxList;
+    private ArrayList<JLabel> m_answersImagesList;
     private ArrayList<Question> m_questionsList;
     private ArrayList<Answer> m_answersList;
     private ArrayList<JLabel> m_circleButtonsList;
@@ -59,10 +62,12 @@ public class QuestionScreenView extends BrainStormingView {
         m_startTime = new Timestamp(System.currentTimeMillis());
         m_currentQuestionNumber = 0;
         m_questionsList = Question.getQuestionsForQuizz(m_idQuizz);
+        this.shuffleQuestions();
         m_allQuestionsWasDisplayed = false;
         m_answersDictionary = this.defineAnswersDictionary(m_questionsList.size());
         titleLabel.setText(quizz.getName());
         this.addCheckboxToList();
+        this.addAnswersImagesToList();
         this.reloadQuestion();
         this.createBottomCircleButtons(quizz.getNbQuest());
     }
@@ -114,10 +119,35 @@ public class QuestionScreenView extends BrainStormingView {
         m_checkboxList.add(answerLabel4);
     }
 
-    private void hideAnswersCheckboxs() {
+    private void addAnswersImagesToList() {
+        m_answersImagesList = new ArrayList<>();
+        m_answersImagesList.add(imageLabel1);
+        m_answersImagesList.add(imageLabel2);
+        m_answersImagesList.add(imageLabel3);
+        m_answersImagesList.add(imageLabel4);
+    }
+
+    private void addAnswerImageListener(JLabel label, final String questionImageLink, final String answerImageLink) {
+        label.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reloadPictureLabel(answerImageLink);
+                Timer timer = new Timer();
+                timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        reloadPictureLabel(questionImageLink);
+                    }
+                }, 3000, 3000);
+            }
+        });
+    }
+
+    private void hideAnswersCheckboxsAndImages() {
         for (int i = 0; i < m_checkboxList.size(); i++) {
             m_checkboxList.get(i).setVisible(false);
             m_checkboxList.get(i).setSelected(false);
+            m_answersImagesList.get(i).setVisible(false);
         }
     }
 
@@ -182,6 +212,11 @@ public class QuestionScreenView extends BrainStormingView {
         System.out.println("Nombre de reponses correctes : " + this.numberOfPoints() + "/" + m_questionsList.size());
     }
 
+    private void shuffleQuestions() {
+        long seed = System.nanoTime();
+        Collections.shuffle(m_questionsList, new Random(seed));
+    }
+
     private void reloadQuestion() {
         Question question = m_questionsList.get(m_currentQuestionNumber);
         questionTextPane.setText(question.getLabel());
@@ -189,15 +224,18 @@ public class QuestionScreenView extends BrainStormingView {
         SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
-        this.reloadPictureLabel(question);
+        this.reloadPictureLabel(question.getPicture());
         m_answersList = Answer.getAnswerForQuestion(question.getId());
-        this.hideAnswersCheckboxs();
+        this.hideAnswersCheckboxsAndImages();
 
         for (int i = 0; i < m_answersList.size(); i++) {
             m_checkboxList.get(i).setVisible(true);
             m_checkboxList.get(i).setText(m_answersList.get(i).getLabel());
-
             m_checkboxList.get(i).setSelected(m_answersDictionary.get(m_currentQuestionNumber).get(i));
+            if (m_answersList.get(i).getPicture() != null) {
+                m_answersImagesList.get(i).setVisible(true);
+                this.addAnswerImageListener(m_answersImagesList.get(i), question.getPicture(), m_answersList.get(i).getPicture());
+            }
         }
     }
 
@@ -206,8 +244,7 @@ public class QuestionScreenView extends BrainStormingView {
      *
      * @param actualQuestion the actual question
      */
-    private void reloadPictureLabel(Question actualQuestion) {
-        String path = actualQuestion.getPicture();
+    private void reloadPictureLabel(final String path) {
         if (path != null && !path.isEmpty()) {
             try {
                 URL url = new URL(path);
@@ -233,8 +270,8 @@ public class QuestionScreenView extends BrainStormingView {
 
     private void goToResultsView() {
         Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-        long diffInMillis = currentTime.getTime() - m_startTime.getTime();       
-        Score score = new Score(m_idQuizz, this.numberOfPoints(), m_questionsList.size(), diffInMillis , Score.getClassementForAQuizz(m_idQuizz,this.numberOfPoints()),Main.idPseudo);
+        long diffInMillis = currentTime.getTime() - m_startTime.getTime();
+        Score score = new Score(m_idQuizz, this.numberOfPoints(), m_questionsList.size(), diffInMillis, Score.getClassementForAQuizz(m_idQuizz, this.numberOfPoints()), Main.idPseudo);
         this.m_mainFrame.setScore(score);
         m_mainFrame.changeView(MainFrame.View.ResultsView);
     }
@@ -250,10 +287,10 @@ public class QuestionScreenView extends BrainStormingView {
 
         jSeparator1 = new javax.swing.JSeparator();
         titleLabel = new javax.swing.JLabel();
-        answerLabel4 = new javax.swing.JCheckBox();
         answerLabel1 = new javax.swing.JCheckBox();
         answerLabel2 = new javax.swing.JCheckBox();
         answerLabel3 = new javax.swing.JCheckBox();
+        answerLabel4 = new javax.swing.JCheckBox();
         arrowLeft = new javax.swing.JLabel();
         arrowRight = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
@@ -262,6 +299,10 @@ public class QuestionScreenView extends BrainStormingView {
         jScrollPane = new javax.swing.JScrollPane();
         questionTextPane = new javax.swing.JTextPane();
         timerLabel = new javax.swing.JLabel();
+        imageLabel1 = new javax.swing.JLabel();
+        imageLabel2 = new javax.swing.JLabel();
+        imageLabel3 = new javax.swing.JLabel();
+        imageLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -281,9 +322,6 @@ public class QuestionScreenView extends BrainStormingView {
         titleLabel.setText("Créer un Quizz");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 5, 220, -1));
 
-        answerLabel4.setLabel("Réponse 4");
-        add(answerLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 400, -1));
-
         answerLabel1.setLabel("Réponse 1");
         add(answerLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 400, -1));
 
@@ -292,6 +330,9 @@ public class QuestionScreenView extends BrainStormingView {
 
         answerLabel3.setLabel("Réponse 3");
         add(answerLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 400, -1));
+
+        answerLabel4.setLabel("Réponse 4");
+        add(answerLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 400, -1));
 
         arrowLeft.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/arrowLeft-60.png"))); // NOI18N
         arrowLeft.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -343,6 +384,22 @@ public class QuestionScreenView extends BrainStormingView {
         timerLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/time-25.png"))); // NOI18N
         timerLabel.setText("Timer");
         add(timerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 5, 110, -1));
+
+        imageLabel1.setForeground(new java.awt.Color(0, 0, 255));
+        imageLabel1.setText("> Image <");
+        add(imageLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, 23));
+
+        imageLabel2.setForeground(new java.awt.Color(0, 0, 255));
+        imageLabel2.setText("> Image <");
+        add(imageLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, -1, 23));
+
+        imageLabel3.setForeground(new java.awt.Color(0, 0, 255));
+        imageLabel3.setText("> Image <");
+        add(imageLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, -1, 23));
+
+        imageLabel4.setForeground(new java.awt.Color(0, 0, 255));
+        imageLabel4.setText("> Image <");
+        add(imageLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 470, -1, 23));
     }// </editor-fold>//GEN-END:initComponents
 
     private void goToPrevious(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goToPrevious
@@ -383,6 +440,10 @@ public class QuestionScreenView extends BrainStormingView {
     private javax.swing.JLabel arrowLeft;
     private javax.swing.JLabel arrowRight;
     private javax.swing.JButton backButton;
+    private javax.swing.JLabel imageLabel1;
+    private javax.swing.JLabel imageLabel2;
+    private javax.swing.JLabel imageLabel3;
+    private javax.swing.JLabel imageLabel4;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel picture_label;
