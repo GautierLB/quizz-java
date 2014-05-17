@@ -85,6 +85,8 @@ public class Quizz {
         }
         return quizzList;
     }
+    
+    
 
     /**
      * Save the Quiz in the database
