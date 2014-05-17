@@ -122,11 +122,11 @@ public class Score {
 
     public void updateTheScore(){
         DBController.Get().executeUpdate(Score.TABLE_NAME, Score.SCORE, Integer.toString(this.getScore()),
-                Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getM_idUser());
+                Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getIdUser());
         DBController.Get().executeUpdate(Score.TABLE_NAME, Score.NB_GOOD_ANSWERS, Integer.toString(this.m_numberOfGoodAnswers),
-                Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getM_idUser());
+                Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getIdUser());
         DBController.Get().executeUpdate(Score.TABLE_NAME, Score.TIME, Long.toString(this.m_time),
-                Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getM_idUser());
+                Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getIdUser());
     }
 
     public static Score getGlobalScore(int idUser) {
@@ -243,14 +243,14 @@ public class Score {
     /**
      * @return the m_classement
      */
-    public int getM_classement() {
+    public int getClassement() {
         return m_classement;
 }
 
     /**
      * @return the m_idUser
      */
-    public int getM_idUser() {
+    public int getIdUser() {
         return m_idUser;
     }
 

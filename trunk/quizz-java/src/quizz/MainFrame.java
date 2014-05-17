@@ -233,7 +233,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     private void displayResultsScreen() {
         m_activeView = "ResultsView";
-        ResultsView resultScreen = new ResultsView(this, m_score);
+        ResultsView resultScreen = new ResultsView(this, this.m_score);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, resultScreen);
     }
