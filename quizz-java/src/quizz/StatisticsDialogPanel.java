@@ -30,7 +30,7 @@ public class StatisticsDialogPanel extends RoundedPanel {
         long secondes = (score.getTime() / 1000) % 60;
         long minutes = ((score.getTime() / 1000) / 60) % 60;
         long heures = (score.getTime() / 1000) / 3600;
-        this.timeValueLabel.setText(heures + " heures " + minutes + " minutes et " + secondes + " secondes.");
+        this.timeValueLabel.setText(heures + " heures " + minutes + " minutes et " + secondes + " secondes");
         this.nbQuizzValueLabel.setText(Integer.toString(score.getNbQuizz()));
         this.pourcentageValueLabel.setText(Integer.toString(score.goodAnswersPourcentage()));
     }
@@ -74,50 +74,53 @@ public class StatisticsDialogPanel extends RoundedPanel {
 
         goodAnswersLabel.setFont(Main.s_openSans13);
         goodAnswersLabel.setText("Bonnes réponses");
-        mainPanel.add(goodAnswersLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
+        mainPanel.add(goodAnswersLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
 
         pourcentageLabel.setFont(Main.s_openSans13);
         pourcentageLabel.setText("Pourcentage");
-        mainPanel.add(pourcentageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
+        mainPanel.add(pourcentageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
         scoreLabel.setFont(Main.s_openSans13);
         scoreLabel.setText("Score");
-        mainPanel.add(scoreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
+        mainPanel.add(scoreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, -1));
 
         rankingLabel.setFont(Main.s_openSans13);
         rankingLabel.setText("Classement");
-        mainPanel.add(rankingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
+        mainPanel.add(rankingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
 
         timeLabel.setFont(Main.s_openSans13);
         timeLabel.setText("Temps");
-        mainPanel.add(timeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
+        mainPanel.add(timeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
 
         subtitleLabel.setFont(Main.s_openSansTitle);
         subtitleLabel.setText("Résultat");
         mainPanel.add(subtitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        mainPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, 220));
-        mainPanel.add(goodAnswersValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, -1, -1));
-        mainPanel.add(pourcentageValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
-        mainPanel.add(scoreValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, -1, -1));
-        mainPanel.add(rankingValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, -1));
-        mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
+        mainPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, 220));
+        mainPanel.add(goodAnswersValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
+        mainPanel.add(pourcentageValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
+        mainPanel.add(scoreValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, -1, -1));
+        mainPanel.add(rankingValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
+        mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
 
         nbQuizzsLabel.setFont(Main.s_openSans13);
         nbQuizzsLabel.setText("Quizzs effectués");
-        mainPanel.add(nbQuizzsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, -1));
-        mainPanel.add(nbQuizzValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, -1, -1));
+        mainPanel.add(nbQuizzsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
+        mainPanel.add(nbQuizzValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
 
         btDeconnexion.setText("Deconnexion");
+        btDeconnexion.setMaximumSize(new java.awt.Dimension(120, 25));
+        btDeconnexion.setMinimumSize(new java.awt.Dimension(120, 25));
+        btDeconnexion.setPreferredSize(new java.awt.Dimension(120, 25));
         btDeconnexion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btDeconnexionMouseClicked(evt);
             }
         });
-        mainPanel.add(btDeconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
+        mainPanel.add(btDeconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, -1));
 
-        add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 330));
+        add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 360));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btDeconnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btDeconnexionMouseClicked
