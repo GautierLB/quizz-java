@@ -5,7 +5,6 @@
  */
 package quizz;
 
-
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -13,6 +12,8 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -42,6 +43,8 @@ public class QuestionScreenView extends BrainStormingView {
     private int m_idQuizz;
     private int m_currentQuestionNumber;
     private Timestamp m_startTime;
+    private Timer m_timer;
+    private long m_timeInMillisecondes;
     private ArrayList<JCheckBox> m_checkboxList;
     private ArrayList<Question> m_questionsList;
     private ArrayList<Answer> m_answersList;
@@ -51,6 +54,7 @@ public class QuestionScreenView extends BrainStormingView {
     public QuestionScreenView(MainFrame mainFrame, Quizz quizz) {
         super(mainFrame);
         initComponents();
+        this.initializeTimer(quizz.getTimeMax());
         m_idQuizz = quizz.getId();
         m_startTime = new Timestamp(System.currentTimeMillis());
         m_currentQuestionNumber = 0;
@@ -61,6 +65,30 @@ public class QuestionScreenView extends BrainStormingView {
         this.addCheckboxToList();
         this.reloadQuestion();
         this.createBottomCircleButtons(quizz.getNbQuest());
+    }
+
+    private void initializeTimer(long time) {
+        if (time > 1000) {
+            m_timeInMillisecondes = time;
+            m_timer = new Timer();
+            m_timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    m_timeInMillisecondes--;
+                    long secondes = (m_timeInMillisecondes / 1000) % 60;
+                    long minutes = ((m_timeInMillisecondes / 1000) / 60) % 60;
+                    //long heures = (m_timeInMillisecondes / 1000) / 3600;
+                    timerLabel.setText((minutes < 10 ? ("0" + minutes) : minutes) + ":" + (secondes < 10 ? ("0" + secondes) : secondes) + "");
+                    if (m_timeInMillisecondes == 0) {
+                        m_timer.cancel();
+                        m_timer.purge();
+                        goToResultsView();
+                    }
+                }
+            }, 0, 1);
+        } else {
+            timerLabel.setVisible(false);
+        }
     }
 
     private ArrayList<HashMap<Integer, Boolean>> defineAnswersDictionary(int arrayLength) {
@@ -139,7 +167,7 @@ public class QuestionScreenView extends BrainStormingView {
                 notSelectedNumber++;
             }
         }
-        
+
         if (answerIsGood && notSelectedNumber < m_answersList.size()) {
             m_answersDictionary.get(m_currentQuestionNumber).put(-1, true);
             m_answersDictionary.get(m_currentQuestionNumber).put(-2, false);
@@ -172,22 +200,20 @@ public class QuestionScreenView extends BrainStormingView {
             m_checkboxList.get(i).setSelected(m_answersDictionary.get(m_currentQuestionNumber).get(i));
         }
     }
-    
+
     /**
      * Reload the picture label for each question
+     *
      * @param actualQuestion the actual question
      */
-    private void reloadPictureLabel(Question actualQuestion){
+    private void reloadPictureLabel(Question actualQuestion) {
         String path = actualQuestion.getPicture();
-        System.out.println("resultat : "+path);
+        System.out.println("resultat : " + path);
         if (path != null && !path.isEmpty()) {
             try {
                 URL url = new URL(path);
                 BufferedImage image = ImageIO.read(url);
-                //System.out.println("test : "+picture_label.getHeight());
-                
-                Image image2 = image.getScaledInstance(570, 220,Image.SCALE_SMOOTH);
-                this.picture_label.setIcon(new ImageIcon(image2));
+                this.picture_label.setIcon(new ImageIcon(image));
             } catch (IOException ex) {
                 Logger.getLogger(QuestionScreenView.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -206,6 +232,14 @@ public class QuestionScreenView extends BrainStormingView {
         return points;
     }
 
+    private void goToResultsView() {
+        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+        long diffInMillis = currentTime.getTime() - m_startTime.getTime();
+        Score score = new Score(m_idQuizz, this.numberOfPoints(), m_questionsList.size(), diffInMillis);
+        this.m_mainFrame.setScore(score);
+        m_mainFrame.changeView(MainFrame.View.ResultsView);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -217,7 +251,6 @@ public class QuestionScreenView extends BrainStormingView {
 
         jSeparator1 = new javax.swing.JSeparator();
         titleLabel = new javax.swing.JLabel();
-        questionPicture = new javax.swing.JLabel();
         answerLabel4 = new javax.swing.JCheckBox();
         answerLabel1 = new javax.swing.JCheckBox();
         answerLabel2 = new javax.swing.JCheckBox();
@@ -229,6 +262,7 @@ public class QuestionScreenView extends BrainStormingView {
         picture_label = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
         questionTextPane = new javax.swing.JTextPane();
+        timerLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -247,9 +281,6 @@ public class QuestionScreenView extends BrainStormingView {
         titleLabel.setForeground(new java.awt.Color(40, 40, 40));
         titleLabel.setText("Créer un Quizz");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 5, 220, -1));
-
-        questionPicture.setToolTipText("");
-        add(questionPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 220, 120));
 
         answerLabel4.setLabel("Réponse 4");
         add(answerLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 400, -1));
@@ -297,7 +328,7 @@ public class QuestionScreenView extends BrainStormingView {
             }
         });
         add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 540, -1, -1));
-        add(picture_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 570, 220));
+        add(picture_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 570, 220));
 
         jScrollPane.setBorder(null);
 
@@ -307,6 +338,12 @@ public class QuestionScreenView extends BrainStormingView {
         jScrollPane.setViewportView(questionTextPane);
 
         add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 285, 500, 40));
+
+        timerLabel.setFont(Main.s_openSansTitle);
+        timerLabel.setForeground(new java.awt.Color(40, 40, 40));
+        timerLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/time-25.png"))); // NOI18N
+        timerLabel.setText("Timer");
+        add(timerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 5, 110, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void goToPrevious(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goToPrevious
@@ -326,11 +363,7 @@ public class QuestionScreenView extends BrainStormingView {
             this.reloadQuestion();
             this.reloadBottomCirleButtons();
         } else {
-            Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-            long diffInMillis = currentTime.getTime() - m_startTime.getTime();
-            Score score = new Score(m_idQuizz, this.numberOfPoints(), m_questionsList.size(), diffInMillis);
-            this.m_mainFrame.setScore(score);
-            m_mainFrame.changeView(MainFrame.View.ResultsView);
+            this.goToResultsView();
         }
     }//GEN-LAST:event_goToNextQuestion
 
@@ -354,8 +387,8 @@ public class QuestionScreenView extends BrainStormingView {
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel picture_label;
-    private javax.swing.JLabel questionPicture;
     private javax.swing.JTextPane questionTextPane;
+    private javax.swing.JLabel timerLabel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
