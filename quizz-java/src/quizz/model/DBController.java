@@ -119,4 +119,14 @@ public class DBController {
         }
         return key;
     }
+    
+    public void executeDelete(String table , String condition){
+        try {
+            String SQL = "DELETE FROM "+table+" WHERE "+condition;
+            Statement request = this.connectDB().createStatement();
+            request.executeUpdate(SQL);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

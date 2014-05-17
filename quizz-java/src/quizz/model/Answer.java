@@ -10,6 +10,7 @@ public class Answer {
     public static final String LABEL = "LABEL_ANSWERS";
     public static final String PICTURE = "PICTURE_ANSWERS";
     public static final String IS_VALID = "IS_VALID";
+    private int m_idAnswer;
     private String m_labelAnswer;
     private String m_pictureAnswer;
     private Boolean m_isValid;
@@ -42,6 +43,7 @@ public class Answer {
             Answer answer = new Answer((String) answerListFromDB.get(i).get(Answer.LABEL),
                     (String) answerListFromDB.get(i).get(Answer.PICTURE),
                     (Boolean) answerListFromDB.get(i).get(Answer.IS_VALID));
+            answer.setIdAnswer((int) answerListFromDB.get(i).get(Answer.ID));
             answersForQuestion.add(answer);
         }
         return answersForQuestion;
@@ -60,8 +62,13 @@ public class Answer {
                 + "','" + this.m_isValid + "'");
     }
 
+    public void deleteAnswerInDB() {
+        DBController.Get().executeDelete(Answer.TABLE_NAME, Answer.ID + " = " + this.m_idAnswer);
+    }
+
     /**
      * get the text of the answer
+     *
      * @return a String
      */
     public String getLabel() {
@@ -70,6 +77,7 @@ public class Answer {
 
     /**
      * get the URL for the picture of the answer
+     *
      * @return a String
      */
     public String getPicture() {
@@ -78,6 +86,7 @@ public class Answer {
 
     /**
      * get a boolean how determinate if the answer is corect or not
+     *
      * @return boolean
      */
     public boolean isValid() {
@@ -86,6 +95,7 @@ public class Answer {
 
     /**
      * get the type of an answer for the creation or modification
+     *
      * @return a String
      */
     public String getType() {
@@ -94,9 +104,24 @@ public class Answer {
 
     /**
      * set the type of an answer for the creation or modification
+     *
      * @param theType a string ("Text" or "Image" or "Both")
      */
     public void setType(String theType) {
         this.m_type = theType;
+    }
+
+    /**
+     * @return the m_idAnswer
+     */
+    public int getIdAnswer() {
+        return m_idAnswer;
+    }
+
+    /**
+     * @param m_idAnswer the m_idAnswer to set
+     */
+    public void setIdAnswer(int m_idAnswer) {
+        this.m_idAnswer = m_idAnswer;
     }
 }
