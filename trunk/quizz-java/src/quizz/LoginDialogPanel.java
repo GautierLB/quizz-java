@@ -157,7 +157,6 @@ public class LoginDialogPanel extends RoundedPanel {
             autenth = User.controlLogin(this.pseudoTextBox.getText(), this.passwordTextBox.getText());
             if (autenth) {                
                 Main.userPseudo = this.pseudoTextBox.getText();
-                System.out.println(" test Id : "+Main.idPseudo);
                 this.m_mainFrame.deleteModal();
             } else {
                 
