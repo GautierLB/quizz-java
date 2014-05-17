@@ -201,7 +201,12 @@ public class SignInDialogPanel extends RoundedPanel {
         }
         if (this.confirmPasswordTextBox.getText().isEmpty()) {
             this.confirmPasswordErrors.setText("Confirmez votre mot de passe");
+            
             error = false;
+        }
+        if(!this.confirmPasswordTextBox.getText().equals(this.passwordTextBox.getText())){
+                error = false;
+                this.confirmPasswordErrors.setText("MDP non identique");
         }
         if (this.emailTextBox.getText().isEmpty()) {
             this.emailErrors.setText("Email manquant!");
