@@ -153,6 +153,11 @@ public class CreateQuizzView extends BrainStormingView {
                 nameFieldActionPerformed(evt);
             }
         });
+        nameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nameFieldFocusGained(evt);
+            }
+        });
         mainPanel.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
 
         infoLabel.setFont(Main.s_openSans13);
@@ -206,7 +211,7 @@ public class CreateQuizzView extends BrainStormingView {
         mainPanel.add(minuteLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
         secondLabel.setForeground(new java.awt.Color(102, 102, 102));
-        secondLabel.setText("sec");
+        secondLabel.setText("Sec");
         mainPanel.add(secondLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 30, -1));
 
         add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
@@ -305,6 +310,10 @@ public class CreateQuizzView extends BrainStormingView {
             }
         }
     }//GEN-LAST:event_difficultySelectorItemStateChanged
+
+    private void nameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFieldFocusGained
+        this.nameField.setText("");
+    }//GEN-LAST:event_nameFieldFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
