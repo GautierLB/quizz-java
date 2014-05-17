@@ -31,8 +31,8 @@ public class ResultsView extends BrainStormingView {
         this.rankingValueLabel.setText(Integer.toString(5));
         long secondes = (score.getTime() / 1000) % 60;
         long minutes = ((score.getTime() / 1000) / 60) % 60;
-        long heures = (score.getTime() / 1000) / 3600;
-        this.timeValueLabel.setText(heures + " heures " + minutes + " minutes et " + secondes + " secondes.");
+        //long heures = (score.getTime() / 1000) / 3600;
+        this.timeValueLabel.setText(minutes + " minutes et " + secondes + " secondes");
         if (Main.userPseudo != "User") {
             this.saveScore();
         }
@@ -119,7 +119,7 @@ public class ResultsView extends BrainStormingView {
             mainPanel.add(pourcentageValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
             mainPanel.add(scoreValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, -1, -1));
             mainPanel.add(rankingValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, -1));
-            mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 240, -1, -1));
+            mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
 
             add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
 
