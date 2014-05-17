@@ -100,7 +100,7 @@ public class Quizz {
                 + this.m_difficultyQuizz + ","
                 + this.m_timeMaxQuizz + ",'"
                 + this.m_retryQuizz + "','"
-                + this.m_nameQuizz + "'");
+                + this.m_nameQuizz.replace("'", "''") + "'");
         return this.m_idQuizz;
     }
 
