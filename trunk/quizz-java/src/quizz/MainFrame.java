@@ -247,7 +247,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, resultScreen);
     }
-    
+
     /**
      * Permet d'afficher la vue QuizzDetails.
      */
@@ -262,10 +262,11 @@ public class MainFrame extends javax.swing.JFrame {
      * Permet D'afficher le panel de login
      */
     private void displayLoginPanel() {
-        if (Main.userPseudo != "User") {
+
+        if (Main.userPseudo != "User" && this.m_statsDialog == null) {
             m_statsDialog = new StatisticsDialog(this, Score.getGlobalScore(User.getUserByPseudo(Main.userPseudo).getIdUser()));
             m_statsDialog.setVisible(true);
-        } else {
+        } else if (this.m_loginDlg == null && this.m_statsDialog == null) {
             m_loginDlg = new LoginDialog(this);
             m_loginDlg.setVisible(true);
         }
@@ -275,13 +276,14 @@ public class MainFrame extends javax.swing.JFrame {
      * Permet D'afficher le panel d'inscription
      */
     private void displaySignInPanel() {
-        m_signInDlg = new SignInDialog(this);
-        m_signInDlg.setVisible(true);
+        if (this.m_signInDlg == null) {
+            m_signInDlg = new SignInDialog(this);
+            m_signInDlg.setVisible(true);
+        }
     }
-
-    /**
-     * Supprime toutes les fenêtres modales
-     */
+        /**
+         * Supprime toutes les fenêtres modales
+         */
     public void deleteModal() {
         if (m_loginDlg != null) {
             m_loginDlg.setVisible(false);

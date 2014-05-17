@@ -130,7 +130,7 @@ public class Score {
     }
 
     public static Score getGlobalScore(int idUser) {
-        ArrayList<HashMap<String, Object>> scoreListBdd = DBController.Get().executeSelect("*", "scoring", "");
+        ArrayList<HashMap<String, Object>> scoreListBdd = DBController.Get().executeSelect("*", "scoring", "WHERE " + Score.USER + " = " + idUser);
         ArrayList<HashMap<String, Object>> quizzListBdd = DBController.Get().executeSelect("COUNT(Q." + Quizz.ID_QUIZZ + ")",
                 Quizz.TABLE_NAME + " Q , " + Score.TABLE_NAME + "  S , " + User.TABLE_NAME + " U",
                 "WHERE Q." + Quizz.ID_QUIZZ + " = S." + Score.QUIZZ + " AND "

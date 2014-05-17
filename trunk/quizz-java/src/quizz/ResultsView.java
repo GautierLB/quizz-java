@@ -26,6 +26,7 @@ public class ResultsView extends BrainStormingView {
     public ResultsView(MainFrame main, Score score) {
         super(main);
         initComponents();
+        m_score = score;
         if (Main.userPseudo != "User" && Score.isAlreadyPlayed(score.getIdQuizz(), Main.idPseudo)) {
             score.updateTheScore();
         } else if (Main.userPseudo != "User") {
