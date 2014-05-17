@@ -12,6 +12,7 @@ import quizz.model.Answer;
 import quizz.model.Question;
 import quizz.model.Quizz;
 import quizz.model.QuizzManager;
+import quizz.model.Score;
 import quizz.model.User;
 
 /**
@@ -151,6 +152,7 @@ public class AdminScreenView extends BrainStormingView {
                 QuizzManager.deleteLinkQuestionToQuizz(quizz, questions);
         }
         quizz.deleteQuizzInDB();
+        Score.deleteScoreForAQuizz(quizz.getId());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

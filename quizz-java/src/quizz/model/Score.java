@@ -97,6 +97,10 @@ public class Score {
                 + "," + this.getTime());
 
     }
+    
+   public static void deleteScoreForAQuizz(int idQuizz){
+       DBController.Get().executeDelete(Score.TABLE_NAME, Quizz.ID_QUIZZ+" = "+idQuizz);
+   }
 
     static public int getClassementForAQuizz(int idQuizz, int scorePlayer) {
         ArrayList<HashMap<String, Object>> scoreList = DBController.Get().executeSelect("SCORE", Score.TABLE_NAME, "WHERE ID_QUIZZ=" + idQuizz + " ORDER BY SCORE ASC");
