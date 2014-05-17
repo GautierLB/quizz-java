@@ -123,7 +123,6 @@ public class StatisticsDialogPanel extends RoundedPanel {
     private void btDeconnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btDeconnexionMouseClicked
         User.deconnexionUser();
         m_mainFrame.deleteModal();
-        //m_mainFrame.changeView(MainFrame.View.MainScreenView);
     }//GEN-LAST:event_btDeconnexionMouseClicked
 
 
