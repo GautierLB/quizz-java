@@ -33,22 +33,22 @@ public class CreateQuestionView extends BrainStormingView {
     public ArrayList<Question> questionList = new ArrayList();
     public ArrayList<Answer> answerList = new ArrayList<>();
     public ArrayList<ArrayList<Answer>> answerListFinal = new ArrayList<ArrayList<Answer>>();
-
+    
     public enum Side {
-
+        
         Left, Right
     };
-
+    
     public enum Type {
-
+        
         Image, Answer, ImageAnswer;
     };
-
+    
     public CreateQuestionView(MainFrame mainFrame, Quizz newQuizz) {
         super(mainFrame);
         this.quizz = newQuizz;
         initComponents();
-
+        
     }
 
     /**
@@ -329,10 +329,9 @@ public class CreateQuestionView extends BrainStormingView {
                 usedPanel.setUrlPicture(answerList.get(0).getPicture());
                 usedPanel.setChecked(answerList.get(0).isValid());
             }
-
+            
         }
-
-
+        
 
     }//GEN-LAST:event_arrowLeftgoToPrevious
 
@@ -393,7 +392,7 @@ public class CreateQuestionView extends BrainStormingView {
         boolean gotOneWrongAnswer = false;
         boolean gotOneGoodAnswer = false;
         boolean questionEmpty = false;
-
+        
         for (int i = 0; i < answerList.size(); i++) {
             if (answerList.get(i).isValid() == true) {
                 gotOneGoodAnswer = true;
@@ -401,7 +400,7 @@ public class CreateQuestionView extends BrainStormingView {
                 gotOneWrongAnswer = true;
             }
         }
-
+        
         if (typeQuestion.equals("Text")) {
             AnswerPanel usedPanel = (AnswerPanel) questionPanel;
             if (usedPanel.getText().equals("")) {
@@ -418,7 +417,7 @@ public class CreateQuestionView extends BrainStormingView {
                 questionEmpty = true;
             }
         }
-
+        
         if (!gotOneGoodAnswer) {
             codeError = 1;
         } else if (!gotOneWrongAnswer) {
@@ -426,80 +425,81 @@ public class CreateQuestionView extends BrainStormingView {
         } else if (questionEmpty) {
             codeError = 4;
         }
-
+        
         if (answerList.size() < 2) {
             codeError = 2;
         }
-
-
-
+        
         return codeError;
-
+        
     }
 
     private void arrowRightgoToNextQuestion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrowRightgoToNextQuestion
         Question questionCreate;
-
-        switch (controlQuestion()) {
-            case 0:
-                if (typeQuestion.equals("Text")) {
-                    AnswerPanel usedPanel = (AnswerPanel) questionPanel;
-                    questionCreate = new Question(usedPanel.getText(), "");
-                    questionCreate.setType("Text");
-                    usedPanel.setText("");
-                } else if (typeQuestion.equals("Image")) {
-                    ImagePanel usedPanel = (ImagePanel) questionPanel;
-                    questionCreate = new Question("", usedPanel.getUrlPicture());
-                    questionCreate.setType("Image");
-                    usedPanel.setUrlPicture("");
-                } else {
-                    ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
-                    questionCreate = new Question(usedPanel.getText(), usedPanel.getUrlPicture());
-                    questionCreate.setType("Both");
-                    usedPanel.setText("");
-                    usedPanel.setUrlPicture("");
-                }
-                if (oldQuestion) {
-                    questionList.set(indexQuestion, questionCreate);
-                    answerListFinal.set(indexQuestion, answerList);
-                } else {
-                    questionList.add(questionCreate);
-                    answerListFinal.add(answerList);
-                }
-
-                answerList = new ArrayList<>();
-                indexAnswer = 0;
-                indexQuestion++;
-                questionNumerLabel.setText("Question N°" + (indexQuestion + 1));
-                this.setNewLayout(Type.Image, Side.Right);
-
-                if (indexQuestion >= questionList.size()) {
-                    oldQuestion = false;
-                } else {
-                    questionDisplay();
-                    answerList = answerListFinal.get(indexQuestion);
-                    answerDisplay();
-                }
-                break;
-            case 1:
-                this.errorLabel.setText("Vous n'avez aucune bonne réponse");
-                break;
-            case 2:
-                this.errorLabel.setText("Vous n'avez qu'une ou pas de réponse");
-                break;
-            case 3:
-                this.errorLabel.setText("Vous n'avez aucune mauvais réponse");
-                break;
-            case 4:
-                this.errorLabel.setText("Votre question est vide");
-                break;
+        if (indexQuestion >= 21) {
+            this.errorLabel.setText("Vous êtes limité a 20 Questions");
+        } else {
+            switch (controlQuestion()) {
+                case 0:
+                    if (typeQuestion.equals("Text")) {
+                        AnswerPanel usedPanel = (AnswerPanel) questionPanel;
+                        questionCreate = new Question(usedPanel.getText(), "");
+                        questionCreate.setType("Text");
+                        usedPanel.setText("");
+                    } else if (typeQuestion.equals("Image")) {
+                        ImagePanel usedPanel = (ImagePanel) questionPanel;
+                        questionCreate = new Question("", usedPanel.getUrlPicture());
+                        questionCreate.setType("Image");
+                        usedPanel.setUrlPicture("");
+                    } else {
+                        ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
+                        questionCreate = new Question(usedPanel.getText(), usedPanel.getUrlPicture());
+                        questionCreate.setType("Both");
+                        usedPanel.setText("");
+                        usedPanel.setUrlPicture("");
+                    }
+                    if (oldQuestion) {
+                        questionList.set(indexQuestion, questionCreate);
+                        answerListFinal.set(indexQuestion, answerList);
+                    } else {
+                        questionList.add(questionCreate);
+                        answerListFinal.add(answerList);
+                    }
+                    
+                    answerList = new ArrayList<>();
+                    indexAnswer = 0;
+                    indexQuestion++;
+                    questionNumerLabel.setText("Question N°" + (indexQuestion + 1));
+                    this.setNewLayout(Type.Image, Side.Right);
+                    
+                    if (indexQuestion >= questionList.size()) {
+                        oldQuestion = false;
+                    } else {
+                        questionDisplay();
+                        answerList = answerListFinal.get(indexQuestion);
+                        answerDisplay();
+                    }
+                    break;
+                case 1:
+                    this.errorLabel.setText("Vous n'avez aucune bonne réponse");
+                    break;
+                case 2:
+                    this.errorLabel.setText("Vous n'avez qu'une ou pas de réponse");
+                    break;
+                case 3:
+                    this.errorLabel.setText("Vous n'avez aucune mauvais réponse");
+                    break;
+                case 4:
+                    this.errorLabel.setText("Votre question est vide");
+                    break;
+            }
         }
     }//GEN-LAST:event_arrowRightgoToNextQuestion
-
+    
     public void saveTheQuizz(java.awt.event.ActionEvent evt) {
-
+        
         Question questionCreate;
-
+        
         switch (controlQuestion()) {
             case 0:
                 if (typeQuestion.equals("Text")) {
@@ -526,8 +526,7 @@ public class CreateQuestionView extends BrainStormingView {
                     questionList.add(questionCreate);
                     answerListFinal.add(answerList);
                 }
-
-
+                
                 for (int k = 0; k < questionList.size(); k++) {
                     QuizzManager.linkAnswersToQuestion(questionList.get(k), answerListFinal.get(k));
                 }
@@ -601,9 +600,9 @@ public class CreateQuestionView extends BrainStormingView {
                 response = true;
                 break;
         }
-
+        
         switch (_type) {
-
+            
             case Image:
                 current = new ImagePanel(response, this);
                 break;
