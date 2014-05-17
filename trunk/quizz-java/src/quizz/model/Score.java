@@ -14,6 +14,7 @@ public class Score {
 
     private int m_idQuizz;
     private int m_score;
+    private int m_idUser;
     private int m_numberOfGoodAnswers;
     private int m_numberOfQuestions;
     private long m_time;
@@ -39,13 +40,14 @@ public class Score {
      * @param numberOfQuestions the number of questions in the quizz
      * @param time the time spent to do the quizz
      */
-    public Score(int idQuizz, int goodAnswers, int numberOfQuestions, long time , int classement) {
+    public Score(int idQuizz, int goodAnswers, int numberOfQuestions, long time , int classement , int idUser) {
         this.m_idQuizz = idQuizz;
         this.m_numberOfGoodAnswers = goodAnswers;
         this.m_numberOfQuestions = numberOfQuestions;
         this.m_time = time;
         this.m_score = this.loadScore();
         this.m_classement = classement;
+        this.m_idUser = idUser;
     }
 
     /**
@@ -116,6 +118,15 @@ public class Score {
         } else {
             return true;
         }
+    }
+    
+    public void updateTheScore(){
+        DBController.Get().executeUpdate(Score.TABLE_NAME, Score.SCORE, Integer.toString(this.getScore()),
+                Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getM_idUser());
+        DBController.Get().executeUpdate(Score.TABLE_NAME, Score.NB_GOOD_ANSWERS, Integer.toString(this.m_numberOfGoodAnswers),
+                Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getM_idUser());
+        DBController.Get().executeUpdate(Score.TABLE_NAME, Score.TIME, Long.toString(this.m_time),
+                Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getM_idUser());
     }
 
     public static Score getGlobalScore(int idUser) {
@@ -194,6 +205,13 @@ public class Score {
      */
     public int getM_classement() {
         return m_classement;
+    }
+
+    /**
+     * @return the m_idUser
+     */
+    public int getM_idUser() {
+        return m_idUser;
     }
 
 }

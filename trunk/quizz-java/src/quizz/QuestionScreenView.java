@@ -234,7 +234,7 @@ public class QuestionScreenView extends BrainStormingView {
     private void goToResultsView() {
         Timestamp currentTime = new Timestamp(System.currentTimeMillis());
         long diffInMillis = currentTime.getTime() - m_startTime.getTime();       
-        Score score = new Score(m_idQuizz, this.numberOfPoints(), m_questionsList.size(), diffInMillis , Score.getClassementForAQuizz(m_idQuizz,this.numberOfPoints()));
+        Score score = new Score(m_idQuizz, this.numberOfPoints(), m_questionsList.size(), diffInMillis , Score.getClassementForAQuizz(m_idQuizz,this.numberOfPoints()),Main.idPseudo);
         this.m_mainFrame.setScore(score);
         m_mainFrame.changeView(MainFrame.View.ResultsView);
     }
