@@ -93,6 +93,15 @@ public class Score {
                 + "," + this.getTime());
 
     }
+    
+    static public Boolean isAlreadyPlayed(int idQuizz){
+        ArrayList<HashMap<String, Object>> scoreList = DBController.Get().executeSelect("SCORE",Score.TABLE_NAME , "WHERE ID_QUIZZ="+idQuizz);
+        if(scoreList.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+    }
 
     public static Score getGlobalScore(int idUser) {
         ArrayList<HashMap<String, Object>> scoreListBdd = DBController.Get().executeSelect("*", "scoring", "");
