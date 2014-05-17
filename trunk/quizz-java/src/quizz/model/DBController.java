@@ -103,4 +103,8 @@ public class DBController {
         }
         return key;
     }
+    
+    public int executeUpdate(String table , String field , String value , String condition){
+        return 0;
+    }
 }

@@ -18,6 +18,7 @@ public class Score {
     private int m_numberOfQuestions;
     private long m_time;
     private int m_nbQuizz;
+    private int m_classement;
 
     /**
      * The construct of Scoring
@@ -38,12 +39,13 @@ public class Score {
      * @param numberOfQuestions the number of questions in the quizz
      * @param time the time spent to do the quizz
      */
-    public Score(int idQuizz, int goodAnswers, int numberOfQuestions, long time) {
+    public Score(int idQuizz, int goodAnswers, int numberOfQuestions, long time , int classement) {
         this.m_idQuizz = idQuizz;
         this.m_numberOfGoodAnswers = goodAnswers;
         this.m_numberOfQuestions = numberOfQuestions;
         this.m_time = time;
         this.m_score = this.loadScore();
+        this.m_classement = classement;
     }
 
     /**
@@ -93,33 +95,46 @@ public class Score {
                 + "," + this.getTime());
 
     }
-    
-    static public Boolean isAlreadyPlayed(int idQuizz , int idUser){
-        ArrayList<HashMap<String, Object>> scoreList = DBController.Get().executeSelect("SCORE",Score.TABLE_NAME , "WHERE ID_QUIZZ="+idQuizz+" AND ID_USER="+idUser);
-        if(scoreList.isEmpty()){
+
+    static public int getClassementForAQuizz(int idQuizz, int scorePlayer) {
+        ArrayList<HashMap<String, Object>> scoreList = DBController.Get().executeSelect("SCORE", Score.TABLE_NAME, "WHERE ID_QUIZZ=" + idQuizz + " ORDER BY SCORE ASC");
+        int classement = scoreList.size();
+        for (int i = 0; i < scoreList.size(); i++) {
+            if (scorePlayer > (int) scoreList.get(i).get(Score.SCORE)) {
+                classement--;
+            }
+            System.out.println("score : " + scoreList.get(i).get(Score.SCORE));
+        }
+        return classement;
+
+    }
+
+    static public Boolean isAlreadyPlayed(int idQuizz, int idUser) {
+        ArrayList<HashMap<String, Object>> scoreList = DBController.Get().executeSelect("SCORE", Score.TABLE_NAME, "WHERE ID_QUIZZ=" + idQuizz + " AND ID_USER=" + idUser);
+        if (scoreList.isEmpty()) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
 
     public static Score getGlobalScore(int idUser) {
         ArrayList<HashMap<String, Object>> scoreListBdd = DBController.Get().executeSelect("*", "scoring", "");
-        ArrayList<HashMap<String, Object>> quizzListBdd = DBController.Get().executeSelect("COUNT(Q."+ Quizz.ID_QUIZZ + ")",
-                Quizz.TABLE_NAME + " Q , " + Score.TABLE_NAME + "  S , " + User.TABLE_NAME +" U",
-                "WHERE Q." + Quizz.ID_QUIZZ + " = S." + Score.QUIZZ + " AND " + 
-                "S." + Score.USER + " = U." + User.ID + " AND U." +
-                User.ID + " = " + idUser);
+        ArrayList<HashMap<String, Object>> quizzListBdd = DBController.Get().executeSelect("COUNT(Q." + Quizz.ID_QUIZZ + ")",
+                Quizz.TABLE_NAME + " Q , " + Score.TABLE_NAME + "  S , " + User.TABLE_NAME + " U",
+                "WHERE Q." + Quizz.ID_QUIZZ + " = S." + Score.QUIZZ + " AND "
+                + "S." + Score.USER + " = U." + User.ID + " AND U."
+                + User.ID + " = " + idUser);
         ArrayList<HashMap<String, Object>> questionListBdd = DBController.Get().executeSelect(Quizz.NB_QUESTS,
-                Quizz.TABLE_NAME + " Q , " + Score.TABLE_NAME + "  S , " + User.TABLE_NAME +" U",
-                "WHERE Q." + Quizz.ID_QUIZZ + " = S." + Score.QUIZZ + " AND " + 
-                "S." + Score.USER + " = U." + User.ID + " AND U." +
-                User.ID + " = " + idUser);
+                Quizz.TABLE_NAME + " Q , " + Score.TABLE_NAME + "  S , " + User.TABLE_NAME + " U",
+                "WHERE Q." + Quizz.ID_QUIZZ + " = S." + Score.QUIZZ + " AND "
+                + "S." + Score.USER + " = U." + User.ID + " AND U."
+                + User.ID + " = " + idUser);
         int nbQuest = 0;
         for (int i = 0; i < questionListBdd.size(); i++) {
-            nbQuest += (int)questionListBdd.get(i).get(Quizz.NB_QUESTS);
+            nbQuest += (int) questionListBdd.get(i).get(Quizz.NB_QUESTS);
         }
-        int nbQuizz = (int)quizzListBdd.get(0).get("");
+        int nbQuizz = (int) quizzListBdd.get(0).get("");
         int nbGoodAnswers = 0;
         int score = 0;
         long time = 0;
@@ -160,7 +175,7 @@ public class Score {
     }
 
     public int goodAnswersPourcentage() {
-        return (int)(((double)m_numberOfGoodAnswers/m_numberOfQuestions)*100);
+        return (int) (((double) m_numberOfGoodAnswers / m_numberOfQuestions) * 100);
     }
 
     private int loadScore() {
@@ -172,6 +187,13 @@ public class Score {
      */
     public int getNbQuizz() {
         return m_nbQuizz;
+    }
+
+    /**
+     * @return the m_classement
+     */
+    public int getM_classement() {
+        return m_classement;
     }
 
 }
