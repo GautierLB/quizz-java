@@ -32,7 +32,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public enum View {
-        MainScreenView, CreateQuizzView, ThemeScreenView, QuestionScreenView, CreateQuestionView, ResultsView
+
+        MainScreenView, CreateQuizzView, ThemeScreenView, QuestionScreenView, CreateQuestionView, ResultsView, AdminScreenView, QuizzDetailsView
     };
 
     public enum modalView {
@@ -139,6 +140,12 @@ public class MainFrame extends javax.swing.JFrame {
             case QuestionScreenView:
                 this.displayQuestionScreen();
                 break;
+            case AdminScreenView:
+                this.displayAdminScreen();
+                break;
+            case QuizzDetailsView:
+                this.displayQuizzDetails();
+                break;
         }
         this.setVisible(true);
     }
@@ -152,7 +159,7 @@ public class MainFrame extends javax.swing.JFrame {
     public void changeView(View viewName, Theme theme) {
         this.getContentPane().removeAll();
         if (viewName == View.ThemeScreenView) {
-           this.displayThemeScreen(theme); 
+            this.displayThemeScreen(theme);
         }
         this.setVisible(true);
     }
@@ -214,16 +221,39 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Permet d'afficher la vue CreateQuestionScreen.
      */
-     private void displayCreateQuestionScreen() {
+    private void displayCreateQuestionScreen() {
         m_activeView = "CreateQuestionView";
         CreateQuestionView questionScreen = new CreateQuestionView(this, this.m_quizz);
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, questionScreen);
     }
-     
-     private void displayResultsScreen() {
+
+    /**
+     * Permet d'afficher la vue ResultsView.
+     */
+    private void displayResultsScreen() {
         m_activeView = "ResultsView";
         ResultsView resultScreen = new ResultsView(this, m_score);
+        this.setLayout(new BorderLayout());
+        this.add(BorderLayout.CENTER, resultScreen);
+    }
+
+    /**
+     * Permet d'afficher la vue AdminScreen.
+     */
+    private void displayAdminScreen() {
+        m_activeView = "AdminScreenView";
+        AdminScreenView resultScreen = new AdminScreenView(this);
+        this.setLayout(new BorderLayout());
+        this.add(BorderLayout.CENTER, resultScreen);
+    }
+    
+    /**
+     * Permet d'afficher la vue QuizzDetails.
+     */
+    private void displayQuizzDetails() {
+        m_activeView = "QuizzDetailsView";
+        QuizzDetailsView resultScreen = new QuizzDetailsView(this, Score.getStatsForQuizz(this.m_quizz));
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, resultScreen);
     }
@@ -232,8 +262,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Permet D'afficher le panel de login
      */
     private void displayLoginPanel() {
-        if(Main.userPseudo != "User")
-        {
+        if (Main.userPseudo != "User") {
             m_statsDialog = new StatisticsDialog(this, Score.getGlobalScore(User.getUserByPseudo(Main.userPseudo).getIdUser()));
             m_statsDialog.setVisible(true);
         } else {
@@ -272,7 +301,7 @@ public class MainFrame extends javax.swing.JFrame {
             m_statsDialog = null;
             this.changeView(View.valueOf(m_activeView));
         }
-        
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

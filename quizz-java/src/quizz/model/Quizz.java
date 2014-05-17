@@ -14,6 +14,7 @@ public class Quizz {
     private static final String TIME_MAX = "TIME_MAX_QUIZZ";
     private static final String RETRY = "RETRY_QUIZZ";
     private static final String NAME = "NAME_QUIZZ";
+
     private int m_idQuizz;
     private int m_idTheme;
     private int m_idAdmin;
@@ -41,10 +42,10 @@ public class Quizz {
         this.m_retryQuizz = retry;
         this.m_nameQuizz = name;
     }
-    
+
     /**
      * Used when we create a quizz from DB because we know the ID
-     * 
+     *
      * @param idQuizz The id of the quizz
      * @param idTheme The id of the quizz theme
      * @param idAdmin The id of the Admin that have created the quizz
@@ -79,7 +80,7 @@ public class Quizz {
                     (int) quizzListBdd.get(i).get(Quizz.DIFFICULTY),
                     (int) quizzListBdd.get(i).get(Quizz.TIME_MAX),
                     (boolean) quizzListBdd.get(i).get(Quizz.RETRY),
-                    (String) quizzListBdd.get(i).get(Quizz.NAME));  
+                    (String) quizzListBdd.get(i).get(Quizz.NAME));
             quizz.setNbQuestQuizz((int) quizzListBdd.get(i).get(Quizz.NB_QUESTS));
             quizzList.add(quizz);
         }
@@ -87,6 +88,29 @@ public class Quizz {
     }
     
     
+
+    /**
+     * Get the quizz for a specificated user
+     *
+     * @param idUser the id of the theme
+     * @return an ArrayList of Quizz
+     */
+    public static ArrayList<Quizz> getQuizzForUser(int idUser) {
+        ArrayList<Quizz> quizzList = new ArrayList<>();
+        ArrayList<HashMap<String, Object>> quizzListBdd = DBController.Get().executeSelect("*", Quizz.TABLE_NAME, "WHERE ID_ADMIN =" + idUser);
+        for (int i = 0; i < quizzListBdd.size(); i++) {
+            Quizz quizz = new Quizz((int) quizzListBdd.get(i).get(Quizz.ID_QUIZZ),
+                    (int) quizzListBdd.get(i).get(Quizz.ID_THEME),
+                    (int) quizzListBdd.get(i).get(Quizz.ID_ADMIN),
+                    (int) quizzListBdd.get(i).get(Quizz.DIFFICULTY),
+                    (int) quizzListBdd.get(i).get(Quizz.TIME_MAX),
+                    (boolean) quizzListBdd.get(i).get(Quizz.RETRY),
+                    (String) quizzListBdd.get(i).get(Quizz.NAME));
+            quizz.setNbQuestQuizz((int) quizzListBdd.get(i).get(Quizz.NB_QUESTS));
+            quizzList.add(quizz);
+        }
+        return quizzList;
+    }
 
     /**
      * Save the Quiz in the database
@@ -109,23 +133,23 @@ public class Quizz {
     public int getId() {
         return this.m_idQuizz;
     }
-    
+
     public String getName() {
         return this.m_nameQuizz;
     }
-    
+
     public Boolean isRetryable() {
         return this.m_retryQuizz;
     }
-    
+
     public int getTimeMax() {
         return this.m_timeMaxQuizz;
     }
-    
+
     public int getDifficulty() {
         return this.m_difficultyQuizz;
     }
-    
+
     public int getNbQuest() {
         return this.m_nbQuestQuizz;
     }

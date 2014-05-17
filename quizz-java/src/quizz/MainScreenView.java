@@ -41,7 +41,6 @@ public class MainScreenView extends BrainStormingView {
     private void initComponents() {
 
         mainScreenTitle = new javax.swing.JLabel();
-        createQuizz = new javax.swing.JButton();
         themeLabel6 = new javax.swing.JLabel();
         themeLabel1 = new javax.swing.JLabel();
         themeLabel2 = new javax.swing.JLabel();
@@ -49,6 +48,7 @@ public class MainScreenView extends BrainStormingView {
         themeLabel4 = new javax.swing.JLabel();
         themeLabel5 = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
+		
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -63,7 +63,10 @@ public class MainScreenView extends BrainStormingView {
         mainScreenTitle.setText("Brain Storming");
         mainScreenTitle.setName("mainScreenTitle"); // NOI18N
         add(mainScreenTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
-
+		
+		createQuizz = new javax.swing.JButton();
+        adminQuizz = new javax.swing.JButton();
+		
         createQuizz.setText("Créer Quizz");
         createQuizz.setActionCommand("createQuizz");
         createQuizz.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +74,15 @@ public class MainScreenView extends BrainStormingView {
                 createQuizzActionPerformed(evt);
             }
         });
+		
+		adminQuizz.setText("Administrer Quizz");
+		adminQuizz.setActionCommand("adminQuizz");
+        adminQuizz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminQuizzActionPerformed(evt);
+            }
+        });
+        add(adminQuizz, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, -1, 35));
         add(createQuizz, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, -1, 35));
 
         themeLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-100.png"))); // NOI18N
@@ -131,13 +143,17 @@ public class MainScreenView extends BrainStormingView {
             }
         });
         add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+		
 		if(!Main.userPseudo.equals("User")){			
 			this.isAdmin = User.controlAdmin(Main.userPseudo);
 			this.createQuizz.setEnabled(isAdmin);
+			this.adminQuizz.setEnabled(isAdmin);
 		}else{
 			this.isAdmin = false;
 			this.createQuizz.setEnabled(isAdmin);
+			this.adminQuizz.setEnabled(isAdmin);
 		}
+
     }// </editor-fold>//GEN-END:initComponents
 
     public  void SetAdmin(boolean resultDB){
@@ -177,7 +193,12 @@ public class MainScreenView extends BrainStormingView {
         m_mainFrame.addView(MainFrame.modalView.LoginView);
     }//GEN-LAST:event_userLabelMouseClicked
 
+    private void adminQuizzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminQuizzActionPerformed
+        m_mainFrame.changeView(MainFrame.View.AdminScreenView);
+    }//GEN-LAST:event_adminQuizzActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adminQuizz;
     private javax.swing.JButton createQuizz;
     private javax.swing.JLabel mainScreenTitle;
     private javax.swing.JLabel themeLabel1;
