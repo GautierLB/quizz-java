@@ -182,6 +182,7 @@ public class SignInDialogPanel extends RoundedPanel {
             User toCreate = new User(this.pseudoTextBox.getText(), this.passwordTextBox.getText(), this.emailTextBox.getText());
             if (toCreate.saveUser()) {
                 Main.userPseudo = this.pseudoTextBox.getText();
+                Main.idPseudo = toCreate.getIdUser();
                 m_mainFrame.deleteModal();
             } else {
                 this.pseudoErrors.setText("Pseudo déjà utilisé !");

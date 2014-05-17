@@ -151,13 +151,13 @@ public class LoginDialogPanel extends RoundedPanel {
     }//GEN-LAST:event_signInButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        Boolean isAdmin = false;
         Boolean autenth;
         this.cleanLabels();
         if (checkValues()) {
             autenth = User.controlLogin(this.pseudoTextBox.getText(), this.passwordTextBox.getText());
             if (autenth) {                
-                Main.userPseudo = this.pseudoTextBox.getText();               
+                Main.userPseudo = this.pseudoTextBox.getText();
+                System.out.println(" test Id : "+Main.idPseudo);
                 this.m_mainFrame.deleteModal();
             } else {
                 

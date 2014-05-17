@@ -2,6 +2,7 @@ package quizz.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import quizz.Main;
 
 public class User {
 
@@ -99,8 +100,9 @@ public class User {
      */
     static public boolean controlLogin(String pseudo, String password) {
         boolean isCorrect;
-        ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect(User.PSEUDO+","+User.MDP, User.TABLE_NAME, "where PSEUDO_USER LIKE '" + pseudo.replace("'", "''") + "'");
+        ArrayList<HashMap<String, Object>> userList = DBController.Get().executeSelect(User.ID+","+User.PSEUDO+","+User.MDP, User.TABLE_NAME, "where PSEUDO_USER LIKE '" + pseudo.replace("'", "''") + "'");
         if (!userList.isEmpty() && password.equals((String) userList.get(0).get(User.MDP))) {
+            Main.idPseudo = (int) userList.get(0).get(User.ID);
             isCorrect = true;
         } else {
             isCorrect = false;

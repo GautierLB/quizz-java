@@ -94,8 +94,8 @@ public class Score {
 
     }
     
-    static public Boolean isAlreadyPlayed(int idQuizz){
-        ArrayList<HashMap<String, Object>> scoreList = DBController.Get().executeSelect("SCORE",Score.TABLE_NAME , "WHERE ID_QUIZZ="+idQuizz);
+    static public Boolean isAlreadyPlayed(int idQuizz , int idUser){
+        ArrayList<HashMap<String, Object>> scoreList = DBController.Get().executeSelect("SCORE",Score.TABLE_NAME , "WHERE ID_QUIZZ="+idQuizz+" AND ID_USER="+idUser);
         if(scoreList.isEmpty()){
             return false;
         }else{

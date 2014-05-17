@@ -91,9 +91,14 @@ public class ThemeScreenView extends BrainStormingView {
             line.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    if (!quizz.isRetryable() && Score.isAlreadyPlayed(quizz.getId())) {
-                        System.out.println("nan tu la deja fait");
-                    } else {
+                    if(!Main.userPseudo.equals("User")){             
+                        if (!quizz.isRetryable() && Score.isAlreadyPlayed(quizz.getId(),Main.idPseudo)) {
+                            quizzError.setText("Quizz déja fait et non rejouable");
+                        }else{
+                            m_mainFrame.setQuizz(quizz);
+                            m_mainFrame.changeView(MainFrame.View.QuestionScreenView);
+                        }
+                    }else{
                         m_mainFrame.setQuizz(quizz);
                         m_mainFrame.changeView(MainFrame.View.QuestionScreenView);
                     }
@@ -119,6 +124,7 @@ public class ThemeScreenView extends BrainStormingView {
         themeName = new javax.swing.JLabel();
         themeIcon = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
+        quizzError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -138,7 +144,6 @@ public class ThemeScreenView extends BrainStormingView {
         themeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/linux-40.png"))); // NOI18N
         themeIcon.setMaximumSize(new java.awt.Dimension(80, 80));
         themeIcon.setMinimumSize(new java.awt.Dimension(80, 80));
-        themeIcon.setPreferredSize(new java.awt.Dimension(40, 40));
         add(themeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 33, -1, -1));
 
         backButton.setText("Retour");
@@ -148,6 +153,9 @@ public class ThemeScreenView extends BrainStormingView {
             }
         });
         add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
+
+        quizzError.setForeground(new java.awt.Color(255, 0, 20));
+        add(quizzError, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 240, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backAction
@@ -158,6 +166,7 @@ public class ThemeScreenView extends BrainStormingView {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JSeparator centralSeparator;
+    private javax.swing.JLabel quizzError;
     private javax.swing.JLabel themeIcon;
     private javax.swing.JLabel themeName;
     // End of variables declaration//GEN-END:variables
