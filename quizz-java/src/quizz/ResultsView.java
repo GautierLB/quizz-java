@@ -33,6 +33,9 @@ public class ResultsView extends BrainStormingView {
         long minutes = ((score.getTime() / 1000) / 60) % 60;
         //long heures = (score.getTime() / 1000) / 3600;
         this.timeValueLabel.setText(minutes + " minutes et " + secondes + " secondes");
+        if(Main.userPseudo != "User" && Score.isAlreadyPlayed(score.getIdQuizz(), Main.idPseudo)){
+            score.updateTheScore();
+        }
         if (Main.userPseudo != "User") {
             this.saveScore();
         }
