@@ -91,18 +91,17 @@ public class ThemeScreenView extends BrainStormingView {
             line.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    if(!Main.userPseudo.equals("User")){             
-                        if (!quizz.isRetryable() && Score.isAlreadyPlayed(quizz.getId(),Main.idPseudo)) {
+                    if (!Main.userPseudo.equals("User")) {
+                        if (!quizz.isRetryable() && Score.isAlreadyPlayed(quizz.getId(), Main.idPseudo)) {
                             quizzError.setText("Quizz déja fait et non rejouable");
-                        }else{
+                        } else {
                             m_mainFrame.setQuizz(quizz);
                             m_mainFrame.changeView(MainFrame.View.QuestionScreenView);
                         }
-                    }else{
+                    } else {
                         m_mainFrame.setQuizz(quizz);
                         m_mainFrame.changeView(MainFrame.View.QuestionScreenView);
                     }
-
                 }
             });
             this.setVisible(true);
