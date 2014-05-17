@@ -35,8 +35,7 @@ public class ResultsView extends BrainStormingView {
         this.timeValueLabel.setText(minutes + " minutes et " + secondes + " secondes");
         if(Main.userPseudo != "User" && Score.isAlreadyPlayed(score.getIdQuizz(), Main.idPseudo)){
             score.updateTheScore();
-        }
-        if (Main.userPseudo != "User") {
+        }else if (Main.userPseudo != "User") {
             this.saveScore();
         }
 
