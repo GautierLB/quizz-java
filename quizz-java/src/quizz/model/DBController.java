@@ -3,6 +3,8 @@ package quizz.model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DBController {
 
@@ -25,6 +27,7 @@ public class DBController {
     /**
      * Open a connection to DB with logs.<br/>
      * Need to be closed at the end.
+     *
      * @return A connection object
      */
     private Connection connectDB() {
@@ -49,8 +52,9 @@ public class DBController {
      * @param table The table where we execute the select.
      * @param where The DB where clause.
      * @author Vincent Dondain
-     * 
-     * @return An Array (all selected lines) of Dictionaries (one line with columns as keys)
+     *
+     * @return An Array (all selected lines) of Dictionaries (one line with
+     * columns as keys)
      */
     public ArrayList<HashMap<String, Object>> executeSelect(String select, String table, String where) {
         ArrayList<HashMap<String, Object>> result = new ArrayList<>();
@@ -103,8 +107,16 @@ public class DBController {
         }
         return key;
     }
-    
-    public int executeUpdate(String table , String field , String value , String condition){
-        return 0;
+
+    public int executeUpdate(String table, String field, String value, String condition) {
+        int key = 0;
+        try {
+            String SQL = "UPDATE "+table+" SET "+field+" = "+value+" WHERE "+condition;
+            Statement request = this.connectDB().createStatement();
+            request.executeUpdate(SQL);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return key;
     }
 }
