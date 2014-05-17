@@ -138,7 +138,7 @@ public class AdminScreenView extends BrainStormingView {
             delete.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    System.out.println("coucou");
+                    deleteAQuizz(quizz);
                 }
             });
             this.setVisible(true);
@@ -163,6 +163,7 @@ public class AdminScreenView extends BrainStormingView {
         }
         quizz.deleteQuizzInDB();
         Score.deleteScoreForAQuizz(quizz.getId());
+        m_mainFrame.changeView(MainFrame.View.AdminScreenView);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
