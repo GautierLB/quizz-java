@@ -69,7 +69,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="aa" green="aa" red="aa" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jTextField2"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Curseur de texte"/>
         </Property>
@@ -118,7 +117,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="aa" green="aa" red="aa" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jTextField2"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[120, 10]"/>
