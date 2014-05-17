@@ -139,6 +139,12 @@ public class User {
         return isOkay;
     }
 
+    
+    public static void deconnexionUser(){
+        Main.userPseudo = "User";
+        Main.idPseudo=0;
+    }
+    
     /**
      * @return the m_idUser
      */
