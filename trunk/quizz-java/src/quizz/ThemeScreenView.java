@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import quizz.model.Quizz;
+import quizz.model.Score;
 import quizz.model.Theme;
 
 public class ThemeScreenView extends BrainStormingView {
@@ -90,8 +91,13 @@ public class ThemeScreenView extends BrainStormingView {
             line.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    m_mainFrame.setQuizz(quizz);
-                    m_mainFrame.changeView(MainFrame.View.QuestionScreenView);
+                    if(!Score.isAlreadyPlayed(quizz.getId()) && !quizz.isRetryable()){
+                        m_mainFrame.setQuizz(quizz);
+                        m_mainFrame.changeView(MainFrame.View.QuestionScreenView);
+                    }else{
+                        System.out.println("nope !!!");
+                    }
+                    
                 }
             });
             this.setVisible(true);
