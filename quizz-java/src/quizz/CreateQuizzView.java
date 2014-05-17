@@ -6,6 +6,9 @@
 package quizz;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -116,7 +119,6 @@ public class CreateQuizzView extends BrainStormingView {
 
         minuteField.setFont(Main.s_openSans13);
         minuteField.setForeground(new java.awt.Color(102, 102, 102));
-        minuteField.setText("Minute");
         minuteField.setMaximumSize(new java.awt.Dimension(150, 24));
         minuteField.setMinimumSize(new java.awt.Dimension(150, 24));
         minuteField.setPreferredSize(new java.awt.Dimension(150, 24));
@@ -130,6 +132,11 @@ public class CreateQuizzView extends BrainStormingView {
         difficultySelector.setFont(Main.s_openSans13);
         difficultySelector.setForeground(new java.awt.Color(102, 102, 102));
         difficultySelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Facile", "Moyen", "Difficile" }));
+        difficultySelector.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                difficultySelectorItemStateChanged(evt);
+            }
+        });
         mainPanel.add(difficultySelector, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 150, -1));
 
         replayableIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/replayableIcon-25.png"))); // NOI18N
@@ -150,7 +157,7 @@ public class CreateQuizzView extends BrainStormingView {
 
         infoLabel.setFont(Main.s_openSans13);
         infoLabel.setText("Laisser vide si temps infini");
-        mainPanel.add(infoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, -1, -1));
+        mainPanel.add(infoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, -1, -1));
 
         folderSelector.setForeground(new java.awt.Color(102, 102, 102));
         folderSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Thème 1", "Thème 2", "Thème 3" }));
@@ -188,20 +195,19 @@ public class CreateQuizzView extends BrainStormingView {
         starIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png"))); // NOI18N
         mainPanel.add(starIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
 
-        starIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png"))); // NOI18N
+        starIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starEmpty-20.png"))); // NOI18N
         mainPanel.add(starIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, -1, -1));
 
         secondField.setForeground(new java.awt.Color(102, 102, 102));
-        secondField.setText("second");
-        mainPanel.add(secondField, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 150, -1, 30));
+        mainPanel.add(secondField, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 150, 40, 30));
 
         minuteLabel.setForeground(new java.awt.Color(102, 102, 102));
         minuteLabel.setText("Min");
         mainPanel.add(minuteLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
         secondLabel.setForeground(new java.awt.Color(102, 102, 102));
-        secondLabel.setText("s");
-        mainPanel.add(secondLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 20, -1));
+        secondLabel.setText("sec");
+        mainPanel.add(secondLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 30, -1));
 
         add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
 
@@ -259,13 +265,17 @@ public class CreateQuizzView extends BrainStormingView {
                     dif = 3;
                     break;
             }
-            if ((minuteField.getText().equals("Minute") || minuteField.getText().isEmpty()) 
-            && (secondField.getText().equals("Minute") || secondField.getText().isEmpty()) ) {
-                time = 0;
-            } else {
-                time = Integer.parseInt(minuteField.getText())*60000 + (Integer.parseInt(secondField.getText())*1000);
-                System.out.println("test temps : "+time);
+            if(minuteField.getText().isEmpty() || minuteField.getText().equals("0")){
+               time = 0;
+            }else{
+                time = Integer.parseInt(minuteField.getText())*60000;
             }
+            if(secondField.getText().isEmpty() || minuteField.getText().equals("0")){
+                time = time + 0;
+            }else {
+                time = time + (Integer.parseInt(secondField.getText())*1000);               
+            }
+            System.out.println("test temps : "+time);
             Quizz newQuizz = new Quizz(idTheme, idAdmin, dif, time, replayableCheckbox.isSelected(), nameField.getText());
             this.m_mainFrame.setQuizz(newQuizz);
             m_mainFrame.changeView(MainFrame.View.CreateQuestionView);
@@ -273,9 +283,29 @@ public class CreateQuizzView extends BrainStormingView {
 
     }//GEN-LAST:event_createButtonActionPerformed
 
+    
     private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
         m_mainFrame.addView(MainFrame.modalView.LoginView);
     }//GEN-LAST:event_userLabelMouseClicked
+
+    private void difficultySelectorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_difficultySelectorItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED ) {
+            if(evt.getItem().equals("Moyen")){
+                this.starIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png")));
+                this.starIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png")));
+                this.starIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starEmpty-20.png")));
+            }else if(evt.getItem().equals("Difficile")){
+                this.starIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png")));
+                this.starIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png")));
+                this.starIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png")));
+            }else{
+                this.starIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png")));
+                this.starIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starEmpty-20.png")));
+                this.starIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starEmpty-20.png")));
+            }
+        }
+    }//GEN-LAST:event_difficultySelectorItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton createButton;
