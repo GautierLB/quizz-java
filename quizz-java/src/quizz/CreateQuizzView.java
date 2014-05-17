@@ -69,6 +69,7 @@ public class CreateQuizzView extends BrainStormingView {
         secondLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         userLabel = new javax.swing.JLabel();
+        feedbakcLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -235,6 +236,9 @@ public class CreateQuizzView extends BrainStormingView {
         });
         add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, -1, -1));
 
+        feedbakcLabel.setForeground(new java.awt.Color(255, 0, 0));
+        add(feedbakcLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, -1, -1));
+
         getAccessibleContext().setAccessibleName("CreateQuizzPanel");
     }// </editor-fold>//GEN-END:initComponents
 
@@ -270,40 +274,45 @@ public class CreateQuizzView extends BrainStormingView {
                     dif = 3;
                     break;
             }
-            if(minuteField.getText().isEmpty() || minuteField.getText().equals("0")){
-               time = 0;
-            }else{
-                time = Integer.parseInt(minuteField.getText())*60000;
+            if (minuteField.getText().isEmpty() || minuteField.getText().equals("0")) {
+                time = 0;
+            } else {
+                time = Integer.parseInt(minuteField.getText()) * 60000;
             }
-            if(secondField.getText().isEmpty() || minuteField.getText().equals("0")){
+            if (secondField.getText().isEmpty() || minuteField.getText().equals("0")) {
                 time = time + 0;
-            }else {
-                time = time + (Integer.parseInt(secondField.getText())*1000);               
+            } else {
+                time = time + (Integer.parseInt(secondField.getText()) * 1000);
             }
-            System.out.println("test temps : "+time);
-            Quizz newQuizz = new Quizz(idTheme, idAdmin, dif, time, replayableCheckbox.isSelected(), nameField.getText());
-            this.m_mainFrame.setQuizz(newQuizz);
-            m_mainFrame.changeView(MainFrame.View.CreateQuestionView);
+            if (time < 60000 || time > 3540000) {
+                this.feedbakcLabel.setText("Veuillez rentré entre 1 et 59 minutes");
+            } else {
+                System.out.println("test temps : " + time);
+                Quizz newQuizz = new Quizz(idTheme, idAdmin, dif, time, replayableCheckbox.isSelected(), nameField.getText());
+                this.m_mainFrame.setQuizz(newQuizz);
+                m_mainFrame.changeView(MainFrame.View.CreateQuestionView);
+            }
+
         }
 
     }//GEN-LAST:event_createButtonActionPerformed
 
-    
+
     private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
         m_mainFrame.addView(MainFrame.modalView.LoginView);
     }//GEN-LAST:event_userLabelMouseClicked
 
     private void difficultySelectorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_difficultySelectorItemStateChanged
-        if (evt.getStateChange() == ItemEvent.SELECTED ) {
-            if(evt.getItem().equals("Moyen")){
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (evt.getItem().equals("Moyen")) {
                 this.starIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png")));
                 this.starIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png")));
                 this.starIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starEmpty-20.png")));
-            }else if(evt.getItem().equals("Difficile")){
+            } else if (evt.getItem().equals("Difficile")) {
                 this.starIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png")));
                 this.starIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png")));
                 this.starIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png")));
-            }else{
+            } else {
                 this.starIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starFull-20.png")));
                 this.starIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starEmpty-20.png")));
                 this.starIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/starEmpty-20.png")));
@@ -319,6 +328,7 @@ public class CreateQuizzView extends BrainStormingView {
     private javax.swing.JButton backButton;
     private javax.swing.JButton createButton;
     private javax.swing.JComboBox difficultySelector;
+    private javax.swing.JLabel feedbakcLabel;
     private javax.swing.JLabel flagIcon;
     private javax.swing.JLabel folderIcon;
     private javax.swing.JComboBox folderSelector;
