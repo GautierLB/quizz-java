@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import quizz.model.Quizz;
 import quizz.model.User;
 
 public class Main {
@@ -21,10 +22,9 @@ public class Main {
     public static Font s_openSansItalic16;
     public static Font s_openSans28;
     public static String userPseudo="User";
+    public static int idPseudo=0;
     
     public static void main(String[] args) {
-        Boolean test = User.controlLogin("Bobby", "02101993");
-        System.out.println("resultat : "+test);
         Main.initFont();
         MainFrame mainFrame = new MainFrame();
         mainFrame.changeView(MainFrame.View.MainScreenView);
