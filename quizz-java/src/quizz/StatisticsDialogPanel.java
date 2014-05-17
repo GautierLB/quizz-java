@@ -7,6 +7,7 @@
 package quizz;
 
 import quizz.model.Score;
+import quizz.model.User;
 
 /**
  *
@@ -58,6 +59,7 @@ public class StatisticsDialogPanel extends RoundedPanel {
         timeValueLabel = new javax.swing.JLabel();
         nbQuizzsLabel = new javax.swing.JLabel();
         nbQuizzValueLabel = new javax.swing.JLabel();
+        btDeconnexion = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(500, 300));
         setMinimumSize(new java.awt.Dimension(500, 300));
@@ -107,11 +109,26 @@ public class StatisticsDialogPanel extends RoundedPanel {
         mainPanel.add(nbQuizzsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, -1));
         mainPanel.add(nbQuizzValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, -1, -1));
 
+        btDeconnexion.setText("Deconnexion");
+        btDeconnexion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btDeconnexionMouseClicked(evt);
+            }
+        });
+        mainPanel.add(btDeconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
+
         add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 330));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btDeconnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btDeconnexionMouseClicked
+        User.deconnexionUser();
+        m_mainFrame.deleteModal();
+        //m_mainFrame.changeView(MainFrame.View.MainScreenView);
+    }//GEN-LAST:event_btDeconnexionMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btDeconnexion;
     private javax.swing.JLabel goodAnswersLabel;
     private javax.swing.JLabel goodAnswersValueLabel;
     private javax.swing.JSeparator jSeparator2;
