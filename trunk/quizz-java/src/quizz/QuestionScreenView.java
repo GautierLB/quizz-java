@@ -208,7 +208,6 @@ public class QuestionScreenView extends BrainStormingView {
      */
     private void reloadPictureLabel(Question actualQuestion) {
         String path = actualQuestion.getPicture();
-        System.out.println("resultat : " + path);
         if (path != null && !path.isEmpty()) {
             try {
                 URL url = new URL(path);
