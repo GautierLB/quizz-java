@@ -93,7 +93,7 @@ public class ThemeScreenView extends BrainStormingView {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     if (!Main.userPseudo.equals("User")) {
                         if (!quizz.isRetryable() && Score.isAlreadyPlayed(quizz.getId(), Main.idPseudo)) {
-                            quizzError.setText("Quizz déja fait et non rejouable");
+                            quizzError.setText("Quizz déjà fait et non rejouable");
                         } else {
                             m_mainFrame.setQuizz(quizz);
                             m_mainFrame.changeView(MainFrame.View.QuestionScreenView);
