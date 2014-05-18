@@ -120,7 +120,7 @@ public class LoginDialogPanel extends RoundedPanel {
                 loginButtonActionPerformed(evt);
             }
         });
-        add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 190, -1, -1));
+        add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 190, -1, -1));
 
         signInButton.setText("Inscription");
         signInButton.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +128,7 @@ public class LoginDialogPanel extends RoundedPanel {
                 signInButtonActionPerformed(evt);
             }
         });
-        add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 190, -1, -1));
+        add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 190, -1, -1));
 
         pseudoErrors.setForeground(new java.awt.Color(255, 0, 0));
         add(pseudoErrors, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
