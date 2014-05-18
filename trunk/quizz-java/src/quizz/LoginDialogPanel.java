@@ -76,7 +76,7 @@ public class LoginDialogPanel extends RoundedPanel {
         TitleLabel.setFont(Main.s_openSans28);
         TitleLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/key-30.png"))); // NOI18N
         TitleLabel.setText("Connexion");
-        add(TitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+        add(TitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 10, -1, -1));
 
         pseudoTextBox.setFont(Main.s_openSans13);
         pseudoTextBox.setForeground(new java.awt.Color(170, 170, 170));
@@ -120,7 +120,7 @@ public class LoginDialogPanel extends RoundedPanel {
                 loginButtonActionPerformed(evt);
             }
         });
-        add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
+        add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 190, -1, -1));
 
         signInButton.setText("Inscription");
         signInButton.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +128,7 @@ public class LoginDialogPanel extends RoundedPanel {
                 signInButtonActionPerformed(evt);
             }
         });
-        add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 190, -1, -1));
 
         pseudoErrors.setForeground(new java.awt.Color(255, 0, 0));
         add(pseudoErrors, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
