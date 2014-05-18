@@ -33,6 +33,10 @@ public class StatisticsDialogPanel extends RoundedPanel {
         this.timeValueLabel.setText(heures + " heures " + minutes + " minutes et " + secondes + " secondes");
         this.nbQuizzValueLabel.setText(Integer.toString(score.getNbQuizz()));
         this.pourcentageValueLabel.setText(Integer.toString(score.goodAnswersPourcentage()));
+        if(!m_mainFrame.m_activeView.equals("MainScreenView")){
+            this.btDeconnexion.setEnabled(false);
+        }
+        System.out.println("test : "+m_mainFrame.m_activeView);
     }
 
     /**
