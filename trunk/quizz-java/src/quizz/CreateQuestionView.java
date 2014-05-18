@@ -24,7 +24,7 @@ public class CreateQuestionView extends BrainStormingView {
      */
     private boolean oldQuestion = false;
     private String typeQuestion = "Both";
-    private JPanel questionPanel;
+    private JPanel questionPanel = new ImageAnswerPanel(false, this);;
     public JPanel answerPanel;
     private Quizz quizz;
     public int indexQuestion = 0;
@@ -48,6 +48,7 @@ public class CreateQuestionView extends BrainStormingView {
         super(mainFrame);
         this.quizz = newQuizz;
         initComponents();
+        //= this.setNewLayout(Type.ImageAnswer, Side.Left)
         
     }
 
@@ -436,11 +437,12 @@ public class CreateQuestionView extends BrainStormingView {
 
     private void arrowRightgoToNextQuestion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrowRightgoToNextQuestion
         Question questionCreate;
-        if (indexQuestion >= 21) {
+        if (indexQuestion > 18) {
             this.errorLabel.setText("Vous êtes limité a 20 Questions");
         } else {
-            switch (controlQuestion()) {
+            switch (controlQuestion()) {              
                 case 0:
+                    this.errorLabel.setText("");
                     if (typeQuestion.equals("Text")) {
                         AnswerPanel usedPanel = (AnswerPanel) questionPanel;
                         questionCreate = new Question(usedPanel.getText(), "");
