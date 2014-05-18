@@ -67,6 +67,7 @@ public class CreateQuizzView extends BrainStormingView {
         secondField = new javax.swing.JTextField();
         minuteLabel = new javax.swing.JLabel();
         secondLabel = new javax.swing.JLabel();
+        emptyNameLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         userLabel = new javax.swing.JLabel();
         feedbakcLabel = new javax.swing.JLabel();
@@ -215,6 +216,9 @@ public class CreateQuizzView extends BrainStormingView {
         secondLabel.setText("Sec");
         mainPanel.add(secondLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 30, -1));
 
+        emptyNameLabel.setForeground(new java.awt.Color(255, 0, 0));
+        mainPanel.add(emptyNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, -1));
+
         add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
 
         backButton.setText("Retour");
@@ -258,7 +262,7 @@ public class CreateQuizzView extends BrainStormingView {
     }//GEN-LAST:event_formFocusGained
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        if (!nameField.getText().equals("")) {
+        if (!nameField.getText().equals("") && !nameField.getText().equals("Nom du Quizz")) {
             int idTheme = Theme.getThemeByName((String) folderSelector.getSelectedItem()).getId();
             int idAdmin = Main.idPseudo;
             int dif = 0;
@@ -293,6 +297,8 @@ public class CreateQuizzView extends BrainStormingView {
                 m_mainFrame.changeView(MainFrame.View.CreateQuestionView);
             }
 
+        } else {
+            this.emptyNameLabel.setText("Veuillez rentrer un nom de Quizz");
         }
 
     }//GEN-LAST:event_createButtonActionPerformed
@@ -328,6 +334,7 @@ public class CreateQuizzView extends BrainStormingView {
     private javax.swing.JButton backButton;
     private javax.swing.JButton createButton;
     private javax.swing.JComboBox difficultySelector;
+    private javax.swing.JLabel emptyNameLabel;
     private javax.swing.JLabel feedbakcLabel;
     private javax.swing.JLabel flagIcon;
     private javax.swing.JLabel folderIcon;
