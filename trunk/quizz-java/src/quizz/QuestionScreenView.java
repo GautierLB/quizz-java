@@ -57,7 +57,11 @@ public class QuestionScreenView extends BrainStormingView {
     public QuestionScreenView(MainFrame mainFrame, Quizz quizz) {
         super(mainFrame);
         initComponents();
-        this.initializeTimer(quizz.getTimeMax());
+        if (this.m_mainFrame.getTime() != -1) {
+            this.initializeTimer(this.m_mainFrame.getTime());
+        } else {
+            this.initializeTimer(quizz.getTimeMax());
+        }
         m_idQuizz = quizz.getId();
         m_startTime = new Timestamp(System.currentTimeMillis());
         m_currentQuestionNumber = 0;
@@ -94,6 +98,10 @@ public class QuestionScreenView extends BrainStormingView {
         } else {
             timerLabel.setVisible(false);
         }
+    }
+
+    private void saveTime() {
+        this.m_mainFrame.setTime(m_timeInMillisecondes);
     }
 
     private ArrayList<HashMap<Integer, Boolean>> defineAnswersDictionary(int arrayLength) {
@@ -424,6 +432,8 @@ public class QuestionScreenView extends BrainStormingView {
     }//GEN-LAST:event_goToNextQuestion
 
     private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
+        this.saveTime();
+        this.m_timer.cancel();
         m_mainFrame.addView(MainFrame.modalView.LoginView);
     }//GEN-LAST:event_userLabelMouseClicked
 

@@ -25,7 +25,7 @@ public class StatisticsDialogPanel extends RoundedPanel {
         initComponents();
         m_mainFrame = mainFrame;
         this.goodAnswersValueLabel.setText(Integer.toString(score.getNumberOfGoodAnswers()));
-        this.scoreValueLabel.setText(Integer.toString(score.getScore()));
+        this.scoreValueLabel.setText(Long.toString(score.getScore()));
         this.rankingValueLabel.setText(Integer.toString(5));
         long secondes = (score.getTime() / 1000) % 60;
         long minutes = ((score.getTime() / 1000) / 60) % 60;
