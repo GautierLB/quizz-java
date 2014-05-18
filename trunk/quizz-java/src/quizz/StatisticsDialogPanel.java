@@ -112,7 +112,7 @@ public class StatisticsDialogPanel extends RoundedPanel {
         mainPanel.add(nbQuizzsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
         mainPanel.add(nbQuizzValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
 
-        btDeconnexion.setText("Deconnexion");
+        btDeconnexion.setText("Déconnexion");
         btDeconnexion.setMaximumSize(new java.awt.Dimension(120, 25));
         btDeconnexion.setMinimumSize(new java.awt.Dimension(120, 25));
         btDeconnexion.setPreferredSize(new java.awt.Dimension(120, 25));
