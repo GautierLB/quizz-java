@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import quizz.model.Quizz;
+import quizz.model.Score;
 import quizz.model.User;
 
 public class Main {
@@ -25,7 +26,9 @@ public class Main {
     public static int idPseudo=0;
     
     public static void main(String[] args) {
+       //Score.getClassementForAQuizz(29);
         Main.initFont();
+        
         MainFrame mainFrame = new MainFrame();
         mainFrame.changeView(MainFrame.View.MainScreenView);
     }
