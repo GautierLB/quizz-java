@@ -202,7 +202,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btDeconnexion">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Deconnexion"/>
+            <Property name="text" type="java.lang.String" value="D&#xe9;connexion"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[120, 25]"/>
             </Property>
