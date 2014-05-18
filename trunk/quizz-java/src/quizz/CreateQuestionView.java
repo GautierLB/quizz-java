@@ -109,7 +109,7 @@ public class CreateQuestionView extends BrainStormingView {
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 38, 720, -1));
 
         questionNumerLabel.setFont(Main.s_openSansItalic16);
-        questionNumerLabel.setText("Question N°1");
+        questionNumerLabel.setText("Question N°0");
         add(questionNumerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         backButton.setText("Retour");
@@ -240,17 +240,20 @@ public class CreateQuestionView extends BrainStormingView {
         SubmitQuizzButton.setMaximumSize(new java.awt.Dimension(100, 20));
         SubmitQuizzButton.setMinimumSize(new java.awt.Dimension(100, 20));
         SubmitQuizzButton.setPreferredSize(new java.awt.Dimension(100, 20));
-		SubmitQuizzButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveTheQuizz(evt);
-            }
-        });
         add(SubmitQuizzButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 520, -1, -1));
         SubmitQuizzButton.getAccessibleContext().setAccessibleName("SubmitQuizzButton");
 
+        backButton1.setText("Valider le quizz");
+        backButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButton1backAction(evt);
+            }
+        });
+        add(backButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 520, -1, -1));
+
         errorLabel.setFont(Main.s_openSans13);
         errorLabel.setForeground(new java.awt.Color(255, 0, 0));
-        add(errorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
+        add(errorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 290, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
