@@ -474,6 +474,7 @@ public class CreateQuestionView extends BrainStormingView {
                     
                     if (indexQuestion >= questionList.size()) {
                         oldQuestion = false;
+                        oldAnswer = false;
                     } else {
                         questionDisplay();
                         answerList = answerListFinal.get(indexQuestion);

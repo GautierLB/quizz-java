@@ -194,6 +194,7 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
                 owner.oldAnswer = true;
             }
         } else {
+            owner.oldAnswer = false;
             owner.indexAnswer = (owner.answerList.size()+1);
             urlTextbox.setText("");
             AnswerArea.setText("");
@@ -224,6 +225,7 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
                 owner.oldAnswer = true;
             }
         } else {
+            owner.oldAnswer = false;
             owner.indexAnswer = (owner.answerList.size()+1);
             urlTextbox.setText("");
             AnswerArea.setText("");
@@ -254,6 +256,7 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
                 owner.oldAnswer = true;
             }
         } else {
+            owner.oldAnswer = false;
             owner.indexAnswer = (owner.answerList.size()+1);
             urlTextbox.setText("");
             AnswerArea.setText("");
@@ -284,6 +287,7 @@ public class ImageAnswerPanel extends javax.swing.JPanel {
                 owner.oldAnswer = true;
             }
         } else {
+            owner.oldAnswer = false;
             owner.indexAnswer = (owner.answerList.size()+1);
             urlTextbox.setText("");
             AnswerArea.setText("");
