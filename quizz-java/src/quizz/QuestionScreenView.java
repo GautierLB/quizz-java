@@ -427,6 +427,7 @@ public class QuestionScreenView extends BrainStormingView {
             this.reloadQuestion();
             this.reloadBottomCirleButtons();
         } else {
+            this.m_timer.cancel();
             this.goToResultsView();
         }
     }//GEN-LAST:event_goToNextQuestion
