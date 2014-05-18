@@ -284,7 +284,7 @@ public class CreateQuizzView extends BrainStormingView {
             } else {
                 time = time + (Integer.parseInt(secondField.getText()) * 1000);
             }
-            if (time < 60000 || time > 3540000) {
+            if (time < 60000 && time > 0 || time > 3540000 && time > 0) {
                 this.feedbakcLabel.setText("Veuillez rentré entre 1 et 59 minutes");
             } else {
                 System.out.println("test temps : " + time);
