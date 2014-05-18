@@ -115,7 +115,7 @@ public class SignInDialogPanel extends RoundedPanel {
 
         titleLabel.setFont(Main.s_openSans28);
         titleLabel.setText("Inscription");
-        add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 23, -1, -1));
+        add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
 
         messageIconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/messageIcon-25.png"))); // NOI18N
         add(messageIconLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 205, 25, -1));
@@ -129,7 +129,7 @@ public class SignInDialogPanel extends RoundedPanel {
                 signInButtonActionPerformed(evt);
             }
         });
-        add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 248, 120, -1));
+        add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 120, -1));
 
         pseudoErrors.setForeground(new java.awt.Color(255, 0, 0));
         pseudoErrors.setMaximumSize(new java.awt.Dimension(120, 20));

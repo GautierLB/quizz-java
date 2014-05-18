@@ -62,6 +62,9 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="answerLabel1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="label" type="java.lang.String" value="R&#xe9;ponse 1"/>
       </Properties>
       <Constraints>
@@ -72,6 +75,9 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="answerLabel2">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="label" type="java.lang.String" value="R&#xe9;ponse 2"/>
       </Properties>
       <Constraints>
@@ -82,6 +88,9 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="answerLabel3">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="label" type="java.lang.String" value="R&#xe9;ponse 3"/>
       </Properties>
       <Constraints>
@@ -92,6 +101,9 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="answerLabel4">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="label" type="java.lang.String" value="R&#xe9;ponse 4"/>
       </Properties>
       <Constraints>
