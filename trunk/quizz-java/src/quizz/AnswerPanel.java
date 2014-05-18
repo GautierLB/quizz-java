@@ -170,6 +170,7 @@ public class AnswerPanel extends javax.swing.JPanel {
                 owner.oldAnswer = true;
             }
         }else{
+            owner.oldAnswer = false;
             AnswerArea.setText("");
         }
     }
@@ -198,6 +199,7 @@ public class AnswerPanel extends javax.swing.JPanel {
                 owner.oldAnswer = true;
             }
         }else{
+            owner.oldAnswer = false;
             AnswerArea.setText("");
         }
     }
@@ -226,6 +228,7 @@ public class AnswerPanel extends javax.swing.JPanel {
                 owner.oldAnswer = true;
             }
         }else{
+            owner.oldAnswer = false;
             AnswerArea.setText("");
         }
     }
@@ -254,6 +257,7 @@ public class AnswerPanel extends javax.swing.JPanel {
                 owner.oldAnswer = true;
             }
         }else{
+            owner.oldAnswer = false;
             AnswerArea.setText("");
         }
     }
