@@ -154,7 +154,7 @@ public class ThemeScreenView extends BrainStormingView {
         add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
 
         quizzError.setForeground(new java.awt.Color(255, 0, 20));
-        add(quizzError, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 240, -1));
+        add(quizzError, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 240, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backAction
