@@ -45,6 +45,13 @@ public class MainFrame extends javax.swing.JFrame {
         this.m_time = m_time;
     }
 
+    /**
+     * @return the m_activeView
+     */
+    public String getActiveView() {
+        return m_activeView;
+    }
+
     public enum View {
 
         MainScreenView, CreateQuizzView, ThemeScreenView, QuestionScreenView, CreateQuestionView, ResultsView, AdminScreenView, QuizzDetailsView
@@ -305,19 +312,19 @@ public class MainFrame extends javax.swing.JFrame {
             m_loginDlg.setVisible(false);
             m_loginDlg.dispose();
             m_loginDlg = null;
-            this.changeView(View.valueOf(m_activeView));
+            this.changeView(View.valueOf(getActiveView()));
         }
         if (m_signInDlg != null) {
             m_signInDlg.setVisible(false);
             m_signInDlg.dispose();
             m_signInDlg = null;
-            this.changeView(View.valueOf(m_activeView));
+            this.changeView(View.valueOf(getActiveView()));
         }
         if (m_statsDialog != null) {
             m_statsDialog.setVisible(false);
             m_statsDialog.dispose();
             m_statsDialog = null;
-            this.changeView(View.valueOf(m_activeView));
+            this.changeView(View.valueOf(getActiveView()));
         }
 
     }
