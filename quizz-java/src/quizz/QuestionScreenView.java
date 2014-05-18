@@ -427,8 +427,10 @@ public class QuestionScreenView extends BrainStormingView {
             this.reloadQuestion();
             this.reloadBottomCirleButtons();
         } else {
-            this.m_timer.cancel();
-            this.goToResultsView();
+            if (this.m_timer != null) {
+                this.m_timer.cancel();
+                this.goToResultsView();
+            }
         }
     }//GEN-LAST:event_goToNextQuestion
 
@@ -439,8 +441,12 @@ public class QuestionScreenView extends BrainStormingView {
     }//GEN-LAST:event_userLabelMouseClicked
 
     private void quitButtonAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonAction
-        this.m_timer.cancel();
+
+        if (this.m_timer != null) {
+            this.m_timer.cancel();
+        }
         m_mainFrame.changeView(MainFrame.View.MainScreenView);
+
     }//GEN-LAST:event_quitButtonAction
 
 
