@@ -240,7 +240,7 @@ public class QuestionScreenView extends BrainStormingView {
             m_checkboxList.get(i).setVisible(true);
             m_checkboxList.get(i).setText(m_answersList.get(i).getLabel());
             m_checkboxList.get(i).setSelected(m_answersDictionary.get(m_currentQuestionNumber).get(i));
-            if (m_answersList.get(i).getPicture() != null) {
+            if (!m_answersList.get(i).getPicture().equals("")) {
                 m_answersImagesList.get(i).setVisible(true);
                 this.addAnswerImageListener(m_answersImagesList.get(i), question.getPicture(), m_answersList.get(i).getPicture());
             }
