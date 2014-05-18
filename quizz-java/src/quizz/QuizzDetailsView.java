@@ -21,7 +21,7 @@ public class QuizzDetailsView extends BrainStormingView {
         super(main);
         initComponents();
         this.goodAnswersValueLabel.setText(Integer.toString(score.getNumberOfGoodAnswers()));
-        this.scoreValueLabel.setText(Integer.toString(score.getScore()));
+        this.scoreValueLabel.setText(Long.toString(score.getScore()));
         long secondes = (score.getTime() / 1000) % 60;
         long minutes = ((score.getTime() / 1000) / 60) % 60;
         long heures = (score.getTime() / 1000) / 3600;

@@ -13,7 +13,7 @@ public class Score {
     private static final String TIME = "TIME";
 
     private int m_idQuizz;
-    private int m_score;
+    private long m_score;
     private int m_idUser;
     private int m_numberOfGoodAnswers;
     private int m_numberOfQuestions;
@@ -125,7 +125,7 @@ public class Score {
     }
 
     public void updateTheScore(){
-        DBController.Get().executeUpdate(Score.TABLE_NAME, Score.SCORE, Integer.toString(this.getScore()),
+        DBController.Get().executeUpdate(Score.TABLE_NAME, Score.SCORE, Long.toString(this.getScore()),
                 Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getIdUser());
         DBController.Get().executeUpdate(Score.TABLE_NAME, Score.NB_GOOD_ANSWERS, Integer.toString(this.m_numberOfGoodAnswers),
                 Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getIdUser());
@@ -211,7 +211,7 @@ public class Score {
     /**
      * @return the m_score
      */
-    public int getScore() {
+    public long getScore() {
         return m_score;
     }
 
@@ -233,8 +233,8 @@ public class Score {
         return (int) (((double) m_numberOfGoodAnswers / m_numberOfQuestions) * 100);
     }
 
-    private int loadScore() {
-        return 1000 * (this.goodAnswersPourcentage() / 100);
+    private long loadScore() {
+        return (long)(10000 * ((double)this.goodAnswersPourcentage() / this.m_time));
     }
 
     /**

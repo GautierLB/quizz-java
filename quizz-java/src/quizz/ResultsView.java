@@ -49,7 +49,7 @@ public class ResultsView extends BrainStormingView {
         this.m_mainFrame.setScore(m_score);
         this.goodAnswersValueLabel.setText(Integer.toString(score.getNumberOfGoodAnswers()));
         this.pourcentageValueLabel.setText(Integer.toString(score.goodAnswersPourcentage()) + "%");
-        this.scoreValueLabel.setText(Integer.toString(score.getScore()));
+        this.scoreValueLabel.setText(Long.toString(score.getScore()));
         this.rankingValueLabel.setText(Integer.toString(score.getClassement()));
         long secondes = (score.getTime() / 1000) % 60;
         long minutes = ((score.getTime() / 1000) / 60) % 60;

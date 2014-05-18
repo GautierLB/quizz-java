@@ -31,6 +31,20 @@ public class MainFrame extends javax.swing.JFrame {
         this.m_quizz = m_quizz;
     }
 
+    /**
+     * @return the m_time
+     */
+    public long getTime() {
+        return m_time;
+    }
+
+    /**
+     * @param m_time the m_time to set
+     */
+    public void setTime(long m_time) {
+        this.m_time = m_time;
+    }
+
     public enum View {
 
         MainScreenView, CreateQuizzView, ThemeScreenView, QuestionScreenView, CreateQuestionView, ResultsView, AdminScreenView, QuizzDetailsView
@@ -40,12 +54,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         LoginView, SignInView;
     };
-    LoginDialog m_loginDlg;
-    SignInDialog m_signInDlg;
-    StatisticsDialog m_statsDialog;
-    String m_activeView;
+    private LoginDialog m_loginDlg;
+    private SignInDialog m_signInDlg;
+    private StatisticsDialog m_statsDialog;
+    private String m_activeView;
     private Score m_score;
     private Quizz m_quizz;
+    private long m_time = -1;
+    
 
     public MainFrame() {
         initComponents();
