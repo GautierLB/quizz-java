@@ -5,7 +5,6 @@ package quizz;
  * @author Gautier
  */
 import java.awt.*;
-import java.awt.event.WindowEvent;
 import javax.swing.JDialog;
  
 public class SignInDialog extends JDialog {

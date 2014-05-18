@@ -76,7 +76,7 @@ public class LoginDialogPanel extends RoundedPanel {
         TitleLabel.setFont(Main.s_openSans28);
         TitleLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/key-30.png"))); // NOI18N
         TitleLabel.setText("Connexion");
-        add(TitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 10, -1, -1));
+        add(TitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
         pseudoTextBox.setFont(Main.s_openSans13);
         pseudoTextBox.setForeground(new java.awt.Color(170, 170, 170));

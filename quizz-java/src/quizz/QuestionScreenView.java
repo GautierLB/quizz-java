@@ -330,15 +330,19 @@ public class QuestionScreenView extends BrainStormingView {
         titleLabel.setText("Créer un Quizz");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 5, 220, -1));
 
+        answerLabel1.setBackground(new java.awt.Color(255, 255, 255));
         answerLabel1.setLabel("Réponse 1");
         add(answerLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 400, -1));
 
+        answerLabel2.setBackground(new java.awt.Color(255, 255, 255));
         answerLabel2.setLabel("Réponse 2");
         add(answerLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 400, -1));
 
+        answerLabel3.setBackground(new java.awt.Color(255, 255, 255));
         answerLabel3.setLabel("Réponse 3");
         add(answerLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 400, -1));
 
+        answerLabel4.setBackground(new java.awt.Color(255, 255, 255));
         answerLabel4.setLabel("Réponse 4");
         add(answerLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 400, -1));
 
