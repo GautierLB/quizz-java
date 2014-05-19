@@ -40,7 +40,7 @@ public class Score {
      * @param numberOfQuestions the number of questions in the quizz
      * @param time the time spent to do the quizz
      */
-    public Score(int idQuizz, int goodAnswers, int numberOfQuestions, long time , int classement , int idUser) {
+    public Score(int idQuizz, int goodAnswers, int numberOfQuestions, long time, int classement, int idUser) {
         this.m_idQuizz = idQuizz;
         this.m_numberOfGoodAnswers = goodAnswers;
         this.m_numberOfQuestions = numberOfQuestions;
@@ -97,10 +97,10 @@ public class Score {
                 + "," + this.getTime());
 
     }
-    
-   public static void deleteScoreForAQuizz(int idQuizz){
-       DBController.Get().executeDelete(Score.TABLE_NAME, Quizz.ID_QUIZZ+" = "+idQuizz);
-   }
+
+    public static void deleteScoreForAQuizz(int idQuizz) {
+        DBController.Get().executeDelete(Score.TABLE_NAME, Quizz.ID_QUIZZ + " = " + idQuizz);
+    }
 
     static public int getClassementForAQuizz(int idQuizz, int scorePlayer) {
         ArrayList<HashMap<String, Object>> scoreList = DBController.Get().executeSelect("SCORE", Score.TABLE_NAME, "WHERE ID_QUIZZ=" + idQuizz + " ORDER BY SCORE ASC");
@@ -124,13 +124,13 @@ public class Score {
         }
     }
 
-    public void updateTheScore(){
+    public void updateTheScore() {
         DBController.Get().executeUpdate(Score.TABLE_NAME, Score.SCORE, Long.toString(this.getScore()),
-                Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getIdUser());
+                Score.QUIZZ + " = " + this.getIdQuizz() + " AND " + Score.USER + " = " + this.getIdUser());
         DBController.Get().executeUpdate(Score.TABLE_NAME, Score.NB_GOOD_ANSWERS, Integer.toString(this.m_numberOfGoodAnswers),
-                Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getIdUser());
+                Score.QUIZZ + " = " + this.getIdQuizz() + " AND " + Score.USER + " = " + this.getIdUser());
         DBController.Get().executeUpdate(Score.TABLE_NAME, Score.TIME, Long.toString(this.m_time),
-                Score.QUIZZ+" = "+this.getIdQuizz()+" AND "+Score.USER+" = "+this.getIdUser());
+                Score.QUIZZ + " = " + this.getIdQuizz() + " AND " + Score.USER + " = " + this.getIdUser());
     }
 
     public static Score getGlobalScore(int idUser) {
@@ -162,43 +162,59 @@ public class Score {
     }
 
     public static int getAvgGoodAnswer(int idQuizz) {
-        ArrayList<HashMap<String, Object>> avgGoodAnswers = 
-                DBController.Get().executeSelect("AVG(" + Score.NB_GOOD_ANSWERS + ")",
+        ArrayList<HashMap<String, Object>> avgGoodAnswers
+                = DBController.Get().executeSelect("AVG(" + Score.NB_GOOD_ANSWERS + ")",
                         Score.TABLE_NAME,
                         "WHERE " + Score.QUIZZ + " = " + idQuizz);
-        return (int) avgGoodAnswers.get(0).get("");
+        if (avgGoodAnswers.get(0).get("") != null) {
+            return (int) avgGoodAnswers.get(0).get("");
+        } else {
+            return 0;
+        }
     }
 
     public static int getAvgScore(int idQuizz) {
-        ArrayList<HashMap<String, Object>> avgGoodAnswers = 
-                DBController.Get().executeSelect("AVG(" + Score.SCORE + ")", 
-                        Score.TABLE_NAME, 
+        ArrayList<HashMap<String, Object>> avgGoodAnswers
+                = DBController.Get().executeSelect("AVG(" + Score.SCORE + ")",
+                        Score.TABLE_NAME,
                         "WHERE " + Score.QUIZZ + " = " + idQuizz);
-        return (int) avgGoodAnswers.get(0).get("");
+        if (avgGoodAnswers.get(0).get("") != null) {
+            return (int) avgGoodAnswers.get(0).get("");
+        } else {
+            return 0;
+        }
     }
 
     public static int getAvgTime(int idQuizz) {
-        ArrayList<HashMap<String, Object>> avgTime = 
-                DBController.Get().executeSelect("AVG(" + Score.TIME + ")",
-                        Score.TABLE_NAME, 
+        ArrayList<HashMap<String, Object>> avgTime
+                = DBController.Get().executeSelect("AVG(" + Score.TIME + ")",
+                        Score.TABLE_NAME,
                         "WHERE " + Score.QUIZZ + " = " + idQuizz);
-        return (int) avgTime.get(0).get("");
+        if (avgTime.get(0).get("") != null) {
+            return (int) avgTime.get(0).get("");
+        } else {
+            return 0;
+        }
     }
 
     public static int getNbParticipant(int idQuizz) {
-        ArrayList<HashMap<String, Object>> nbParticipant = 
-                DBController.Get().executeSelect("COUNT(DISTINCT S." + Score.USER + ")", 
-                        Score.TABLE_NAME + " S, " + User.TABLE_NAME + " U", 
+        ArrayList<HashMap<String, Object>> nbParticipant
+                = DBController.Get().executeSelect("COUNT(DISTINCT S." + Score.USER + ")",
+                        Score.TABLE_NAME + " S, " + User.TABLE_NAME + " U",
                         "WHERE U." + User.ID + "  = S." + Score.USER + " AND " + Score.QUIZZ + " = " + idQuizz);
-        return (int) nbParticipant.get(0).get("");
+         if (nbParticipant.get(0).get("") != null) {
+            return (int) nbParticipant.get(0).get("");
+        } else {
+            return 0;
+        }
     }
 
     public static Score getStatsForQuizz(Quizz quizz) {
         return new Score(Score.getAvgGoodAnswer(quizz.getId()),
-        Score.getAvgScore(quizz.getId()),
-        Score.getAvgTime(quizz.getId()),
-        quizz.getNbQuest(),
-        Score.getNbParticipant(quizz.getId()));
+                Score.getAvgScore(quizz.getId()),
+                Score.getAvgTime(quizz.getId()),
+                quizz.getNbQuest(),
+                Score.getNbParticipant(quizz.getId()));
     }
 
     /**
@@ -234,7 +250,7 @@ public class Score {
     }
 
     private long loadScore() {
-        return (long)(10000 * ((double)this.goodAnswersPourcentage() / this.m_time));
+        return (long) (10000 * ((double) this.goodAnswersPourcentage() / this.m_time));
     }
 
     /**
@@ -249,7 +265,7 @@ public class Score {
      */
     public int getClassement() {
         return m_classement;
-}
+    }
 
     /**
      * @return the m_idUser

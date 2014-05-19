@@ -160,8 +160,8 @@ public class LoginDialogPanel extends RoundedPanel {
                 this.m_mainFrame.deleteModal();
             } else {
                 
-                this.pseudoErrors.setText("Erreur de connexion ! ");
-                this.passwordErrors.setText("Identifiants invalides !");
+                this.pseudoErrors.setText("Erreur de connexion ");
+                this.passwordErrors.setText("Identifiants invalides ");
             }
         }
     }//GEN-LAST:event_loginButtonActionPerformed
@@ -177,11 +177,11 @@ public class LoginDialogPanel extends RoundedPanel {
     private Boolean checkValues() {
         Boolean error = true;
         if (this.pseudoTextBox.getText().isEmpty()) {
-            this.pseudoErrors.setText("Pseudo manquant !");
+            this.pseudoErrors.setText("Pseudo manquant ");
             error = false;
         }
-        if (this.passwordTextBox.getText().isEmpty()) {
-            this.passwordErrors.setText("Mot de passe manquant !");
+        if (this.passwordTextBox.getText().isEmpty() || this.passwordTextBox.getText().equals("jTextField2")) {
+            this.passwordErrors.setText("Mot de passe manquant ");
             error = false;
         }
         return error;
