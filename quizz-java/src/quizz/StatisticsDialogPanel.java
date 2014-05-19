@@ -27,7 +27,7 @@ public class StatisticsDialogPanel extends RoundedPanel {
         m_mainFrame = mainFrame;
         this.goodAnswersValueLabel.setText(Integer.toString(score.getNumberOfGoodAnswers()));
         this.scoreValueLabel.setText(Long.toString(score.getScore()));
-        this.rankingValueLabel.setText(Integer.toString(5));
+        this.nbQuizzValueLabel.setText(Integer.toString(5));
         long secondes = (score.getTime() / 1000) % 60;
         long minutes = ((score.getTime() / 1000) / 60) % 60;
         long heures = (score.getTime() / 1000) / 3600;
@@ -52,17 +52,15 @@ public class StatisticsDialogPanel extends RoundedPanel {
         goodAnswersLabel = new javax.swing.JLabel();
         pourcentageLabel = new javax.swing.JLabel();
         scoreLabel = new javax.swing.JLabel();
-        rankingLabel = new javax.swing.JLabel();
+        nbQuizzLabel = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
         subtitleLabel = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         goodAnswersValueLabel = new javax.swing.JLabel();
         pourcentageValueLabel = new javax.swing.JLabel();
         scoreValueLabel = new javax.swing.JLabel();
-        rankingValueLabel = new javax.swing.JLabel();
-        timeValueLabel = new javax.swing.JLabel();
-        nbQuizzsLabel = new javax.swing.JLabel();
         nbQuizzValueLabel = new javax.swing.JLabel();
+        timeValueLabel = new javax.swing.JLabel();
         btDeconnexion = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(500, 300));
@@ -78,40 +76,35 @@ public class StatisticsDialogPanel extends RoundedPanel {
 
         goodAnswersLabel.setFont(Main.s_openSans13);
         goodAnswersLabel.setText("Bonnes réponses");
-        mainPanel.add(goodAnswersLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
+        mainPanel.add(goodAnswersLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
         pourcentageLabel.setFont(Main.s_openSans13);
         pourcentageLabel.setText("Pourcentage");
-        mainPanel.add(pourcentageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
+        mainPanel.add(pourcentageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, -1));
 
         scoreLabel.setFont(Main.s_openSans13);
         scoreLabel.setText("Score");
-        mainPanel.add(scoreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, -1));
+        mainPanel.add(scoreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
 
-        rankingLabel.setFont(Main.s_openSans13);
-        rankingLabel.setText("Classement");
-        mainPanel.add(rankingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+        nbQuizzLabel.setFont(Main.s_openSans13);
+        nbQuizzLabel.setText("Quizzs effectués");
+        mainPanel.add(nbQuizzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
 
         timeLabel.setFont(Main.s_openSans13);
         timeLabel.setText("Temps");
-        mainPanel.add(timeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
+        mainPanel.add(timeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
 
         subtitleLabel.setFont(Main.s_openSansTitle);
         subtitleLabel.setText("Résultat");
         mainPanel.add(subtitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        mainPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, 220));
-        mainPanel.add(goodAnswersValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
-        mainPanel.add(pourcentageValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
-        mainPanel.add(scoreValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, -1, -1));
-        mainPanel.add(rankingValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
-        mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
-
-        nbQuizzsLabel.setFont(Main.s_openSans13);
-        nbQuizzsLabel.setText("Quizzs effectués");
-        mainPanel.add(nbQuizzsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
-        mainPanel.add(nbQuizzValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
+        mainPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, 180));
+        mainPanel.add(goodAnswersValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
+        mainPanel.add(pourcentageValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, -1, -1));
+        mainPanel.add(scoreValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
+        mainPanel.add(nbQuizzValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, -1, -1));
+        mainPanel.add(timeValueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
 
         btDeconnexion.setText("Déconnexion");
         btDeconnexion.setMaximumSize(new java.awt.Dimension(120, 25));
@@ -139,12 +132,10 @@ public class StatisticsDialogPanel extends RoundedPanel {
     private javax.swing.JLabel goodAnswersValueLabel;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JLabel nbQuizzLabel;
     private javax.swing.JLabel nbQuizzValueLabel;
-    private javax.swing.JLabel nbQuizzsLabel;
     private javax.swing.JLabel pourcentageLabel;
     private javax.swing.JLabel pourcentageValueLabel;
-    private javax.swing.JLabel rankingLabel;
-    private javax.swing.JLabel rankingValueLabel;
     private javax.swing.JLabel scoreLabel;
     private javax.swing.JLabel scoreValueLabel;
     private javax.swing.JLabel subtitleLabel;
