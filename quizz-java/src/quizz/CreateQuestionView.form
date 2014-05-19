@@ -382,6 +382,7 @@
         </Constraint>
       </Constraints>
 
+	  
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
     </Container>
     <Component class="javax.swing.JButton" name="SubmitQuizzButton">
