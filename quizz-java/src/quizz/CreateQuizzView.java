@@ -180,6 +180,7 @@ public class CreateQuizzView extends BrainStormingView {
         folderIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quizz/assets/folderIcon-25.png"))); // NOI18N
         mainPanel.add(folderIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
 
+        replayableCheckbox.setBackground(new java.awt.Color(255, 255, 255));
         replayableCheckbox.setFont(Main.s_openSans13);
         replayableCheckbox.setForeground(new java.awt.Color(102, 102, 102));
         replayableCheckbox.setText("Rejouable ?");
