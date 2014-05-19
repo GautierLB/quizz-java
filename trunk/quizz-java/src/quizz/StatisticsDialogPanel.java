@@ -6,6 +6,7 @@
 
 package quizz;
 
+import quizz.model.Quizz;
 import quizz.model.Score;
 import quizz.model.User;
 
@@ -31,8 +32,8 @@ public class StatisticsDialogPanel extends RoundedPanel {
         long minutes = ((score.getTime() / 1000) / 60) % 60;
         long heures = (score.getTime() / 1000) / 3600;
         this.timeValueLabel.setText(heures + " heures " + minutes + " minutes et " + secondes + " secondes");
-        this.nbQuizzValueLabel.setText(Integer.toString(score.getNbQuizz()));
-        this.pourcentageValueLabel.setText(Integer.toString(score.goodAnswersPourcentage()));
+        this.nbQuizzValueLabel.setText(Integer.toString(score.getNbQuizz())+ " / " + Integer.toString(Quizz.getNbQuizz()));
+        this.pourcentageValueLabel.setText(Integer.toString(score.goodAnswersPourcentage()) + "%");
         if(!m_mainFrame.getActiveView().equals("MainScreenView")){
             this.btDeconnexion.setEnabled(false);
         }
