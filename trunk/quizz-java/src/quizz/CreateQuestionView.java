@@ -6,7 +6,6 @@
 package quizz;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JPanel;
 import quizz.model.Quizz;
 import quizz.model.Answer;
@@ -24,7 +23,7 @@ public class CreateQuestionView extends BrainStormingView {
      */
     private boolean oldQuestion = false;
     private String typeQuestion = "Both";
-    private JPanel questionPanel = new ImageAnswerPanel(false, this);;
+    private JPanel questionPanel = new ImageAnswerPanel(false, this);
     public JPanel answerPanel;
     private Quizz quizz;
     public int indexQuestion = 0;
@@ -32,7 +31,7 @@ public class CreateQuestionView extends BrainStormingView {
     public boolean oldAnswer = false;
     public ArrayList<Question> questionList = new ArrayList();
     public ArrayList<Answer> answerList = new ArrayList<>();
-    public ArrayList<ArrayList<Answer>> answerListFinal = new ArrayList<ArrayList<Answer>>();
+    public ArrayList<ArrayList<Answer>> answerListFinal = new ArrayList<>();
     
     public enum Side {
         
@@ -49,7 +48,8 @@ public class CreateQuestionView extends BrainStormingView {
         this.quizz = newQuizz;
         initComponents();
         questionPanel = this.setNewLayout(Type.ImageAnswer, Side.Left);
-        
+        leftPanel = new ImagePanel(false, this);
+        rightPanel = new ImageAnswerPanel(true, this);
     }
 
     /**
@@ -75,10 +75,9 @@ public class CreateQuestionView extends BrainStormingView {
         rightTextButton = new javax.swing.JButton();
         rightImageButton = new javax.swing.JButton();
         rightBothButton = new javax.swing.JButton();
-        rightPanel = new ImagePanel(true,this);
-        leftPanel = new ImageAnswerPanel(false,this);
+        rightPanel = new javax.swing.JPanel();
+        leftPanel = new javax.swing.JPanel();
         SubmitQuizzButton = new javax.swing.JButton();
-        backButton1 = new javax.swing.JButton();
         errorLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -109,7 +108,7 @@ public class CreateQuestionView extends BrainStormingView {
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 38, 720, -1));
 
         questionNumerLabel.setFont(Main.s_openSansItalic16);
-        questionNumerLabel.setText("Question N°"+(indexQuestion+1));
+        questionNumerLabel.setText("Question N°0");
         add(questionNumerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         backButton.setText("Retour");
@@ -235,28 +234,9 @@ public class CreateQuestionView extends BrainStormingView {
         leftPanel.setPreferredSize(new java.awt.Dimension(309, 307));
         add(leftPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
-		
         SubmitQuizzButton.setText("Valider le quizz");
-        SubmitQuizzButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        SubmitQuizzButton.setMaximumSize(new java.awt.Dimension(100, 20));
-        SubmitQuizzButton.setMinimumSize(new java.awt.Dimension(100, 20));
-        SubmitQuizzButton.setPreferredSize(new java.awt.Dimension(100, 20));
-		SubmitQuizzButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveTheQuizz(evt);
-            }
-        });
-        add(SubmitQuizzButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 520, -1, -1));
+        add(SubmitQuizzButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 520, -1, -1));
         SubmitQuizzButton.getAccessibleContext().setAccessibleName("SubmitQuizzButton");
-
-		/*
-        backButton1.setText("Valider le quizz");
-        backButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButton1backAction(evt);
-            }
-        });
-        add(backButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 520, -1, -1));*/
 
         errorLabel.setFont(Main.s_openSans13);
         errorLabel.setForeground(new java.awt.Color(255, 0, 0));
@@ -592,10 +572,6 @@ public class CreateQuestionView extends BrainStormingView {
         this.setNewLayout(Type.ImageAnswer, Side.Right);
     }//GEN-LAST:event_rightBothButtonActionPerformed
 
-    private void backButton1backAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1backAction
-        m_mainFrame.changeView(MainFrame.View.MainScreenView);
-    }//GEN-LAST:event_backButton1backAction
-
     /**
      * permet de changer le type de panel pour créer question/réponse
      *
@@ -649,7 +625,6 @@ public class CreateQuestionView extends BrainStormingView {
     private javax.swing.JLabel arrowLeft;
     private javax.swing.JLabel arrowRight;
     private javax.swing.JButton backButton;
-    private javax.swing.JButton backButton1;
     private javax.swing.JLabel errorLabel;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
