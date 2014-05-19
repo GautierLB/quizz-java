@@ -531,6 +531,7 @@ public class CreateQuestionView extends BrainStormingView {
                 }
                 quizz.setNbQuestQuizz(questionList.size());
                 QuizzManager.linkQuestionsToQuizz(quizz, questionList);
+                m_mainFrame.changeView(MainFrame.View.MainScreenView);
                 break;
             case 1:
                 this.errorLabel.setText("Vous n'avez aucune bonne réponse");
@@ -545,7 +546,7 @@ public class CreateQuestionView extends BrainStormingView {
                 this.errorLabel.setText("Votre question est vide");
                 break;
         }
-        m_mainFrame.changeView(MainFrame.View.MainScreenView);
+        
     }
 
     private void leftTextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftTextButtonActionPerformed
