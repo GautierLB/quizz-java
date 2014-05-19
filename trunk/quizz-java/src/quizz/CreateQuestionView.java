@@ -48,7 +48,7 @@ public class CreateQuestionView extends BrainStormingView {
         super(mainFrame);
         this.quizz = newQuizz;
         initComponents();
-        //= this.setNewLayout(Type.ImageAnswer, Side.Left)
+        questionPanel = this.setNewLayout(Type.ImageAnswer, Side.Left);
         
     }
 
@@ -109,7 +109,7 @@ public class CreateQuestionView extends BrainStormingView {
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 38, 720, -1));
 
         questionNumerLabel.setFont(Main.s_openSansItalic16);
-        questionNumerLabel.setText("Question N°0");
+        questionNumerLabel.setText("Question N°"+(indexQuestion+1));
         add(questionNumerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         backButton.setText("Retour");
@@ -235,21 +235,28 @@ public class CreateQuestionView extends BrainStormingView {
         leftPanel.setPreferredSize(new java.awt.Dimension(309, 307));
         add(leftPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
+		
         SubmitQuizzButton.setText("Valider le quizz");
         SubmitQuizzButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
         SubmitQuizzButton.setMaximumSize(new java.awt.Dimension(100, 20));
         SubmitQuizzButton.setMinimumSize(new java.awt.Dimension(100, 20));
         SubmitQuizzButton.setPreferredSize(new java.awt.Dimension(100, 20));
+		SubmitQuizzButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveTheQuizz(evt);
+            }
+        });
         add(SubmitQuizzButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 520, -1, -1));
         SubmitQuizzButton.getAccessibleContext().setAccessibleName("SubmitQuizzButton");
 
+		/*
         backButton1.setText("Valider le quizz");
         backButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButton1backAction(evt);
             }
         });
-        add(backButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 520, -1, -1));
+        add(backButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 520, -1, -1));*/
 
         errorLabel.setFont(Main.s_openSans13);
         errorLabel.setForeground(new java.awt.Color(255, 0, 0));
@@ -344,7 +351,7 @@ public class CreateQuestionView extends BrainStormingView {
      * the modification
      */
     public void answerDisplay() {
-        if (answerList.get(indexAnswer).getType().equals("Text")) {
+        if (answerList.get(indexAnswer).getType().equals("Text")) {           
             answerPanel = this.setNewLayout(Type.Answer, Side.Right);
             AnswerPanel usedPanel = (AnswerPanel) answerPanel;
             usedPanel.setText(answerList.get(indexAnswer).getLabel());
@@ -372,15 +379,18 @@ public class CreateQuestionView extends BrainStormingView {
             questionPanel = this.setNewLayout(Type.Answer, Side.Left);
             AnswerPanel usedPanel = (AnswerPanel) questionPanel;
             usedPanel.setText(questionList.get(indexQuestion).getLabel());
+            typeQuestion = "Text";
         } else if (questionList.get(indexQuestion).getType().equals("Image")) {
             questionPanel = this.setNewLayout(Type.Image, Side.Left);
             ImagePanel usedPanel = (ImagePanel) questionPanel;
             usedPanel.setUrlPicture(questionList.get(indexQuestion).getPicture());
+            typeQuestion = "Image";
         } else {
             questionPanel = this.setNewLayout(Type.ImageAnswer, Side.Left);
             ImageAnswerPanel usedPanel = (ImageAnswerPanel) questionPanel;
             usedPanel.setText(questionList.get(indexQuestion).getLabel());
             usedPanel.setUrlPicture(questionList.get(indexQuestion).getPicture());
+            typeQuestion = "Both";
         }
     }
 
