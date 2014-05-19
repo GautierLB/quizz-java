@@ -61,7 +61,6 @@ public class DBController {
         String query = "SELECT " + select + " FROM " + table + " " + where + ";";
         Connection connection = this.connectDB();
         try {
-            System.out.println("Request to DB !");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
