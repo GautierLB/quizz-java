@@ -140,6 +140,7 @@ public class QuestionScreenView extends BrainStormingView {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 reloadPictureLabel(answerImageLink);
+                
                 Timer timer = new Timer();
                 timer.scheduleAtFixedRate(new TimerTask() {
                     @Override
