@@ -47,7 +47,8 @@ public class CreateQuestionView extends BrainStormingView {
         super(mainFrame);
         this.quizz = newQuizz;
         initComponents();
-        questionPanel = this.setNewLayout(Type.ImageAnswer, Side.Left);        
+        questionPanel = this.setNewLayout(Type.ImageAnswer, Side.Left);
+        answerPanel = this.setNewLayout(Type.Image, Side.Right);
     }
 
     /**
