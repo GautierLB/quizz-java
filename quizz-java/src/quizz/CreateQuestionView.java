@@ -107,7 +107,7 @@ public class CreateQuestionView extends BrainStormingView {
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 38, 720, -1));
 
         questionNumerLabel.setFont(Main.s_openSansItalic16);
-        questionNumerLabel.setText("Question N°0");
+        questionNumerLabel.setText("Question N°"+(indexQuestion + 1) );
         add(questionNumerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         backButton.setText("Retour");
