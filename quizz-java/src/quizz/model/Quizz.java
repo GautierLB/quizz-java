@@ -158,6 +158,18 @@ public class Quizz {
         return this.m_nbQuestQuizz;
     }
 
+    public static int getNbQuizz()
+    {
+         ArrayList<HashMap<String, Object>> nbQuizz
+                = DBController.Get().executeSelect("COUNT(DISTINCT " + Quizz.ID_QUIZZ + ")",
+                        Quizz.TABLE_NAME,
+                        "");
+        if (nbQuizz.get(0).get("") != null) {
+            return (int) nbQuizz.get(0).get("");
+        } else {
+            return 0;
+        }
+    }
     /**
      * @param nbQuestQuizz the number of questions to set
      */
