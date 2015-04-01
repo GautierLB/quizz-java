@@ -1,0 +1,1 @@
+Quizz app for academic project.
